@@ -196,3 +196,104 @@ def analyze_traffic_impact(parking_hotspots_path, traffic_events_path, max_dista
 
 ### 3. Conclusion
 By checking if `Distance(Parking Hotspot, Event Location)` is within the threshold, we establish empirical evidence of the direct link. Even a weak spatial correlation (e.g., 20% to 30% of breakdowns/congestion events occurring near chronic parking hotspots) represents a massive operational finding, confirming that targeted parking enforcement on these specific blocks can directly reduce grid-level traffic incidents.
+
+---
+
+## Part 2: Hackathon Prototype Feature Design (Translating Research to Code)
+
+To make our hackathon prototype (GridLock-R2) stand out, we translate these empirical insights and academic delay models into three actionable features for Problem Statement 1. This bridges the gap between raw data logs and professional traffic engineering outputs.
+
+### Feature A: The "Maneuver Friction" Multiplier
+* **Theory**: A parked vehicle blocks road capacity statically, but the dynamic acts of parallel parking, searching, and pulling in/out force oncoming traffic to yield. This creates minor shockwaves in traffic flow.
+* **Adaptation**: We assign a **Maneuver Friction Factor** ($M_f$) to each vehicle class based on typical maneuvering times (e.g., heavy vehicles taking 30+ seconds to back in, while two-wheelers park instantly):
+  
+$$\text{Total Congestion Score} = \text{Static PCU} \times (1 + M_f)$$
+
+* **Parameters**:
+  * **Scooters / Motorcycles / Mopeds**: $M_f = 0.1$ (minimal disruption)
+  * **Cars / Passenger Autos / Jeeps**: $M_f = 0.5$ (parallel parking delays, blocks one lane for 10-15s)
+  * **Vans / Maxi-Cabs / LGVs / Tempos**: $M_f = 0.8$ (slower maneuvers, blocks lane for 15-20s)
+  * **Buses / Trucks / HGVs / Tankers**: $M_f = 1.5$ (blocks multiple lanes, requires wide turns, blocks flow for 30s+)
+
+---
+
+### Feature B: Intersection Proximity Multiplier (Bottleneck Weighting)
+* **Theory**: A vehicle parked illegally near a signalized intersection chokes saturation approach flows and blocks turning bays, compounding queues far worse than mid-block parking.
+* **Adaptation**: We cross-reference the violation's distance to the nearest junction (calculated using our KD-Tree):
+  
+$$\text{Weighted Congestion Score} = \text{Total Congestion Score} \times W_{intersection}$$
+
+* **Weights ($W_{intersection}$)**:
+  * **Distance $\le$ 100m**: $1.5\text{x}$ multiplier (Intersection Critical Zone)
+  * **100m $<$ Distance $\le$ 200m**: $1.25\text{x}$ multiplier (Intersection Transition Zone)
+  * **Distance $>$ 200m**: $1.0\text{x}$ multiplier (Standard mid-block parking)
+
+---
+
+### Feature C: Highway Capacity Manual (HCM) Level of Service (LOS) Simulator
+* **Theory**: Traffic engineers use the Level of Service (LOS) grade to evaluate intersections. The grade corresponds directly to the average control delay (in seconds) experienced per vehicle.
+* **Adaptation**: We create a mathematical simulator that maps the accumulated illegal PCU load at an intersection to an estimated increase in delay, which degrades the LOS letter grade.
+* **Delay Model**:
+  $$\text{Adjusted Delay} = \text{Baseline Delay} + \Delta D_{parking}$$
+  $$\Delta D_{parking} = \beta \times \text{Accumulated PCU Load}$$
+  Where we calibrate $\beta = 0.45$ seconds/PCU (i.e., every 20 PCUs of illegal parking adds 9.0 seconds of delay to the approach).
+  
+* **LOS Mapping Table**:
+  
+  | LOS Grade | Delay Range (seconds) | Traffic Flow Description |
+  | :---: | :---: | :--- |
+  | **A** | $D \le 10.0$ | **Free Flow**: Vehicles move completely unimpeded. |
+  | **B** | $10.1 < D \le 20.0$ | **Stable Flow**: Slight presence of other vehicles. |
+  | **C** | $20.1 < D \le 35.0$ | **Noticeable Delay**: Flow is stable, but turning requires care. |
+  | **D** | $35.1 < D \le 55.0$ | **Saturated Flow**: Congestion begins, queue delays form. |
+  | **E** | $55.1 < D \le 80.0$ | **Unstable Flow**: Flows approach capacity, major delays. |
+  | **F** | $D > 80.0$ | **Gridlock**: Intersection is completely jammed. |
+
+* **Calibrated Example**:
+  If a junction has a standard baseline delay of **34.0 seconds (LOS C)**, and our system detects a peak illegal parking load of **20 PCUs**:
+  $$\text{Adjusted Delay} = 34.0 + (0.45 \times 20) = 43.0\text{ seconds}$$
+  This pushes the intersection delay into the **35.1s – 55.0s range**, degrading the junction's performance to **LOS D (Saturated Flow)**.
+
+* **Prototype Implementation (JavaScript/React State Logic)**:
+  Below is a clean proof-of-concept snippet showing how we compute the LOS degradation dynamically on our frontend simulator screen:
+
+```javascript
+const calculateLOS = (baselineDelay, pcuLoad) => {
+  const beta = 0.45; // seconds of delay added per PCU load
+  const adjustedDelay = baselineDelay + (beta * pcuLoad);
+  
+  let losGrade = 'A';
+  let description = 'Free Flow';
+  
+  if (adjustedDelay <= 10.0) {
+    losGrade = 'A';
+    description = 'Free Flow';
+  } else if (adjustedDelay <= 20.0) {
+    losGrade = 'B';
+    description = 'Stable Flow';
+  } else if (adjustedDelay <= 35.0) {
+    losGrade = 'C';
+    description = 'Noticeable Delay';
+  } else if (adjustedDelay <= 55.0) {
+    losGrade = 'D';
+    description = 'Saturated Flow';
+  } else if (adjustedDelay <= 80.0) {
+    losGrade = 'E';
+    description = 'Unstable Flow';
+  } else {
+    losGrade = 'F';
+    description = 'Gridlock';
+  }
+  
+  return {
+    adjustedDelay: parseFloat(adjustedDelay.toFixed(1)),
+    losGrade,
+    description
+  };
+};
+
+// Example frontend call:
+// const simResult = calculateLOS(34.0, 20.0);
+// console.log(simResult); // { adjustedDelay: 43.0, losGrade: 'D', description: 'Saturated Flow' }
+```
+
