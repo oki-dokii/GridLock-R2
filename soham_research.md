@@ -341,34 +341,74 @@ $$\text{Randomness Hazard Alert} = \text{Final Integrated Impact Score} \times P
 
 ---
 
-## Part 3: Pitching the Dual-Axis Engineering Narrative to Hackathon Judges
+## Part 3: Macro-Level CBD Congestion & Policy Recommendations (Paper 3 Translation)
 
-To maximize judge interest, we pitch our prototype using a **dual-axis traffic engineering narrative** that sets GridLock-R2 apart from simple data dashboards:
+To complete the framework, we integrate macro-level urban transportation findings concerning Central Business District (CBD) networks. The research shows that completely freeing a commercial corridor from on-street parking yields compounding macro-level returns: a **46.6% increase in traffic flow**, a **38% reduction in travel times**, and a **69% drop in total vehicle delays**.
+
+### Feature G: The "Cruising Penalty" Factor (The Shoup 30% Coefficient)
+* **Theory**: In saturated commercial zones, a massive portion of traffic does not consist of vehicles traveling through, but motorists making circuitous loops searching for available curb space (**"cruising for parking"**). Research shows that in dense CBDs, roughly **30% of traffic** consists of cruising vehicles, spending an average of **8 minutes** searching for a spot. When parking spots are illegally blocked, it forces more drivers to cruise, inflating background traffic volume.
+* **Adaptation**: We build a **Cruising Index Penalty** ($P_{cruising}$) into our scoring model. When a violation cluster occurs in a high-density commercial node (where we identified our chronic hotspots with a Persistence Score of 4), the score applies a background traffic cruising multiplier:
+  
+$$\text{Macro-Congestion Index} = \text{Final Integrated Impact Score} \times (1 + P_{cruising})$$
+
+* **Cruising Factor ($P_{cruising}$)**:
+  * **Chronic Hotspots ($P=4$) in Commercial Jurisdictions** (Upparpet, Shivajinagar, City Market, Malleshwaram): $P_{cruising} = 0.30$ (adds 30% background load penalty to represent circling traffic).
+  * **Standard zones / Non-chronic hotspots**: $P_{cruising} = 0.0$.
+
+---
+
+### Feature H: Exponential "Undivided Choke" Scaling
+* **Theory**: When illegal parking occurs on both sides of a two-lane undivided roadway, capacity is decimated by **78% to 90%** due to the extreme bottlenecking. Slow-moving vehicles searching for gaps completely stop the flow of faster, through-traffic in both directions.
+* **Adaptation**: We implement an **Undivided Roadway Multiplier**. When the system detects active violations on both sides of a narrow/undivided road segment (same grid cell), the prototype scales the impact score exponentially rather than additively:
+  
+$$\text{Double-Sided Impact Score} = (\text{Macro-Congestion Index})^{1.5} \times C_{road}$$
+
+This non-linear scaling directly simulates the 90% capacity death observed in undivided commercial corridors.
+
+---
+
+### Feature I: The "Smart Mitigation & PGIS Recommender" (Advisory Module)
+* **Theory**: Pure punitive enforcement is insufficient. The most effective long-term mitigation to alleviate both the ticket processing burden and traffic congestion is a **Parking Guidance Information System (PGIS)** that utilizes signage to direct drivers to available off-street parking facilities.
+* **Adaptation**: We build a **Policy & Mitigation Advisory Module** within the dashboard. Instead of only triggering tow dispatches, the system monitors hotspot persistence and outputs urban planning/mitigation recommendations.
+* **Dashboard Output Logic**:
+  * If a grid cell has an **average monthly violation count > 500** and a **Persistence Score of 4**:
+    * **Output Alert**: *"High Cruising Overhead detected. Parking search loops represent ~30% of local traffic. Recommendation: Pre-emptively deploy variable message signs (VMS) 200 meters prior to route drivers to nearby off-street parking structures."*
+  * This shifts the prototype from a purely punitive enforcement tool to an intelligent, proactive transportation solution.
+
+---
+
+## Part 4: The Three-Tiered Traffic Degradation Pitch for Hackathon Judges
+
+We organize our hackathon presentation around a **Three-Tiered Traffic Degradation Architecture** that maps directly to the micro, dynamic, and macro levels of transportation planning:
 
 ```
-                  HIGH FLOW CONSTRAINTS (Peak Hours)
-                               ▲
-                               │
-            Quadrant II:       │       Quadrant I:
-            Dynamic Friction   │       High-Impact Shockwaves
-            (Slow unparking)   │       (HGV unparking in Peak)
-                               │
-DYNAMIC MANEUVER ──────────────┼──────────────► STATIC CAPACITY LOSS
-FRICTION (Yousif & Purnawan)   │               (IRC PCU Standards)
-                               │
-            Quadrant IV:       │       Quadrant III:
-            Quiet Areas        │       Low-Flow Impedance
-            (Scooters at night)│       (Car parked off-peak)
-                               │
-                               ▼
-                   LOW FLOW CONSTRAINTS (3:00 AM)
+┌─────────────────────────────────────────────────────────────────────────┐
+│              THREE-TIERED TRAFFIC DEGRADATION ARCHITECTURE             │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  [MACRO]    3. CBD Cruising & Network Capacity                          │
+│             - 30% cruising overhead factored into chronic commercial    │
+│               hotspots to estimate total network delays.                │
+│                                                                         │
+│  [DYNAMIC]  2. Maneuver Friction & Temporal Flow                        │
+│             - Dynamic scaling based on peak time (10 AM - 12 PM)        │
+│               and narrow streets (swerve risks).                        │
+│                                                                         │
+│  [MICRO]    1. Baseline Capacity (IRC PCU Weights)                      │
+│             - Physical lane width reduction based on vehicle footprint   │
+│               (Lorry = 3.0, Car = 1.0, Scooter = 0.5).                  │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-1. **Static Capacity Loss (Axis 1 - Paper 1)**:
-   We downrate physical lane capacity using **Indian Roads Congress (IRC) PCU standards** depending on the vehicle class (e.g., Lorry = 3.0, Scooter = 0.5).
-2. **Dynamic Maneuver Friction (Axis 2 - Paper 2)**:
-   We scale the impact based on **when** and **where** the violation occurs (10 AM - 12 PM peak, narrow streets, random/unexpected locations) using a non-linear scaling multiplier, accounting for the dynamic shockwaves created by unparking maneuvers in dense flow.
+1. **The Micro-Capacity Base (Paper 1)**:
+   We downrate the baseline physical lane width using **Indian Roads Congress (IRC) PCU standards** (Lorry = 3.0, Car = 1.0, Scooter = 0.5) to capture the physical footprint of the blockage.
+2. **The Maneuver Friction Layer (Paper 2)**:
+   We apply a non-linear scaling factor aligned with your validated **10:00 AM – 12:00 PM commercial peak window** and narrow roads, accounting for the dynamic deceleration shockwaves caused when vehicles enter/exit illegal spaces.
+3. **The Macro-CBD Cruising Overhead (Paper 3)**:
+   We factor in a **30% cruising overhead** for saturated commercial hotspots (Persistence Score = 4), estimating the macro-level degradation to Level of Service (LOS) and total vehicle delay.
 
-This framing shows that GridLock-R2 is not just counting database rows—it is a live simulator of urban network degradation grounded in actual transportation science.
+This complete framing shows the judges that GridLock-R2 is a comprehensive, scientific, and realistic solution to urban traffic bottlenecks.
+
 
 
