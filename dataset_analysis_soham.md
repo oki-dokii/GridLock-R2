@@ -8,29 +8,29 @@ The goal of this analysis is to identify key spatial, temporal, and operational 
 
 ```mermaid
 mindmap
-  root(("Bengaluru Parking<br>Violations"))
-    "Spatial Hotspots"
-      "Upparpet (Transit Hub)"
-      "Shivajinagar (Commercial Hub)"
-      "Outer Ring Road (IT Corridor)"
-      "Hebbal (Highway Entry)"
-    "Temporal Patterns"
-      "Peak Hours (IST): 10 AM - 12 PM"
-      "Weekly Peaks: Sundays & Saturdays"
-      "Night Logging: 3 AM - 6 AM"
-    "Violation Types"
-      "Wrong Parking (55.3%)"
-      "No Parking (46.6%)"
-      "Main Road Parking (8.0%)"
-      "Footpath Parking (1.3%)"
-    "Vehicle Segments"
-      "Two-Wheelers (45.5%)"
-      "Cars (29.8%)"
-      "Autos (12.7%)"
-    "Validation Audit"
-      "Approved (67%)"
-      "Rejected (29%)"
-      "Officer Discrepancy (1.8% to 86.8% rejection)"
+  root(("Bengaluru Parking Violations"))
+    spatial_hotspots["Spatial Hotspots"]
+      upparpet["Upparpet (Transit Hub)"]
+      shivajinagar["Shivajinagar (Commercial Hub)"]
+      orr["Outer Ring Road (IT Corridor)"]
+      hebbal["Hebbal (Highway Entry)"]
+    temporal_patterns["Temporal Patterns"]
+      peak_hours["Peak Hours (IST): 10 AM - 12 PM"]
+      weekly_peaks["Weekly Peaks: Sundays & Saturdays"]
+      night_logging["Night Logging: 3 AM - 6 AM"]
+    violation_types["Violation Types"]
+      wrong_parking["Wrong Parking (55.3%)"]
+      no_parking["No Parking (46.6%)"]
+      main_road["Main Road Parking (8.0%)"]
+      footpath["Footpath Parking (1.3%)"]
+    vehicle_segments["Vehicle Segments"]
+      twowheelers["Two-Wheelers (45.5%)"]
+      cars["Cars (29.8%)"]
+      autos["Autos (12.7%)"]
+    validation_audit["Validation Audit"]
+      approved["Approved (67%)"]
+      rejected["Rejected (29%)"]
+      officer_discrepancy["Officer Discrepancy (1.8% to 86.8% rejection)"]
 ```
 
 ---
