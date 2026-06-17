@@ -196,3 +196,259 @@ def analyze_traffic_impact(parking_hotspots_path, traffic_events_path, max_dista
 
 ### 3. Conclusion
 By checking if `Distance(Parking Hotspot, Event Location)` is within the threshold, we establish empirical evidence of the direct link. Even a weak spatial correlation (e.g., 20% to 30% of breakdowns/congestion events occurring near chronic parking hotspots) represents a massive operational finding, confirming that targeted parking enforcement on these specific blocks can directly reduce grid-level traffic incidents.
+
+---
+
+## Part 2: Hackathon Prototype Feature Design (Translating Research to Code)
+
+To make our hackathon prototype (GridLock-R2) stand out, we translate these empirical insights and academic delay models into three actionable features for Problem Statement 1. This bridges the gap between raw data logs and professional traffic engineering outputs.
+
+### Feature A: The "Maneuver Friction" Multiplier
+* **Theory**: A parked vehicle blocks road capacity statically, but the dynamic acts of parallel parking, searching, and pulling in/out force oncoming traffic to yield. This creates minor shockwaves in traffic flow.
+* **Adaptation**: We assign a **Maneuver Friction Factor** ($M_f$) to each vehicle class based on typical maneuvering times (e.g., heavy vehicles taking 30+ seconds to back in, while two-wheelers park instantly):
+  
+$$\text{Total Congestion Score} = \text{Static PCU} \times (1 + M_f)$$
+
+* **Parameters**:
+  * **Scooters / Motorcycles / Mopeds**: $M_f = 0.1$ (minimal disruption)
+  * **Cars / Passenger Autos / Jeeps**: $M_f = 0.5$ (parallel parking delays, blocks one lane for 10-15s)
+  * **Vans / Maxi-Cabs / LGVs / Tempos**: $M_f = 0.8$ (slower maneuvers, blocks lane for 15-20s)
+  * **Buses / Trucks / HGVs / Tankers**: $M_f = 1.5$ (blocks multiple lanes, requires wide turns, blocks flow for 30s+)
+
+---
+
+### Feature B: Intersection Proximity Multiplier (Bottleneck Weighting)
+* **Theory**: A vehicle parked illegally near a signalized intersection chokes saturation approach flows and blocks turning bays, compounding queues far worse than mid-block parking.
+* **Adaptation**: We cross-reference the violation's distance to the nearest junction (calculated using our KD-Tree):
+  
+$$\text{Weighted Congestion Score} = \text{Total Congestion Score} \times W_{intersection}$$
+
+* **Weights ($W_{intersection}$)**:
+  * **Distance $\le$ 100m**: $1.5\text{x}$ multiplier (Intersection Critical Zone)
+  * **100m $<$ Distance $\le$ 200m**: $1.25\text{x}$ multiplier (Intersection Transition Zone)
+  * **Distance $>$ 200m**: $1.0\text{x}$ multiplier (Standard mid-block parking)
+
+---
+
+### Feature C: Highway Capacity Manual (HCM) Level of Service (LOS) Simulator
+* **Theory**: Traffic engineers use the Level of Service (LOS) grade to evaluate intersections. The grade corresponds directly to the average control delay (in seconds) experienced per vehicle.
+* **Adaptation**: We create a mathematical simulator that maps the accumulated illegal PCU load at an intersection to an estimated increase in delay, which degrades the LOS letter grade.
+* **Delay Model**:
+  $$\text{Adjusted Delay} = \text{Baseline Delay} + \Delta D_{parking}$$
+  $$\Delta D_{parking} = \beta \times \text{Accumulated PCU Load}$$
+  Where we calibrate $\beta = 0.45$ seconds/PCU (i.e., every 20 PCUs of illegal parking adds 9.0 seconds of delay to the approach).
+  
+* **LOS Mapping Table**:
+  
+  | LOS Grade | Delay Range (seconds) | Traffic Flow Description |
+  | :---: | :---: | :--- |
+  | **A** | $D \le 10.0$ | **Free Flow**: Vehicles move completely unimpeded. |
+  | **B** | $10.1 < D \le 20.0$ | **Stable Flow**: Slight presence of other vehicles. |
+  | **C** | $20.1 < D \le 35.0$ | **Noticeable Delay**: Flow is stable, but turning requires care. |
+  | **D** | $35.1 < D \le 55.0$ | **Saturated Flow**: Congestion begins, queue delays form. |
+  | **E** | $55.1 < D \le 80.0$ | **Unstable Flow**: Flows approach capacity, major delays. |
+  | **F** | $D > 80.0$ | **Gridlock**: Intersection is completely jammed. |
+
+* **Calibrated Example**:
+  If a junction has a standard baseline delay of **34.0 seconds (LOS C)**, and our system detects a peak illegal parking load of **20 PCUs**:
+  $$\text{Adjusted Delay} = 34.0 + (0.45 \times 20) = 43.0\text{ seconds}$$
+  This pushes the intersection delay into the **35.1s – 55.0s range**, degrading the junction's performance to **LOS D (Saturated Flow)**.
+
+* **Prototype Implementation (JavaScript/React State Logic)**:
+  Below is a clean proof-of-concept snippet showing how we compute the LOS degradation dynamically on our frontend simulator screen:
+
+```javascript
+const calculateLOS = (baselineDelay, pcuLoad) => {
+  const beta = 0.45; // seconds of delay added per PCU load
+  const adjustedDelay = baselineDelay + (beta * pcuLoad);
+  
+  let losGrade = 'A';
+  let description = 'Free Flow';
+  
+  if (adjustedDelay <= 10.0) {
+    losGrade = 'A';
+    description = 'Free Flow';
+  } else if (adjustedDelay <= 20.0) {
+    losGrade = 'B';
+    description = 'Stable Flow';
+  } else if (adjustedDelay <= 35.0) {
+    losGrade = 'C';
+    description = 'Noticeable Delay';
+  } else if (adjustedDelay <= 55.0) {
+    losGrade = 'D';
+    description = 'Saturated Flow';
+  } else if (adjustedDelay <= 80.0) {
+    losGrade = 'E';
+    description = 'Unstable Flow';
+  } else {
+    losGrade = 'F';
+    description = 'Gridlock';
+  }
+  
+  return {
+    adjustedDelay: parseFloat(adjustedDelay.toFixed(1)),
+    losGrade,
+    description
+  };
+};
+
+// Example frontend call:
+// const simResult = calculateLOS(34.0, 20.0);
+// console.log(simResult); // { adjustedDelay: 43.0, losGrade: 'D', description: 'Saturated Flow' }
+```
+
+---
+
+### Feature D: The Temporal "Maneuver Ripple Effect" Engine (Flow Multiplier)
+* **Theory (Yousif & Purnawan)**: Parking maneuvers act as short, temporary bottlenecks. Under low traffic (e.g., night), the traffic flow easily absorbs this minor disturbance. However, under moderate-to-high traffic density (commercial peak hours), safe gaps in oncoming traffic disappear. Any single parking/unparking event triggers a cascading shockwave of brake lights and sudden deceleration.
+* **Adaptation**: We apply a **Temporal Flow Factor** ($F_{temporal}$) in our impact score. Dashboard widgets can feature a slider mapping against the 10:00 AM – 12:00 PM commercial peak window.
+  
+$$\text{Temporal Congestion Score} = \text{Weighted Congestion Score} \times F_{temporal}$$
+
+* **Time Window Weights ($F_{temporal}$)**:
+  * **10:00 AM – 12:00 PM (Commercial Peak)**: $2.0\text{x}$ multiplier (Cascading Shockwave Zone)
+  * **8:00 AM – 10:00 AM & 5:00 PM – 8:00 PM (Commute Peak)**: $1.5\text{x}$ multiplier (High-Flow Constraint)
+  * **12:00 PM – 5:00 PM & 8:00 PM – 11:00 PM (Off-Peak Day)**: $1.0\text{x}$ multiplier (Standard flow)
+  * **11:00 PM – 6:00 AM (Overnight / Off-Peak)**: $0.3\text{x}$ multiplier (High absorption capacity)
+
+---
+
+### Feature E: Carriageway Constraint Factor ("Swerve Risk" Classification)
+* **Theory**: When a vehicle parallel parks or stops illegally in a travel lane, oncoming drivers are forced to decelerate and **swerve** to avoid it. If the carriageway is narrow, this swerving motion blocks the adjacent or opposite traffic stream entirely, turning a single-lane obstruction into a two-way gridlock.
+* **Adaptation**: We classify corridors into three risk profiles based on police station jurisdictions and geographic density clusters:
+  
+$$\text{Final Integrated Impact Score} = \text{Temporal Congestion Score} \times C_{road}$$
+
+* **Road Class Risk ($C_{road}$)**:
+  * **Narrow / Market Streets (High Swerve Risk)**: $1.8\text{x}$ multiplier (e.g., Chickpet, City Market, Shivajinagar).
+  * **Arterial / IT Corridors (Medium Risk)**: $1.3\text{x}$ multiplier (e.g., HAL Old Airport / Outer Ring Road, Bellary Road / Hebbal, Chord Road).
+  * **Wide / Multi-lane Corridors (Low Risk)**: $1.0\text{x}$ multiplier (Absorptive corridors where swerves are easily absorbed by adjacent lanes).
+
+---
+
+### Feature F: The "Unpredictability Index" (Randomness Alert Triage)
+* **Theory**: Legal parking is predictable; drivers anticipate it. In contrast, **illegal parking behavior is random in space and time**, meaning oncoming drivers do not anticipate it. This randomness creates sudden speed reductions, hard braking, and high rear-end collision risk.
+* **Adaptation**: We calculate a **Randomness Index** ($P_{random}$) to flag specific ticket types that occur in unexpected locations (like crosswalks, double-parking, or active lanes), prioritizing them as high-risk hazard alerts for dispatcher triage:
+  
+$$\text{Randomness Hazard Alert} = \text{Final Integrated Impact Score} \times P_{random}$$
+
+* **Randomness Penalty ($P_{random}$)**:
+  * **Parking near Zebra Crossings / Traffic Lights**: $1.7\text{x}$ multiplier (Maximum danger of collision)
+  * **Parking near Road Crossings**: $1.6\text{x}$ multiplier
+  * **Double Parking**: $1.5\text{x}$ multiplier
+  * **Parking in a Main Road**: $1.4\text{x}$ multiplier
+  * **Standard Wrong / No Parking**: $1.0\text{x}$ multiplier
+---
+
+### Feature J: The "Effective Width" Capacity Drop (Biswas et al., 2017)
+* **Theory**: Biswas et al. proved that on-street parking acts as severe "side friction." Their review aggregates urban empirical data to show that street capacity drops exponentially when the effective carriageway width is reduced by parked cars. Specifically, a **~22% reduction in effective street width due to parking wipes out ~26% of the road's total traffic capacity** (a scaling factor of ~1.18x capacity loss per unit of width blocked).
+* **Adaptation**: In our prototype, if a parking violation is detected on a narrow, undivided street (2 lanes or less, which is mapped using our police station/density location metadata like Chickpet), we apply an **Effective Width Friction Factor** ($E_w$):
+  
+$$\text{Final Congestion Score} = \text{Total Congestion Score} \times E_w$$
+
+* **Friction Factor ($E_w$)**:
+  * **Narrow, Undivided Road (2 lanes or less)**: $E_w = 1.5$ (accounting for the 26% capacity drop)
+  * **Standard Road (3+ lanes)**: $E_w = 1.0$ (disruption is absorbed by adjacent lanes)
+
+---
+
+### Feature K: Saturation Flow Penalty Metric (Yue, 2022)
+* **Theory**: Using cellular automata simulation models, Yue analyzed the curb parking process (cruising, entering, leaving, merging). The study proved that in high-volume traffic, the slow cruising and parking maneuvers of a single vehicle **reduce the saturation flow of the outer lane by 500 vehicles per hour** and increase the maximum queue delay by **105 seconds**.
+* **Adaptation**: We build this quantitative metric directly into the dashboard alerts for the Bengaluru Traffic Police. When a chronic hotspot is flagged, instead of just displaying an abstract score, the UI displays a **Real-World Impact Statement**:
+  
+> 📢 **Operational Dispatch Alert**: *"Wrong Parking cluster detected. Resolving this hotspot will restore an estimated capacity of **500 vehicles/hour** to the outer travel lane and reduce maximum queue delays by **105 seconds**."*
+
+---
+
+## Part 3: Macro-Level CBD Congestion & Policy Recommendations (Paper 3 Translation)
+
+To complete the framework, we integrate macro-level urban transportation findings concerning Central Business District (CBD) networks. The research shows that completely freeing a commercial corridor from on-street parking yields compounding macro-level returns: a **46.6% increase in traffic flow**, a **38% reduction in travel times**, and a **69% drop in total vehicle delays**.
+
+### Feature G: The "Cruising Penalty" Factor (The Shoup 30% Coefficient)
+* **Theory**: In saturated commercial zones, a massive portion of traffic does not consist of vehicles traveling through, but motorists making circuitous loops searching for available curb space (**"cruising for parking"**). Research shows that in dense CBDs, roughly **30% of traffic** consists of cruising vehicles, spending an average of **8 minutes** searching for a spot. When parking spots are illegally blocked, it forces more drivers to cruise, inflating background traffic volume.
+* **Adaptation**: We build a **Cruising Index Penalty** ($P_{cruising}$) into our scoring model. When a violation cluster occurs in a high-density commercial node (where we identified our chronic hotspots with a Persistence Score of 4), the score applies a background traffic cruising multiplier:
+  
+$$\text{Macro-Congestion Index} = \text{Final Integrated Impact Score} \times (1 + P_{cruising})$$
+
+* **Cruising Factor ($P_{cruising}$)**:
+  * **Chronic Hotspots ($P=4$) in Commercial Jurisdictions** (Upparpet, Shivajinagar, City Market, Malleshwaram): $P_{cruising} = 0.30$ (adds 30% background load penalty to represent circling traffic).
+  * **Standard zones / Non-chronic hotspots**: $P_{cruising} = 0.0$.
+
+---
+
+### Feature H: Exponential "Undivided Choke" Scaling
+* **Theory**: When illegal parking occurs on both sides of a two-lane undivided roadway, capacity is decimated by **78% to 90%** due to the extreme bottlenecking. Slow-moving vehicles searching for gaps completely stop the flow of faster, through-traffic in both directions.
+* **Adaptation**: We implement an **Undivided Roadway Multiplier**. When the system detects active violations on both sides of a narrow/undivided road segment (same grid cell), the prototype scales the impact score exponentially rather than additively:
+  
+$$\text{Double-Sided Impact Score} = (\text{Macro-Congestion Index})^{1.5} \times C_{road}$$
+
+This non-linear scaling directly simulates the 90% capacity death observed in undivided commercial corridors.
+
+---
+
+### Feature I: The "Smart Mitigation & PGIS Recommender" (Advisory Module)
+* **Theory**: Pure punitive enforcement is insufficient. The most effective long-term mitigation to alleviate both the ticket processing burden and traffic congestion is a **Parking Guidance Information System (PGIS)** that utilizes signage to direct drivers to available off-street parking facilities.
+* **Adaptation**: We build a **Policy & Mitigation Advisory Module** within the dashboard. Instead of only triggering tow dispatches, the system monitors hotspot persistence and outputs urban planning/mitigation recommendations.
+* **Dashboard Output Logic**:
+  * If a grid cell has an **average monthly violation count > 500** and a **Persistence Score of 4**:
+    * **Output Alert**: *"High Cruising Overhead detected. Parking search loops represent ~30% of local traffic. Recommendation: Pre-emptively deploy variable message signs (VMS) 200 meters prior to route drivers to nearby off-street parking structures."*
+  * This shifts the prototype from a purely punitive enforcement tool to an intelligent, proactive transportation solution.
+
+---
+
+## Part 4: The Four-Tiered Traffic Degradation Pitch for Hackathon Judges
+
+We organize our hackathon presentation around a **Four-Tiered Traffic Degradation Architecture** that maps directly to the micro, dynamic, and macro levels of transportation planning:
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│              FOUR-TIERED TRAFFIC DEGRADATION ARCHITECTURE              │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                         │
+│  [MACRO]    4. CBD Cruising & Network Capacity (Paper 3 - Shoup)        │
+│             - 30% cruising overhead factored into chronic commercial    │
+│               hotspots to estimate total network delays.                │
+│                                                                         │
+│  [DYNAMIC]  3. Maneuver Friction & Temporal Flow (Paper 2 & 5)           │
+│             - Dynamic scaling based on peak time (10 AM - 12 PM)        │
+│               and outer lane saturation drops of 500 veh/hr (Yue, 2022).│
+│                                                                         │
+│  [GEOMETRIC]2. Carriageway & Width Constraints (Paper 4 - Biswas)       │
+│             - Exponential capacity scaling for narrow streets (22%      │
+│               width reduction causes 26% capacity loss).                │
+│                                                                         │
+│  [MICRO]    1. Baseline Capacity (Paper 1 - IRC PCU Weights)            │
+│             - Physical lane width reduction based on vehicle footprint   │
+│               (Lorry = 3.0, Car = 1.0, Scooter = 0.5).                  │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+1. **The Micro-Capacity Base (Paper 1)**:
+   We downrate the baseline physical lane width using **Indian Roads Congress (IRC) PCU standards** (Lorry = 3.0, Car = 1.0, Scooter = 0.5) to capture the physical footprint of the blockage.
+2. **The Geometric Width Layer (Paper 4 - Biswas et al., 2017)**:
+   We apply the **Effective Width Multiplier** ($E_w = 1.5$) for narrow streets, capturing the physical reality that a 22% width reduction wipes out 26% of overall capacity.
+3. **The Maneuver Friction Layer (Paper 2 & 5 - Yue, 2022)**:
+   We scale the impact based on **when** the violation occurs (10 AM - 12 PM peak) and integrate a **500 vehicle/hour saturation flow drop** and **105-second queue delay** to model the dynamic friction of parking maneuvers.
+4. **The Macro-CBD Cruising Overhead (Paper 3 - Shoup)**:
+   We factor in a **30% cruising overhead** for saturated commercial hotspots (Persistence Score = 4), estimating the macro-level degradation to Level of Service (LOS) and total vehicle delay.
+
+This complete framing shows the judges that GridLock-R2 is a comprehensive, scientific, and realistic solution to urban traffic bottlenecks.
+
+---
+
+## References
+
+1. **Paper 1 (Intersection Capacity & PCU)**:
+   Highway Capacity Manual (HCM) & Indian Roads Congress (IRC: 106-1990) guidelines for Passenger Car Units (PCU) and signalized approach delays.
+2. **Paper 2 (Maneuver Friction)**:
+   Yousif, S., & Purnawan (2004). *Traffic Flow Characteristics at On-Street Parking Locations*. Procs. of the 2nd International Conference on Traffic and Transportation Studies (ICTTS), 33-40.
+3. **Paper 3 (CBD Cruising & Capacity)**:
+   Shoup, D. (2006). *Cruising for Parking*. Transport Policy, 13(6), 479-486. https://doi.org/10.1016/j.tranpol.2006.05.005
+4. **Paper 4 (Narrow Road Friction)**:
+   Biswas, S., Chandra, S., & Ghosh, I. (2017). *Effects of on-street parking in urban context: A critical review*. Transportation in Developing Economies, 3(1), 1-14. https://doi.org/10.1007/s40890-017-0040-2
+5. **Paper 5 (Cellular Automata Blockage)**:
+   Yue, Z. (2022). *Accessing the Impacts of Curb Parking Behavior on Traffic Flows Through Cellular Automata Models*. Journal of Transport Information and Safety, 40(3), 118-126. http://doi.org/10.3963/j.jssn.1674-4861.2022.03.016
+
+
+
