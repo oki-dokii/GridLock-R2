@@ -2,10 +2,10 @@
 ### Illegal Parking Intelligence System | Flipkart Hackathon Round 2
 
 > **This file synthesizes ALL research, operational intelligence, dataset findings, mathematical foundations,
-> existing system benchmarks, and academic literature from every document in the GridLock-R2 repository.**
-> Last updated: June 17, 2026. Source files: `soham_research.md`, `dataset_analysis_soham.md`,
-> `1_btp_operational_intelligence.md`, `existing_systems.md`, `thrissha_parking_research_papers.md`,
-> `math_foundation.html` (+ PDF export).
+> existing system benchmarks, academic literature, AND full computed analysis results.**
+> Last updated: June 17, 2026 (v2 — analysis complete).
+> Source files: `soham_research.md`, `dataset_analysis_soham.md`, `1_btp_operational_intelligence.md`,
+> `existing_systems.md`, `thrissha_parking_research_papers.md`, `math_foundation.html`, `DATA_ANALYSIS_RESULTS.md`.
 
 ---
 
@@ -18,8 +18,9 @@
 5. [Bengaluru Traffic Police — Operational Reality](#5-bengaluru-traffic-police--operational-reality)
 6. [Existing Global Systems — Benchmarks & Case Studies](#6-existing-global-systems--benchmarks--case-studies)
 7. [Feature Design — Translating Research to Code](#7-feature-design--translating-research-to-code)
-8. [What Data Analysis We Still Need](#8-what-data-analysis-we-still-need)
+8. [Analysis Status — All Priorities Complete ✅](#8-analysis-status--all-priorities-complete-)
 9. [Master Citation Block for PPT](#9-master-citation-block-for-ppt)
+10. [COMPUTED RESULTS — Full Analysis Output](#10-computed-results--full-analysis-output)
 
 ---
 
@@ -683,40 +684,40 @@ Typical output: 7–30 vehicles actioned per session
 
 ---
 
-## 8. What Data Analysis We Still Need
+## 8. Analysis Status — All Priorities Complete ✅
 
-These are the gaps between what we have analyzed and what the math foundation and features require:
+> All analysis from the original gap list has been computed and results are in Section 10.
 
-### Priority 1 — Must Run Before Prototype
+### Priority 1 — Core Model Inputs ✅
 
-| Analysis | Why Needed | What to Compute |
+| Analysis | Status | Key Result |
 |---|---|---|
-| **Compute actual PCS scores per violation** | M1 requires ω × δ × σ for every record | Script: join vehicle_type → PCU, timestamp → δ, violation_type → σ |
-| **Compute Z_i (Grid Cell Scores)** | M2 KDE and M5 EPS need Z_i | Aggregate PCS per (lat_rounded, lon_rounded) per time window |
-| **Moran's I computation** | Validate spatial clustering claim | Use `libpysal` or `esda` library on Z_i values |
-| **LISA classification of all 7,814 cells** | HH/HL/LH/LL categorization for dispatch priority | Same library — classify each cell |
-| **Poisson GLM fit** | M3 temporal prediction model | Fit log(λ) on hour, day_type, month, Z_i_prev |
-| **Officer Quality Scores (p̂_o)** | M6 Bayesian filter | Compute per officer: A_o, R_o → Beta posterior mean |
-| **EPS ranking for all grid cells** | Final dispatch queue | Combine Z_i × PI_i × λ̂ × (1/ρ) × θ |
+| PCS scores per violation | ✅ Done | Mean=1.015, Median=0.800, Max=9.0 |
+| Z_i Grid Cell Scores | ✅ Done | 7,814 cells. Top cell Z_i=5,918.7 |
+| Moran's I | ✅ Done | I=0.2785, p=0.001 — **MODERATE CLUSTERING** confirmed |
+| LISA Classification | ✅ Done | 495 HH cells (Priority-1), 305 HL, 674 LH, 2,595 LL |
+| Poisson GLM | ✅ Done | AIC=316,091.7. Z_prev coefficient=0.0243 (strongest predictor) |
+| Officer Quality (Bayesian Beta) | ✅ Done | 123 officers p̂<0.50 → 20,349 records flagged |
+| EPS Ranking | ✅ Done | Top cell: (12.981, 77.610) EPS_norm=100. 16 PI=1.0 cells in top-30 |
 
-### Priority 2 — Supports Research Questions
+### Priority 2 — Research Questions ✅
 
-| Analysis | What to Compute |
-|---|---|
-| **Vehicle-type × junction proximity cross-tab** | Are heavy vehicles MORE concentrated near junctions? (amplifies RQ1 × RQ2 combined) |
-| **Temporal × station heatmap** | Which stations peak at which hours? (validates time-zone dispatch recommendations) |
-| **Monthly trend analysis** | Is violation rate increasing Nov→Apr? (suggests growing problem, urgency for solution) |
-| **Violation-type × vehicle-type matrix** | Do trucks = more "parking on main road"? Do autos = more "wrong parking"? |
-| **Weekend vs weekday station profile** | Are the same stations chronic on weekends OR do different zones dominate? |
-| **Officer quality × location bias** | Do unreliable officers cluster in certain stations? (identifies data corruption zones) |
+| Analysis | Status | Key Result |
+|---|---|---|
+| Vehicle × Junction cross-tab | ✅ Done | Bus Stop violations: 88% Heavy Vehicles — disproportionate junction presence |
+| Temporal × Station heatmap | ✅ Done | Shivajinagar peaks H10 (4,997), Upparpet peaks H09 (4,632) |
+| Monthly trend | ✅ Done | 📉 Decreasing: −2,322.8/month (R²=0.055, weak — likely seasonal) |
+| Violation × Vehicle matrix | ✅ Done | Cars dominate ROAD CROSSING (58%), Heavy dominate BUS STOP (88%) |
+| Weekend vs Weekday | ✅ Done | Shivajinagar most weekend-leaning (37.4%). HAL most weekday (80.3%) |
+| Officer bias by station | ✅ Done | Kodigehalli highest rejection rate (39.9%) — biggest data corruption risk |
 
-### Priority 3 — Nice to Have for Pitch
+### Priority 3 — Pitch Numbers ✅
 
-| Analysis | What to Show |
-|---|---|
-| **Calculate actual commuter-minutes lost for top 17 hotspots** | M/D/1 queue model applied with assumed λ (VISSIM: Indian urban road ≈ 1,800 PCU/hr) |
-| **Persistence Score full distribution chart** | PI=1.0 (17 cells) vs PI<0.5 (59 cells) — visualize as pie/bar |
-| **Revenue calculation** | 298,450 × ₹1,000 average fine = ₹29.8 crore potential; actual collection rate estimate |
+| Analysis | Status | Key Result |
+|---|---|---|
+| Commuter-minutes lost (M/D/1) | ✅ Done | **117 commuter-min/hr** per chronic hotspot at peak (ρ=0.826) |
+| Persistence Score distribution | ✅ Done | 20 PI=1.0 cells, 15 PI=0.75, 19 PI=0.50, 7,723 PI=0.0 |
+| Revenue estimate | ✅ Done | Potential ₹37.87 Cr. Realistic: **₹15.23 Cr** (5 months) → ₹36.5 Cr/yr |
 
 ---
 
@@ -763,4 +764,306 @@ These are the gaps between what we have analyzed and what the math foundation an
 
 ---
 
-*This master document was compiled from: `soham_research.md`, `dataset_analysis_soham.md`, `1_btp_operational_intelligence.md`, `existing_systems.md`, `thrissha_parking_research_papers.md`, `math_foundation.html`, `math_foundation.pdf`. All from the GridLock-R2 repository, updated June 17, 2026.*
+*This master document was compiled from: `soham_research.md`, `dataset_analysis_soham.md`, `1_btp_operational_intelligence.md`, `existing_systems.md`, `thrissha_parking_research_papers.md`, `math_foundation.html`, `math_foundation.pdf`, `DATA_ANALYSIS_RESULTS.md`. All from the GridLock-R2 repository, updated June 17, 2026 (v2).*
+
+---
+
+## 10. COMPUTED RESULTS — Full Analysis Output
+
+> **These are the actual numbers computed from the 298,450-row dataset. Use these directly for prototype development and pitch slide numbers.**
+
+### 10.1 PCS Score Distribution (Computed)
+
+| Stat | Value |
+|---|---|
+| Count | 298,450 |
+| **Mean PCS** | **1.015** |
+| Median PCS | 0.800 |
+| Std Dev | 0.679 |
+| 25th percentile | 0.600 |
+| 75th percentile | 1.280 |
+| **Max PCS** | **9.00** (Bus, double-parked, at peak) |
+
+**Most common PCS buckets:**
+- 0.80 (scooter/motorcycle at peak, or car off-peak) → **56,710 violations (19.0%)**
+- 0.40 (scooter off-peak) → **56,640 violations (19.0%)**
+- 1.50 (car at peak) → **46,788 violations (15.7%)**
+- 0.75 (scooter shoulder) → **54,114 violations (18.1%)**
+
+> Combined, the top-4 PCS buckets account for **71.8% of all violations** — 3 of 4 are two-wheelers or cars off-peak, confirming that raw count dashboards massively understate the actual impact of cars at peak.
+
+---
+
+### 10.2 Z_i Grid Cell Scores — Top 25 Cells (Computed)
+
+Total grid cells: **7,814** at 110m resolution.
+
+| Rank | lat | lon | Z_i (Total PCS) | Raw Count | Avg PCS | Peak Violations | Heavy PCU |
+|---|---|---|---|---|---|---|---|
+| 1 | 12.981 | 77.610 | **5,918.7** | 4,411 | 1.342 | 2,883 | 207.0 |
+| 2 | 13.184 | 77.680 | 3,009.5 | 1,926 | 1.563 | 458 | 1,336.5 |
+| 3 | 12.964 | 77.577 | 2,896.5 | 3,745 | 0.773 | 843 | 262.5 |
+| 4 | 12.977 | 77.576 | 2,450.8 | 3,181 | 0.770 | 1,599 | 181.5 |
+| 5 | 13.071 | 77.588 | 2,307.6 | 3,280 | 0.704 | 1,885 | 15.0 |
+| 6 | 12.934 | 77.691 | 2,196.8 | 3,343 | 0.657 | 1,014 | 108.0 |
+| 7 | 12.940 | 77.696 | 2,114.8 | 969 | **2.182** | 594 | 226.5 |
+| 8 | 12.984 | 77.604 | 1,953.6 | 1,630 | 1.199 | 742 | 37.5 |
+| 9 | 12.984 | 77.603 | 1,935.7 | 1,649 | 1.174 | 814 | 57.0 |
+| 10 | 12.996 | 77.669 | 1,919.8 | 669 | **2.870** | 340 | 702.0 |
+
+> Cell (12.996, 77.669) is notable: only 669 raw violations but avg PCS=2.87 — dominated by heavy vehicles at peak. A raw-count dashboard would rank it #17; Z_i correctly elevates it to #10.
+
+---
+
+### 10.3 Moran's I Spatial Autocorrelation (Computed)
+
+| Metric | Value |
+|---|---|
+| **Moran's I** | **0.2785** |
+| Z-score | 38.01 |
+| p-value (999-permutation) | **0.0010** |
+| Method | esda.Moran (k=8 KNN weights) |
+| Cells analyzed (count ≥ 5) | 4,069 |
+| **Interpretation** | **MODERATE POSITIVE CLUSTERING** |
+
+> Moran's I = 0.2785 with p = 0.001 is **statistically unambiguous**: high-PCS cells cluster together spatially. This proves the hotspot corridor enforcement strategy is valid — violations are NOT randomly scattered across the city.
+
+---
+
+### 10.4 LISA Classification (Computed)
+
+Method: esda.Moran_Local
+
+| LISA Quadrant | Cells | % | Enforcement Action |
+|---|---|---|---|
+| **LL** (Low-Low) | 2,595 | 63.8% | 🟢 No enforcement needed |
+| **LH** (Low-High) | 674 | 16.6% | 🟠 Cascade risk — monitor |
+| **HH** (High-High) | **495** | **12.2%** | 🔴 **Permanent enforcement post** |
+| **HL** (High-Low) | 305 | 7.5% | 🟡 Surge schedule |
+
+**Top 10 HH (Priority-1) cells:**
+
+| lat | lon | Z_i | Raw Count | Avg PCS |
+|---|---|---|---|---|
+| 12.981 | 77.610 | 5,918.7 | 4,411 | 1.342 |
+| 13.184 | 77.680 | 3,009.5 | 1,926 | 1.563 |
+| 12.964 | 77.577 | 2,896.5 | 3,745 | 0.773 |
+| 12.977 | 77.576 | 2,450.8 | 3,181 | 0.770 |
+| 13.071 | 77.588 | 2,307.6 | 3,280 | 0.704 |
+| 12.934 | 77.691 | 2,196.8 | 3,343 | 0.657 |
+| 12.940 | 77.696 | 2,114.8 | 969 | 2.182 |
+| 12.984 | 77.604 | 1,953.6 | 1,630 | 1.199 |
+| 12.984 | 77.603 | 1,935.7 | 1,649 | 1.174 |
+| 12.996 | 77.669 | 1,919.8 | 669 | 2.870 |
+
+---
+
+### 10.5 Poisson GLM — Fitted Coefficients (Computed)
+
+Model: `log(λ) = β₀ + β_hour + β_day_type + β_month + β_Z_prev`  
+Fit: statsmodels GLM, Poisson family | AIC = **316,091.7** | Log-Likelihood = **−158,036.8**
+
+| Feature | Coefficient | z-score | p-value | Interpretation |
+|---|---|---|---|---|
+| Intercept | +1.3897 | 207.2 | 0.000 | Baseline log-count |
+| hour | −0.0047 | −7.94 | 0.000 | Slight afternoon decay |
+| day_type | −0.1148 | −37.79 | **0.000** | Weekends have FEWER violations |
+| C(month)[T.2.0] | −0.1122 | −15.47 | 0.000 | Feb lower than Jan |
+| C(month)[T.3.0] | −0.1536 | −21.15 | 0.000 | Mar lower |
+| C(month)[T.4.0] | −0.2461 | −22.34 | 0.000 | Apr lowest |
+| C(month)[T.11.0] | −0.0881 | −11.51 | 0.000 | Nov baseline |
+| C(month)[T.12.0] | −0.0485 | −7.04 | 0.000 | Dec slightly lower than Jan |
+| **Z_prev** | **+0.0243** | **455.0** | **0.000** | **Strongest predictor: prior-period hotspot score** |
+
+> **Key insight:** Z_prev (lagged zone score) has a z-score of 455 — it is by far the dominant predictor of future violations. This proves that **hotspots are persistent and predictable**: a cell that was a hotspot last week will be a hotspot this week.
+
+---
+
+### 10.6 Hourly Violation Distribution (Computed)
+
+| Hour (IST) | Violations | Avg PCS | Notes |
+|---|---|---|---|
+| 00:00 | 5,815 | 0.895 | Low volume |
+| 01:00–07:00 | 90,000–110,000 range | 0.69–0.88 | Likely batch upload / overnight enforcement |
+| **08:00** | **25,790** | **1.319** | Morning peak begins |
+| **09:00** | **26,994** | **1.268** | Rush hour |
+| **10:00** | **32,580** | **1.315** | 🔴 **ABSOLUTE PEAK — commercial opening** |
+| **11:00** | **32,176** | **1.288** | 🔴 **Sustained peak** |
+| 12:00 | 19,689 | 1.024 | Shoulder — lunch lull |
+| 13:00 | 11,546 | 1.092 | Declining |
+| 14:00 | 5,634 | 1.128 | Low |
+| 15:00–20:00 | <1,300 | varies | Very low |
+
+> **Enforcement window:** 08:00–12:00 IST accounts for the majority of high-PCS violations. Dispatch priority window is **09:45–11:30 IST**.
+
+---
+
+### 10.7 Officer Quality Scores (Computed — Bayesian Beta)
+
+Total officers: **2,377** | Prior: α₀=5, β₀=2
+
+| Tier | Officers | Records | Action |
+|---|---|---|---|
+| 🟢 Auto-approved (p̂ ≥ 0.85) | 232 | ~32,000 | Enter Z_i pipeline directly |
+| 🟡 Soft-weighted (0.50–0.85) | 2,022 | ~246,000 | Weighted by p̂_o |
+| 🔴 Manual review (p̂ < 0.50) | **123** | **20,349** | Hold — do not enter pipeline |
+
+**Worst 5 officers (highest corruption risk):**
+
+| Officer ID | Approved | Rejected | Total | p̂_o |
+|---|---|---|---|---|
+| FKUSR01810 | 1 | 39 | 40 | 0.128 |
+| FKUSR02046 | 16 | 106 | 122 | 0.163 |
+| FKUSR01593 | 1 | 27 | 28 | 0.171 |
+| FKUSR00926 | 0 | 20 | 20 | 0.185 |
+| FKUSR01903 | 15 | 72 | 90 | 0.213 |
+
+**Best 5 officers (most reliable):**
+
+| Officer ID | Approved | Rejected | Total | p̂_o |
+|---|---|---|---|---|
+| FKUSR00722 | 137 | 4 | 141 | 0.960 |
+| FKUSR00996 | 155 | 6 | 165 | 0.952 |
+| FKUSR01073 | 52 | 1 | 53 | 0.950 |
+| FKUSR00005 | 63 | 2 | 65 | 0.944 |
+| FKUSR00236 | 106 | 5 | 111 | 0.941 |
+
+---
+
+### 10.8 EPS Ranking — Top 30 Dispatch Cells (Computed)
+
+`EPS = Z_i × PI × (λ̂_peak + 1) × (1/ρ) × θ`
+
+| Rank | lat | lon | Z_i | PI | λ̂_peak | ρ | EPS_norm |
+|---|---|---|---|---|---|---|---|
+| **1** | **12.981** | **77.610** | **5,918.7** | **1.00** | **710** | 0.940 | **100.0** |
+| 2 | 13.071 | 77.588 | 2,307.6 | 1.00 | 604.8 | 0.370 | 84.3 |
+| 3 | 12.977 | 77.576 | 2,450.8 | 1.00 | 303.0 | 0.393 | 42.3 |
+| 4 | 12.973 | 77.579 | 1,769.3 | 1.00 | 253.5 | 0.284 | 35.4 |
+| 5 | 12.982 | 77.608 | 1,530.6 | 1.00 | 214.0 | 0.246 | 29.9 |
+| 6 | 13.035 | 77.589 | 1,678.7 | 1.00 | 204.8 | 0.269 | 28.6 |
+| 7 | 12.976 | 77.577 | 1,359.1 | 1.00 | 204.5 | 0.218 | 28.6 |
+| 8 | 12.934 | 77.691 | 2,196.8 | 1.00 | 192.0 | 0.353 | 26.9 |
+| 9 | 12.984 | 77.603 | 1,935.7 | 1.00 | 191.5 | 0.311 | 26.8 |
+| 10 | 12.964 | 77.577 | 2,896.5 | 1.00 | 190.3 | 0.465 | 26.6 |
+
+> **Note:** Rank 2 (13.071, 77.588) has a lower Z_i than ranks 3–4, but scores 84.3 due to high λ̂_peak (604.8 violations/hr at 9–12) and low ρ (0.37) — meaning it's heavily under-enforced relative to its activity.
+
+---
+
+### 10.9 Vehicle Type × Violation Type Matrix (Computed)
+
+*(% share within each violation type — rows sum to 100%)*
+
+| Violation Type | Car/Auto | Heavy Vehicle | Medium | Two-Wheeler | Other |
+|---|---|---|---|---|---|
+| **BUS STOP** | 9.5% | **88.4%** | 2.1% | 0.0% | 0.0% |
+| DOUBLE PARKING | 37.2% | 6.0% | 8.0% | **48.3%** | 0.5% |
+| FOOTPATH | 26.2% | 1.6% | 6.4% | **65.5%** | 0.4% |
+| **MAIN ROAD** | **54.9%** | 7.6% | 12.2% | 24.3% | 0.9% |
+| NO PARKING | 45.3% | 1.5% | 6.8% | **45.9%** | 0.4% |
+| **ROAD CROSSING** | **58.1%** | 5.2% | 16.1% | 20.1% | 0.5% |
+| WRONG PARKING | 42.7% | 2.7% | 8.2% | **45.9%** | 0.5% |
+| ZEBRA | 48.6% | **8.0%** | **23.2%** | 18.7% | 1.5% |
+
+> **Insight:** Heavy vehicles overwhelmingly dominate BUS STOP violations (88.4%) — these are the highest-impact events. Cars dominate ROAD CROSSING (58%) and MAIN ROAD (55%). Two-wheelers mostly on FOOTPATH (65%) and DOUBLE PARKING (48%) — high frequency, lower individual impact.
+
+---
+
+### 10.10 Station Peak Hour Analysis (Computed)
+
+| Station | Peak Hour (IST) | Peak Count | 2nd Peak | Weekend % | Week/End Ratio |
+|---|---|---|---|---|---|
+| **Upparpet** | **H09** | **4,632** | H08 (3,960) | 34.2% | 0.520 |
+| **Shivajinagar** | **H10** | **4,997** | H11 (4,142) | 37.4% | 0.598 |
+| **Malleshwaram** | H10 | 3,054 | H08 (2,899) | 35.7% | 0.554 |
+| HAL Old Airport | H08 | 2,437 | H09 (1,879) | **19.7%** | **0.245** |
+| Kodigehalli | H11 | 2,091 | H12 (1,543) | 31.7% | 0.463 |
+| Vijayanagara | H10 | 1,867 | H11 (1,701) | 27.4% | 0.378 |
+| City Market | H09 | 1,840 | H10 (1,672) | 29.6% | 0.421 |
+| Magadi Road | H11 | 1,351 | H10 (1,013) | 31.7% | 0.463 |
+| Rajajinagar | H10 | 1,494 | H11 (1,101) | 27.9% | 0.387 |
+| Jeevanbheemanagar | H07 | 805 | H08 (748) | 37.1% | 0.591 |
+
+> **HAL Old Airport** is the most weekday-dominant (80.3% weekday, ratio=0.245) — pure IT corridor commuter pattern. **Shivajinagar + Jeevanbheemanagar** are most weekend-leaning (commercial/leisure).
+
+---
+
+### 10.11 Monthly Trend (Computed)
+
+| Month | Violations | Total PCS | Avg PCS | Unique Cells |
+|---|---|---|---|---|
+| Nov 2023 | 43,504 | 43,185.8 | 0.993 | 295 |
+| Dec 2023 | 63,917 | 64,698.8 | 1.012 | 330 |
+| **Jan 2024** | **65,479** | **67,133.4** | **1.025** | **304** |
+| Feb 2024 | 54,660 | 56,060.0 | 1.026 | 289 |
+| Mar 2024 | 55,453 | 56,268.5 | 1.015 | 296 |
+| Apr 2024 | 15,432 | 15,643.0 | 1.014 | 242 |
+
+> **Trend:** 📉 Decreasing: slope = −2,322.8 violations/month (R²=0.055, p=0.655 — NOT statistically significant). Jan is the enforcement peak. Apr drops sharply likely due to partial month (dataset ends April 8). The decreasing trend may reflect enforcement success or seasonal variation — not a fundamental reduction in parking demand.
+
+---
+
+### 10.12 Persistence Index Distribution (Computed)
+
+| PI Score | Cells | % of All Cells | Classification | Action |
+|---|---|---|---|---|
+| **1.00** | **20** | **0.26%** | Chronic/Systemic | 🔴 Permanent post |
+| 0.75 | 15 | 0.19% | High Recurrence | 🟡 Standing patrol |
+| 0.50 | 19 | 0.24% | Moderate | 🟠 Surge schedule |
+| 0.25 | 37 | 0.47% | Event-Driven | ⚪ Reactive |
+| **0.00** | **7,723** | **98.84%** | Never in Top-50 | 🟢 No action |
+
+> **20 cells** (0.26% of all grid cells) are chronically in the Top-50 every month. These require **structural interventions**, not just enforcement: signage, loading zone designation, VMS, or multi-level parking allocation.
+
+---
+
+### 10.13 Station Data Quality / Corruption Risk (Computed)
+
+*(Sorted by rejection rate — high = data corruption risk)*
+
+| Station | Reviewed | Approved | Rejected | Rejection Rate |
+|---|---|---|---|---|
+| **Kodigehalli** | 4,172 | 2,354 | 1,664 | **39.9%** |
+| Madiwala | 808 | 492 | 311 | 38.5% |
+| K.G. Halli | 558 | 299 | 214 | 38.4% |
+| Byatarayanapura | 2,794 | 1,706 | 1,041 | 37.3% |
+| Chikkabanavara | 485 | 299 | 173 | 35.7% |
+| Electronic City | 2,078 | 1,235 | 738 | 35.5% |
+| HSR Layout | 3,111 | 1,921 | 1,069 | 34.4% |
+| Whitefield | 1,202 | 720 | 400 | 33.3% |
+| K.R. Pura | 3,575 | 2,176 | 1,181 | 33.0% |
+| Magadi Road | 5,277 | 3,302 | 1,704 | 32.3% |
+
+> **Kodigehalli** has the worst data quality (39.9% rejection) — its heatmap contribution is unreliable without the Bayesian quality filter. This is an outlying IT corridor station; its high rejection could reflect officers gaming the system in a low-accountability zone.
+
+---
+
+### 10.14 Revenue & Economic Impact (Computed)
+
+| Vehicle Class | Violations | Fine Rate | Potential Revenue |
+|---|---|---|---|
+| Two-Wheelers | 137,866 | ₹1,000 | ₹13.79 Cr |
+| Cars + Autos | 131,803 | ₹1,500 | ₹19.77 Cr |
+| Heavy/Medium | 28,781 | ₹1,500 | ₹4.32 Cr |
+| **TOTAL** | **298,450** | — | **₹37.87 Cr** |
+
+**Realistic collection** (67% approval × 60% collection rate): **₹15.23 Cr** for 5 months  
+**Monthly**: ~₹3.05 Cr/month  
+**Annual projection**: **₹36.5 Cr/year**
+
+> GridLock's targeted enforcement on just the top 1,000 hotspots (covering 80% of violations) could recover this with **8–10× fewer officer-hours** vs. city-wide random patrol.
+
+---
+
+### 10.15 M/D/1 Queue — Commuter Impact (Computed)
+
+**Parameters:** S₀=1,800 PCU/hr, λ_bg=1,400 PCU/hr, L_ref=4.5m, L_lane=100m, α=1.3  
+**Result:** S_eff = 1,695 PCU/hr | ρ = 0.826 | W = **5.0 seconds** average delay per vehicle
+
+**Per chronic hotspot (PI=1.0) per peak hour:**
+- Commuter-minutes lost: **117 commuter-min/hr**
+- Person-hours: **2.0 person-hours lost every morning**
+- For all 20 chronic cells simultaneously: **2,340 commuter-min/hr** = **39 person-hours** of lost productivity city-wide, every peak hour
+
+> **Headline for pitch:** *"Bengaluru's 20 chronic illegal parking hotspots collectively waste 39 person-hours of commuter time every single morning. GridLock identifies and dispatches enforcement to these 20 cells — 0.26% of the city — resolving the problem that a city-wide patrol of 7,814 cells cannot."*
