@@ -297,3 +297,78 @@ const calculateLOS = (baselineDelay, pcuLoad) => {
 // console.log(simResult); // { adjustedDelay: 43.0, losGrade: 'D', description: 'Saturated Flow' }
 ```
 
+---
+
+### Feature D: The Temporal "Maneuver Ripple Effect" Engine (Flow Multiplier)
+* **Theory (Yousif & Purnawan)**: Parking maneuvers act as short, temporary bottlenecks. Under low traffic (e.g., night), the traffic flow easily absorbs this minor disturbance. However, under moderate-to-high traffic density (commercial peak hours), safe gaps in oncoming traffic disappear. Any single parking/unparking event triggers a cascading shockwave of brake lights and sudden deceleration.
+* **Adaptation**: We apply a **Temporal Flow Factor** ($F_{temporal}$) in our impact score. Dashboard widgets can feature a slider mapping against the 10:00 AM – 12:00 PM commercial peak window.
+  
+$$\text{Temporal Congestion Score} = \text{Weighted Congestion Score} \times F_{temporal}$$
+
+* **Time Window Weights ($F_{temporal}$)**:
+  * **10:00 AM – 12:00 PM (Commercial Peak)**: $2.0\text{x}$ multiplier (Cascading Shockwave Zone)
+  * **8:00 AM – 10:00 AM & 5:00 PM – 8:00 PM (Commute Peak)**: $1.5\text{x}$ multiplier (High-Flow Constraint)
+  * **12:00 PM – 5:00 PM & 8:00 PM – 11:00 PM (Off-Peak Day)**: $1.0\text{x}$ multiplier (Standard flow)
+  * **11:00 PM – 6:00 AM (Overnight / Off-Peak)**: $0.3\text{x}$ multiplier (High absorption capacity)
+
+---
+
+### Feature E: Carriageway Constraint Factor ("Swerve Risk" Classification)
+* **Theory**: When a vehicle parallel parks or stops illegally in a travel lane, oncoming drivers are forced to decelerate and **swerve** to avoid it. If the carriageway is narrow, this swerving motion blocks the adjacent or opposite traffic stream entirely, turning a single-lane obstruction into a two-way gridlock.
+* **Adaptation**: We classify corridors into three risk profiles based on police station jurisdictions and geographic density clusters:
+  
+$$\text{Final Integrated Impact Score} = \text{Temporal Congestion Score} \times C_{road}$$
+
+* **Road Class Risk ($C_{road}$)**:
+  * **Narrow / Market Streets (High Swerve Risk)**: $1.8\text{x}$ multiplier (e.g., Chickpet, City Market, Shivajinagar).
+  * **Arterial / IT Corridors (Medium Risk)**: $1.3\text{x}$ multiplier (e.g., HAL Old Airport / Outer Ring Road, Bellary Road / Hebbal, Chord Road).
+  * **Wide / Multi-lane Corridors (Low Risk)**: $1.0\text{x}$ multiplier (Absorptive corridors where swerves are easily absorbed by adjacent lanes).
+
+---
+
+### Feature F: The "Unpredictability Index" (Randomness Alert Triage)
+* **Theory**: Legal parking is predictable; drivers anticipate it. In contrast, **illegal parking behavior is random in space and time**, meaning oncoming drivers do not anticipate it. This randomness creates sudden speed reductions, hard braking, and high rear-end collision risk.
+* **Adaptation**: We calculate a **Randomness Index** ($P_{random}$) to flag specific ticket types that occur in unexpected locations (like crosswalks, double-parking, or active lanes), prioritizing them as high-risk hazard alerts for dispatcher triage:
+  
+$$\text{Randomness Hazard Alert} = \text{Final Integrated Impact Score} \times P_{random}$$
+
+* **Randomness Penalty ($P_{random}$)**:
+  * **Parking near Zebra Crossings / Traffic Lights**: $1.7\text{x}$ multiplier (Maximum danger of collision)
+  * **Parking near Road Crossings**: $1.6\text{x}$ multiplier
+  * **Double Parking**: $1.5\text{x}$ multiplier
+  * **Parking in a Main Road**: $1.4\text{x}$ multiplier
+  * **Standard Wrong / No Parking**: $1.0\text{x}$ multiplier
+
+---
+
+## Part 3: Pitching the Dual-Axis Engineering Narrative to Hackathon Judges
+
+To maximize judge interest, we pitch our prototype using a **dual-axis traffic engineering narrative** that sets GridLock-R2 apart from simple data dashboards:
+
+```
+                  HIGH FLOW CONSTRAINTS (Peak Hours)
+                               ▲
+                               │
+            Quadrant II:       │       Quadrant I:
+            Dynamic Friction   │       High-Impact Shockwaves
+            (Slow unparking)   │       (HGV unparking in Peak)
+                               │
+DYNAMIC MANEUVER ──────────────┼──────────────► STATIC CAPACITY LOSS
+FRICTION (Yousif & Purnawan)   │               (IRC PCU Standards)
+                               │
+            Quadrant IV:       │       Quadrant III:
+            Quiet Areas        │       Low-Flow Impedance
+            (Scooters at night)│       (Car parked off-peak)
+                               │
+                               ▼
+                   LOW FLOW CONSTRAINTS (3:00 AM)
+```
+
+1. **Static Capacity Loss (Axis 1 - Paper 1)**:
+   We downrate physical lane capacity using **Indian Roads Congress (IRC) PCU standards** depending on the vehicle class (e.g., Lorry = 3.0, Scooter = 0.5).
+2. **Dynamic Maneuver Friction (Axis 2 - Paper 2)**:
+   We scale the impact based on **when** and **where** the violation occurs (10 AM - 12 PM peak, narrow streets, random/unexpected locations) using a non-linear scaling multiplier, accounting for the dynamic shockwaves created by unparking maneuvers in dense flow.
+
+This framing shows that GridLock-R2 is not just counting database rows—it is a live simulator of urban network degradation grounded in actual transportation science.
+
+
