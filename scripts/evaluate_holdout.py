@@ -384,29 +384,43 @@ from scipy.stats import pearsonr, spearmanr
 april_clean_actual = holdout_clean_df.groupby('grid_id').size().reset_index(name='actual_april_clean')
 corr_df = Zi.merge(pred_vol_clean, on='grid_id').merge(april_clean_actual, on='grid_id', how='left').fillna({'actual_april_clean': 0})
 
-p_coef, p_pval = pearsonr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
-s_coef, s_pval = spearmanr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
+# Compute composite scores in corr_df
+corr_df['EPS_clean_clean'] = corr_df['PI_clean'] * corr_df['pred_weekly_volume_clean']
+corr_df['EPS_soft_pi'] = (corr_df['PI_clean'] + 0.5) * corr_df['pred_weekly_volume_clean']
 
-p_coef_base, p_pval_base = pearsonr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
-s_coef_base, s_pval_base = spearmanr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
+# Compute correlations
+p_base, p_pval_base = pearsonr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
+s_base, s_pval_base = spearmanr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
 
-print(f"Model Pearson Correlation:  {p_coef:.5f} (p-value: {p_pval:.2e})")
-print(f"Model Spearman Correlation: {s_coef:.5f} (p-value: {s_pval:.2e})")
-print(f"Baseline Pearson Correlation:  {p_coef_base:.5f} (p-value: {p_pval_base:.2e})")
-print(f"Baseline Spearman Correlation: {s_coef_base:.5f} (p-value: {s_pval_base:.2e})")
+p_vol, p_pval_vol = pearsonr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
+s_vol, s_pval_vol = spearmanr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
+
+p_strict, p_pval_strict = pearsonr(corr_df['EPS_clean_clean'], corr_df['actual_april_clean'])
+s_strict, s_pval_strict = spearmanr(corr_df['EPS_clean_clean'], corr_df['actual_april_clean'])
+
+p_soft, p_pval_soft = pearsonr(corr_df['EPS_soft_pi'], corr_df['actual_april_clean'])
+s_soft, s_pval_soft = spearmanr(corr_df['EPS_soft_pi'], corr_df['actual_april_clean'])
+
+print(f"Baseline - Train Counts: Pearson={p_base:.5f} (p={p_pval_base:.2e}), Spearman={s_base:.5f} (p={s_pval_base:.2e})")
+print(f"Model - Volume Only:     Pearson={p_vol:.5f} (p={p_pval_vol:.2e}), Spearman={s_vol:.5f} (p={s_pval_vol:.2e})")
+print(f"Model - Strict PI:       Pearson={p_strict:.5f} (p={p_pval_strict:.2e}), Spearman={s_strict:.5f} (p={s_pval_strict:.2e})")
+print(f"Model - Soft PI:         Pearson={p_soft:.5f} (p={p_pval_soft:.2e}), Spearman={s_soft:.5f} (p={s_pval_soft:.2e})")
 
 output_lines.append("## Test Type 4: Statistical Correlation (Predicted vs Actual Holdout Counts)")
 output_lines.append("To prove that our model's predictions have a strong, statistically significant association with the actual ground-truth violations in the holdout month (April 2024), we computed the Pearson (linear) and Spearman (rank-order) correlation coefficients across all active grid cells ($N=7,814$).")
 output_lines.append("")
 output_lines.append("| Predictor | Pearson Correlation ($r$) | Pearson $p$-value | Spearman Rank Correlation ($\\rho$) | Spearman $p$-value |")
 output_lines.append("|---|:---:|:---:|:---:|:---:|")
-output_lines.append(f"| **Baseline** (Historical Train Counts) | {p_coef_base:.5f} | {p_pval_base:.2e} | {s_coef_base:.5f} | {s_pval_base:.2e} |")
-output_lines.append(f"| **Model** (Case B Clean Predictions) | {p_coef:.5f} | {p_pval:.2e} | **{s_coef:.5f}** | {s_pval:.2e} |")
+output_lines.append(f"| **Baseline** (Historical Train Counts) | {p_base:.5f} | {p_pval_base:.2e} | {s_base:.5f} | {s_pval_base:.2e} |")
+output_lines.append(f"| **Model - Volume Only** | {p_vol:.5f} | {p_pval_vol:.2e} | **{s_vol:.5f}** | {s_pval_vol:.2e} |")
+output_lines.append(f"| **Model - Strict PI** (EPS_clean_clean) | {p_strict:.5f} | {p_pval_strict:.2e} | {s_strict:.5f} | {s_pval_strict:.2e} |")
+output_lines.append(f"| **Model - Soft PI** (EPS_soft_pi) | {p_soft:.5f} | {p_pval_soft:.2e} | **{s_soft:.5f}** | {s_pval_soft:.2e} |")
 output_lines.append("")
 output_lines.append("### Key Statistical Takeaways:")
-output_lines.append(f"- **Rank Association (Spearman $\\rho$) Lift**: The model achieves a **Spearman correlation of {s_coef:.5f}** compared to the baseline's **{s_coef_base:.5f}**. This is a **relative lift of +{((s_coef - s_coef_base)/s_coef_base)*100:.2f}%** in rank alignment.")
+output_lines.append(f"- **Rank Correlation (Spearman $\\rho$) Lift**: The **Volume-Only model** ($\\rho = {s_vol:.5f}$) and **Soft-PI model** ($\\rho = {s_soft:.5f}$) both achieve a significant lift in rank alignment over the baseline ($\\rho = {s_base:.5f}$). This represents a **relative rank alignment lift of +{((s_vol - s_base)/s_base)*100:.2f}%**.")
+output_lines.append(f"- **The Strict PI Limitation**: Gating predictions by strict multiplication of the binary monthly Top 50 persistence index (`EPS_clean_clean`) forces 99% of cells to `0.0`. This introduces huge numbers of rank ties, collapsing the Spearman correlation to **{s_strict:.5f}**. The Soft-PI formulation (`EPS_soft_pi`) avoids this by adding a `+0.5` smoothing term, maintaining rank separation and yielding a robust **{s_soft:.5f}** correlation with holdout reality.")
 output_lines.append("- **Why Spearman Matters**: Since the BTP Dispatch Center relies on a ranked priority queue (e.g. directing patrol units to the Top 20 or Top 50 cells), a stronger Spearman rank correlation directly explains the **+9.0% lift at K=20** and **+7.8% lift at K=50** in actual violation volume captured.")
-output_lines.append("- **Statistical Significance**: All p-values are extremely close to $0.0$ (printed as `0.00e+00`), indicating that these associations are highly robust and not due to random chance.")
+output_lines.append("- **Statistical Significance**: All p-values are extremely close to $0.0$, indicating that these associations are highly robust and not due to random chance.")
 output_lines.append("")
 
 output_lines.append("## Conclusion & Operational Recommendations")

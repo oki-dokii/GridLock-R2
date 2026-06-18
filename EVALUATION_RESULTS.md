@@ -37,12 +37,15 @@ To prove that our model's predictions have a strong, statistically significant a
 | Predictor | Pearson Correlation ($r$) | Pearson $p$-value | Spearman Rank Correlation ($\rho$) | Spearman $p$-value |
 |---|:---:|:---:|:---:|:---:|
 | **Baseline** (Historical Train Counts) | 0.75113 | 0.00e+00 | 0.49069 | 0.00e+00 |
-| **Model** (Case B Clean Predictions) | 0.74557 | 0.00e+00 | **0.53075** | 0.00e+00 |
+| **Model - Volume Only** | 0.74557 | 0.00e+00 | **0.53075** | 0.00e+00 |
+| **Model - Strict PI** (EPS_clean_clean) | 0.66779 | 0.00e+00 | 0.23490 | 1.63e-87 |
+| **Model - Soft PI** (EPS_soft_pi) | 0.73246 | 0.00e+00 | **0.53016** | 0.00e+00 |
 
 ### Key Statistical Takeaways:
-- **Rank Association (Spearman $\rho$) Lift**: The model achieves a **Spearman correlation of 0.53075** compared to the baseline's **0.49069**. This is a **relative lift of +8.16%** in rank alignment.
+- **Rank Correlation (Spearman $\rho$) Lift**: The **Volume-Only model** ($\rho = 0.53075$) and **Soft-PI model** ($\rho = 0.53016$) both achieve a significant lift in rank alignment over the baseline ($\rho = 0.49069$). This represents a **relative rank alignment lift of +8.16%**.
+- **The Strict PI Limitation**: Gating predictions by strict multiplication of the binary monthly Top 50 persistence index (`EPS_clean_clean`) forces 99% of cells to `0.0`. This introduces huge numbers of rank ties, collapsing the Spearman correlation to **0.23490**. The Soft-PI formulation (`EPS_soft_pi`) avoids this by adding a `+0.5` smoothing term, maintaining rank separation and yielding a robust **0.53016** correlation with holdout reality.
 - **Why Spearman Matters**: Since the BTP Dispatch Center relies on a ranked priority queue (e.g. directing patrol units to the Top 20 or Top 50 cells), a stronger Spearman rank correlation directly explains the **+9.0% lift at K=20** and **+7.8% lift at K=50** in actual violation volume captured.
-- **Statistical Significance**: All p-values are extremely close to $0.0$ (printed as `0.00e+00`), indicating that these associations are highly robust and not due to random chance.
+- **Statistical Significance**: All p-values are extremely close to $0.0$, indicating that these associations are highly robust and not due to random chance.
 
 ## Conclusion & Operational Recommendations
 1. **Data Cleaning is Essential**: Evaluating on raw counts shows no lift because corrupt, low-confidence officers obscure true patterns. When using the Bayesian Filter to clear out low-confidence records (Test Type 2), the model achieves up to a **+9.0% lift** over the baseline.
