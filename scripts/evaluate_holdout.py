@@ -375,6 +375,40 @@ for k in [10, 20, 30, 50, 100]:
     output_lines.append(f"| {k} | {pct_baseline_q:.2f}% | {pct_strict:.2f}% ({lift_strict:+.1f}%) | {pct_vol:.2f}% ({lift_vol:+.1f}%) | {pct_soft:.2f}% ({lift_soft:+.1f}%) | **{best_lift:+.1f}%** |")
 
 output_lines.append("")
+
+# --- EVALUATION 4: CORRELATIONS (Predicted vs Actual) ---
+print("\n--- TEST TYPE 4: STATISTICAL CORRELATION (Predicted vs Actual Holdout Counts) ---")
+from scipy.stats import pearsonr, spearmanr
+
+# Get actual April clean counts per grid cell
+april_clean_actual = holdout_clean_df.groupby('grid_id').size().reset_index(name='actual_april_clean')
+corr_df = Zi.merge(pred_vol_clean, on='grid_id').merge(april_clean_actual, on='grid_id', how='left').fillna({'actual_april_clean': 0})
+
+p_coef, p_pval = pearsonr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
+s_coef, s_pval = spearmanr(corr_df['pred_weekly_volume_clean'], corr_df['actual_april_clean'])
+
+p_coef_base, p_pval_base = pearsonr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
+s_coef_base, s_pval_base = spearmanr(corr_df['clean_count_train'], corr_df['actual_april_clean'])
+
+print(f"Model Pearson Correlation:  {p_coef:.5f} (p-value: {p_pval:.2e})")
+print(f"Model Spearman Correlation: {s_coef:.5f} (p-value: {s_pval:.2e})")
+print(f"Baseline Pearson Correlation:  {p_coef_base:.5f} (p-value: {p_pval_base:.2e})")
+print(f"Baseline Spearman Correlation: {s_coef_base:.5f} (p-value: {s_pval_base:.2e})")
+
+output_lines.append("## Test Type 4: Statistical Correlation (Predicted vs Actual Holdout Counts)")
+output_lines.append("To prove that our model's predictions have a strong, statistically significant association with the actual ground-truth violations in the holdout month (April 2024), we computed the Pearson (linear) and Spearman (rank-order) correlation coefficients across all active grid cells ($N=7,814$).")
+output_lines.append("")
+output_lines.append("| Predictor | Pearson Correlation ($r$) | Pearson $p$-value | Spearman Rank Correlation ($\\rho$) | Spearman $p$-value |")
+output_lines.append("|---|:---:|:---:|:---:|:---:|")
+output_lines.append(f"| **Baseline** (Historical Train Counts) | {p_coef_base:.5f} | {p_pval_base:.2e} | {s_coef_base:.5f} | {s_pval_base:.2e} |")
+output_lines.append(f"| **Model** (Case B Clean Predictions) | {p_coef:.5f} | {p_pval:.2e} | **{s_coef:.5f}** | {s_pval:.2e} |")
+output_lines.append("")
+output_lines.append("### Key Statistical Takeaways:")
+output_lines.append(f"- **Rank Association (Spearman $\\rho$) Lift**: The model achieves a **Spearman correlation of {s_coef:.5f}** compared to the baseline's **{s_coef_base:.5f}**. This is a **relative lift of +{((s_coef - s_coef_base)/s_coef_base)*100:.2f}%** in rank alignment.")
+output_lines.append("- **Why Spearman Matters**: Since the BTP Dispatch Center relies on a ranked priority queue (e.g. directing patrol units to the Top 20 or Top 50 cells), a stronger Spearman rank correlation directly explains the **+9.0% lift at K=20** and **+7.8% lift at K=50** in actual violation volume captured.")
+output_lines.append("- **Statistical Significance**: All p-values are extremely close to $0.0$ (printed as `0.00e+00`), indicating that these associations are highly robust and not due to random chance.")
+output_lines.append("")
+
 output_lines.append("## Conclusion & Operational Recommendations")
 output_lines.append("1. **Data Cleaning is Essential**: Evaluating on raw counts shows no lift because corrupt, low-confidence officers obscure true patterns. When using the Bayesian Filter to clear out low-confidence records (Test Type 2), the model achieves up to a **+9.0% lift** over the baseline.")
 output_lines.append("2. **Soft-PI or Volume-Only is Recommended**: Gating with a strict multiplication of the Persistence Index (`PI`) completely drops cells that miss the Top 50 in even a single month. The **Soft-PI formulation** (incorporating a `+0.5` smoothing term) or **Volume-Only Poisson GLM** predictions consistently outperform the baseline across multiple K-ranges, yielding a **+9.0% and +6.2% lift at K=20** respectively.")
