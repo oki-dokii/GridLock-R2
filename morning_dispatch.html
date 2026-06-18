@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTP Morning Dispatch Order</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        btp: {
+                            blue: '#1e3a8a',
+                            light: '#3b82f6',
+                            dark: '#0f172a',
+                            panel: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .severity-critical { border-left: 4px solid #ef4444; }
+        .severity-high { border-left: 4px solid #f97316; }
+        .severity-medium { border-left: 4px solid #eab308; }
+        .severity-low { border-left: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="bg-btp-dark text-slate-300 min-h-screen">
+    
+    <!-- Top Navigation Bar -->
+    <nav class="bg-btp-panel border-b border-slate-700 p-4 sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-wide">Bengaluru Traffic Police</h1>
+                    <p class="text-xs text-blue-400 uppercase tracking-widest font-semibold">Morning Dispatch Order Dashboard</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="text-right">
+                    <div id="current-date" class="text-sm font-medium text-slate-300"></div>
+                    <div id="current-time" class="text-xs text-slate-400 flex items-center justify-end gap-1">
+                        <i class="fa-regular fa-clock"></i> <span id="time-val"></span> IST
+                    </div>
+                </div>
+                <button onclick="exportData()" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded shadow transition-colors text-sm font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-file-export"></i> Export PDF
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto p-6 space-y-6">
+        
+        <!-- Summary Header -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-btp-panel rounded-xl p-5 border border-slate-700 shadow-sm flex items-center space-x-4">
+                <div class="bg-slate-800 p-3 rounded-lg text-blue-400">
+                    <i class="fa-solid fa-crosshairs text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 uppercase font-semibold">Active Targets</p>
+                    <p class="text-2xl font-bold text-white" id="summary-targets">0</p>
+                </div>
+            </div>
+            
+            <div class="bg-btp-panel rounded-xl p-5 border border-slate-700 shadow-sm flex items-center space-x-4">
+                <div class="bg-slate-800 p-3 rounded-lg text-red-400">
+                    <i class="fa-solid fa-truck-pickup text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 uppercase font-semibold">Tow Trucks Req.</p>
+                    <p class="text-2xl font-bold text-white" id="summary-tow">0</p>
+                </div>
+            </div>
+            
+            <div class="bg-btp-panel rounded-xl p-5 border border-slate-700 shadow-sm flex items-center space-x-4">
+                <div class="bg-slate-800 p-3 rounded-lg text-yellow-400">
+                    <i class="fa-solid fa-compact-disc text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 uppercase font-semibold">Wheel Clamps Req.</p>
+                    <p class="text-2xl font-bold text-white" id="summary-clamps">0</p>
+                </div>
+            </div>
+
+            <div class="bg-btp-panel rounded-xl p-5 border border-slate-700 shadow-sm flex items-center space-x-4">
+                <div class="bg-slate-800 p-3 rounded-lg text-green-400">
+                    <i class="fa-solid fa-person-military-pointing text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-xs text-slate-400 uppercase font-semibold">Constables Req.</p>
+                    <p class="text-2xl font-bold text-white" id="summary-constables">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dispatch List Container -->
+        <div>
+            <div class="flex justify-between items-end mb-4">
+                <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-list-ol text-blue-500"></i>
+                    Ranked Enforcement Targets (Top 15)
+                </h2>
+                <div class="text-sm text-slate-400">
+                    Ranked by Enforcement Priority Score (EPS)
+                </div>
+            </div>
+            
+            <div id="dispatch-container" class="space-y-4">
+                <!-- Cards will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // DATA_SOURCE: This section is marked for future integration with evaluate_holdout.py output.
+        const dispatchData = [
+            {"rank":1,"grid_id":"(12.971, 77.594)","eps":142.5,"pi":1.00,"pred_lambda":28,"violation_type":"DOUBLE PARKING","peak_window":"08:00–11:00","resources":"tow truck + 2 constables","severity":"critical"},
+            {"rank":2,"grid_id":"(12.934, 77.625)","eps":118.2,"pi":0.75,"pred_lambda":19,"violation_type":"DOUBLE PARKING","peak_window":"09:00–11:00","resources":"tow truck + 1 constable","severity":"high"},
+            {"rank":3,"grid_id":"(12.925, 77.583)","eps":85.4,"pi":0.50,"pred_lambda":12,"violation_type":"WRONG PARKING","peak_window":"08:00–10:00","resources":"wheel clamps + 2 constables","severity":"high"},
+            {"rank":4,"grid_id":"(12.958, 77.641)","eps":58.9,"pi":0.50,"pred_lambda":9,"violation_type":"MAIN ROAD","peak_window":"10:00–13:00","resources":"wheel clamps + 1 constable","severity":"medium"},
+            {"rank":5,"grid_id":"(12.917, 77.598)","eps":44.1,"pi":0.50,"pred_lambda":7,"violation_type":"WRONG PARKING","peak_window":"08:00–10:00","resources":"1 constable","severity":"medium"}
+        ];
+
+        function getSeverityColor(severity) {
+            switch(severity.toLowerCase()) {
+                case 'critical': return 'text-red-400 bg-red-400/10 border-red-400/20';
+                case 'high': return 'text-orange-400 bg-orange-400/10 border-orange-400/20';
+                case 'medium': return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
+                default: return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+            }
+        }
+
+        function getSeverityBadge(severity) {
+            switch(severity.toLowerCase()) {
+                case 'critical': return 'severity-critical';
+                case 'high': return 'severity-high';
+                case 'medium': return 'severity-medium';
+                default: return 'severity-low';
+            }
+        }
+
+        function getViolationIcon(type) {
+            if(type.includes('DOUBLE PARKING')) return '<i class="fa-solid fa-car-side text-red-400"></i><i class="fa-solid fa-car-side text-red-500 -ml-2"></i>';
+            if(type.includes('MAIN ROAD')) return '<i class="fa-solid fa-road text-yellow-500"></i>';
+            return '<i class="fa-solid fa-circle-exclamation text-orange-400"></i>';
+        }
+
+        function renderDashboard() {
+            const container = document.getElementById('dispatch-container');
+            let html = '';
+            
+            let totalTow = 0;
+            let totalClamps = 0;
+            let totalConstables = 0;
+
+            dispatchData.forEach(item => {
+                // Parse resources for summary
+                if(item.resources.includes('tow truck')) totalTow++;
+                if(item.resources.includes('wheel clamps')) totalClamps++;
+                const constableMatch = item.resources.match(/(\d+)\s+constable/);
+                if(constableMatch) totalConstables += parseInt(constableMatch[1]);
+
+                html += `
+                <div class="bg-btp-panel rounded-lg p-5 border border-slate-700 shadow-sm hover:border-blue-500/50 transition-colors ${getSeverityBadge(item.severity)} flex flex-col md:flex-row gap-6 items-center">
+                    
+                    <!-- Rank & Grid -->
+                    <div class="flex items-center space-x-4 min-w-[150px]">
+                        <div class="flex flex-col items-center justify-center bg-slate-800 w-12 h-12 rounded shadow-inner">
+                            <span class="text-xs text-slate-500 font-bold">#</span>
+                            <span class="text-xl text-white font-bold">${item.rank}</span>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Grid ID</p>
+                            <p class="font-mono text-sm text-blue-300">${item.grid_id}</p>
+                        </div>
+                    </div>
+
+                    <!-- Details: Violation & Peak -->
+                    <div class="flex-1 grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-semibold mb-1">Dominant Violation</p>
+                            <p class="text-sm font-semibold text-white flex items-center gap-2">
+                                ${getViolationIcon(item.violation_type)}
+                                ${item.violation_type}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 uppercase font-semibold mb-1">Peak Window</p>
+                            <p class="text-sm font-semibold text-white flex items-center gap-2">
+                                <i class="fa-regular fa-clock text-slate-400"></i>
+                                ${item.peak_window}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="flex gap-6 items-center px-4 border-l border-r border-slate-700">
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">EPS</p>
+                            <p class="text-lg font-bold text-white">${item.eps.toFixed(1)}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">PI</p>
+                            <p class="text-sm font-semibold text-slate-300">${item.pi.toFixed(2)}</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-xs text-slate-400 uppercase font-semibold">Est. Vol</p>
+                            <p class="text-sm font-semibold text-slate-300">${item.pred_lambda}</p>
+                        </div>
+                    </div>
+
+                    <!-- Action & Resources -->
+                    <div class="min-w-[200px] flex flex-col gap-2">
+                        <div class="inline-flex items-center px-2.5 py-1 rounded border text-xs font-semibold uppercase tracking-wider w-fit ${getSeverityColor(item.severity)}">
+                            ${item.severity} SEVERITY
+                        </div>
+                        <p class="text-sm text-slate-300 flex items-start gap-2">
+                            <i class="fa-solid fa-clipboard-user mt-1 text-slate-500"></i>
+                            <span>${item.resources}</span>
+                        </p>
+                    </div>
+
+                </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Update Summary
+            document.getElementById('summary-targets').innerText = dispatchData.length;
+            document.getElementById('summary-tow').innerText = totalTow;
+            document.getElementById('summary-clamps').innerText = totalClamps;
+            document.getElementById('summary-constables').innerText = totalConstables;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            // Convert to IST
+            const istOffset = 5.5 * 60 * 60 * 1000;
+            const istTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
+            
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').innerText = istTime.toLocaleDateString('en-IN', dateOptions);
+            
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            document.getElementById('time-val').innerText = istTime.toLocaleTimeString('en-IN', timeOptions);
+        }
+
+        function exportData() {
+            alert('Exporting dispatch data to PDF...\n(This is a placeholder for actual export functionality)');
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboard();
+            updateTime();
+            setInterval(updateTime, 1000);
+        });
+    </script>
+</body>
+</html>
