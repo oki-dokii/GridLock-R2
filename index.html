@@ -285,15 +285,15 @@
       <div class="flex items-center gap-8 text-xs font-mono border-l border-slate-800 pl-8">
         <div>
           <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Targets</span>
-          <span class="font-semibold text-slate-200">8 Locations</span>
+          <span class="font-semibold text-slate-200">15 Locations</span>
         </div>
         <div>
           <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Congestion Peak</span>
-          <span class="font-semibold text-red-400 flex items-center gap-1"><i class="fa-solid fa-fire"></i> 769 EPS</span>
+          <span class="font-semibold text-red-400 flex items-center gap-1"><i class="fa-solid fa-fire"></i> 875 EPS</span>
         </div>
         <div>
           <span class="text-slate-500 block uppercase text-[9px] tracking-wider">M6 Alerts</span>
-          <span id="alerts-count" class="font-semibold text-amber-400 animate-pulse">5 Alerts</span>
+          <span id="alerts-count" class="font-semibold text-amber-400 animate-pulse">7 Alerts</span>
         </div>
         <div>
           <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Live System Clock</span>
@@ -489,14 +489,21 @@
   <script>
     // Hardcoded target data (Calibrated Cell-Month Case B Forecast)
     const targets = [
-      { name: 'Mysore Rd', coords: [12.964, 77.577], eps: 769, type: 'HH', qa: 166, label: 'Mysore Road Flyover ramp', officer: { approved: 45, rejected: 12 } },
-      { name: 'Kamaraj Rd', coords: [12.981, 77.610], eps: 717, type: 'HH', qa: 1627, label: 'Kamaraj Road intersection', officer: { approved: 128, rejected: 14 } },
-      { name: 'Embassy Tech', coords: [12.934, 77.691], eps: 668, type: 'HH', qa: 5, label: 'Embassy Tech Square', officer: { approved: 8, rejected: 4 } },
-      { name: '6th Main', coords: [12.977, 77.576], eps: 583, type: 'HH', qa: 0, label: '6th Main Rd, Indiranagar', officer: { approved: 0, rejected: 0 } },
-      { name: 'Sahakar Nagar', coords: [13.071, 77.588], eps: 485, type: 'HH', qa: 0, label: 'Sahakar Nagar bypass', officer: { approved: 0, rejected: 0 } },
-      { name: 'Upparpet Jct', coords: [12.973, 77.579], eps: 467, type: 'LH', qa: 12, label: 'Upparpet Police Station Jct', officer: { approved: 22, rejected: 18 } },
-      { name: 'New Horizon', coords: [13.184, 77.680], eps: 449, type: 'HH', qa: 21, label: 'New Horizon College front', officer: { approved: 19, rejected: 8 } },
-      { name: '3rd Cross', coords: [12.984, 77.604], eps: 387, type: 'LH', qa: 0, label: '3rd Cross, Commercial Street', officer: { approved: 0, rejected: 0 } }
+      { name: 'Mysore Rd', coords: [12.964, 77.577], eps: 875, type: 'HH', qa: 61, label: 'Mysore Road, City Market Circle', officer: { approved: 777, rejected: 246 } },
+      { name: 'Kamaraj Rd', coords: [12.981, 77.610], eps: 814, type: 'HH', qa: 283, label: 'Kamaraj Road, Sivanchetti Gardens', officer: { approved: 128, rejected: 14 } },
+      { name: 'New Horizon', coords: [12.934, 77.691], eps: 754, type: 'HH', qa: 26, label: 'New Horizon College of Engineering', officer: { approved: 19, rejected: 8 } },
+      { name: '6th Main', coords: [12.977, 77.576], eps: 653, type: 'HH', qa: 244, label: '6th Main Road, RK Puram', officer: { approved: 0, rejected: 0 } },
+      { name: 'Sahakar Nagar', coords: [13.071, 77.588], eps: 537, type: 'HH', qa: 193, label: 'Sahakar Nagar Road, Fortuna Acacia', officer: { approved: 0, rejected: 0 } },
+      { name: 'Upparpet Jct', coords: [12.973, 77.579], eps: 515, type: 'LH', qa: 118, label: '3rd Cross Road, Kempegowda Extension', officer: { approved: 22, rejected: 18 } },
+      { name: 'Embassy Tech', coords: [12.933, 77.691], eps: 414, type: 'HH', qa: 18, label: 'Embassy Tech Village, Devara Beesana Halli', officer: { approved: 8, rejected: 4 } },
+      { name: '3rd Cross', coords: [12.984, 77.603], eps: 422, type: 'LH', qa: 0, label: 'Meenakshi Koil Street, Shivaji Nagar', officer: { approved: 0, rejected: 0 } },
+      { name: 'Vijayanagar', coords: [12.974, 77.545], eps: 287, type: 'HH', qa: 0, label: 'Chord Road, Manuvana, Vijaya Nagar', officer: { approved: 806, rejected: 349 } },
+      { name: 'Old Madras Rd', coords: [12.996, 77.668], eps: 189, type: 'HH', qa: 0, label: 'Old Madras Road, Royal Heritage', officer: { approved: 0, rejected: 0 } },
+      { name: 'Indiranagar 100ft', coords: [12.978, 77.639], eps: 27, type: 'LH', qa: 0, label: 'CMH Road, KFC Circle, Indiranagar', officer: { approved: 0, rejected: 0 } },
+      { name: 'Halasuru Rd', coords: [12.974, 77.623], eps: 18, type: 'LH', qa: 0, label: 'Old Madras Road, Halasuru', officer: { approved: 0, rejected: 0 } },
+      { name: 'Eco Space', coords: [12.927, 77.681], eps: 10, type: 'LH', qa: 0, label: 'RMZ Ecospace Internal Road, Bellandur', officer: { approved: 0, rejected: 0 } },
+      { name: 'RT Nagar', coords: [13.020, 77.596], eps: 4, type: 'LH', qa: 0, label: '3rd Main Road, RT Nagar', officer: { approved: 0, rejected: 0 } },
+      { name: 'BGS Flyover', coords: [12.965, 77.573], eps: 2, type: 'LH', qa: 0, label: 'BGS Flyover, Sultanpete', officer: { approved: 0, rejected: 0 } }
     ];
 
     let map;
@@ -588,7 +595,7 @@
 
         // Add 3D Markers on Mappls Map
         targets.forEach(t => {
-          const H = (t.eps / 769) * 160 + 40;
+          const H = (t.eps / 875) * 160 + 40;
           const markerContainer = document.createElement('div');
           markerContainer.className = 'pillar-wrapper cursor-pointer';
           markerContainer.style.width = '30px';
@@ -643,7 +650,7 @@
 
       targets.forEach(t => {
         const pos = getMockPosition(t.coords[0], t.coords[1]);
-        const H = (t.eps / 769) * 160 + 40;
+        const H = (t.eps / 875) * 160 + 40;
 
         const wrapper = document.createElement('div');
         wrapper.className = 'mock-marker-wrapper absolute cursor-pointer';

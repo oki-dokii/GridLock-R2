@@ -80,10 +80,9 @@ df['sigma'] = df['violation_type'].fillna('').astype(str).apply(get_sigma)
 df['PCS'] = df['omega'] * df['delta'] * df['sigma']
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 1. SPLIT DATA FIRST TO PREVENT LEAKAGE
+# 1. SPLIT DATA FIRST TO PREVENT LEAKAGE (TRAIN ON NOV-MAR, HOLD OUT APRIL)
 # ─────────────────────────────────────────────────────────────────────────────
-train_df = df[df['month'].isin([11, 12, 1, 2])].copy()
-march_df = df[df['month'] == 3].copy()
+train_df = df[df['month'].isin([11, 12, 1, 2, 3])].copy()
 holdout_df = df[df['month'] == 4].copy()
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -102,46 +101,42 @@ p_hat_dict = officer_stats['p_hat'].to_dict()
 
 # Map p_hat to all dataframes using train-only statistics
 train_df['p_hat'] = train_df['created_by_id'].map(p_hat_dict).fillna(5/7)
-march_df['p_hat'] = march_df['created_by_id'].map(p_hat_dict).fillna(5/7)
 holdout_df['p_hat'] = holdout_df['created_by_id'].map(p_hat_dict).fillna(5/7)
 
 train_df['q_PCS'] = train_df['PCS'] * train_df['p_hat']
-march_df['q_PCS'] = march_df['PCS'] * march_df['p_hat']
 holdout_df['q_PCS'] = holdout_df['PCS'] * holdout_df['p_hat']
 
 # Create cleaned subsets where corrupt records are filtered out (p_hat >= 0.50)
 train_clean_df = train_df[train_df['p_hat'] >= 0.50].copy()
-march_clean_df = march_df[march_df['p_hat'] >= 0.50].copy()
 holdout_clean_df = holdout_df[holdout_df['p_hat'] >= 0.50].copy()
 
 print(f"Train records (raw): {len(train_df):,} | (clean): {len(train_clean_df):,}")
-print(f"March records (raw): {len(march_df):,} | (clean): {len(march_clean_df):,}")
 print(f"April holdout records (raw): {len(holdout_df):,} | (clean): {len(holdout_clean_df):,}")
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 3. CALCULATE LEAK-FREE PERSISTENCE INDEX (PI_i)
+# 3. CALCULATE LEAK-FREE PERSISTENCE INDEX (PI_i) OVER 4 MONTHS (DEC-MAR)
 # ─────────────────────────────────────────────────────────────────────────────
 # PI using quality-adjusted PCS
 monthly_top50_qa = {}
-for m in [12, 1, 2]:
+for m in [12, 1, 2, 3]:
     mdf = train_df[train_df['month'] == m]
     m_zi = mdf.groupby('grid_id')['q_PCS'].sum().reset_index()
     top50 = m_zi.nlargest(50, 'q_PCS')['grid_id'].tolist()
     monthly_top50_qa[m] = set(top50)
 
 def get_pi_qa(grid):
-    return sum(1 for m in [12, 1, 2] if grid in monthly_top50_qa[m]) / 3.0
+    return sum(1 for m in [12, 1, 2, 3] if grid in monthly_top50_qa[m]) / 4.0
 
 # PI using clean raw counts
 monthly_top50_clean = {}
-for m in [12, 1, 2]:
+for m in [12, 1, 2, 3]:
     mdf = train_clean_df[train_clean_df['month'] == m]
     m_zi = mdf.groupby('grid_id').size().reset_index(name='count')
     top50 = m_zi.nlargest(50, 'count')['grid_id'].tolist()
     monthly_top50_clean[m] = set(top50)
 
 def get_pi_clean(grid):
-    return sum(1 for m in [12, 1, 2] if grid in monthly_top50_clean[m]) / 3.0
+    return sum(1 for m in [12, 1, 2, 3] if grid in monthly_top50_clean[m]) / 4.0
 
 # Setup aggregation df
 Zi = train_df.groupby('grid_id').agg(
@@ -154,11 +149,11 @@ Zi['PI_qa'] = Zi['grid_id'].apply(get_pi_qa)
 Zi['PI_clean'] = Zi['grid_id'].apply(get_pi_clean)
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 4. TRAIN POISSON GLM MODELS (CELL-MONTH LEVEL)
+# 4. TRAIN POISSON GLM MODELS (CELL-MONTH LEVEL - NOV-MAR)
 # ─────────────────────────────────────────────────────────────────────────────
 print("Preparing cell-month level datasets to resolve selection bias...")
 unique_grids = Zi['grid_id'].tolist()
-months = [11, 12, 1, 2]
+months = [11, 12, 1, 2, 3]
 grid_month_grid = pd.MultiIndex.from_product(
     [unique_grids, months],
     names=['grid_id', 'month']
@@ -168,7 +163,7 @@ grid_month_grid = pd.MultiIndex.from_product(
 train_clean_counts = train_clean_df.groupby(['grid_id', 'month']).size().reset_index(name='y')
 train_clean_cell_month = grid_month_grid.merge(train_clean_counts, on=['grid_id', 'month'], how='left').fillna({'y': 0})
 train_clean_shifted = train_clean_cell_month.copy()
-train_clean_shifted['month'] = train_clean_shifted['month'].map({11: 12, 12: 1, 1: 2})
+train_clean_shifted['month'] = train_clean_shifted['month'].map({11: 12, 12: 1, 1: 2, 2: 3})
 train_clean_shifted = train_clean_shifted.rename(columns={'y': 'Z_prev'})
 train_clean_cm_lagged = train_clean_cell_month.merge(
     train_clean_shifted[['grid_id', 'month', 'Z_prev']],
@@ -180,7 +175,7 @@ train_clean_cm_lagged = train_clean_cell_month.merge(
 train_raw_counts = train_df.groupby(['grid_id', 'month']).size().reset_index(name='y')
 train_raw_cell_month = grid_month_grid.merge(train_raw_counts, on=['grid_id', 'month'], how='left').fillna({'y': 0})
 train_raw_shifted = train_raw_cell_month.copy()
-train_raw_shifted['month'] = train_raw_shifted['month'].map({11: 12, 12: 1, 1: 2})
+train_raw_shifted['month'] = train_raw_shifted['month'].map({11: 12, 12: 1, 1: 2, 2: 3})
 train_raw_shifted = train_raw_shifted.rename(columns={'y': 'Z_prev'})
 train_raw_cm_lagged = train_raw_cell_month.merge(
     train_raw_shifted[['grid_id', 'month', 'Z_prev']],
@@ -200,8 +195,8 @@ print(model_raw.params)
 
 # Generate predictions for holdout month (April, using March counts as Z_prev)
 print("Generating predictions based on March 2024 activity...")
-march_counts_raw = march_df.groupby('grid_id').size().reset_index(name='Z_prev_raw')
-march_counts_clean = march_clean_df.groupby('grid_id').size().reset_index(name='Z_prev_clean')
+march_counts_raw = train_df[train_df['month'] == 3].groupby('grid_id').size().reset_index(name='Z_prev_raw')
+march_counts_clean = train_clean_df[train_clean_df['month'] == 3].groupby('grid_id').size().reset_index(name='Z_prev_clean')
 
 pred_vol_raw = pd.DataFrame({'grid_id': unique_grids})
 pred_vol_raw = pred_vol_raw.merge(march_counts_raw, on='grid_id', how='left').fillna({'Z_prev_raw': 0})
