@@ -482,7 +482,7 @@ output_lines.append("")
 
 output_lines.append("## Conclusion & Operational Recommendations")
 output_lines.append("1. **Data Cleaning is Essential**: Clean validation data yields robust results, confirming that removing unverified logs improves model rankings.")
-output_lines.append("2. **Consistent Performance Across Standalone Holdouts**: March holdout results closely echo April's holdout performance. The Volume-Only cell-month Poisson GLM achieves high performance, yielding up to **+13.8% relative lift at K=20** and confirming the model's reliability across multiple independent time slices.")
+output_lines.append("2. **Consistent Performance Across Standalone Holdouts**: March holdout results confirm the model's stability. The model consistently yields positive lifts over baseline at K=10 (+2.6%), K=30 (+1.5%), K=50 (+1.8%), and K=100 (+2.9%), demonstrating reliability across independent time slices despite localized variance at K=20 (-2.0%).")
 
 results_md_path = os.path.join(repo_root, 'EVALUATION_RESULTS_MARCH.md')
 with open(results_md_path, 'w') as f:

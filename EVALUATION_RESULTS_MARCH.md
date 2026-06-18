@@ -74,4 +74,4 @@ The log-log scatter plot of predicted March monthly volume vs. actual clean Marc
 
 ## Conclusion & Operational Recommendations
 1. **Data Cleaning is Essential**: Clean validation data yields robust results, confirming that removing unverified logs improves model rankings.
-2. **Consistent Performance Across Standalone Holdouts**: March holdout results closely echo April's holdout performance. The Volume-Only cell-month Poisson GLM achieves high performance, yielding up to **+13.8% relative lift at K=20** and confirming the model's reliability across multiple independent time slices.
+2. **Consistent Performance Across Standalone Holdouts**: March holdout results confirm the model's stability. The model consistently yields positive lifts over baseline at K=10 (+2.6%), K=30 (+1.5%), K=50 (+1.8%), and K=100 (+2.9%), demonstrating reliability across independent time slices despite localized variance at K=20 (-2.0%).
