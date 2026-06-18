@@ -82,3 +82,14 @@ The log-log scatter plot of predicted April monthly volume vs. actual clean Apri
 ## Conclusion & Operational Recommendations
 1. **Data Cleaning is Essential**: Evaluating on raw counts shows no lift because corrupt, low-confidence officers obscure true patterns. When using the Bayesian Filter to clear out low-confidence records (Test Type 2), the model achieves up to a **+17.0% lift** over the baseline.
 2. **Cell-Month Level Autoregressive Model is Recommended**: Transitioning from an hourly model to a cell-month level model resolves selection bias and prevents flat predictions. The Volume-Only cell-month Poisson GLM predictions consistently outperform the baseline across multiple K-ranges, yielding a **+17.0% lift at K=20** and a Spearman rank correlation of **0.496** (compared to baseline **0.499**, which is statistically equivalent with no rank lift).
+
+## Known Operational Caveats & Risks
+
+> **⚠ EPS Formula with Strict PI degrades rank lift at K>30**
+> The Strict PI formula significantly degrades the Spearman rank correlation ($\rho$) from 0.499 to 0.234. It is recommended to use the **Volume-Only** or **Soft-PI** variant for live dispatch operations. Strict PI should be reserved exclusively for GBA monthly reporting where penalizing historically un-patrolled cells is required.
+
+> **⚠ 42% of records (125,254) still unreviewed — Backlog Risk**
+> A large portion of the dataset remains unreviewed by the validation team. If BTP suddenly clears the validation backlog, the underlying rejection rate estimate will shift significantly. The $\hat{p}$ (p-hat) baselines must be **re-fit** after each bulk review batch to maintain model accuracy.
+
+> **✗ No `action_taken_timestamp` data — Resolution Time is Unmeasurable**
+> All `action_taken_timestamp` values are currently null in the dataset. Because of this gap, it is impossible to compute response latency, resolution time, or the enforcement effectiveness (time-to-clear) per officer.
