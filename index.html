@@ -690,8 +690,13 @@
             <div class="font-bold text-slate-800 text-sm mb-1">${hs.station || 'Unknown Station'}</div>
             
             <!-- Road Context -->
-            <div class="bg-blue-50 border border-blue-100 rounded px-2 py-1 mb-2 flex justify-between items-center text-[10px]">
-              <span class="text-blue-800 font-bold"><i class="fa-solid fa-road mr-1 text-blue-600"></i>${hs.roadType || 'Local Street'}</span>
+            <div class="bg-blue-50 border border-blue-100 rounded px-2 py-1.5 mb-2 flex justify-between items-center text-[10px]">
+              <div class="flex flex-col gap-0.5">
+                <span class="text-blue-800 font-bold"><i class="fa-solid fa-road mr-1 text-blue-600"></i>${hs.roadType || 'Local Street'}</span>
+                ${hs.roadSource === 'OSM' ? 
+                  `<span class="text-blue-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-satellite-dish mr-0.5"></i>OSM Verified</span>` : 
+                  `<span class="text-slate-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-calculator mr-0.5"></i>Estimated (Fallback)</span>`}
+              </div>
               <span class="text-blue-600 font-bold bg-white px-1.5 rounded shadow-sm">${(hs.impactMultiplier || 1.0).toFixed(1)}x Impact</span>
             </div>
 
