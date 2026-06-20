@@ -128,6 +128,17 @@
           <span class="text-[9px] text-slate-500 ml-auto">Rest</span>
         </div>
       </div>
+      
+      <!-- Deployment Status -->
+      <div class="border-t border-slate-700 mb-2.5"></div>
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Deployment Status</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#a855f7" stroke="#f8fafc" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-purple-400 font-bold">Unassigned Risk</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Gap</span>
+        </div>
+      </div>
 
       <!-- Divider -->
       <div class="border-t border-slate-700 mb-2.5"></div>
@@ -219,8 +230,34 @@
       </div>
       <div>
         <h1 class="font-bold text-white tracking-wider">BTP FIELD OPS</h1>
-        <p class="text-xs text-slate-400 font-medium">Tactical Map View</p>
+        <p class="text-xs text-slate-400 font-medium">Command Center</p>
       </div>
+    </div>
+
+    <!-- Navigation Modules Panel -->
+    <div class="glass-panel rounded-xl p-4 flex flex-col space-y-3 mb-4 pointer-events-auto">
+      <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Active Modules</div>
+      
+      <a href="index.html" class="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+        <div class="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        Tactical Map
+      </a>
+      
+      <a href="congestion_risk.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+        <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
+          <i class="fa-solid fa-chart-line text-amber-500"></i>
+        </div>
+        Congestion Risk
+      </a>
+
+      <a href="monthly_report.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+        <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
+          <i class="fa-solid fa-file-invoice text-emerald-500"></i>
+        </div>
+        Monthly Report
+      </a>
     </div>
 
     <!-- Optimization Panel -->
