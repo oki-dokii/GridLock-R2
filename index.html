@@ -646,7 +646,7 @@
         const intensity = maxFiltered > 0 ? hs.filteredPCU / maxFiltered : 0;
         const radius = isFiltered
           ? Math.max(4, Math.round(4 + intensity * 8))
-          : (isCritical ? 9 : (tier === 'high' ? 7 : 5));
+          : (isCritical ? 9 : (baseTier === 'high' ? 7 : 5));
         
         // Lightweight SVG/Canvas marker (Zero lag)
         const marker = L.circleMarker([hs.lat, hs.lon], {
