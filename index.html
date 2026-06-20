@@ -337,8 +337,16 @@
               </div>
             </div>
 
-            <div class="text-[11px] bg-slate-100 p-2 rounded border border-slate-200 text-slate-700 font-medium flex gap-2 items-start">
+            <div class="text-[11px] bg-slate-100 p-2 rounded border border-slate-200 text-slate-700 font-medium flex gap-2 items-start mb-2">
               <i class="fa-solid fa-users-gear text-blue-500 mt-0.5"></i> <span>${resources}</span>
+            </div>
+
+            <!-- Copilot AI Layer -->
+            <div class="mt-1 border-t border-slate-200 pt-2">
+              <button onclick="triggerCopilot(this, '${generateAIReasoning(hs).replace(/'/g, "\\'")}')" class="w-full text-[10px] bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold py-1.5 rounded border border-indigo-200 transition-colors flex justify-center items-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-sparkles"></i> Ask Copilot Why
+              </button>
+              <div class="copilot-response hidden mt-2 bg-slate-800 text-slate-300 text-[10px] p-2 rounded border border-indigo-500/50 leading-relaxed"></div>
             </div>
           </div>
         `);
@@ -648,6 +656,50 @@
         </div>
       `;
     }
+
+    // ── LLM COPILOT ENGINE ──────────────────────────────────────────────────
+    function generateAIReasoning(hs) {
+      const station = hs.station || 'This location';
+      const score = hs.priorityScore || hs.totalPCS || 0;
+      const violation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '').toLowerCase() : 'violations';
+      const road = (hs.roadType || 'a local street').toLowerCase();
+      
+      let reasons = [];
+      const c = hs.contributors || {};
+      
+      let primary = `${station} is ranked at Priority ${score} primarily due to sustained ${violation} on an ${road}.`;
+      if(road.includes('local')) primary = `${station} is ranked at Priority ${score} primarily due to sustained ${violation} on a ${road}.`;
+      
+      if(c['Time Patterns'] >= 8) reasons.push('exhibits strong peak hour clustering');
+      if(c['Junction Proximity'] >= 15) reasons.push('lies within 100m of a critical junction');
+      if(c['Repeat Offender Signal'] >= 6) reasons.push('shows significant repeat offender signals');
+      
+      if(reasons.length > 0) {
+        let joined = reasons.join(', ').replace(/, ([^,]*)$/, ' and $1');
+        return `${primary} Secondary risk factors indicate it ${joined}.`;
+      }
+      return primary;
+    }
+
+    window.triggerCopilot = function(btn, text) {
+      btn.classList.add('hidden');
+      const responseDiv = btn.nextElementSibling;
+      responseDiv.classList.remove('hidden');
+      responseDiv.innerHTML = '<span class="text-indigo-400 font-bold mr-1"><i class="fa-solid fa-sparkles"></i> Copilot:</span> <span class="typewriter text-slate-200"></span>';
+      
+      const typeSpan = responseDiv.querySelector('.typewriter');
+      let i = 0;
+      const speed = 20; // Typewriter speed ms
+      
+      function typeWriter() {
+        if (i < text.length) {
+          typeSpan.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+      typeWriter();
+    };
 
     // Init
     initMap();
