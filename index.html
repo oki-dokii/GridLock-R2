@@ -98,7 +98,7 @@
   <div id="map"></div>
 
   <!-- Map Legend -->
-  <div class="absolute top-6 right-6 z-40 pointer-events-none" style="z-index:1000;">
+  <div class="absolute top-6 right-6 z-40 pointer-events-none flex flex-col gap-3" style="z-index:1000;">
     <div class="glass-panel rounded-xl p-3 min-w-[165px]">
       <div class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2.5 flex items-center gap-1.5">
         <i class="fa-solid fa-circle-info text-slate-500"></i> Map Legend
@@ -156,6 +156,16 @@
           <span class="text-[11px] text-slate-400 font-medium">Unproven</span>
           <span class="text-[9px] text-slate-500 ml-auto">Rank 51+</span>
         </div>
+      </div>
+    </div>
+
+    <!-- Top 10 Critical Locations Panel -->
+    <div class="glass-panel rounded-xl p-3 min-w-[220px] max-w-[280px] pointer-events-auto hidden md:block">
+      <div class="text-[9px] text-red-400 uppercase font-bold tracking-widest mb-2 flex items-center gap-1.5">
+        <i class="fa-solid fa-list-ol"></i> Top 10 Critical
+      </div>
+      <div id="top-10-list" class="space-y-1.5 overflow-y-auto max-h-[300px] pr-1 custom-scrollbar">
+        <!-- populated via JS -->
       </div>
     </div>
   </div>
@@ -433,12 +443,42 @@
       });
     }
 
-    // ── DATA FETCH ─────────────────────────────────────────────────────────────
+    // ── DATA FETCH & RENDER ────────────────────────────────────────────────────
+    function renderTop10() {
+      const container = document.getElementById('top-10-list');
+      if (!container || !HOTSPOTS.length) return;
+      
+      const top10 = [...HOTSPOTS].sort((a, b) => b.priorityScore - a.priorityScore).slice(0, 10);
+      
+      container.innerHTML = top10.map((hs, i) => {
+        let tierColor = 'text-blue-400';
+        if (hs.tier === 'critical') tierColor = 'text-red-400';
+        else if (hs.tier === 'high') tierColor = 'text-orange-400';
+        else if (hs.tier === 'medium') tierColor = 'text-amber-400';
+        
+        return `
+          <div class="flex items-center justify-between p-2 rounded bg-slate-800/80 border border-slate-700/50 cursor-pointer hover:bg-slate-700 transition-colors group" onclick="flyToArea(${hs.lat}, ${hs.lon}, '${hs.station ? hs.station.replace(/'/g, "\\'") : 'Unknown'}')">
+            <div class="flex items-center gap-2">
+              <div class="text-[10px] font-bold text-slate-400 w-4 text-center group-hover:text-white transition-colors">#${i + 1}</div>
+              <div>
+                <div class="text-[10px] font-bold text-white truncate max-w-[110px]" title="${hs.station}">${hs.station || 'Unknown'}</div>
+                <div class="text-[8px] uppercase tracking-wider ${tierColor}">${hs.tier}</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] font-bold text-slate-300">${hs.priorityScore}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     async function fetchHotspots() {
       try {
         const res = await fetch('hotspot_data.json');
         HOTSPOTS = await res.json();
         renderMarkers();
+        renderTop10();
         generateExecutiveIntelligence(); // Run What-If Analysis
         if (HOTSPOTS.length > 0) {
           map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
