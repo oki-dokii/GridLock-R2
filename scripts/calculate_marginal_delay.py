@@ -68,9 +68,11 @@ def calculate_marginal_delay(hotspots):
         hs["marginalImpact"] = {
             "delaySecondsPerHour": round(total_delay_seconds_per_hour, 2),
             "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
-            "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+            "formula": "T_f * 0.15 * ((V/(C - assumedCapacityReduction*PCU))^4 - (V/C)^4) * V",
             "assumedCapacity": c_base,
-            "pcuFactor": pcu
+            "assumedCapacityReductionPerPCU": 150.0,
+            "pcuFactor": pcu,
+            "note": "Capacity reduction of 150 veh/hr per PCU is a logical assumption, not an HCM-cited metric."
         }
         updated += 1
         
