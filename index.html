@@ -138,10 +138,11 @@
         <!-- Row 1: presets + active label -->
         <div class="flex items-center gap-2 mb-2 flex-wrap">
           <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-clock mr-1"></i>Time Filter</span>
-          <button id="preset-all"     onclick="applyPreset('all')"     class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All Hours</button>
-          <button id="preset-morning" onclick="applyPreset('morning')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Morning Peak (8–11)</button>
-          <button id="preset-evening" onclick="applyPreset('evening')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Evening Peak (17–19)</button>
-          <button id="preset-weekend" onclick="applyPreset('weekend')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
+          <button id="preset-all"      onclick="applyPreset('all')"      class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All Hours</button>
+          <button id="preset-morning"  onclick="applyPreset('morning')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">AM Peak (9–11)</button>
+          <button id="preset-earlyam"  onclick="applyPreset('earlyam')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Early Morning (4–7)</button>
+          <button id="preset-midday"   onclick="applyPreset('midday')"   class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Midday (12–14)</button>
+          <button id="preset-weekend"  onclick="applyPreset('weekend')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
           <span id="filter-active-label" class="ml-auto text-[9px] text-indigo-400 font-mono font-bold">Showing: All Hours</span>
         </div>
         <!-- Row 2: dual range sliders + hour labels -->
@@ -377,11 +378,11 @@
       const { fromHour, toHour, weekendOnly } = TIME_FILTER;
       const isFiltered = fromHour > 0 || toHour < 23 || weekendOnly;
 
-      // Compute filtered count for each hotspot from real hour/dow profiles
-      const filtered = HOTSPOTS.map(hs => {
+
+      // All hotspots stay on map — zero-filtered ones become ghost dots
+      const allWithCounts = HOTSPOTS.map(hs => {
         let filteredCount = 0;
         if (weekendOnly) {
-          // dow 5=Sat, 6=Sun
           const dp = hs.dowProfile || [];
           filteredCount = (dp[5] || 0) + (dp[6] || 0);
         } else {
@@ -391,24 +392,37 @@
           }
         }
         return { ...hs, filteredCount: isFiltered ? filteredCount : hs.count };
-      }).filter(hs => hs.filteredCount > 0);
-
-      if (filtered.length === 0) return;
-
-      // Recompute tiers from filtered counts
-      const maxFiltered = Math.max(...filtered.map(h => h.filteredCount));
-      filtered.sort((a, b) => b.filteredCount - a.filteredCount);
-      const total = filtered.length;
-      filtered.forEach((hs, i) => {
-        hs._tier = i < total * 0.05 ? 'critical' :
-                   i < total * 0.20 ? 'high' :
-                   i < total * 0.50 ? 'medium' : 'low';
       });
 
-      // Sort so critical renders on top
-      filtered.sort((a, b) => (a.filteredCount || 0) - (b.filteredCount || 0));
+      const activeZones = allWithCounts.filter(hs => hs.filteredCount > 0);
+      const maxFiltered = activeZones.length > 0
+        ? Math.max(...activeZones.map(h => h.filteredCount)) : 1;
 
-      filtered.forEach(hs => {
+      // Re-tier only the active zones
+      const sortedActive = [...activeZones].sort((a, b) => b.filteredCount - a.filteredCount);
+      const totalActive = sortedActive.length;
+      sortedActive.forEach((hs, i) => {
+        hs._tier = i < totalActive * 0.05 ? 'critical' :
+                   i < totalActive * 0.20 ? 'high' :
+                   i < totalActive * 0.50 ? 'medium' : 'low';
+      });
+
+      // Render ghosts first (below active markers)
+      allWithCounts
+        .filter(hs => hs.filteredCount === 0)
+        .forEach(hs => {
+          const ghost = L.circleMarker([hs.lat, hs.lon], {
+            radius: 3,
+            color: '#334155',
+            weight: 1,
+            fillColor: '#475569',
+            fillOpacity: 0.25
+          }).addTo(map);
+          mapMarkers.push(ghost);
+        });
+
+      // Render active zones on top
+      [...activeZones].sort((a, b) => a.filteredCount - b.filteredCount).forEach(hs => {
         const tier = isFiltered ? hs._tier : hs.tier;
         const col  = TIER_COLORS[tier] || '#3b82f6';
         const isCritical  = tier === 'critical';
@@ -951,15 +965,20 @@ Write the briefing now:`;
         document.getElementById('slider-to').value   = 23;
         document.getElementById('filter-active-label').textContent = 'Showing: All Hours';
       } else if (preset === 'morning') {
-        TIME_FILTER = { fromHour: 8, toHour: 11, weekendOnly: false };
-        document.getElementById('slider-from').value = 8;
+        TIME_FILTER = { fromHour: 9, toHour: 11, weekendOnly: false };
+        document.getElementById('slider-from').value = 9;
         document.getElementById('slider-to').value   = 11;
-        document.getElementById('filter-active-label').textContent = 'Morning Peak: 08:00 – 11:59';
-      } else if (preset === 'evening') {
-        TIME_FILTER = { fromHour: 17, toHour: 19, weekendOnly: false };
-        document.getElementById('slider-from').value = 17;
-        document.getElementById('slider-to').value   = 19;
-        document.getElementById('filter-active-label').textContent = 'Evening Peak: 17:00 – 19:59';
+        document.getElementById('filter-active-label').textContent = 'AM Peak: 09:00 – 11:59 (real data peak)';
+      } else if (preset === 'earlyam') {
+        TIME_FILTER = { fromHour: 4, toHour: 7, weekendOnly: false };
+        document.getElementById('slider-from').value = 4;
+        document.getElementById('slider-to').value   = 7;
+        document.getElementById('filter-active-label').textContent = 'Early Morning: 04:00 – 07:59';
+      } else if (preset === 'midday') {
+        TIME_FILTER = { fromHour: 12, toHour: 14, weekendOnly: false };
+        document.getElementById('slider-from').value = 12;
+        document.getElementById('slider-to').value   = 14;
+        document.getElementById('filter-active-label').textContent = 'Midday: 12:00 – 14:59';
       } else if (preset === 'weekend') {
         TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: true };
         document.getElementById('slider-from').value = 0;
