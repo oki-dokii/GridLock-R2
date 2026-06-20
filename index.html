@@ -161,11 +161,14 @@
 
     <!-- Top 10 Critical Locations Panel -->
     <div class="glass-panel rounded-xl p-3 min-w-[220px] max-w-[280px] pointer-events-auto hidden md:block">
-      <div class="text-[9px] text-red-400 uppercase font-bold tracking-widest mb-2 flex items-center gap-1.5">
-        <i class="fa-solid fa-list-ol"></i> Top 10 Critical
+      <div class="text-[9px] text-red-400 uppercase font-bold tracking-widest flex items-center justify-between cursor-pointer" onclick="document.getElementById('top-10-list-container').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-1.5"><i class="fa-solid fa-list-ol"></i> Top 10 Critical</div>
+        <i class="fa-solid fa-chevron-down text-slate-500 transition-transform duration-200 toggle-icon"></i>
       </div>
-      <div id="top-10-list" class="space-y-1.5 overflow-y-auto max-h-[300px] pr-1 custom-scrollbar">
-        <!-- populated via JS -->
+      <div id="top-10-list-container" class="hidden mt-2">
+        <div id="top-10-list" class="space-y-1.5 overflow-y-auto max-h-[200px] pr-1 custom-scrollbar">
+          <!-- populated via JS -->
+        </div>
       </div>
     </div>
   </div>
@@ -272,9 +275,11 @@
 
     <!-- Optimization Panel -->
     <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80 pointer-events-auto hidden md:block">
-      <h2 class="text-lg font-bold text-white flex items-center gap-2 mb-4">
-        <i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator
+      <h2 class="text-lg font-bold text-white flex items-center justify-between mb-4 cursor-pointer" onclick="document.getElementById('sim-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator</div>
+        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
       </h2>
+      <div id="sim-content">
       
       <!-- Coverage Meter -->
       <div class="mb-4 bg-slate-800/80 p-3 rounded border border-slate-700">
@@ -311,12 +316,14 @@
       <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
         <!-- Results injected here -->
       </div>
+      </div>
     </div>
     
     <!-- Executive Intelligence Panel (What-If Analysis) -->
     <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-blue-500 w-80 mt-4 pointer-events-auto hidden md:block">
-      <h2 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
-        <i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence
+      <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer" onclick="document.getElementById('exec-intel-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence</div>
+        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
       </h2>
       <div id="exec-intel-content" class="space-y-3">
         <div class="text-xs text-slate-400 animate-pulse">Calculating intelligence...</div>
