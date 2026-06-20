@@ -29,9 +29,13 @@ def calculate_eps():
             road_pts = 5
             
         # 3. Junction Proximity (Max 20)
-        is_junction = hs.get('isJunction', False)
-        if is_junction:
+        junction_dist = hs.get('junctionDistanceM', 500)  # default far if missing
+        if junction_dist <= 20:
             junction_pts = 20
+        elif junction_dist <= 50:
+            junction_pts = 15
+        elif junction_dist <= 100:
+            junction_pts = 10
         else:
             junction_pts = 5
         

@@ -760,6 +760,7 @@ Each of the 500 entries in `hotspot_data.json` contains:
     "assumedVCRatio": 0.85,
     "assumedVolume": 1020.0,
     "assumedCapacityReductionPerPCU": 150.0,
+    "assumedObstructionDurationHours": 1.0,
     "note": "Seconds of marginal delay added to network per illegally parked PCU"
   },
   "contributors": {

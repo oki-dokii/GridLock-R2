@@ -73,6 +73,7 @@ def calculate_marginal_delay(hotspots):
             "assumedVCRatio": v_c_ratio_base,
             "assumedVolume": V,
             "assumedCapacityReductionPerPCU": 150.0,
+            "assumedObstructionDurationHours": 1.0,
             "assumedMinimumCapacityFloor": c_base * 0.1,
             "pcuFactor": pcu,
             "note": "Traffic volume (V) is assumed at a near-peak V/C ratio of 0.85. Capacity reduction of 150 veh/hr per PCU is a logical assumption, capped at a 10% capacity floor to prevent numerical blow-ups for heavy vehicles on local roads."
