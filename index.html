@@ -1016,7 +1016,14 @@
           <div class="text-[10px] text-emerald-400 uppercase font-bold mb-1 flex items-center gap-1"><i class="fa-solid fa-microscope"></i> Impact Validation Engine</div>
           <div class="text-xs font-medium text-slate-300 mb-1">Evaluating Top 20 predictive allocations against the baseline shows:</div>
           <div class="text-sm font-medium text-white mb-1 flex items-center">Predictive Volume Capture Lift: <span class="text-emerald-400 font-bold mx-1">+17.0%</span></div>
-          <div class="text-[9px] text-slate-500 font-mono">Method: Cell-Month Poisson GLM (Held-Out April Test)</div>
+          <div class="text-[9px] text-slate-500 font-mono mb-2">Method: Cell-Month Poisson GLM (Held-Out April Test)</div>
+          
+          <div class="bg-amber-900/30 border border-amber-700/50 rounded px-2 py-1.5 flex items-start gap-1.5">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500 text-[10px] mt-0.5"></i>
+            <div class="text-[9px] text-amber-200/90 leading-tight">
+              <strong>Telemetry Limitation:</strong> <code>action_taken_timestamp</code> is null. While predictive <em>targeting</em> lift (+17%) is mathematically verified, true <em>enforcement effectiveness</em> (resolution time) remains a theoretical projection until field telemetry is integrated.
+            </div>
+          </div>
         </div>
       `;
     }
