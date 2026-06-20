@@ -12,6 +12,9 @@ def calculate_eps():
     max_count = max([hs.get('count', 0) for hs in data])
 
     for hs in data:
+        # Get station for deterministic hashes
+        station_name = hs.get('station', '').lower()
+        
         # 1. Violation Frequency (Max 35)
         count = hs.get('count', 0)
         freq_pts = int((count / max_count) * 35) if max_count > 0 else 0
@@ -26,14 +29,11 @@ def calculate_eps():
             road_pts = 5
             
         # 3. Junction Proximity (Max 20)
-        station_name = hs.get('station', '').lower()
-        is_junction = 'junction' in station_name or 'circle' in station_name or 'cross' in station_name
+        is_junction = hs.get('isJunction', False)
         if is_junction:
             junction_pts = 20
         else:
-            # Deterministically derived from physical coordinates to prevent fabrication risk
-            coord_hash = int((hs.get('lat', 0) + hs.get('lon', 0)) * 100000)
-            junction_pts = 5 + (coord_hash % 8)
+            junction_pts = 5
         
         # 4. Peak Hour Pattern / Recency (Max 10)
         best_hour = hs.get('bestHour', 12)
@@ -43,8 +43,10 @@ def calculate_eps():
             time_pts = 4 + (best_hour % 5)
             
         # 5. Repeat Offender Signal (Max 10)
-        # Deterministically derived from actual violation volume
-        offender_pts = 3 + (count % 8)
+        # Derived from actual repeat vehicle counts in the CSV
+        repeat_offender_count = hs.get('repeatOffenderCount', 0)
+        # Cap at 10 points. If 10+ repeat offenders, give 10 points.
+        offender_pts = min(10, repeat_offender_count)
         
         total_score = freq_pts + road_pts + junction_pts + time_pts + offender_pts
         total_score = min(100, max(0, total_score))

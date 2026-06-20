@@ -69,6 +69,23 @@ for grid_id, grp in df.groupby('grid_id'):
     hour_counts = grp['hour'].value_counts()
     best_hour = int(hour_counts.idxmax()) if len(hour_counts) > 0 else 9
 
+    # Repeat Offender Count (Real column)
+    if 'vehicle_number' in grp.columns:
+        veh_counts = grp['vehicle_number'].value_counts()
+        repeat_offender_count = int((veh_counts > 1).sum())
+    else:
+        repeat_offender_count = 0
+
+    # Junction Proximity (Real column)
+    is_junction = False
+    junction_name = None
+    if 'junction_name' in grp.columns:
+        real_junctions = grp['junction_name'].dropna()
+        real_junctions = real_junctions[real_junctions != 'No Junction']
+        if len(real_junctions) > 0:
+            is_junction = True
+            junction_name = str(real_junctions.mode()[0])
+
     station = nearest_station(lat, lon)
 
     hotspots.append({
@@ -81,6 +98,9 @@ for grid_id, grp in df.groupby('grid_id'):
         'vehicle':  str(dom_vehicle).title(),
         'violation':str(dom_violation).title(),
         'bestHour': best_hour,
+        'repeatOffenderCount': repeat_offender_count,
+        'isJunction': is_junction,
+        'junctionName': junction_name,
         'station':  station,
     })
 
