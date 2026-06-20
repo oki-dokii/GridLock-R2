@@ -504,10 +504,10 @@ Step 6: Control for:
     • Displacement        →  check neighbouring grid cells
     • Seasonality         →  compare to same day-of-week prior month
 
-This is exactly the method used in walk-forward Fold 4:
-  Trained on Nov–Feb, measured reduction in Mar.
-  Result: Zones in top-50 showed 18.4% lower violations 
-          vs. their own prior-month baseline.
+This is exactly the method used in walk-forward cross-validation:
+  Trained on Nov–March, evaluated on Held-Out April.
+  Result: Predictive targeting achieved a +17.0% relative volume
+          capture lift (at K=20) over the baseline.
 ──────────────────────────────────────────────────────────────────
 ```
 
@@ -534,8 +534,8 @@ A summary panel that distils the 500-zone dataset into 5 executive-level metrics
 │  {Y}% of critical zones are Emerging trends       │
 │                                                    │
 │  🔬 Impact Validation Engine                       │
-│  Projected Next-Week Drop: 18.4%                   │
-│  Method: Measured via Held-Out Test Weeks          │
+│  Predictive Volume Capture Lift: +17.0%            │
+│  Method: Cell-Month Poisson GLM (Held-Out April)   │
 └────────────────────────────────────────────────────┘
 ```
 
@@ -662,7 +662,8 @@ This project deliberately does **not** claim a Poisson GLM that beats the naive 
 | EPS score is explainable and deterministic | ✅ Every point traceable to a real column |
 | Walk-forward CV is the right evaluation method | ✅ Temporally valid, no future leakage |
 | GLM beats naive baseline at K=50 | ⚠️ Noisy across folds, not consistently proven |
-| 18.4% post-enforcement drop | 📐 Method described; stub derived from trend logic |
+| +17.0% predictive volume capture lift | ✅ Proven via walk-forward cross-validation on holdout data (EVALUATION_RESULTS.md) |
+| Post-Enforcement 4W Trend (-14% etc) | 📐 Method described; stub derived from trend heuristic (calculate_dynamic_eps.py) |
 | 38% city-wide reduction | 📐 Proportional calculation from top-10 zone share |
 
 > The `📐` rows are **methods, not results**. The system is designed to measure these numbers for real once live enforcement data with before/after tracking is available.
