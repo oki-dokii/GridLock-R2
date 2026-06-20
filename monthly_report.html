@@ -29,9 +29,6 @@
   <!-- React & ReactDOM -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  
-  <!-- Babel -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <style>
     /* Custom Scrollbar */
@@ -44,78 +41,40 @@
 <body class="bg-slate-950 text-slate-300 min-h-screen font-sans antialiased overflow-x-hidden">
 
   <!-- Main Container -->
-  <div class="max-w-6xl mx-auto space-y-6 p-6">
+  <div class="max-w-6xl mx-auto space-y-6 p-4 md:p-6">
 
     <!-- Header Panel -->
-    <header class="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl">
+    <header class="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shadow-2xl">
       <div class="flex items-center gap-4">
-        <div class="relative flex h-5 w-5">
+        <div class="relative flex h-5 w-5 shrink-0">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-5 w-5 bg-emerald-500"></span>
         </div>
         <div>
-          <h1 class="font-display font-bold text-2xl text-white tracking-wide leading-none flex items-center gap-2">
+          <h1 class="font-display font-bold text-xl md:text-2xl text-white tracking-wide leading-tight flex flex-wrap items-center gap-2">
             GRIDLOCK MONTHLY REPORT
             <span class="text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded uppercase font-mono tracking-widest font-normal">MODULE 8</span>
           </h1>
-          <p class="text-xs text-slate-400 mt-2 font-mono uppercase tracking-wider">Executive summary & performance analytics</p>
+          <p class="text-[10px] md:text-xs text-slate-400 mt-1 md:mt-2 font-mono uppercase tracking-wider">Executive summary & performance analytics</p>
         </div>
       </div>
       
-      <div class="flex items-center gap-6 text-xs font-mono">
-        <div class="flex items-center gap-2">
-          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 border border-slate-700 rounded-xl px-4 py-2 flex items-center gap-2 transition-all font-semibold">
-            <i class="fa-solid fa-map-location-dot"></i> Tactical Map
-          </a>
-          <a href="congestion_risk.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 hover:text-amber-300 border border-slate-700 rounded-xl px-4 py-2 flex items-center gap-2 transition-all font-semibold">
-            <i class="fa-solid fa-chart-line"></i> Congestion Risk
-          </a>
-        </div>
+      <div class="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+        <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 hover:text-cyan-300 border border-slate-700 rounded-xl px-3 py-2 flex items-center gap-2 transition-all font-semibold whitespace-nowrap text-xs md:text-sm">
+          <i class="fa-solid fa-map-location-dot"></i> Tactical Map
+        </a>
+        <a href="congestion_risk.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 hover:text-amber-300 border border-slate-700 rounded-xl px-3 py-2 flex items-center gap-2 transition-all font-semibold whitespace-nowrap text-xs md:text-sm">
+          <i class="fa-solid fa-chart-line"></i> Congestion Risk
+        </a>
       </div>
     </header>
 
     <!-- React App Mount Point -->
-    <div id="root"></div>
+    <div id="root" class="w-full overflow-hidden rounded-2xl shadow-xl border border-slate-800"></div>
 
   </div>
 
-  <script>
-    // We will fetch the JSX file, strip out the import and export statements,
-    // and compile it on the fly using Babel to inject it into the page.
-    async function initReactApp() {
-      try {
-        const response = await fetch('components/MonthlyReport.jsx');
-        const code = await response.text();
-        
-        // Remove import/export statements to allow Babel Standalone to process it
-        let modifiedCode = code
-          .replace(/import.*?from.*?;/g, '') // remove imports
-          .replace(/export default function MonthlyReport/g, 'function MonthlyReport'); // remove export
-        
-        // Prepend React hooks
-        modifiedCode = `
-          const { useState, useMemo } = React;
-          ${modifiedCode}
-          const root = ReactDOM.createRoot(document.getElementById('root'));
-          root.render(React.createElement(MonthlyReport));
-        `;
-        
-        // Compile using Babel
-        const compiled = Babel.transform(modifiedCode, { presets: ['react', 'env'] }).code;
-        
-        // Execute the compiled code
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.innerHTML = compiled;
-        document.body.appendChild(script);
-        
-      } catch (e) {
-        console.error('Error loading MonthlyReport.jsx:', e);
-        document.getElementById('root').innerHTML = '<div class="text-red-500 p-4 border border-red-500/30 rounded-xl bg-red-500/10">Failed to load Monthly Report. Make sure you are serving this app from a local web server (e.g. `npx serve .` or Live Server), as browser security blocks fetching local files directly via `file://`.</div>';
-      }
-    }
-    
-    initReactApp();
-  </script>
+  <!-- Load Pre-Compiled React Component -->
+  <script src="components/MonthlyReport.compiled.js"></script>
 </body>
 </html>
