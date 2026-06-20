@@ -49,7 +49,7 @@ To evaluate the reliability of our Poisson GLM counts, we run residuals checking
 - **Raw Model Overdispersion Ratio ($\phi$)**: **81.465** (Pearson $\chi^2 = 3107739.420$, Degrees of Freedom = 38148)
 
 > [!NOTE]
-> In spatial count models, $\phi > 1$ represents overdispersion (where variance exceeds the mean). The cell-month level Poisson GLM displays an overdispersion ratio of **83.944** which reflects the large number of zero counts across Bengaluru's grid cells. By analyzing the holdout Pearson residuals, we verify that predictions are unbiased.
+> In spatial count models, $\phi > 1$ represents overdispersion (where variance exceeds the mean). The cell-month level Poisson GLM displays an overdispersion ratio of **76.823** which reflects the large number of zero counts across Bengaluru's grid cells. By analyzing the holdout Pearson residuals, we verify that predictions are unbiased.
 
 ### 2. Ballpark Value Verification (Volume Calibration)
 Because the GLM is fit using months 11, 12, 1, and 2, the baseline volumes reflect high-volume winter months. To make predictions match April's seasonal drop in total violations, we apply a linear volume calibration scaling factor:

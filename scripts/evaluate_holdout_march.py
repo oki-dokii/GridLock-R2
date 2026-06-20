@@ -453,7 +453,7 @@ output_lines.append(f"- **Clean Model Overdispersion Ratio ($\\phi$)**: **{ratio
 output_lines.append(f"- **Raw Model Overdispersion Ratio ($\\phi$)**: **{ratio_raw:.3f}** (Pearson $\\chi^2 = {ratio_raw * dof_raw:.3f}$, Degrees of Freedom = {dof_raw})")
 output_lines.append("")
 output_lines.append("> [!NOTE]")
-output_lines.append("> The cell-month level model trained on months 11-1 exhibits a dispersion ratio of **85.342** (clean), representing typical zero-inflated spatial count data. The holdout Pearson residuals distribution confirms that predictions are unbiased.")
+output_lines.append(f"> The cell-month level model trained on months 11-1 exhibits a dispersion ratio of **{ratio_clean:.3f}** (clean), representing typical zero-inflated spatial count data. The holdout Pearson residuals distribution confirms that predictions are unbiased.")
 output_lines.append("")
 output_lines.append("### 2. Ballpark Value Verification (Volume Calibration)")
 output_lines.append("Because the GLM is fit using months 11, 12, and 1, the baseline volumes reflect high-volume winter months. To make predictions match March's drop in total violations, we apply a linear volume calibration scaling factor:")
