@@ -81,14 +81,18 @@ The dashboard runs **fully client-side** — no API keys, no backend, no network
 │      │                   Real junction_name column                 │
 │      │                   Best patrol hour                          │
 │      ▼                                                              │
-│  add_road_metadata.py    Road type classification                   │
-│      │                   Impact multiplier assignment              │
+│  add_road_metadata_osm.py OpenStreetMap Overpass integration     │
+│      │                   Real road hierarchy (Arterial/Local)    │
+│      │                   Real junction proximity (junctionDistanceM)│
 │      ▼                                                              │
 │  calculate_dynamic_eps.py  EPS scoring (5 dimensions)              │
-│                            XAI contributor matrix                  │
-│                            Trend classification                    │
-│                            Confidence tagging                      │
-│                            Post-intervention change                │
+│      │                     XAI contributor matrix                  │
+│      │                     Trend classification                    │
+│      │                     Confidence tagging                      │
+│      │                     Post-intervention change                │
+│      ▼                                                              │
+│  calculate_marginal_delay.py BPR volume-delay calculation          │
+│                            Delay-per-vehicle (marginalImpact)      │
 │                                    │                               │
 │                                    ▼                               │
 │                           hotspot_data.json                        │
@@ -155,26 +159,27 @@ repeat_offender_count = int((veh_counts > 1).sum())
 
 This counts the exact number of distinct license plates that appeared more than once in the same grid cell. **No estimation. No hash. No fabrication.**
 
-### 4.4 Junction Proximity (Real Column)
+### 4.4 Junction Proximity (Real Column & OSM)
 
 ```python
-# From export_hotspot_json.py — uses actual junction_name column
-real_junctions = grp['junction_name'].dropna()
-real_junctions = real_junctions[real_junctions != 'No Junction']
-is_junction = len(real_junctions) > 0
-junction_name = real_junctions.mode()[0] if is_junction else None
+# From add_road_metadata_osm.py — uses real OpenStreetMap network data
+is_junc, junc_name, junc_dist = get_junction_distance(lat, lon)
 ```
 
-The `junction_name` field comes directly from the traffic enforcement device metadata. **Zero string-matching inference. Zero hash fallbacks.**
+The system queries the **OpenStreetMap Overpass API** within a 150m radius of each hotspot to locate actual traffic signals, crossings, and roundabouts. It calculates the exact Haversine distance (`junctionDistanceM`) to the nearest junction. **Zero random hashing or arbitrary fallbacks.**
 
-### 4.5 Road Metadata Assignment
+### 4.5 Road Metadata Assignment (OSM)
+
+```python
+# Mapped directly from OSM highway tags via Overpass API
+```
 
 ```
 Road Hierarchy Classification
 ──────────────────────────────────────────────────────
-  Arterial Road    2.0× Impact    31 / 500 zones  (6.2%)
-  Collector Road   1.2× Impact    13 / 500 zones  (2.6%)
-  Local Street     0.5× Impact   456 / 500 zones (91.2%)
+  Arterial Road    2.0× Impact    (motorway, trunk, primary)
+  Collector Road   1.2× Impact    (secondary, trunk_link)
+  Local Street     0.5× Impact    (tertiary, residential, unclassified)
 ```
 
 ---
@@ -190,8 +195,8 @@ EPS = Freq_pts + Road_pts + Junction_pts + Time_pts + RepeatOffender_pts
 
 where:
   Freq_pts         ∈ [0, 35]   — Violation Frequency (normalised to max count)
-  Road_pts         ∈ [5, 25]   — Road Hierarchy (Arterial=25, Collector=15, Local=5)
-  Junction_pts     ∈ [5, 20]   — Junction Proximity (real junction_name field)
+  Road_pts         ∈ [5, 25]   — Road Hierarchy (from OSM tags: Arterial=25, Collector=15, Local=5)
+  Junction_pts     ∈ [5, 20]   — Junction Proximity (scales by OSM junctionDistanceM: <=20m=20, <=50m=15, etc.)
   Time_pts         ∈ [4, 10]   — Peak Hour Pattern (hour of day from ts_ist)
   RepeatOffender_pts ∈ [0, 10] — Repeat vehicle_number count (capped at 10)
 
@@ -636,6 +641,13 @@ Stroke Colour   → Model Confidence
 Stroke Width    → 2.5px (validated) vs. 1px (unvalidated)
 ```
 
+### 15.4 Interactive Map Filters
+
+The map includes interactive, zero-lag client-side filtering capabilities:
+* **Time Slider**: Filter violations down to specific peak hours.
+* **Vehicle Toggle**: Check/uncheck specific vehicle classes (Two-Wheeler, Car, Auto, Bus, Heavy Vehicle) to dynamically recalculate priority scores.
+* **Legend Tiers**: Click on any Priority Tier in the map legend (Critical, High, Medium, Low) to instantly hide or show those specific marker classes. When markers are filtered out, the map is perfectly decluttered.
+
 ---
 
 ## 16. Scientific Honesty Statement
@@ -662,9 +674,10 @@ This project deliberately does **not** claim a Poisson GLM that beats the naive 
 | Script | Purpose |
 |---|---|
 | `clean_data.py` | Officer reliability scoring, quality filtering, grid assignment |
-| `export_hotspot_json.py` | Per-grid aggregation with real repeat offenders + junction data |
-| `add_road_metadata.py` | Road type + impact multiplier classification |
+| `export_hotspot_json.py` | Per-grid aggregation with real repeat offenders |
+| `add_road_metadata_osm.py` | Road type and junction distance via OpenStreetMap Overpass API |
 | `calculate_dynamic_eps.py` | 5-dimension EPS, XAI matrix, trend, confidence, feedback |
+| `calculate_marginal_delay.py` | Delay-per-vehicle calculation using the BPR volume-delay equation |
 | `walk_forward_cv.py` | Expanding-window CV with Poisson GLM |
 | `walk_forward_cv_v2.py` | XGBoost variant of walk-forward CV |
 | `evaluate_holdout.py` | Point-in-time holdout evaluation |
@@ -676,8 +689,9 @@ This project deliberately does **not** claim a Poisson GLM that beats the naive 
 ```bash
 python3 scripts/clean_data.py
 python3 scripts/export_hotspot_json.py
-python3 scripts/add_road_metadata.py
+python3 scripts/add_road_metadata_osm.py
 python3 scripts/calculate_dynamic_eps.py
+python3 scripts/calculate_marginal_delay.py
 ```
 
 ---
@@ -732,13 +746,22 @@ Each of the 500 entries in `hotspot_data.json` contains:
   "bestHour": 18,
   "repeatOffenderCount": 142,
   "isJunction": true,
-  "junctionName": "Upparpet Junction",
+  "junctionName": "Junction (12.9644,77.5771)",
+  "junctionDistanceM": 12.4,
   "station": "Upparpet",
   "rank": 1,
   "tier": "critical",
   "roadType": "Arterial Road",
   "impactMultiplier": 2.0,
   "priorityScore": 90,
+  "marginalImpact": {
+    "delaySecondsPerVehicle": 45.2,
+    "formula": "BPR Volume-Delay (T_f * 0.15 * ((V/C')^4 - (V/C)^4) * V)",
+    "assumedVCRatio": 0.85,
+    "assumedVolume": 1020.0,
+    "assumedCapacityReductionPerPCU": 150.0,
+    "note": "Seconds of marginal delay added to network per illegally parked PCU"
+  },
   "contributors": {
     "Violation Frequency": 35,
     "Road Hierarchy": 25,
