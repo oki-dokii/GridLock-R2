@@ -398,6 +398,8 @@
     const VEHICLE_BUCKETS = ['Two-Wheeler', 'Car / Jeep', 'Auto', 'Heavy Vehicle', 'Bus'];
     let VEHICLE_FILTER = Object.fromEntries(VEHICLE_BUCKETS.map(b => [b, true]));
     let TIER_FILTER = { critical: true, high: true, medium: true, low: true, unassigned: true };
+    let optLayers = []; // Optimizer visualization layers
+    
     const VEH_IDS = {
       'Two-Wheeler': 'veh-tw', 'Car / Jeep': 'veh-car',
       'Auto': 'veh-auto', 'Heavy Vehicle': 'veh-hv', 'Bus': 'veh-bus'
@@ -878,7 +880,6 @@
     }
 
     // ── RESOURCE OPTIMIZER (OPERATIONS RESEARCH) ───────────────────────────────
-    let optLayers = [];
 
     function runOptimizer() {
       if(!HOTSPOTS.length) return;
