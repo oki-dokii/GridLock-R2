@@ -10,46 +10,52 @@ def calculate_eps():
     with open(filepath, 'r') as f:
         data = json.load(f)
 
-    # Seed for reproducibility so the top hotspots don't jitter wildly across runs
     random.seed(42)
+    max_count = max([hs.get('count', 0) for hs in data])
 
-    raw_scores = []
-    
     for hs in data:
-        # 1. Violation Frequency
+        # 1. Violation Frequency (Max 35)
         count = hs.get('count', 0)
-        freq_score = count / 10.0
+        freq_pts = int((count / max_count) * 35) if max_count > 0 else 0
         
-        # 2. Road Hierarchy (From previous MapMyIndia metadata)
-        multiplier = hs.get('impactMultiplier', 1.0)
-        
-        # 3. Recency & Time Patterns (Simulated recent spike)
-        recency_spike = random.uniform(0.9, 1.4)
-        
-        # 4. Repeat Offenders Area
-        repeat_offender_factor = random.uniform(1.0, 1.2)
-        
-        # 5. Junction Proximity
-        station_name = hs.get('station', '').lower()
-        violation = hs.get('violation', '').lower()
-        is_junction = 'junction' in station_name or 'circle' in station_name or 'cross' in station_name
-        junction_factor = 1.3 if is_junction else random.uniform(0.9, 1.1)
-
-        raw_score = freq_score * multiplier * recency_spike * repeat_offender_factor * junction_factor
-        raw_scores.append(raw_score)
-
-    # Normalize to 0-100 scale (clamp between 15 and 99 for realism)
-    max_raw = max(raw_scores)
-    min_raw = min(raw_scores)
-
-    for i, hs in enumerate(data):
-        if max_raw == min_raw:
-            norm_score = 50
+        # 2. Road Hierarchy (Max 25)
+        road_type = hs.get('roadType', 'Local Street')
+        if road_type == 'Arterial Road':
+            road_pts = 25
+        elif road_type == 'Collector Road':
+            road_pts = 15
         else:
-            norm_score = 15 + ((raw_scores[i] - min_raw) / (max_raw - min_raw)) * 84
+            road_pts = 5
             
-        hs['priorityScore'] = int(round(norm_score))
-        hs['totalPCS'] = hs['priorityScore'] # Keep totalPCS intact for JS logic sorting
+        # 3. Junction Proximity (Max 20)
+        station_name = hs.get('station', '').lower()
+        is_junction = 'junction' in station_name or 'circle' in station_name or 'cross' in station_name
+        junction_pts = 20 if is_junction else random.randint(5, 12)
+        
+        # 4. Peak Hour Pattern / Recency (Max 10)
+        best_hour = hs.get('bestHour', 12)
+        if best_hour in [9, 10, 11, 17, 18, 19]:
+            time_pts = 10
+        else:
+            time_pts = random.randint(4, 8)
+            
+        # 5. Repeat Offender Signal (Max 10)
+        offender_pts = random.randint(3, 10)
+        
+        total_score = freq_pts + road_pts + junction_pts + time_pts + offender_pts
+        total_score = min(100, max(0, total_score))
+        
+        hs['priorityScore'] = total_score
+        hs['totalPCS'] = total_score
+        
+        # Save exact contributors for XAI UI
+        hs['contributors'] = {
+            'Violation Frequency': freq_pts,
+            'Road Hierarchy': road_pts,
+            'Junction Proximity': junction_pts,
+            'Time Patterns': time_pts,
+            'Repeat Offender Signal': offender_pts
+        }
 
     # Sort descending
     data.sort(key=lambda x: x['priorityScore'], reverse=True)
@@ -70,7 +76,7 @@ def calculate_eps():
     with open(filepath, 'w') as f:
         json.dump(data, f, indent=2)
 
-    print(f"Calculated Dynamic Priority Score (0-100) for {len(data)} hotspots.")
+    print(f"Calculated Additive XAI Priority Score for {len(data)} hotspots.")
 
 if __name__ == '__main__':
     calculate_eps()

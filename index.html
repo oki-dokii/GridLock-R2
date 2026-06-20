@@ -84,22 +84,39 @@
     <!-- Optimization Panel -->
     <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80">
       <h2 class="text-lg font-bold text-white flex items-center gap-2 mb-4">
-        <i class="fa-solid fa-network-wired text-green-400"></i> Resource Optimizer
+        <i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator
       </h2>
       
-      <div class="space-y-3 mb-4">
-        <div class="flex justify-between items-center bg-slate-800/50 p-2 rounded border border-slate-700">
-          <label class="text-sm text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
-          <input type="number" id="opt-patrols" value="5" min="0" max="20" class="w-16 bg-slate-900 border border-slate-600 text-white text-center rounded outline-none p-1 font-bold">
+      <!-- Coverage Meter -->
+      <div class="mb-4 bg-slate-800/80 p-3 rounded border border-slate-700">
+        <div class="flex justify-between items-end mb-1">
+          <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">High-Risk Coverage</span>
+          <span id="coverage-text" class="text-lg font-bold text-green-400">0%</span>
         </div>
-        <div class="flex justify-between items-center bg-slate-800/50 p-2 rounded border border-slate-700">
-          <label class="text-sm text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
-          <input type="number" id="opt-tows" value="2" min="0" max="10" class="w-16 bg-slate-900 border border-slate-600 text-white text-center rounded outline-none p-1 font-bold">
+        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
+          <div id="coverage-bar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+      
+      <div class="space-y-4 mb-4">
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
+            <span id="val-patrols" class="text-sm font-bold text-white">5</span>
+          </div>
+          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; simulateCoverage();">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
+            <span id="val-tows" class="text-sm font-bold text-white">2</span>
+          </div>
+          <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; simulateCoverage();">
         </div>
       </div>
       
       <button onclick="runOptimizer()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded shadow transition-colors flex justify-center items-center gap-2">
-        <i class="fa-solid fa-bolt"></i> Optimize Dispatch
+        <i class="fa-solid fa-bolt"></i> Deploy Units
       </button>
 
       <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
@@ -225,6 +242,10 @@
         HOTSPOTS = await res.json();
         renderMarkers();
         updateRadar();
+        simulateCoverage(); // Run simulator once loaded
+        if (HOTSPOTS.length > 0) {
+          map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
+        }
       } catch (err) {
         console.error("Failed to load hotspots:", err);
       }
@@ -277,6 +298,22 @@
               <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${hs.count}</span></div>
               <div class="ml-auto"><span class="text-slate-500">Priority Score:</span> <span class="font-bold text-red-600 text-sm ml-1">${hs.priorityScore || hs.totalPCS || 0}</span><span class="text-slate-400 text-[10px]">/100</span></div>
             </div>
+
+            <!-- XAI Explainability Layer -->
+            <div class="mb-3 border border-slate-200 rounded overflow-hidden">
+              <div class="bg-slate-100 text-[9px] uppercase font-bold text-slate-500 px-2 py-1 border-b border-slate-200 flex justify-between">
+                <span>Explainability (XAI)</span>
+                <span>Contributors</span>
+              </div>
+              <div class="bg-white px-2 py-1.5 text-[10px] space-y-1">
+                <div class="flex justify-between"><span class="text-slate-600">Violation Frequency</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Violation Frequency'] : 0}</span></div>
+                <div class="flex justify-between"><span class="text-slate-600">Road Hierarchy</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Road Hierarchy'] : 0}</span></div>
+                <div class="flex justify-between"><span class="text-slate-600">Junction Proximity</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Junction Proximity'] : 0}</span></div>
+                <div class="flex justify-between"><span class="text-slate-600">Peak Hour Pattern</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Time Patterns'] : 0}</span></div>
+                <div class="flex justify-between"><span class="text-slate-600">Repeat Offender Signal</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Repeat Offender Signal'] : 0}</span></div>
+              </div>
+            </div>
+
             <div class="text-[11px] bg-slate-100 p-2 rounded border border-slate-200 text-slate-700 font-medium flex gap-2 items-start">
               <i class="fa-solid fa-users-gear text-blue-500 mt-0.5"></i> <span>${resources}</span>
             </div>
@@ -489,6 +526,54 @@
       const group = new L.featureGroup(optLayers);
       if(optLayers.length > 0) {
         map.fitBounds(group.getBounds().pad(0.1));
+      }
+    }
+
+
+
+    function simulateCoverage() {
+      if(!HOTSPOTS.length) return;
+      
+      const numPatrols = parseInt(document.getElementById('opt-patrols').value) || 0;
+      const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
+      
+      // Define total "High Risk Pool" as the top 40 hotspots
+      const CRITICAL_POOL_SIZE = 40;
+      let available = [...HOTSPOTS].sort((a,b) => (b.priorityScore||0) - (a.priorityScore||0));
+      let topRiskPool = available.slice(0, CRITICAL_POOL_SIZE);
+      let maxPossibleScore = topRiskPool.reduce((sum, h) => sum + (h.priorityScore || 0), 0);
+      
+      let coveredScore = 0;
+      
+      for(let i=0; i<numTows; i++) {
+        let idx = available.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
+        if(idx === -1) idx = 0;
+        if(available.length === 0) break;
+        coveredScore += available.splice(idx, 1)[0].priorityScore || 0;
+      }
+
+      for(let i=0; i<numPatrols; i++) {
+        if(available.length === 0) break;
+        coveredScore += available.shift().priorityScore || 0;
+      }
+      
+      let percentage = Math.min((coveredScore / maxPossibleScore) * 100, 100);
+      
+      const bar = document.getElementById('coverage-bar');
+      const text = document.getElementById('coverage-text');
+      
+      text.innerText = percentage.toFixed(1) + '%';
+      bar.style.width = percentage.toFixed(1) + '%';
+      
+      if(percentage < 40) { 
+        bar.className = 'bg-red-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-red-400'; 
+      } else if(percentage < 70) { 
+        bar.className = 'bg-yellow-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-yellow-400'; 
+      } else { 
+        bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-green-400'; 
       }
     }
 
