@@ -92,99 +92,6 @@
       <!-- Left Column: Risk Configurator & Math Model Explainer -->
       <div class="lg:col-span-4 flex flex-col gap-6">
         
-        <!-- Risk Configurator Card -->
-        <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-5 shadow-2xl space-y-4">
-          <h2 class="font-display font-semibold text-md text-white flex items-center gap-2">
-            <i class="fa-solid fa-sliders text-amber-500"></i>
-            RISK MODEL CONFIGURATOR
-          </h2>
-          <p class="text-xs text-slate-400 leading-relaxed">
-            Calibrate the mathematical heuristic below. Changes will dynamically update the Congestion Risk Scores in the ranking table.
-          </p>
-
-          <!-- Heuristic Selection -->
-          <div class="space-y-2 pt-2">
-            <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-500">Active Mathematical Heuristic</label>
-            <div class="grid grid-cols-1 gap-2">
-              <button id="btn-h1" onclick="setHeuristic('log')" class="w-full text-left p-3 rounded-xl border transition-all text-xs font-medium bg-slate-950 border-amber-500/40 text-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.1)]">
-                <div class="flex justify-between items-center font-semibold mb-1">
-                  <span>Logarithmic Saturation</span>
-                  <span class="text-[9px] bg-amber-500/20 px-1 py-0.2 rounded font-mono">Exact Match</span>
-                </div>
-                <div class="text-[10px] text-slate-400 font-mono">Risk = 13.9 * ln(V) + 18.4</div>
-              </button>
-
-              <button id="btn-h2" onclick="setHeuristic('exp')" class="w-full text-left p-3 rounded-xl border transition-all text-xs font-medium bg-slate-950/40 border-slate-800 text-slate-400 hover:border-slate-700">
-                <div class="flex justify-between items-center font-semibold mb-1">
-                  <span>Exponential Saturation</span>
-                  <span class="text-[9px] bg-slate-800 px-1 py-0.2 rounded font-mono">Physical Decay</span>
-                </div>
-                <div class="text-[10px] text-slate-400 font-mono">Risk = 100 * (1 - e^(-c * V))</div>
-              </button>
-
-              <button id="btn-h3" onclick="setHeuristic('advanced')" class="w-full text-left p-3 rounded-xl border transition-all text-xs font-medium bg-slate-950/40 border-slate-800 text-slate-400 hover:border-slate-700">
-                <div class="flex justify-between items-center font-semibold mb-1">
-                  <span>PCU-Weighted Bayesian Risk</span>
-                  <span class="text-[9px] bg-slate-800 px-1 py-0.2 rounded font-mono">Enriched M1-M6</span>
-                </div>
-                <div class="text-[10px] text-slate-400 font-mono">Risk = 100 * (1 - e^(-k * q_PCS))</div>
-              </button>
-            </div>
-          </div>
-
-          <div class="border-t border-slate-800/80 pt-3 space-y-4">
-            <!-- Parameter Sliders -->
-            <div id="param-exp-coeff-container" class="space-y-1.5">
-              <div class="flex justify-between text-xs font-mono">
-                <span class="text-slate-400">Decay Constant (c)</span>
-                <span id="val-exp-coeff" class="text-amber-400 font-bold">0.0130</span>
-              </div>
-              <input type="range" id="input-exp-coeff" min="0.005" max="0.030" step="0.001" value="0.013" oninput="updateParams()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
-              <span class="text-[9px] text-slate-500 block">Controls the rate at which risk saturates near 100 as violations increase.</span>
-            </div>
-
-            <div id="param-advanced-container" class="space-y-4 hidden">
-              <!-- PCU Weight Scaling -->
-              <div class="space-y-1.5">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">PCU Weight Scale (ω)</span>
-                  <span id="val-pcu-scale" class="text-amber-400 font-bold">1.0x</span>
-                </div>
-                <input type="range" id="input-pcu-scale" min="0.5" max="2.0" step="0.1" value="1.0" oninput="updateParams()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
-                <span class="text-[9px] text-slate-500 block">Amplifies vehicle size impact (e.g. buses get 3.0x vs. scooters 0.5x).</span>
-              </div>
-
-              <!-- Temporal Multiplier Scaling -->
-              <div class="space-y-1.5">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Peak Hour Multiplier (δ)</span>
-                  <span id="val-temporal-scale" class="text-amber-400 font-bold">1.5x</span>
-                </div>
-                <input type="range" id="input-temporal-scale" min="1.0" max="2.5" step="0.1" value="1.5" oninput="updateParams()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
-                <span class="text-[9px] text-slate-500 block">Weight multiplier for violations recorded during traffic rush hours.</span>
-              </div>
-
-              <!-- Officer Quality Threshold -->
-              <div class="space-y-1.5">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Officer Trust Factor (p̂)</span>
-                  <span id="val-trust-scale" class="text-amber-400 font-bold">0.85</span>
-                </div>
-                <input type="range" id="input-trust-scale" min="0.50" max="1.00" step="0.05" value="0.85" oninput="updateParams()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
-                <span class="text-[9px] text-slate-500 block">Bayesian quality filter threshold to discount corrupt reporting.</span>
-              </div>
-
-              <!-- Advanced Scale Factor -->
-              <div class="space-y-1.5">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Risk Scale Coeff (k)</span>
-                  <span id="val-adv-k" class="text-amber-400 font-bold">0.0035</span>
-                </div>
-                <input type="range" id="input-adv-k" min="0.0010" max="0.0080" step="0.0005" value="0.0035" oninput="updateParams()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- Comparative Theory Box -->
         <div class="bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-5 shadow-2xl space-y-3 leading-normal">
@@ -621,7 +528,7 @@
 
     // Initialize Page
     window.onload = function() {
-      setHeuristic('log');
+      recalculateAndRender();
     };
   </script>
 </body>
