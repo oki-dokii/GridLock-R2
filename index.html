@@ -598,10 +598,16 @@
       }
       // --- END SIMULATOR ---
 
+      if (!vehActive) {
+        updateRadar();
+        return;
+      }
+
       // Render ghosts first (below active markers)
       allWithCounts
         .filter(hs => hs.filteredCount === 0)
         .forEach(hs => {
+          if (!TIER_FILTER[hs.tier]) return; // Hide ghost if its tier is unselected
           const ghost = L.circleMarker([hs.lat, hs.lon], {
             radius: 3,
             color: '#334155',
