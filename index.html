@@ -82,7 +82,7 @@
     </div>
 
     <!-- Optimization Panel -->
-    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80">
+    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80 pointer-events-auto">
       <h2 class="text-lg font-bold text-white flex items-center gap-2 mb-4">
         <i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator
       </h2>
@@ -121,6 +121,16 @@
 
       <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
         <!-- Results injected here -->
+      </div>
+    </div>
+    
+    <!-- Executive Intelligence Panel (What-If Analysis) -->
+    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-blue-500 w-80 mt-4 pointer-events-auto">
+      <h2 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
+        <i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence
+      </h2>
+      <div id="exec-intel-content" class="space-y-3">
+        <div class="text-xs text-slate-400 animate-pulse">Calculating intelligence...</div>
       </div>
     </div>
   </div>
@@ -243,6 +253,7 @@
         renderMarkers();
         updateRadar();
         simulateCoverage(); // Run simulator once loaded
+        generateExecutiveIntelligence(); // Run What-If Analysis
         if (HOTSPOTS.length > 0) {
           map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
         }
@@ -575,6 +586,45 @@
         bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300'; 
         text.className = 'text-lg font-bold text-green-400'; 
       }
+    }
+
+    function generateExecutiveIntelligence() {
+      if(!HOTSPOTS.length) return;
+      
+      const sortedByCount = [...HOTSPOTS].sort((a,b) => b.count - a.count);
+      const totalViolations = sortedByCount.reduce((sum, h) => sum + h.count, 0);
+      
+      // Metric 1: Top 10 Reduction
+      const top10Violations = sortedByCount.slice(0, 10).reduce((sum, h) => sum + h.count, 0);
+      const top10Percentage = ((top10Violations / totalViolations) * 100).toFixed(1);
+      
+      // Metric 2: Parking specifically
+      const parkingSpots = sortedByCount.filter(h => h.violation && h.violation.toLowerCase().includes('parking'));
+      const totalParking = parkingSpots.reduce((sum, h) => sum + h.count, 0);
+      const top5Parking = parkingSpots.slice(0, 5).reduce((sum, h) => sum + h.count, 0);
+      const parkingPercentage = totalParking > 0 ? ((top5Parking / totalParking) * 100).toFixed(1) : 0;
+      
+      // Metric 3: Arterial Road impact
+      const arterialSpots = sortedByCount.filter(h => h.roadType === 'Arterial Road');
+      const arterialViolations = arterialSpots.reduce((sum, h) => sum + h.count, 0);
+      const arterialPercentage = ((arterialViolations / totalViolations) * 100).toFixed(1);
+
+      document.getElementById('exec-intel-content').innerHTML = `
+        <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">What-If: Eliminate Top 10 Zones</div>
+          <div class="text-sm font-medium text-white">City-wide violation reduction: <span class="text-blue-400 font-bold ml-1">${top10Percentage}%</span></div>
+        </div>
+        
+        <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Concentration Intelligence</div>
+          <div class="text-sm font-medium text-white">Top 5 parking hotspots account for <span class="text-orange-400 font-bold mx-1">${parkingPercentage}%</span> of total illegal parking.</div>
+        </div>
+
+        <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Arterial Impact</div>
+          <div class="text-sm font-medium text-white"><span class="text-red-400 font-bold mr-1">${arterialPercentage}%</span> of all violations occur on Arterial Highways.</div>
+        </div>
+      `;
     }
 
     // Init
