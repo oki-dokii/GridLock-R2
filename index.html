@@ -667,11 +667,11 @@
         
         let trendHtml = '';
         if(hs.trend === 'Persistent') {
-          trendHtml = `<span class="bg-red-50 text-red-600 border border-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-circle text-[6px] mr-1 align-middle"></i>PERSISTENT</span>`;
+          trendHtml = `<span class="bg-red-50 text-red-600 border border-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-circle text-[6px] mr-1 align-middle"></i>PERSISTENT*</span>`;
         } else if(hs.trend === 'Emerging') {
-          trendHtml = `<span class="bg-purple-50 text-purple-600 border border-purple-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-arrow-trend-up mr-1"></i>EMERGING</span>`;
+          trendHtml = `<span class="bg-purple-50 text-purple-600 border border-purple-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-arrow-trend-up mr-1"></i>EMERGING*</span>`;
         } else {
-          trendHtml = `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-arrow-trend-down mr-1"></i>DECLINING</span>`;
+          trendHtml = `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-arrow-trend-down mr-1"></i>DECLINING*</span>`;
         }
 
         const confBadge = hs.rank <= 50 
@@ -730,7 +730,7 @@
               <div class="text-slate-500 font-bold uppercase tracking-wider mb-1 text-[8px]">Intervention Feedback Loop</div>
               <div class="flex justify-between items-center">
                 <span class="text-slate-700 font-medium"><i class="fa-solid fa-clock-rotate-left mr-1 text-slate-400"></i> Post-Enforcement 4W Trend</span>
-                <span class="font-bold ${(hs.postInterventionChange || '').startsWith('-') ? 'text-emerald-500' : ((hs.postInterventionChange || '').startsWith('+') ? 'text-red-500' : 'text-slate-500')}">${hs.postInterventionChange || '0%'}</span>
+                <span class="font-bold ${(hs.postInterventionChange || '').startsWith('-') ? 'text-emerald-500' : ((hs.postInterventionChange || '').startsWith('+') ? 'text-red-500' : 'text-slate-500')}">${hs.postInterventionChange || '0%'} <span class="text-[8px] font-normal text-slate-400" title="Methodological Estimate">(simulated)</span></span>
               </div>
             </div>
 
@@ -1015,7 +1015,7 @@
         <div class="bg-slate-800/80 p-2.5 rounded border border-emerald-700 bg-emerald-900/20">
           <div class="text-[10px] text-emerald-400 uppercase font-bold mb-1 flex items-center gap-1"><i class="fa-solid fa-microscope"></i> Impact Validation Engine</div>
           <div class="text-xs font-medium text-slate-300 mb-1">If the Top 50 Validated Zones are enforced, simulated walk-forward data shows:</div>
-          <div class="text-sm font-medium text-white mb-1">Projected Next-Week Drop: <span class="text-emerald-400 font-bold ml-1">18.4%</span></div>
+          <div class="text-sm font-medium text-white mb-1 flex items-center">Projected Next-Week Drop: <span class="text-emerald-400 font-bold mx-1">18.4%</span> <span class="text-[8px] text-slate-500 font-normal px-1 py-0.5 border border-slate-600 rounded">(Simulated Estimate)</span></div>
           <div class="text-[9px] text-slate-500 font-mono">Method: Measured via Held-Out Test Weeks</div>
         </div>
       `;
