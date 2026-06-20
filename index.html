@@ -1,1099 +1,501 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BTP 3D Dispatch Command Center</title>
-  <meta name="description" content="Bengaluru Traffic Police analytical dispatch system integrating MapmyIndia (Mappls) JS SDK, custom 3D CSS pillars, and real-time Bayesian triage simulator.">
+  <title>BTP Field Officer App</title>
   
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Google Fonts: Outfit & Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Outfit', 'sans-serif'],
-          },
-          animation: {
-            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'spin-slow': 'spin 12s linear infinite',
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 500: '#3b82f6', 600: '#2563eb', 900: '#0f172a' }
           }
         }
       }
     }
   </script>
-  
-  <!-- Custom CSS for 3D Map Markers, Sonar Rings, and Glassmorphism -->
+
   <style>
-    /* Custom Scrollbar for Sleek HUD Panels */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.5);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(100, 116, 139, 0.4);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(100, 116, 139, 0.6);
+    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #0f172a; }
+    #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
+    
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
-    /* CSS 3D transforms environment */
-    .pillar-wrapper {
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    /* 3D Rectangular Prism (Pillar) */
-    .pillar-3d {
-      width: 20px;
-      position: absolute;
-      bottom: 0;
-      transform-style: preserve-3d;
-      transform: rotateX(-20deg) rotateY(45deg);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
-      cursor: pointer;
-    }
-    .pillar-3d:hover {
-      transform: rotateX(-20deg) rotateY(45deg) scale(1.15) translateZ(5px);
-      filter: brightness(1.2) drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
-    }
-    .face {
-      position: absolute;
-      bottom: 0;
-      height: 100%;
-      transform-style: preserve-3d;
-    }
-    .face.front {
-      width: 20px;
-      transform: rotateY(0deg) translateZ(10px);
-    }
-    .face.back {
-      width: 20px;
-      transform: rotateY(180deg) translateZ(10px);
-    }
-    .face.right {
-      width: 20px;
-      transform: rotateY(90deg) translateZ(10px);
-    }
-    .face.left {
-      width: 20px;
-      transform: rotateY(-90deg) translateZ(10px);
-    }
-    .face.top {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: -10px;
-      bottom: auto;
-      transform: rotateX(90deg);
-    }
-
-    /* High-High Structural Bottleneck Colors (Red) */
-    .HH .face.front {
-      background: linear-gradient(to top, rgba(127, 29, 29, 0.85), rgba(239, 68, 68, 0.9));
-      border: 1px solid rgba(239, 68, 68, 0.3);
-    }
-    .HH .face.right {
-      background: linear-gradient(to top, rgba(69, 10, 10, 0.85), rgba(185, 28, 28, 0.9));
-      border: 1px solid rgba(185, 28, 28, 0.3);
-    }
-    .HH .face.left, .HH .face.back {
-      background: rgba(127, 29, 29, 0.9);
-      border: 1px solid rgba(127, 29, 29, 0.3);
-    }
-    .HH .face.top {
-      background: #f87171;
-      box-shadow: 0 0 10px #ef4444;
-      border: 1px solid #fca5a5;
-    }
-
-    /* Low-High Cascade Risk Colors (Orange) */
-    .LH .face.front {
-      background: linear-gradient(to top, rgba(124, 45, 18, 0.85), rgba(249, 115, 22, 0.9));
-      border: 1px solid rgba(249, 115, 22, 0.3);
-    }
-    .LH .face.right {
-      background: linear-gradient(to top, rgba(67, 20, 7, 0.85), rgba(194, 65, 12, 0.9));
-      border: 1px solid rgba(194, 65, 12, 0.3);
-    }
-    .LH .face.left, .LH .face.back {
-      background: rgba(124, 45, 18, 0.9);
-      border: 1px solid rgba(124, 45, 18, 0.3);
-    }
-    .LH .face.top {
-      background: #fb923c;
-      box-shadow: 0 0 10px #f97316;
-      border: 1px solid #fed7aa;
-    }
-
-    /* Active Dispatch Indicator Color (Cyber Blue) */
-    .dispatched-pillar .face.front {
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(6, 182, 212, 0.95)) !important;
-      border: 1px solid rgba(6, 182, 212, 0.5) !important;
-    }
-    .dispatched-pillar .face.right {
-      background: linear-gradient(to top, rgba(8, 47, 73, 0.9), rgba(8, 145, 178, 0.95)) !important;
-      border: 1px solid rgba(8, 145, 178, 0.5) !important;
-    }
-    .dispatched-pillar .face.top {
-      background: #67e8f9 !important;
-      box-shadow: 0 0 15px #06b6d4 !important;
-      border: 1px solid #c5f2f7 !important;
-    }
-
-    /* Pulsing alert ring centered at base */
-    .pulse-container {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%) rotateX(70deg); /* align flat to ground */
-      width: 48px;
-      height: 48px;
-      pointer-events: none;
-      transform-style: preserve-3d;
-    }
-    .pulse-ring {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 2px solid rgba(245, 158, 11, 0.9); /* yellow-500 */
-      animation: pulse-ring-anim 1.8s infinite ease-out;
-      box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-      position: absolute;
-    }
-    @keyframes pulse-ring-anim {
-      0% {
-        transform: scale(0.3);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1.6);
-        opacity: 0;
-      }
-    }
-
-    /* Mappls overrides for absolute dark HUD look */
-    .mapboxgl-popup-content {
-      background: rgba(15, 23, 42, 0.95) !important;
-      border: 1px solid rgba(51, 65, 85, 0.8) !important;
-      color: #cbd5e1 !important;
-      backdrop-filter: blur(8px);
-      border-radius: 12px !important;
-    }
-    .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-      border-top-color: rgba(15, 23, 42, 0.95) !important;
-    }
-
-    /* Custom Mock Active Styling */
-    .mock-marker-wrapper {
-      transition: all 0.5s ease;
-    }
-    .mock-active .pillar-3d {
-      transform: rotateX(-20deg) rotateY(45deg) scale(1.25) translateZ(8px) !important;
-      filter: brightness(1.25) drop-shadow(0 0 12px rgba(6, 182, 212, 0.8)) !important;
-    }
+    /* Custom Scrollbar for search */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+    
+    .radar-quadrant { transition: all 0.3s ease; }
+    .radar-active { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); }
   </style>
-
-  <!-- Referrer Policy to ensure domain whitelisting is passed to MapmyIndia SDK -->
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  
-  <!-- Dynamic MapmyIndia SDK Loader will run on initialization hook below -->
 </head>
-<body class="h-full bg-slate-950 overflow-hidden font-sans text-slate-300 antialiased">
-  <!-- Core Map Layer Container -->
-  <div id="map" class="absolute inset-0 w-full h-full z-0"></div>
+<body class="text-slate-200">
 
-  <!-- Fallback Mock Map Grid Layer (Becomes active if SDK key is not set/fails) -->
-  <div id="mock-map-container" class="absolute inset-0 bg-slate-950 flex items-center justify-center overflow-hidden z-0 hidden">
-    <!-- Grid Pattern -->
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:50px_50px] opacity-[0.15]"></div>
-    
-    <!-- Vector Grid Inner Container (Shifted and rotated to match camera) -->
-    <div id="mock-map-inner" class="absolute w-[2000px] h-[2000px] flex items-center justify-center" style="transform: translate(0px, 0px) scale(1.1);">
-      <svg class="absolute w-full h-full opacity-[0.08]" viewBox="0 0 1000 1000">
-        <circle cx="500" cy="500" r="150" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
-        <circle cx="500" cy="500" r="300" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
-        <circle cx="500" cy="500" r="450" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="8,4"/>
-        
-        <!-- Cyber Roads Layout -->
-        <path d="M 50 500 L 950 500" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2,2"/>
-        <path d="M 500 50 L 500 950" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2,2"/>
-        <path d="M 150 150 L 850 850" fill="none" stroke="#0ea5e9" stroke-width="1"/>
-        <path d="M 150 850 L 850 150" fill="none" stroke="#0ea5e9" stroke-width="1"/>
-        
-        <!-- Outer Ring Roads -->
-        <circle cx="500" cy="500" r="380" fill="none" stroke="#0284c7" stroke-width="2"/>
-        <circle cx="500" cy="500" r="220" fill="none" stroke="#0284c7" stroke-width="1.5"/>
-      </svg>
-      
-      <!-- Spatial coordinates labels overlaying grid -->
-      <div class="absolute text-[10px] font-mono text-slate-700 select-none top-[10%] left-[50%]">13.071 N / 77.588 E</div>
-      <div class="absolute text-[10px] font-mono text-slate-700 select-none top-[90%] left-[50%]">12.934 N / 77.691 E</div>
-      <div class="absolute text-[10px] font-mono text-slate-700 select-none top-[50%] left-[5%]">12.964 N / 77.577 E</div>
-      <div class="absolute text-[10px] font-mono text-slate-700 select-none top-[50%] left-[90%]">13.184 N / 77.680 E</div>
-      
-      <!-- Mock HTML Markers Layer -->
-      <div id="mock-markers-layer" class="absolute inset-0 z-20" style="transform-style: preserve-3d;"></div>
-    </div>
-    
-    <!-- SDK Offline Notification Badge -->
-    <div class="absolute top-[88px] left-1/2 transform -translate-x-1/2 bg-slate-900/90 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-xl text-[11px] flex items-center gap-2 shadow-2xl backdrop-blur-md z-30 font-display">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-      </span>
-      <span>Mappls SDK Demo Mode: Displaying Interactive Cyber Grid (API Key not initialized)</span>
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Top Search Bar -->
+  <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
+    <div class="w-full max-w-md pointer-events-auto">
+      <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
+        <div class="flex items-center px-4 py-3 border-b border-slate-700/50">
+          <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+          <input type="text" id="searchInput" placeholder="Search operational area..." 
+                 class="w-full bg-transparent border-none outline-none px-3 text-slate-100 placeholder-slate-400 font-medium text-lg">
+          <button id="clearSearch" class="text-slate-400 hover:text-white hidden"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div id="searchResults" class="max-h-60 overflow-y-auto hidden">
+          <!-- Results injected here -->
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- HUD Interface Container -->
-  <div class="fixed inset-0 pointer-events-none z-10 flex flex-col justify-between p-6">
-    
-    <!-- HUD Header Panel -->
-    <header class="pointer-events-auto bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-2xl">
-      <div class="flex items-center gap-4">
-        <!-- Pulse Status Indicator -->
-        <div class="relative flex h-4 w-4">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-4 w-4 bg-cyan-500"></span>
+  <!-- Stats Panel (Top Left) -->
+  <div class="absolute top-6 left-6 z-40 hidden md:block pointer-events-auto">
+    <div class="glass-panel rounded-xl p-4 flex items-center space-x-4 mb-4">
+      <div class="bg-blue-600/20 p-3 rounded-lg border border-blue-500/30">
+        <i class="fa-solid fa-shield-halved text-blue-400 text-xl"></i>
+      </div>
+      <div>
+        <h1 class="font-bold text-white tracking-wider">BTP FIELD OPS</h1>
+        <p class="text-xs text-slate-400 font-medium">Tactical Map View</p>
+      </div>
+    </div>
+
+    <!-- Optimization Panel -->
+    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80">
+      <h2 class="text-lg font-bold text-white flex items-center gap-2 mb-4">
+        <i class="fa-solid fa-network-wired text-green-400"></i> Resource Optimizer
+      </h2>
+      
+      <div class="space-y-3 mb-4">
+        <div class="flex justify-between items-center bg-slate-800/50 p-2 rounded border border-slate-700">
+          <label class="text-sm text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
+          <input type="number" id="opt-patrols" value="5" min="0" max="20" class="w-16 bg-slate-900 border border-slate-600 text-white text-center rounded outline-none p-1 font-bold">
         </div>
-        <div>
-          <h1 class="font-display font-bold text-lg text-white tracking-wide leading-none flex items-center gap-2">
-            BENGALURU DISPATCH COMMAND CENTER
-            <span class="text-[10px] bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-1.5 py-0.5 rounded uppercase font-mono tracking-widest font-normal">v1.0 (Case B)</span>
-          </h1>
-          <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase tracking-wider">M3 Poisson Predictor + M6 Bayesian Triage Ops Engine</p>
+        <div class="flex justify-between items-center bg-slate-800/50 p-2 rounded border border-slate-700">
+          <label class="text-sm text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
+          <input type="number" id="opt-tows" value="2" min="0" max="10" class="w-16 bg-slate-900 border border-slate-600 text-white text-center rounded outline-none p-1 font-bold">
         </div>
       </div>
       
-      <!-- Stats Summary -->
-      <div class="flex items-center gap-8 text-xs font-mono border-l border-slate-800 pl-8">
-        <div>
-          <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Targets</span>
-          <span class="font-semibold text-slate-200">15 Locations</span>
-        </div>
-        <div>
-          <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Congestion Peak</span>
-          <span class="font-semibold text-red-400 flex items-center gap-1"><i class="fa-solid fa-fire"></i> 875 EPS</span>
-        </div>
-        <div>
-          <span class="text-slate-500 block uppercase text-[9px] tracking-wider">M6 Alerts</span>
-          <span id="alerts-count" class="font-semibold text-amber-400 animate-pulse">7 Alerts</span>
-        </div>
-        <div>
-          <span class="text-slate-500 block uppercase text-[9px] tracking-wider">Live System Clock</span>
-          <span id="live-clock" class="font-semibold text-cyan-400 font-mono">18:55:28 IST</span>
-        </div>
+      <button onclick="runOptimizer()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded shadow transition-colors flex justify-center items-center gap-2">
+        <i class="fa-solid fa-bolt"></i> Optimize Dispatch
+      </button>
+
+      <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
+        <!-- Results injected here -->
       </div>
-    </header>
+    </div>
+  </div>
 
-    <!-- Mid Section Layout -->
-    <div class="flex-grow flex justify-between items-stretch my-4 overflow-hidden relative">
+  <!-- Radar Panel (Bottom Right) -->
+  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-96 z-40 pointer-events-auto">
+    <div class="glass-panel rounded-2xl p-5 border-t-4 border-t-blue-500">
       
-      <!-- Left Sidebar: Priority Dispatch Queue -->
-      <aside class="pointer-events-auto w-80 bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 shadow-2xl flex flex-col justify-between h-full select-none">
+      <div class="flex justify-between items-start mb-4">
         <div>
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="font-display font-semibold text-sm text-white flex items-center gap-2">
-              <i class="fa-solid fa-list-ol text-cyan-500"></i>
-              PRIORITY HOTSPOT QUEUE
-            </h2>
-            <span class="text-[10px] text-slate-400 font-mono">SORT: EPS DESC</span>
-          </div>
-          
-          <!-- Search Bar -->
-          <div class="relative mb-3">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 pointer-events-none">
-              <i class="fa-solid fa-magnifying-glass text-xs"></i>
-            </span>
-            <input type="text" id="target-search" oninput="filterTargets()" placeholder="Filter locations..." class="w-full pl-9 pr-4 py-1.5 bg-slate-950/60 border border-slate-800 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 font-sans transition-all">
-          </div>
-          
-          <!-- Target List scroll container -->
-          <div id="target-list" class="space-y-2.5 overflow-y-auto max-h-[360px] pr-1">
-            <!-- Targets rendered dynamically in JS -->
-          </div>
-        </div>
-        
-        <!-- Live Triage Tool -->
-        <div class="mt-4 pt-4 border-t border-slate-800 flex flex-col gap-2">
-          <button id="triage-console-btn" onclick="openTriageModal()" class="w-full bg-gradient-to-r from-amber-500/10 to-amber-600/10 hover:from-amber-500/20 hover:to-amber-600/20 text-amber-400 border border-amber-500/30 rounded-xl py-2 px-3 text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-inner">
-            <i class="fa-solid fa-square-poll-vertical animate-bounce"></i>
-            OPEN M6 TRIAGE CONSOLE
-          </button>
-        </div>
-      </aside>
-
-      <!-- Right Panel: Dispatch Console Log -->
-      <aside class="pointer-events-auto w-80 bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 shadow-2xl flex flex-col justify-between h-full select-none ml-auto">
-        <div class="flex-grow flex flex-col overflow-hidden">
-          <h2 class="font-display font-semibold text-sm text-white flex items-center gap-2 mb-3">
-            <i class="fa-solid fa-tower-broadcast text-cyan-500"></i>
-            DISPATCH TELEMETRY LOGS
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-satellite-dish text-blue-400"></i> Tactical Radar
           </h2>
-          <!-- Logs listing -->
-          <div id="dispatch-logs" class="flex-grow bg-slate-950/60 border border-slate-800 rounded-xl p-3 font-mono text-[9px] text-cyan-400/90 overflow-y-auto space-y-2 leading-normal">
-            <div><span class="text-slate-500">18:55:28</span> [SYS] Dispatch core initialized.</div>
-            <div><span class="text-slate-500">18:55:29</span> [MAP] Centered on Bengaluru [12.9716, 77.5946].</div>
-            <div><span class="text-slate-500">18:55:30</span> [M6] Bayesian Triage listening for approvals.</div>
+          <p class="text-xs text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing Current View</p>
+        </div>
+        <div class="bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-white border border-slate-600 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span id="radar-target-count">0</span> Targets
+        </div>
+      </div>
+
+      <!-- Radar Grid -->
+      <div class="grid grid-cols-2 gap-2 mb-4 relative">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center z-10 shadow-lg">
+            <i class="fa-solid fa-location-crosshairs text-blue-400 text-xs"></i>
           </div>
         </div>
         
-        <!-- Bottom stats inside sidebar -->
-        <div class="mt-3 pt-3 border-t border-slate-800 text-[10px] text-slate-400 flex justify-between items-center font-mono">
-          <span>DISPATCH UNITS: 4 ACTIVE</span>
-          <span class="text-emerald-400">NET: 42ms <i class="fa-solid fa-wifi"></i></span>
+        <div id="quad-NW" class="radar-quadrant bg-slate-800/50 rounded-tl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH WEST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
         </div>
-      </aside>
-    </div>
-
-    <!-- HUD Bottom Legend & Camera Panel -->
-    <footer class="pointer-events-auto bg-slate-900/80 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-2xl">
-      <!-- Legend -->
-      <div class="flex items-center gap-6 text-xs">
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 bg-red-500 rounded border border-red-400 shadow-[0_0_6px_#ef4444]"></span>
-          <span class="text-slate-200">HH (High-High Structural Bottleneck)</span>
+        <div id="quad-NE" class="radar-quadrant bg-slate-800/50 rounded-tr-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH EAST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 bg-orange-500 rounded border border-orange-400 shadow-[0_0_6px_#f97316]"></span>
-          <span class="text-slate-200">LH (Low-High Cascade Risk)</span>
+        <div id="quad-SW" class="radar-quadrant bg-slate-800/50 rounded-bl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH WEST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
         </div>
-        <div class="flex items-center gap-2">
-          <span class="relative flex h-2.5 w-2.5">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
-          </span>
-          <span class="text-slate-200">M6 Triage Warning (QA Pending)</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="inline-block w-3 h-3 bg-cyan-500 rounded border border-cyan-400 shadow-[0_0_6px_#06b6d4]"></span>
-          <span class="text-slate-200">Active Patrol Dispatched</span>
-        </div>
-      </div>
-      
-      <!-- Camera Controls -->
-      <div class="flex items-center gap-3">
-        <button id="reset-cam-btn" onclick="resetCamera()" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all" title="Reset map to standard 3D pitch and center">
-          <i class="fa-solid fa-video"></i> Reset View
-        </button>
-        <button id="rotate-btn" onclick="toggleRotation()" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all" title="Orbit camera around map center">
-          <i class="fa-solid fa-arrows-spin"></i> Orbit View
-        </button>
-        <button id="tilt-btn" onclick="toggleTilt()" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all" title="Toggle camera pitch angle">
-          <i class="fa-solid fa-mountain"></i> Pitch View
-        </button>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Glassmorphic Tooltip Element -->
-  <div id="tooltip" class="absolute pointer-events-none hidden bg-slate-950/95 border border-slate-800/80 backdrop-blur-xl rounded-xl p-3.5 shadow-2xl z-50 text-xs w-60 text-slate-300 transition-opacity duration-200 shadow-[0_0_15px_rgba(0,0,0,0.8)] border-slate-700/50">
-    <div class="flex justify-between items-start mb-2 pb-1.5 border-b border-slate-900">
-      <h4 id="tooltip-name" class="font-display font-bold text-sm text-white">Location</h4>
-      <span id="tooltip-type-badge" class="px-1.5 py-0.5 rounded text-[10px] font-bold">HH</span>
-    </div>
-    <div class="space-y-1.5">
-      <div class="flex justify-between">
-        <span class="text-slate-500">EPS Forecast:</span>
-        <span id="tooltip-eps" class="font-mono font-semibold text-slate-100">1891</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="text-slate-500">Node Type:</span>
-        <span id="tooltip-cat" class="text-slate-100">Structural Bottleneck</span>
-      </div>
-      <div class="flex justify-between items-center pt-1.5 border-t border-slate-900/50 mt-1">
-        <span class="text-slate-500">QA Pending (M6):</span>
-        <span id="tooltip-qa" class="font-mono font-semibold">1627</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- M6 Triage Modal (Interactive simulator popup) -->
-  <div id="triage-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md hidden pointer-events-auto">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 w-[450px] shadow-2xl space-y-5 select-none relative shadow-[0_0_30px_rgba(245,158,11,0.15)] border-amber-500/20">
-      
-      <!-- Header -->
-      <div class="flex justify-between items-start border-b border-slate-800 pb-3">
-        <div>
-          <h3 class="font-display font-bold text-white text-md flex items-center gap-2">
-            <i class="fa-solid fa-circle-check text-amber-400"></i>
-            M6 Bayesian Triage Console
-          </h3>
-          <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase tracking-wider">Auto-Approve congestion alerts</p>
-        </div>
-        <button onclick="closeTriageModal()" class="text-slate-500 hover:text-white transition-colors"><i class="fa-solid fa-xmark text-lg"></i></button>
-      </div>
-      
-      <!-- Selection dropdown -->
-      <div class="space-y-2">
-        <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-500">Select Active Hotspot</label>
-        <select id="modal-select-node" onchange="updateTriageModalDetails()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500/50 font-sans">
-          <!-- Populated by JS -->
-        </select>
-      </div>
-
-      <!-- Bayesian Stats Card -->
-      <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-4 space-y-3 font-mono text-xs">
-        <div class="flex justify-between">
-          <span class="text-slate-500">Officer Approved:</span>
-          <span id="triage-stat-app" class="text-emerald-400">120</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-500">Officer Rejected:</span>
-          <span id="triage-stat-rej" class="text-red-400">15</span>
-        </div>
-        <div class="flex justify-between items-center pt-2 border-t border-slate-900 mt-2">
-          <span class="text-slate-500">Bayesian p̂_hat Score:</span>
-          <span id="triage-stat-phat" class="text-cyan-400 font-bold text-sm">0.8800</span>
-        </div>
-        <div class="flex justify-between">
-          <span class="text-slate-500">Alert Pending Queue:</span>
-          <span id="triage-stat-pending" class="text-amber-400 font-semibold animate-pulse">1,627 records</span>
+        <div id="quad-SE" class="radar-quadrant bg-slate-800/50 rounded-br-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH EAST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
         </div>
       </div>
 
-      <!-- Recommendation -->
-      <div class="flex items-start gap-3 bg-cyan-950/20 border border-cyan-800/30 rounded-xl p-3 text-xs">
-        <i class="fa-solid fa-circle-info text-cyan-400 mt-0.5"></i>
-        <div>
-          <span class="font-semibold text-cyan-400 block mb-0.5">Bayesian System Recommendation</span>
-          <span id="triage-recommendation" class="text-slate-400 leading-normal">Highconfidence officer score. Recommendation: Auto-approve pending queue.</span>
+      <!-- Senior Advice -->
+      <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700">
+        <div class="text-[10px] text-blue-400 uppercase font-bold mb-1 tracking-wider flex items-center gap-1">
+          <i class="fa-solid fa-user-shield"></i> Senior Advice
         </div>
-      </div>
-
-      <!-- Action -->
-      <div class="flex gap-3 justify-end pt-2 border-t border-slate-800">
-        <button onclick="closeTriageModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 rounded-lg text-xs font-semibold transition-all">Cancel</button>
-        <button id="resolve-qa-btn" onclick="resolveQARecords()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-lg text-xs font-bold transition-all shadow-[0_0_12px_rgba(245,158,11,0.3)]">Approve & Resolve Alerts</button>
+        <p id="senior-advice" class="text-sm text-slate-300 leading-relaxed font-medium">
+          Pan the map or search an area to receive tactical deployment advice.
+        </p>
       </div>
 
     </div>
   </div>
 
   <script>
-    // Hardcoded target data (Calibrated Cell-Month Case B Forecast)
-    const targets = [
-      { name: 'Mysore Rd', coords: [12.964, 77.577], eps: 875, type: 'HH', qa: 61, label: 'Mysore Road, City Market Circle', officer: { approved: 777, rejected: 246 } },
-      { name: 'Kamaraj Rd', coords: [12.981, 77.610], eps: 814, type: 'HH', qa: 283, label: 'Kamaraj Road, Sivanchetti Gardens', officer: { approved: 128, rejected: 14 } },
-      { name: 'New Horizon', coords: [12.934, 77.691], eps: 754, type: 'HH', qa: 26, label: 'New Horizon College of Engineering', officer: { approved: 19, rejected: 8 } },
-      { name: '6th Main', coords: [12.977, 77.576], eps: 653, type: 'HH', qa: 244, label: '6th Main Road, RK Puram', officer: { approved: 0, rejected: 0 } },
-      { name: 'Sahakar Nagar', coords: [13.071, 77.588], eps: 537, type: 'HH', qa: 193, label: 'Sahakar Nagar Road, Fortuna Acacia', officer: { approved: 0, rejected: 0 } },
-      { name: 'Upparpet Jct', coords: [12.973, 77.579], eps: 515, type: 'LH', qa: 118, label: '3rd Cross Road, Kempegowda Extension', officer: { approved: 22, rejected: 18 } },
-      { name: 'Embassy Tech', coords: [12.933, 77.691], eps: 414, type: 'HH', qa: 18, label: 'Embassy Tech Village, Devara Beesana Halli', officer: { approved: 8, rejected: 4 } },
-      { name: '3rd Cross', coords: [12.984, 77.603], eps: 422, type: 'LH', qa: 0, label: 'Meenakshi Koil Street, Shivaji Nagar', officer: { approved: 0, rejected: 0 } },
-      { name: 'Vijayanagar', coords: [12.974, 77.545], eps: 287, type: 'HH', qa: 0, label: 'Chord Road, Manuvana, Vijaya Nagar', officer: { approved: 806, rejected: 349 } },
-      { name: 'Old Madras Rd', coords: [12.996, 77.668], eps: 189, type: 'HH', qa: 0, label: 'Old Madras Road, Royal Heritage', officer: { approved: 0, rejected: 0 } },
-      { name: 'Indiranagar 100ft', coords: [12.978, 77.639], eps: 27, type: 'LH', qa: 0, label: 'CMH Road, KFC Circle, Indiranagar', officer: { approved: 0, rejected: 0 } },
-      { name: 'Halasuru Rd', coords: [12.974, 77.623], eps: 18, type: 'LH', qa: 0, label: 'Old Madras Road, Halasuru', officer: { approved: 0, rejected: 0 } },
-      { name: 'Eco Space', coords: [12.927, 77.681], eps: 10, type: 'LH', qa: 0, label: 'RMZ Ecospace Internal Road, Bellandur', officer: { approved: 0, rejected: 0 } },
-      { name: 'RT Nagar', coords: [13.020, 77.596], eps: 4, type: 'LH', qa: 0, label: '3rd Main Road, RT Nagar', officer: { approved: 0, rejected: 0 } },
-      { name: 'BGS Flyover', coords: [12.965, 77.573], eps: 2, type: 'LH', qa: 0, label: 'BGS Flyover, Sultanpete', officer: { approved: 0, rejected: 0 } }
+    // ── STATE ──────────────────────────────────────────────────────────────────
+    let HOTSPOTS = [];
+    let mapMarkers = [];
+    let map = null;
+
+    const AREAS = [
+      {name:'Shivajinagar',lat:12.9850,lon:77.6010,zone:'Central'},
+      {name:'City Market (KR)',lat:12.9716,lon:77.5946,zone:'Central'},
+      {name:'Malleshwaram',lat:13.0035,lon:77.5700,zone:'North West'},
+      {name:'Rajajinagar',lat:12.9940,lon:77.5560,zone:'North West'},
+      {name:'MG Road',lat:12.9756,lon:77.6098,zone:'Central'},
+      {name:'Whitefield',lat:12.9698,lon:77.7499,zone:'East'},
+      {name:'KR Pura',lat:13.0000,lon:77.6900,zone:'East'},
+      {name:'HSR Layout',lat:12.9116,lon:77.6389,zone:'South East'},
+      {name:'Electronic City',lat:12.8450,lon:77.6600,zone:'South'},
+      {name:'JP Nagar',lat:12.9063,lon:77.5857,zone:'South'},
+      {name:'Vijayanagara',lat:12.9650,lon:77.5270,zone:'West'},
+      {name:'Magadi Road',lat:12.9740,lon:77.5510,zone:'West'},
+      {name:'Kodigehalli',lat:13.0710,lon:77.5880,zone:'North'},
+      {name:'Silk Board',lat:12.9172,lon:77.6224,zone:'South East'},
+      {name:'Yeshwanthpur',lat:13.0200,lon:77.5500,zone:'North West'},
+      {name:'Upparpet',lat:12.9720,lon:77.5800,zone:'Central'},
+      {name:'Byatarayanapura',lat:13.0600,lon:77.5380,zone:'North West'},
+      {name:'HAL Airport Area',lat:12.9650,lon:77.6600,zone:'East'},
+      {name:'Jeevanbheemanagar',lat:12.9340,lon:77.6910,zone:'East'},
+      {name:'Indiranagar',lat:12.9784,lon:77.6408,zone:'East'},
+      {name:'Koramangala',lat:12.9352,lon:77.6245,zone:'South East'},
+      {name:'Jayanagar',lat:12.9299,lon:77.5826,zone:'South'}
     ];
 
-    let map;
-    let mapplsMarkers = {};
-    let isRotating = false;
-    let rotationInterval;
-    let mapPitch = 60;
-    let activeTarget = null;
+    const TIER_COLORS = {critical:'#ef4444', high:'#f97316', medium:'#eab308', low:'#3b82f6'};
 
-    // Helper function to load a script dynamically with a promise
-    function loadScript(url) {
-      return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = url;
-        script.async = true;
-        script.referrerPolicy = "no-referrer-when-downgrade";
-        script.onload = () => resolve();
-        script.onerror = () => reject(new Error(`Failed to load ${url}`));
-        document.head.appendChild(script);
+    // ── MAP INIT ───────────────────────────────────────────────────────────────
+    function initMap() {
+      // Init Leaflet
+      map = L.map('map', { zoomControl: false }).setView([12.9716, 77.5946], 13);
+      
+      // CartoDB Dark Matter Base
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      // Add Zoom Control to bottom left
+      L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+      // Event Listeners
+      map.on('moveend', () => {
+        updateRadar();
       });
     }
 
-    // Initialization hook
-    window.onload = async function() {
-      // Setup live clock
-      setInterval(updateClock, 1000);
-      updateClock();
-
-      // Populate sidebar and modal select dropdowns
-      renderSidebarList();
-      populateModalDropdown();
-
-      const MAP_KEY = "knzfhqurobjksdumriwywooxubcnkyjfebdm";
-      const primaryUrl = `https://apis.mappls.com/advancedmaps/api/${MAP_KEY}/map_sdk?v=3.0&layer=vector`;
-      const fallbackUrl = `https://sdk.mappls.com/map/sdk/web?v=3.0&access_token=${MAP_KEY}`;
-
+    // ── DATA FETCH ─────────────────────────────────────────────────────────────
+    async function fetchHotspots() {
       try {
-        // Try primary SDK URL
-        await loadScript(primaryUrl);
-        if (typeof mappls !== 'undefined') {
-          initMapplsMap();
-          return;
-        }
-        throw new Error("mappls undefined on primary URL");
-      } catch (e) {
-        console.warn("Primary Mappls SDK URL failed. Trying fallback URL...", e);
+        const res = await fetch('hotspot_data.json');
+        HOTSPOTS = await res.json();
+        renderMarkers();
+        updateRadar();
+      } catch (err) {
+        console.error("Failed to load hotspots:", err);
       }
-
-      try {
-        // Try fallback SDK URL
-        await loadScript(fallbackUrl);
-        if (typeof mappls !== 'undefined') {
-          initMapplsMap();
-          return;
-        }
-        throw new Error("mappls undefined on fallback URL");
-      } catch (e) {
-        console.error("All Mappls SDK URLs failed to load. Launching Fallback Analytical Grid...", e);
-      }
-
-      // If both fail, render mock map
-      showMockMap();
-    };
-
-    // Live Operational Clock
-    function updateClock() {
-      const now = new Date();
-      const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      const clockStr = now.toLocaleTimeString('en-US', options) + " IST";
-      document.getElementById('live-clock').innerText = clockStr;
     }
 
-    // Initialize the MapmyIndia Vector Map
-    function initMapplsMap() {
-      map = new mappls.Map('map', {
-        center: { lat: 12.9716, lng: 77.5946 },
-        zoom: 13,
-        pitch: mapPitch,
-        bearing: 20
-      });
+    function renderMarkers() {
+      mapMarkers.forEach(m => map.removeLayer(m));
+      mapMarkers = [];
 
-      map.on('load', () => {
-        // Try setting vector dark theme
-        try {
-          mappls.setStyle('grey-night'); 
-        } catch(e) {
-          console.warn("Could not set Mappls dark style.", e);
-        }
+      // Sort so critical markers render on top of others
+      const sortedHotspots = [...HOTSPOTS].sort((a,b) => (a.totalPCS||0) - (b.totalPCS||0));
 
-        // Add 3D Markers on Mappls Map
-        targets.forEach(t => {
-          const H = (t.eps / 875) * 160 + 40;
-          const markerContainer = document.createElement('div');
-          markerContainer.className = 'pillar-wrapper cursor-pointer';
-          markerContainer.style.width = '30px';
-          markerContainer.style.height = `${H}px`;
-          
-          // Pulsing ring
-          const pulseRingHtml = t.qa > 0 ? `<div class="pulse-container" id="pulse-ring-${t.name.replace(/\s+/g, '-')}"><div class="pulse-ring"></div></div>` : '';
-          
-          markerContainer.innerHTML = `
-            ${pulseRingHtml}
-            <div class="pillar-3d ${t.type}" id="pillar-${t.name.replace(/\s+/g, '-')}" style="height: ${H}px;">
-              <div class="face front"></div>
-              <div class="face right"></div>
-              <div class="face back"></div>
-              <div class="face left"></div>
-              <div class="face top"></div>
-            </div>
-          `;
-
-          // Event bindings on DOM element
-          markerContainer.addEventListener('click', () => focusTarget(t.name));
-          markerContainer.addEventListener('mouseenter', (event) => showTooltip(event, t.name, t.eps, t.type, t.qa, markerContainer));
-          markerContainer.addEventListener('mouseleave', () => hideTooltip());
-          markerContainer.addEventListener('mousemove', (event) => updateTooltipPosition(event));
-
-          const marker = new mappls.Marker({
-            map: map,
-            position: { "lat": t.coords[0], "lng": t.coords[1] },
-            html: markerContainer,
-            offset: [0, -H/2]
-          });
-          
-          mapplsMarkers[t.name] = marker;
-        });
-
-        // Center on top target
-        focusTarget(targets[0].name);
-        addLog("SYSTEM", "Mappls Vector Map SDK initialized successfully.");
-      });
-    }
-
-    // Fallback Mock Map Setup
-    function showMockMap() {
-      const mockContainer = document.getElementById('mock-map-container');
-      mockContainer.classList.remove('hidden');
-      
-      const mapDiv = document.getElementById('map');
-      if (mapDiv) mapDiv.classList.add('hidden');
-
-      const markerLayer = document.getElementById('mock-markers-layer');
-      markerLayer.innerHTML = '';
-
-      targets.forEach(t => {
-        const pos = getMockPosition(t.coords[0], t.coords[1]);
-        const H = (t.eps / 875) * 160 + 40;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'mock-marker-wrapper absolute cursor-pointer';
-        wrapper.dataset.name = t.name;
-        wrapper.style.left = `${pos.x}%`;
-        wrapper.style.top = `${pos.y}%`;
-        wrapper.style.transform = 'translate(-50%, -100%)';
-        wrapper.style.transformStyle = 'preserve-3d';
-
-        wrapper.addEventListener('click', () => focusTarget(t.name));
-        wrapper.addEventListener('mouseenter', (event) => showTooltip(event, t.name, t.eps, t.type, t.qa, wrapper));
-        wrapper.addEventListener('mouseleave', () => hideTooltip());
-        wrapper.addEventListener('mousemove', (event) => updateTooltipPosition(event));
-
-        const ringHtml = t.qa > 0 ? `<div class="pulse-container" id="pulse-ring-${t.name.replace(/\s+/g, '-')}"><div class="pulse-ring"></div></div>` : '';
-
-        wrapper.innerHTML = `
-          ${ringHtml}
-          <div class="pillar-3d ${t.type}" id="pillar-${t.name.replace(/\s+/g, '-')}" style="height: ${H}px;">
-            <div class="face front"></div>
-            <div class="face right"></div>
-            <div class="face back"></div>
-            <div class="face left"></div>
-            <div class="face top"></div>
-          </div>
-        `;
-
-        markerLayer.appendChild(wrapper);
-      });
-
-      focusTarget(targets[0].name);
-      addLog("SYS_MOCK", "Mappls offline. Fallback analytical grid rendered.");
-    }
-
-    // Helper: Map lat/lon to screen space in mock map
-    function getMockPosition(lat, lon) {
-      // Center: 12.9716, 77.5946
-      const scaleLat = 2200;
-      const scaleLon = 2200;
-      const dLat = lat - 12.9716;
-      const dLon = lon - 77.5946;
-
-      const x = 50 + dLon * scaleLon;
-      const y = 50 - dLat * scaleLat; 
-
-      return { x, y };
-    }
-
-    // Render left target sidebar list
-    function renderSidebarList() {
-      const listContainer = document.getElementById('target-list');
-      listContainer.innerHTML = '';
-
-      targets.forEach(t => {
-        const typeLabel = t.type === 'HH' ? 'HH Bottleneck' : 'LH Cascade';
-        const typeColor = t.type === 'HH' ? 'text-red-400 bg-red-500/10 border-red-500/20' : 'text-orange-400 bg-orange-500/10 border-orange-500/20';
+      sortedHotspots.forEach(hs => {
+        const col = TIER_COLORS[hs.tier] || '#3b82f6';
+        const isCritical = hs.tier === 'critical';
+        const radius = isCritical ? 9 : (hs.tier==='high'? 7 : 5);
         
-        const qaAlertHtml = t.qa > 0 
-          ? `<span class="flex items-center gap-1 text-[10px] text-amber-400 animate-pulse mt-1 font-mono"><i class="fa-solid fa-triangle-exclamation"></i> ${t.qa} QA Records Pending</span>`
-          : `<span class="flex items-center gap-1 text-[10px] text-emerald-500 mt-1 font-mono"><i class="fa-solid fa-circle-check"></i> Officer Validation Clean</span>`;
-
-        const card = document.createElement('div');
-        card.className = 'target-card pointer-events-auto bg-slate-950/40 hover:bg-slate-950/70 border border-slate-800/80 hover:border-cyan-500/30 rounded-xl p-3 cursor-pointer transition-all hover:scale-[1.01] hover:shadow-lg flex flex-col justify-between';
-        card.dataset.name = t.name;
-        card.setAttribute('onclick', `focusTarget('${t.name}')`);
-
-        card.innerHTML = `
-          <div class="flex justify-between items-start mb-1">
-            <div>
-              <span class="text-xs font-display font-semibold text-white block">${t.name}</span>
-              <span class="text-[9px] text-slate-500 font-mono">${t.label}</span>
-            </div>
-            <span class="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold uppercase ${typeColor}">${typeLabel}</span>
-          </div>
-          
-          <div class="flex items-center justify-between mt-2 pt-2 border-t border-slate-900/60">
-            <div class="text-xs">
-              <span class="text-[9px] text-slate-500 block uppercase font-mono">EPS Forecast</span>
-              <span class="font-mono font-bold text-slate-200">${t.eps}</span>
-            </div>
-            <div class="text-right">
-              <span class="text-[9px] text-slate-500 block uppercase font-mono">M6 Status</span>
-              ${qaAlertHtml}
-            </div>
-          </div>
-          
-          <!-- Interactive Action Block -->
-          <div class="mt-3 flex gap-2">
-            <button onclick="dispatchUnit(event, '${t.name}')" id="dispatch-btn-${t.name.replace(/\s+/g, '-')}" class="flex-grow bg-cyan-950/40 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 border border-cyan-500/30 rounded-lg py-1 px-2 text-[10px] font-bold flex items-center justify-center gap-1 transition-all">
-              <i class="fa-solid fa-truck-monster"></i> DISPATCH PATROL
-            </button>
-          </div>
-        `;
-        listContainer.appendChild(card);
-      });
-    }
-
-    // Camera Flight Navigation
-    function focusTarget(name) {
-      const target = targets.find(t => t.name === name);
-      if (!target) return;
-      activeTarget = target;
-      
-      // Update sidebar visual selection
-      document.querySelectorAll('.target-card').forEach(card => {
-        card.classList.remove('border-cyan-500/50', 'bg-slate-800/30', 'shadow-[0_0_12px_rgba(6,182,212,0.15)]');
-        if (card.dataset.name === name) {
-          card.classList.add('border-cyan-500/50', 'bg-slate-800/30', 'shadow-[0_0_12px_rgba(6,182,212,0.15)]');
-        }
-      });
-
-      if (map) {
-        // Fly camera to target using Mappls API
-        map.flyTo({
-          center: { lat: target.coords[0], lng: target.coords[1] },
-          zoom: 15,
-          pitch: mapPitch,
-          bearing: isRotating ? map.getBearing() : 20,
-          essential: true,
-          duration: 1500
-        });
-      } else {
-        // Fallback Mock map translation
-        focusMockTarget(target);
-      }
-
-      addLog("MAP", `Camera focused on target node: ${target.name} [${target.coords[0].toFixed(3)}, ${target.coords[1].toFixed(3)}]`);
-    }
-
-    // Mock map shift centering logic
-    function focusMockTarget(target) {
-      const pos = getMockPosition(target.coords[0], target.coords[1]);
-      
-      const viewport = document.getElementById('mock-map-container');
-      const viewW = viewport.clientWidth;
-      const viewH = viewport.clientHeight;
-      
-      // Compute pixel offsets
-      const targetX = (pos.x / 100) * 2000;
-      const targetY = (pos.y / 100) * 2000;
-      
-      const dx = viewW / 2 - targetX;
-      const dy = viewH / 2 - targetY;
-      
-      const mapInner = document.getElementById('mock-map-inner');
-      mapInner.style.transform = `translate(${dx}px, ${dy}px) scale(1.4)`;
-      mapInner.style.transition = 'transform 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
-
-      // Set active marker style
-      document.querySelectorAll('.mock-marker-wrapper').forEach(m => {
-        m.classList.remove('mock-active');
-        if (m.dataset.name === target.name) {
-          m.classList.add('mock-active');
-        }
-      });
-    }
-
-    // Filter targets in sidebar list
-    function filterTargets() {
-      const query = document.getElementById('target-search').value.toLowerCase();
-      document.querySelectorAll('.target-card').forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        if (name.includes(query)) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
-
-    // Simulated Dispatch Unit Actions
-    function dispatchUnit(event, name) {
-      event.stopPropagation(); // prevent card focusing on click
-      
-      const target = targets.find(t => t.name === name);
-      const btn = document.getElementById(`dispatch-btn-${name.replace(/\s+/g, '-')}`);
-      
-      // Prevent double dispatch
-      if (btn.classList.contains('bg-cyan-500')) return;
-
-      // Update button visual state to dispatched
-      btn.innerText = "PATROL EN ROUTE";
-      btn.className = "flex-grow bg-cyan-500 text-slate-950 rounded-lg py-1 px-2 text-[10px] font-bold flex items-center justify-center gap-1 transition-all shadow-[0_0_8px_#06b6d4]";
-
-      // Target marker updates to active dispatch state
-      const pillarId = `pillar-${name.replace(/\s+/g, '-')}`;
-      const pillarElem = document.getElementById(pillarId);
-      if (pillarElem) {
-        pillarElem.classList.add('dispatched-pillar');
-      }
-
-      // Live log notifications
-      const patrolUnit = `PATROL_${Math.floor(Math.random() * 90 + 10)}`;
-      addLog("DISPATCH", `Deploying unit ${patrolUnit} to ${name}..`);
-      
-      setTimeout(() => {
-        addLog("TELEMETRY", `${patrolUnit} ETA calculated: 4 mins (Dispatch priority window matches peak).`);
-      }, 800);
-
-      setTimeout(() => {
-        addLog("DISPATCH", `${patrolUnit} has arrived at ${name}. Patrolling chronic hotspot.`);
-      }, 5000);
-    }
-
-    // Add entry to telemetry logs div
-    function addLog(tag, msg) {
-      const logs = document.getElementById('dispatch-logs');
-      const now = new Date();
-      const timeStr = now.toTimeString().split(' ')[0];
-      
-      const entry = document.createElement('div');
-      let colorClass = "text-cyan-400";
-      if (tag === "DISPATCH") colorClass = "text-cyan-300 font-semibold";
-      if (tag === "M6") colorClass = "text-amber-400 font-semibold";
-      if (tag === "SYSTEM" || tag === "SYS_MOCK") colorClass = "text-slate-400";
-      if (tag === "TELEMETRY") colorClass = "text-emerald-400";
-
-      entry.innerHTML = `<span class="text-slate-500">${timeStr}</span> [<span class="${colorClass}">${tag}</span>] ${msg}`;
-      logs.appendChild(entry);
-      logs.scrollTop = logs.scrollHeight;
-    }
-
-    // Tooltip Handling
-    function showTooltip(event, name, eps, type, qa, elem) {
-      const tooltip = document.getElementById('tooltip');
-      document.getElementById('tooltip-name').innerText = name;
-      document.getElementById('tooltip-eps').innerText = eps;
-      
-      const typeBadge = document.getElementById('tooltip-type-badge');
-      const catSpan = document.getElementById('tooltip-cat');
-      if (type === 'HH') {
-        typeBadge.innerText = 'HH';
-        typeBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400 border border-red-500/30';
-        catSpan.innerText = 'Structural Bottleneck';
-      } else {
-        typeBadge.innerText = 'LH';
-        typeBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-400 border border-orange-500/30';
-        catSpan.innerText = 'Cascade Risk';
-      }
-
-      const qaSpan = document.getElementById('tooltip-qa');
-      if (qa > 0) {
-        qaSpan.innerText = `${qa} Records Pending`;
-        qaSpan.className = 'font-mono font-semibold text-amber-400 animate-pulse';
-      } else {
-        qaSpan.innerText = '0 (Auto-Approved)';
-        qaSpan.className = 'font-mono font-semibold text-emerald-400';
-      }
-
-      tooltip.classList.remove('hidden');
-      updateTooltipPosition(event);
-    }
-
-    function updateTooltipPosition(event) {
-      const tooltip = document.getElementById('tooltip');
-      const x = event.clientX + 15;
-      const y = event.clientY - 40;
-      tooltip.style.left = `${x}px`;
-      tooltip.style.top = `${y}px`;
-    }
-
-    function hideTooltip() {
-      const tooltip = document.getElementById('tooltip');
-      tooltip.classList.add('hidden');
-    }
-
-    // Camera Controls functions
-    function resetCamera() {
-      mapPitch = 60;
-      if (map) {
-        map.flyTo({
-          center: { lat: 12.9716, lng: 77.5946 },
-          zoom: 13,
-          pitch: mapPitch,
-          bearing: 20,
-          essential: true
-        });
-      } else {
-        const mapInner = document.getElementById('mock-map-inner');
-        mapInner.style.transform = 'translate(0px, 0px) scale(1.1)';
-        focusTarget(targets[0].name);
-      }
-      addLog("MAP", "Camera reset to standard Bengaluru coordinates.");
-    }
-
-    function toggleRotation() {
-      isRotating = !isRotating;
-      const btn = document.getElementById('rotate-btn');
-      
-      if (isRotating) {
-        btn.classList.add('bg-cyan-500/30', 'text-cyan-400');
-        btn.classList.remove('text-slate-400');
+        // Lightweight SVG/Canvas marker (Zero lag)
+        const marker = L.circleMarker([hs.lat, hs.lon], {
+          radius: radius,
+          color: '#0f172a',
+          weight: isCritical ? 2 : 1,
+          fillColor: col,
+          fillOpacity: isCritical ? 1 : 0.7
+        }).addTo(map);
         
-        if (map) {
-          let bearing = map.getBearing();
-          rotationInterval = setInterval(() => {
-            bearing = (bearing + 0.5) % 360;
-            map.setBearing(bearing);
-          }, 50);
-        } else {
-          // Fallback mock map slow orbit effect
-          let deg = 0;
-          rotationInterval = setInterval(() => {
-            deg = (deg + 0.5) % 360;
-            document.getElementById('mock-map-inner').style.transform += ` rotateZ(${0.2}deg)`;
-          }, 50);
-        }
-        addLog("MAP", "Auto-orbit camera mode enabled.");
+        // Popup
+        let resources = 'Standard patrol';
+        if (hs.tier === 'critical') resources = 'Tow truck + 2 constables';
+        else if (hs.tier === 'high') resources = 'Wheel clamps + 2 constables';
+        else if (hs.tier === 'medium') resources = '1 constable';
+
+        const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
+
+        marker.bindPopup(`
+          <div class="p-1 min-w-[200px]">
+            <div class="text-[10px] uppercase text-slate-500 font-bold mb-1 tracking-widest">${hs.tier} PRIORITY</div>
+            <div class="font-bold text-slate-800 text-sm mb-1">${hs.station || 'Unknown Station'}</div>
+            
+            <!-- Road Context -->
+            <div class="bg-blue-50 border border-blue-100 rounded px-2 py-1 mb-2 flex justify-between items-center text-[10px]">
+              <span class="text-blue-800 font-bold"><i class="fa-solid fa-road mr-1 text-blue-600"></i>${hs.roadType || 'Local Street'}</span>
+              <span class="text-blue-600 font-bold bg-white px-1.5 rounded shadow-sm">${(hs.impactMultiplier || 1.0).toFixed(1)}x Impact</span>
+            </div>
+
+            <div class="text-xs text-red-600 font-semibold mb-2 flex items-center gap-1">
+              <i class="fa-solid fa-triangle-exclamation"></i> ${rawViolation}
+            </div>
+            <div class="flex gap-4 text-xs mb-3 border-t border-b border-slate-200 py-2">
+              <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${hs.count}</span></div>
+              <div class="ml-auto"><span class="text-slate-500">Priority Score:</span> <span class="font-bold text-red-600 text-sm ml-1">${hs.priorityScore || hs.totalPCS || 0}</span><span class="text-slate-400 text-[10px]">/100</span></div>
+            </div>
+            <div class="text-[11px] bg-slate-100 p-2 rounded border border-slate-200 text-slate-700 font-medium flex gap-2 items-start">
+              <i class="fa-solid fa-users-gear text-blue-500 mt-0.5"></i> <span>${resources}</span>
+            </div>
+          </div>
+        `);
+
+        mapMarkers.push(marker);
+      });
+    }
+
+    // ── SEARCH LOGIC ───────────────────────────────────────────────────────────
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const clearSearch = document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      if(q.length > 0) {
+        clearSearch.classList.remove('hidden');
+        const matches = AREAS.filter(a => a.name.toLowerCase().includes(q) || a.zone.toLowerCase().includes(q));
+        renderSearchResults(matches);
       } else {
-        btn.classList.remove('bg-cyan-500/30', 'text-cyan-400');
-        btn.classList.add('text-slate-400');
-        clearInterval(rotationInterval);
-        
-        if (map) {
-          map.setBearing(20);
-        } else {
-          // Reset mock rotation
-          focusTarget(activeTarget ? activeTarget.name : targets[0].name);
-        }
-        addLog("MAP", "Auto-orbit camera mode disabled.");
+        clearSearch.classList.add('hidden');
+        searchResults.classList.add('hidden');
       }
-    }
+    });
 
-    function toggleTilt() {
-      mapPitch = mapPitch === 60 ? 30 : 60;
-      if (map) {
-        map.setPitch(mapPitch);
-        addLog("MAP", `Map camera pitch tilted to ${mapPitch} degrees.`);
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      clearSearch.classList.add('hidden');
+      searchResults.classList.add('hidden');
+      searchInput.focus();
+    });
+
+    function renderSearchResults(results) {
+      if(results.length === 0) {
+        searchResults.innerHTML = `<div class="px-4 py-3 text-slate-400 text-sm">No operational areas found.</div>`;
       } else {
-        const mapInner = document.getElementById('mock-map-inner');
-        if (mapPitch === 30) {
-          mapInner.style.transform += ' rotateX(15deg)';
-        } else {
-          focusTarget(activeTarget ? activeTarget.name : targets[0].name);
-        }
-        addLog("MAP", `Mock Grid tilt simulated.`);
+        searchResults.innerHTML = results.map(r => `
+          <div class="px-4 py-3 hover:bg-slate-700/50 cursor-pointer border-b border-slate-700/30 transition-colors"
+               onclick="flyToArea(${r.lat}, ${r.lon}, '${r.name}')">
+            <div class="font-semibold text-slate-200">${r.name}</div>
+            <div class="text-xs text-blue-400 uppercase tracking-wider">${r.zone} Zone</div>
+          </div>
+        `).join('');
       }
+      searchResults.classList.remove('hidden');
     }
 
-    // Triage Modal Operations
-    function openTriageModal() {
-      const modal = document.getElementById('triage-modal');
-      modal.classList.remove('hidden');
-      updateTriageModalDetails();
+    function flyToArea(lat, lon, name) {
+      map.flyTo([lat, lon], 15, { duration: 1.5 });
+      searchInput.value = name;
+      searchResults.classList.add('hidden');
+      clearSearch.classList.remove('hidden');
     }
 
-    function closeTriageModal() {
-      const modal = document.getElementById('triage-modal');
-      modal.classList.add('hidden');
-    }
+    // ── RADAR LOGIC ────────────────────────────────────────────────────────────
+    function updateRadar() {
+      if(!HOTSPOTS.length) return;
 
-    function populateModalDropdown() {
-      const select = document.getElementById('modal-select-node');
-      select.innerHTML = '';
-      targets.forEach(t => {
-        if (t.qa > 0) {
-          const opt = document.createElement('option');
-          opt.value = t.name;
-          opt.innerText = `${t.name} (${t.qa} pending)`;
-          select.appendChild(opt);
+      const bounds = map.getBounds();
+      const center = map.getCenter();
+      
+      let inView = 0;
+      const quads = { NW:0, NE:0, SW:0, SE:0 };
+      let highestRisk = { val: 0, dir: '', resources: 'Standard patrol', eps: 0 };
+
+      HOTSPOTS.forEach(hs => {
+        if(bounds.contains([hs.lat, hs.lon])) {
+          inView++;
+          let latDir = hs.lat > center.lat ? 'N' : 'S';
+          let lonDir = hs.lon > center.lng ? 'E' : 'W';
+          let dir = latDir + lonDir;
+          
+          let score = hs.totalPCS || 10;
+          quads[dir] += score; // weight by EPS
+
+          if(score > highestRisk.eps) {
+            highestRisk.eps = score;
+            if (hs.tier === 'critical') highestRisk.resources = 'Tow trucks + Heavy deployment';
+            else if (hs.tier === 'high') highestRisk.resources = 'Wheel clamps unit';
+            else if (hs.tier === 'medium') highestRisk.resources = 'Standard patrol';
+          }
         }
       });
-      
-      // If no pending, show standard placeholder
-      if (select.children.length === 0) {
-        const opt = document.createElement('option');
-        opt.value = '';
-        opt.innerText = "No pending triage alerts";
-        select.appendChild(opt);
-        document.getElementById('resolve-qa-btn').disabled = true;
-        document.getElementById('resolve-qa-btn').classList.add('opacity-50', 'cursor-not-allowed');
-      }
-    }
 
-    function updateTriageModalDetails() {
-      const select = document.getElementById('modal-select-node');
-      const name = select.value;
-      if (!name) {
-        document.getElementById('triage-stat-app').innerText = '-';
-        document.getElementById('triage-stat-rej').innerText = '-';
-        document.getElementById('triage-stat-phat').innerText = '-';
-        document.getElementById('triage-stat-pending').innerText = '0 records';
-        document.getElementById('triage-recommendation').innerText = 'No pending congestion records found.';
+      document.getElementById('radar-target-count').innerText = inView;
+
+      // Reset UI
+      ['NW','NE','SW','SE'].forEach(q => {
+        const el = document.getElementById(`quad-${q}`);
+        el.querySelector('.val').innerText = Math.round(quads[q]);
+        el.classList.remove('radar-active', 'text-red-400', 'text-orange-400');
+        el.querySelector('.val').classList.replace('text-red-400', 'text-slate-300');
+        el.querySelector('.val').classList.replace('text-orange-400', 'text-slate-300');
+      });
+
+      if(inView === 0) {
+        document.getElementById('senior-advice').innerHTML = `<span class="text-slate-400">Area is clear. Maintain standard patrols.</span>`;
         return;
       }
 
-      const target = targets.find(t => t.name === name);
-      
-      // Compute Bayesian score p_hat = (5 + A_o) / (7 + A_o + R_o)
-      const A_o = target.officer.approved;
-      const R_o = target.officer.rejected;
-      const p_hat = (5 + A_o) / (7 + A_o + R_o);
-
-      document.getElementById('triage-stat-app').innerText = A_o;
-      document.getElementById('triage-stat-rej').innerText = R_o;
-      document.getElementById('triage-stat-phat').innerText = p_hat.toFixed(4);
-      document.getElementById('triage-stat-pending').innerText = `${target.qa.toLocaleString()} records`;
-
-      // Determine recommendation text
-      let recommendation = "";
-      if (p_hat >= 0.85) {
-        recommendation = `High officer quality score (${p_hat.toFixed(2)}). Low corruption risk. Action: Auto-approve pending reports.`;
-      } else if (p_hat >= 0.5) {
-        recommendation = `Medium officer quality score (${p_hat.toFixed(2)}). Acceptable confidence. Action: Soft-weighted validation scaling.`;
-      } else {
-        recommendation = `Low officer quality score (${p_hat.toFixed(2)}) detected! Significant corruption risk. Action: Flag for manual investigation.`;
+      // Find highest quadrant
+      let dominantDir = 'NW';
+      let maxVal = -1;
+      for(let q in quads) {
+        if(quads[q] > maxVal) { maxVal = quads[q]; dominantDir = q; }
       }
-      document.getElementById('triage-recommendation').innerText = recommendation;
+
+      // Highlight dominant
+      const domEl = document.getElementById(`quad-${dominantDir}`);
+      domEl.classList.add('radar-active');
+      domEl.querySelector('.val').classList.replace('text-slate-300', 'text-red-400');
+
+      // Generate Advice
+      const dirNames = { NW:'North-West', NE:'North-East', SW:'South-West', SE:'South-East' };
+      const advices = [
+        `Concentrated violations detected in the <b>${dirNames[dominantDir]}</b> sector. Deploy <b>${highestRisk.resources}</b> to intercept.`,
+        `Heavy gridlock forming <b>${dirNames[dominantDir]}</b>. Immediate dispatch advised: <b>${highestRisk.resources}</b>.`,
+        `Direct units to the <b>${dirNames[dominantDir]}</b> quadrant. <b>${highestRisk.resources}</b> required for enforcement.`
+      ];
+      
+      const advice = advices[Math.floor(Math.random() * advices.length)];
+      document.getElementById('senior-advice').innerHTML = advice;
     }
 
-    function resolveQARecords() {
-      const select = document.getElementById('modal-select-node');
-      const name = select.value;
-      if (!name) return;
+    // ── RESOURCE OPTIMIZER (OPERATIONS RESEARCH) ───────────────────────────────
+    let optLayers = [];
 
-      const target = targets.find(t => t.name === name);
+    function runOptimizer() {
+      if(!HOTSPOTS.length) return;
       
-      // Resolve QA records to 0
-      const prevQA = target.qa;
-      target.qa = 0;
+      // Clear previous
+      optLayers.forEach(l => map.removeLayer(l));
+      optLayers = [];
+      const resultsDiv = document.getElementById('opt-results');
+      resultsDiv.innerHTML = '';
+      resultsDiv.classList.remove('hidden');
+
+      const numPatrols = parseInt(document.getElementById('opt-patrols').value) || 0;
+      const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
+
+      // Greedy Knapsack: Sort by EPS (totalPCS) descending
+      let available = [...HOTSPOTS].sort((a,b) => (b.totalPCS||0) - (a.totalPCS||0));
+      let deployments = [];
       
-      // Remove pulsing ring from marker in DOM
-      const ringId = `pulse-ring-${name.replace(/\s+/g, '-')}`;
-      const ringElem = document.getElementById(ringId);
-      if (ringElem) {
-        ringElem.remove();
+      // 1. Assign Tow Trucks (prioritize "Parking" violations)
+      for(let i=0; i<numTows; i++) {
+        let idx = available.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
+        if(idx === -1) idx = 0; // fallback to highest overall if no parking violations left
+        if(available.length === 0) break;
+        
+        const target = available.splice(idx, 1)[0];
+        deployments.push({ type: 'Tow Truck', unit: i+1, target, color: '#f97316', icon: 'fa-truck-pickup' });
       }
 
-      // Add log
-      addLog("M6", `Bayesian triage resolved ${prevQA} pending alerts at ${name}. Status: AUTO-APPROVED.`);
+      // 2. Assign Patrol Vehicles (overall highest remaining EPS)
+      for(let i=0; i<numPatrols; i++) {
+        if(available.length === 0) break;
+        const target = available.shift();
+        deployments.push({ type: 'Patrol', unit: i+1, target, color: '#3b82f6', icon: 'fa-car-side' });
+      }
 
-      // Update stats and close modal
-      renderSidebarList();
-      populateModalDropdown();
-      closeTriageModal();
+      // Render Panel Results
+      let totalImpact = deployments.reduce((sum, d) => sum + (d.target.priorityScore || d.target.totalPCS || 0), 0);
+      let html = `
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-xs text-slate-400 uppercase font-bold">Optimal Plan</span>
+          <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-bold border border-green-500/30">Score: ${totalImpact}</span>
+        </div>
+      `;
+      
+      const hq = [12.9716, 77.5946]; // Default HQ center (Bengaluru)
+      
+      deployments.forEach(d => {
+        html += `
+          <div class="bg-slate-800 border border-slate-700 p-2 rounded flex flex-col gap-1">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-bold tracking-wide" style="color:${d.color}"><i class="fa-solid ${d.icon}"></i> ${d.type} ${d.unit}</span>
+              <span class="text-[10px] text-green-400 font-bold">Priority ${d.target.priorityScore || d.target.totalPCS || 0}</span>
+            </div>
+            <div class="text-xs text-slate-300 truncate"><i class="fa-solid fa-location-dot text-slate-500 mr-1"></i> ${d.target.station || d.target.id}</div>
+          </div>
+        `;
 
-      // Update alerts count in header
-      const remainingAlerts = targets.filter(t => t.qa > 0).length;
-      document.getElementById('alerts-count').innerText = `${remainingAlerts} Alerts`;
-      if (remainingAlerts === 0) {
-        document.getElementById('alerts-count').className = "font-semibold text-emerald-400";
+        // Map Visuals: Draw line from HQ to target
+        const line = L.polyline([hq, [d.target.lat, d.target.lon]], {
+          color: d.color,
+          weight: 2,
+          opacity: 0.6,
+          dashArray: '5, 8'
+        }).addTo(map);
+        
+        // Highlight deployed marker
+        const pulseMarker = L.circleMarker([d.target.lat, d.target.lon], {
+          radius: 18,
+          color: '#22c55e',
+          fillColor: '#22c55e',
+          fillOpacity: 0.3,
+          weight: 2,
+          className: 'animate-ping'
+        }).addTo(map);
+        
+        optLayers.push(line, pulseMarker);
+      });
+
+      resultsDiv.innerHTML = html;
+      
+      // Fit map bounds to show HQ and all deployments
+      const group = new L.featureGroup(optLayers);
+      if(optLayers.length > 0) {
+        map.fitBounds(group.getBounds().pad(0.1));
       }
     }
+
+    // Init
+    initMap();
+    fetchHotspots();
+
   </script>
 </body>
 </html>
