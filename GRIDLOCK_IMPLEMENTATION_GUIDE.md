@@ -280,7 +280,7 @@ Total_F = Total_E × P_random
 ### 4.2 LOS Simulator (Feature C)
 ```python
 # HCM Level of Service from intersection delay
-β = 0.45  # seconds per PCU (calibrated from VISSIM Malaysia study)
+β = 0.45  # seconds per PCU (proxy derived from VISSIM Malaysia study)
 baseline_delay = 34.0  # seconds (LOS C baseline)
 pcu_load = sum(PCS_k for k in cell_violations_at_peak)
 adjusted_delay = baseline_delay + (β × pcu_load)

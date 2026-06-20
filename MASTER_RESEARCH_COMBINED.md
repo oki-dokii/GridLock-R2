@@ -230,7 +230,7 @@
 #### Paper 13 — Simulated Intersection, VISSIM microsimulation (Malaysia)
 - **Method:** VISSIM simulation comparing with-vs-without illegal parking at a busy signalized junction
 - **Key Result:** Banning illegal parking reduced average vehicle delay and travel time by **~20–21%**, upgrading intersection LOS from D to C. Illegal parking caused ~47 seconds of extra travel time.
-- **Use in prototype:** Quantitative basis for LOS degradation model. Our β=0.45 seconds/PCU is calibrated from this magnitude of effect.
+- **Use in prototype:** Quantitative basis for LOS degradation model. Our β=0.45 seconds/PCU is a theoretical proxy derived from this magnitude of effect.
 
 ---
 
@@ -725,7 +725,7 @@ Typical output: 7–30 vehicles actioned per session
 > violation data (PMC, 2020), while our enforcement prioritisation logic aligns with the bottleneck
 > targeting framework recommended by the US Federal Highway Administration (FHWA, 2016). The 
 > Persistence Index leverages the finding that static patrol-based enforcement structurally misses 
-> dynamic bottlenecks (PMC, 2024). Our commuter-minutes-lost metric is calibrated from a VISSIM 
+> dynamic bottlenecks (PMC, 2024). Our commuter-minutes-lost metric is a proxy based on theoretical delay models
 > microsimulation showing illegal parking causes ~20-21% excess delay at signalized intersections 
 > (Malaysia, 2024). The 30% cruising overhead penalty for commercial zones is derived from Shoup (2006). 
 > The M/D/1 queueing model for delay estimation is standard operations research. Our automated data 
