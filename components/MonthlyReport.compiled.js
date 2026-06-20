@@ -344,24 +344,134 @@ var TH = {
   textAlign: "left",
   fontWeight: 600,
   fontSize: 11,
-  color: "#64748b",
-  letterSpacing: "0.05em",
-  whiteSpace: "nowrap"
+  color: "#475569",
+  letterSpacing: "0.06em",
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
+  background: "#111827",
+  borderBottom: "1px solid rgba(255,255,255,0.08)"
 };
 var TD = {
   padding: "11px 14px",
-  color: "#374151",
-  verticalAlign: "top"
+  color: "#cbd5e1",
+  verticalAlign: "top",
+  borderBottom: "1px solid rgba(255,255,255,0.05)"
 };
 var SEL = {
-  border: "1px solid #e2e8f0",
+  border: "1px solid rgba(255,255,255,0.12)",
   borderRadius: 8,
   padding: "7px 12px",
   fontSize: 13,
-  color: "#374151",
-  background: "#fff",
-  cursor: "pointer"
+  color: "#e2e8f0",
+  background: "rgba(30,41,59,0.8)",
+  cursor: "pointer",
+  outline: "none"
 };
+
+function downloadPDF(d) {
+  var doc = new window.jspdf.jsPDF();
+  
+  var now = new Date();
+  var dd = String(now.getDate()).padStart(2, '0');
+  var mm = String(now.getMonth() + 1).padStart(2, '0');
+  var yyyy = now.getFullYear();
+  var dateStr = dd + '-' + mm + '-' + yyyy;
+
+  // LaTeX article style title page elements
+  var pageWidth = doc.internal.pageSize.getWidth();
+  
+  doc.setFont("times", "bold");
+  doc.setFontSize(20);
+  doc.text("GridLock Monthly Parking Enforcement Report", pageWidth / 2, 30, { align: 'center' });
+  
+  doc.setFontSize(14);
+  doc.setFont("times", "normal");
+  doc.text("Bengaluru Traffic Police", pageWidth / 2, 42, { align: 'center' });
+  
+  doc.setFontSize(12);
+  doc.text(dateStr, pageWidth / 2, 50, { align: 'center' });
+
+  // Abstract / Header Info
+  doc.setFontSize(11);
+  doc.text("Reporting Month: " + d.label, 14, 65);
+
+  // Section 1
+  doc.setFontSize(14);
+  doc.setFont("times", "bold");
+  doc.text("1   Summary Statistics", 14, 78);
+
+  doc.autoTable({
+    startY: 82,
+    theme: 'plain',
+    styles: { font: 'times', fontSize: 11, textColor: [0, 0, 0], halign: 'center' },
+    headStyles: { fontStyle: 'bold', fontSize: 11, lineWidth: { top: 1.0, bottom: 0.5 }, halign: 'center' },
+    footStyles: { lineWidth: { bottom: 1.0 } },
+    head: [['Metric', 'Value']],
+    body: [
+      ['Total Violations Logged', d.violations.toLocaleString("en-IN")],
+      ['Incomplete Records Removed', d.phatFilterCount.toLocaleString("en-IN")]
+    ],
+    foot: [['','']],
+    margin: { left: 40, right: 40 }
+  });
+
+  // Section 2
+  var startY2 = doc.lastAutoTable.finalY + 15;
+  doc.setFontSize(14);
+  doc.setFont("times", "bold");
+  doc.text("2   Revenue Breakdown", 14, startY2);
+
+  doc.autoTable({
+    startY: startY2 + 5,
+    theme: 'plain',
+    styles: { font: 'times', fontSize: 11, textColor: [0, 0, 0] },
+    headStyles: { fontStyle: 'bold', fontSize: 11, lineWidth: { top: 1.0, bottom: 0.5 } },
+    footStyles: { lineWidth: { bottom: 1.0 } },
+    head: [['Vehicle Type', 'Ticket Count', 'Fine Rate', 'Estimated Revenue']],
+    body: [
+      ['Two-Wheelers', d.twoWheelerCount.toLocaleString("en-IN"), '\u20B91,000', d.twoWheelerRevenue],
+      ['Cars & Autos', d.carAutoCount.toLocaleString("en-IN"), '\u20B91,500', d.carAutoRevenue],
+      ['Heavy Vehicles', d.heavyCount.toLocaleString("en-IN"), '\u20B91,500', d.heavyRevenue]
+    ],
+    foot: [
+      ['Total Collection Estimate', '', '', d.grossRevenue]
+    ],
+    margin: { left: 20, right: 20 }
+  });
+
+  var hotspotRows = CHRONIC_CELLS.map(function(cell) {
+    var info = areaInfo(cell.lat, cell.lon);
+    return [
+      cell.rank, 
+      info.name, 
+      info.station, 
+      cell.lat.toFixed(3) + ", " + cell.lon.toFixed(3), 
+      cell.congestionScore.toLocaleString("en-IN", {maximumFractionDigits: 1}), 
+      cell.totalTickets.toLocaleString("en-IN"), 
+      cell.avgSeverity.toFixed(3), 
+      cell.priorityScore
+    ];
+  });
+
+  // Section 3
+  doc.addPage();
+  doc.setFontSize(14);
+  doc.setFont("times", "bold");
+  doc.text("3   Appendix: Top 10 Chronic Hotspots", 14, 25);
+
+  doc.autoTable({
+    startY: 30,
+    theme: 'plain',
+    styles: { font: 'times', fontSize: 9.5, textColor: [0, 0, 0], cellPadding: 2.5 },
+    headStyles: { fontStyle: 'bold', fontSize: 10, lineWidth: { top: 1.0, bottom: 0.5 } },
+    footStyles: { lineWidth: { bottom: 1.0 } },
+    head: [['Rank', 'Location', 'Station', 'Coordinates', 'Cong. Score', 'Tickets', 'Severity', 'Priority']],
+    body: hotspotRows,
+    foot: [['','','','','','','','']]
+  });
+
+  doc.save("gridlock-report-" + d.key + ".pdf");
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STATUS / CONFIDENCE BADGES
@@ -458,8 +568,9 @@ function RecordsDrawer(_ref8) {
     style: {
       position: "fixed",
       inset: 0,
-      background: "rgba(0,0,0,0.4)",
-      zIndex: 200
+      background: "rgba(0,0,0,0.65)",
+      zIndex: 200,
+      backdropFilter: "blur(4px)"
     }
   }), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -468,17 +579,18 @@ function RecordsDrawer(_ref8) {
       right: 0,
       bottom: 0,
       width: "min(860px, 100vw)",
-      background: "#fff",
+      background: "#0f172a",
+      border: "1px solid rgba(255,255,255,0.1)",
       zIndex: 201,
       display: "flex",
       flexDirection: "column",
-      boxShadow: "-6px 0 40px rgba(0,0,0,0.15)",
+      boxShadow: "-8px 0 48px rgba(0,0,0,0.6)",
       fontFamily: "'Inter','Segoe UI',system-ui,sans-serif"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "20px 24px 16px",
-      borderBottom: "1px solid #e2e8f0",
+      borderBottom: "1px solid rgba(255,255,255,0.08)",
       flexShrink: 0
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -493,26 +605,27 @@ function RecordsDrawer(_ref8) {
       margin: "0 0 4px",
       fontSize: 18,
       fontWeight: 700,
-      color: "#0f172a"
+      color: "#f1f5f9"
     }
   }, title), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: 0,
       fontSize: 13,
-      color: "#64748b",
+      color: "#94a3b8",
       lineHeight: 1.5
     }
   }, subtitle), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: "6px 0 0",
       fontSize: 11,
-      color: "#94a3b8"
+      color: "#475569"
     }
   }, monthLabel, " \xB7 Showing ", filtered.length, " of ", all.length, " records", " ", "\xB7", " ", /*#__PURE__*/React.createElement("em", null, "Sample data \u2014 replace with live API response when backend is connected"))), /*#__PURE__*/React.createElement("button", {
     onClick: onClose,
     style: _objectSpread(_objectSpread({}, SEL), {}, {
       flexShrink: 0,
-      color: "#374151"
+      color: "#e2e8f0",
+      fontWeight: 600
     })
   }, "\u2715  Close"))), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -520,8 +633,8 @@ function RecordsDrawer(_ref8) {
       gap: 8,
       flexWrap: "wrap",
       padding: "12px 20px",
-      background: "#f8fafc",
-      borderBottom: "1px solid #e2e8f0",
+      background: "rgba(0,0,0,0.3)",
+      borderBottom: "1px solid rgba(255,255,255,0.06)",
       flexShrink: 0
     }
   }, /*#__PURE__*/React.createElement("select", {
@@ -591,7 +704,7 @@ function RecordsDrawer(_ref8) {
     },
     style: _objectSpread(_objectSpread({}, SEL), {}, {
       marginLeft: "auto",
-      color: "#64748b"
+      color: "#94a3b8"
     })
   }, "Reset")), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -602,7 +715,7 @@ function RecordsDrawer(_ref8) {
     style: {
       padding: 60,
       textAlign: "center",
-      color: "#94a3b8",
+      color: "#475569",
       fontSize: 14
     }
   }, "No records match the selected filters.") : /*#__PURE__*/React.createElement("table", {
@@ -613,8 +726,8 @@ function RecordsDrawer(_ref8) {
     }
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
     style: {
-      background: "#f8fafc",
-      borderBottom: "2px solid #e2e8f0",
+      background: "#111827",
+      borderBottom: "1px solid rgba(255,255,255,0.08)",
       position: "sticky",
       top: 0
     }
@@ -638,8 +751,7 @@ function RecordsDrawer(_ref8) {
     return /*#__PURE__*/React.createElement("tr", {
       key: r.id,
       style: {
-        background: i % 2 === 0 ? "#fff" : "#fafbfc",
-        borderBottom: "1px solid #f1f5f9"
+        background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)"
       }
     }, /*#__PURE__*/React.createElement("td", {
       style: TD
@@ -654,7 +766,7 @@ function RecordsDrawer(_ref8) {
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontWeight: 500,
-        color: "#0f172a"
+        color: "#f1f5f9"
       }
     }, r.date), /*#__PURE__*/React.createElement("div", {
       style: {
@@ -668,7 +780,7 @@ function RecordsDrawer(_ref8) {
       })
     }, /*#__PURE__*/React.createElement("div", {
       style: {
-        color: "#0f172a",
+        color: "#e2e8f0",
         fontWeight: 500,
         lineHeight: 1.3
       }
@@ -703,14 +815,14 @@ function RecordsDrawer(_ref8) {
       justifyContent: "space-between",
       alignItems: "center",
       padding: "12px 24px",
-      borderTop: "1px solid #e2e8f0",
+      borderTop: "1px solid rgba(255,255,255,0.08)",
       flexShrink: 0,
-      background: "#fafbfc"
+      background: "rgba(0,0,0,0.3)"
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 13,
-      color: "#64748b"
+      color: "#475569"
     }
   }, "Page ", page + 1, " of ", totalPages), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -725,8 +837,9 @@ function RecordsDrawer(_ref8) {
       });
     },
     style: _objectSpread(_objectSpread({}, SEL), {}, {
-      color: page === 0 ? "#cbd5e1" : "#374151",
-      cursor: page === 0 ? "not-allowed" : "pointer"
+      color: page === 0 ? "#334155" : "#e2e8f0",
+      cursor: page === 0 ? "not-allowed" : "pointer",
+      opacity: page === 0 ? 0.5 : 1
     })
   }, "\u2190 Prev"), /*#__PURE__*/React.createElement("button", {
     disabled: page >= totalPages - 1,
@@ -736,8 +849,9 @@ function RecordsDrawer(_ref8) {
       });
     },
     style: _objectSpread(_objectSpread({}, SEL), {}, {
-      color: page >= totalPages - 1 ? "#cbd5e1" : "#374151",
-      cursor: page >= totalPages - 1 ? "not-allowed" : "pointer"
+      color: page >= totalPages - 1 ? "#334155" : "#e2e8f0",
+      cursor: page >= totalPages - 1 ? "not-allowed" : "pointer",
+      opacity: page >= totalPages - 1 ? 0.5 : 1
     })
   }, "Next \u2192")))));
 }
@@ -764,14 +878,15 @@ function StatCard(_ref9) {
       return setHov(false);
     },
     style: {
-      background: muted ? "#f8f9fa" : "#fff",
-      border: "1px solid ".concat(hov ? "#2563eb" : "#e2e8f0"),
-      borderRadius: 10,
+      background: muted ? "rgba(30,41,59,0.4)" : "rgba(15,23,42,0.7)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid ".concat(hov ? "rgba(59,130,246,0.6)" : "rgba(255,255,255,0.08)"),
+      borderRadius: 12,
       padding: "20px 24px",
       flex: 1,
       minWidth: 0,
       cursor: muted ? "default" : "pointer",
-      boxShadow: hov ? "0 0 0 2px #bfdbfe" : "none",
+      boxShadow: hov ? "0 0 0 2px rgba(59,130,246,0.3), 0 8px 32px rgba(0,0,0,0.4)" : "0 4px 20px rgba(0,0,0,0.3)",
       transition: "border-color 0.15s, box-shadow 0.15s"
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -783,11 +898,11 @@ function StatCard(_ref9) {
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      fontSize: 11,
-      fontWeight: 600,
+      fontSize: 10,
+      fontWeight: 700,
       letterSpacing: "0.08em",
       textTransform: "uppercase",
-      color: muted ? "#94a3b8" : "#2563eb"
+      color: muted ? "#334155" : "#3b82f6"
     }
   }, label), !muted && /*#__PURE__*/React.createElement("span", {
     style: {
@@ -799,7 +914,7 @@ function StatCard(_ref9) {
     style: {
       fontSize: muted ? 28 : 36,
       fontWeight: 700,
-      color: muted ? "#94a3b8" : "#0f172a",
+      color: muted ? "#334155" : "#f1f5f9",
       lineHeight: 1.1,
       marginBottom: 8,
       wordBreak: "break-word"
@@ -828,7 +943,7 @@ function PriorityBar(_ref0) {
     style: {
       width: 72,
       height: 6,
-      background: "#e2e8f0",
+      background: "#1e293b",
       borderRadius: 3,
       overflow: "hidden"
     }
@@ -842,8 +957,8 @@ function PriorityBar(_ref0) {
   })), /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 13,
-      fontWeight: 600,
-      color: "#0f172a",
+      fontWeight: 700,
+      color: "#e2e8f0",
       minWidth: 28
     }
   }, score));
@@ -863,14 +978,14 @@ function RevenueRow(_ref1) {
       justifyContent: "space-between",
       alignItems: "center",
       padding: isTotal ? "16px 20px" : "14px 20px",
-      background: isTotal ? "#f8faff" : "#fff",
-      borderTop: isTotal ? "2px solid #e2e8f0" : "1px solid #f1f5f9"
+      background: isTotal ? "rgba(59,130,246,0.08)" : "transparent",
+      borderTop: isTotal ? "1px solid rgba(59,130,246,0.2)" : "1px solid rgba(255,255,255,0.05)"
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: isTotal ? 15 : 14,
       fontWeight: isTotal ? 700 : 400,
-      color: "#0f172a"
+      color: "#e2e8f0"
     }
   }, label), sublabel && /*#__PURE__*/React.createElement("div", {
     style: {
@@ -882,7 +997,7 @@ function RevenueRow(_ref1) {
     style: {
       fontSize: isTotal ? 20 : 15,
       fontWeight: 700,
-      color: isTotal ? "#0f172a" : "#374151"
+      color: isTotal ? "#60a5fa" : "#cbd5e1"
     }
   }, value));
 }
@@ -911,9 +1026,9 @@ function MonthlyReport() {
   return /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: "'Inter','Segoe UI',system-ui,sans-serif",
-      background: "#f1f5f9",
+      background: "#0f172a",
       minHeight: "100vh",
-      padding: "32px 24px"
+      padding: "28px 20px"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -922,11 +1037,12 @@ function MonthlyReport() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#fff",
-      border: "1px solid #e2e8f0",
-      borderRadius: 12,
-      padding: "24px 32px",
-      marginBottom: 20
+      background: "rgba(15,23,42,0.7)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 14,
+      padding: "24px 28px",
+      marginBottom: 16
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -938,18 +1054,18 @@ function MonthlyReport() {
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 11,
-      fontWeight: 600,
-      letterSpacing: "0.1em",
+      fontSize: 10,
+      fontWeight: 700,
+      letterSpacing: "0.12em",
       textTransform: "uppercase",
-      color: "#64748b",
+      color: "#475569",
       marginBottom: 6
     }
   }, "Official Summary"), /*#__PURE__*/React.createElement("h1", {
     style: {
-      fontSize: 26,
+      fontSize: 24,
       fontWeight: 700,
-      color: "#0f172a",
+      color: "#f1f5f9",
       margin: 0,
       lineHeight: 1.2
     }
@@ -968,16 +1084,17 @@ function MonthlyReport() {
       setDrawer(null);
     },
     style: {
-      border: "1px solid #e2e8f0",
+      border: "1px solid rgba(255,255,255,0.12)",
       borderRadius: 20,
-      padding: "6px 32px 6px 16px",
+      padding: "7px 32px 7px 16px",
       fontSize: 14,
-      color: "#374151",
+      color: "#e2e8f0",
       fontWeight: 500,
-      background: "#fff",
+      background: "rgba(30,41,59,0.8)",
       cursor: "pointer",
       appearance: "none",
-      backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
+      outline: "none",
+      backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "right 10px center"
     }
@@ -987,17 +1104,20 @@ function MonthlyReport() {
       value: m.key
     }, m.label);
   })), /*#__PURE__*/React.createElement("button", {
+    onClick: function() { downloadPDF(d); },
     style: {
-      background: "#0f172a",
+      background: "linear-gradient(135deg,#1d4ed8,#2563eb)",
       color: "#fff",
-      border: "none",
-      borderRadius: 8,
-      padding: "8px 16px",
-      fontSize: 14,
-      fontWeight: 500,
-      cursor: "pointer"
+      border: "1px solid rgba(59,130,246,0.4)",
+      borderRadius: 10,
+      padding: "8px 18px",
+      fontSize: 13,
+      fontWeight: 600,
+      cursor: "pointer",
+      boxShadow: "0 2px 12px rgba(37,99,235,0.3)",
+      letterSpacing: "0.02em"
     }
-  }, "Download Report")))), /*#__PURE__*/React.createElement("div", {
+  }, "\u2b07 Download PDF Report")))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       gap: 16,
@@ -1025,8 +1145,8 @@ function MonthlyReport() {
     muted: true
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#fff",
-      border: "1px solid #e2e8f0",
+      background: "rgba(15,23,42,0.7)",
+      border: "1px solid rgba(255,255,255,0.08)",
       borderRadius: 12,
       marginBottom: 20,
       overflow: "hidden"
@@ -1044,8 +1164,8 @@ function MonthlyReport() {
     }
   }, "Locations That Are Always a Problem"), /*#__PURE__*/React.createElement("p", {
     style: {
-      fontSize: 14,
-      color: "#475569",
+      fontSize: 13,
+      color: "#64748b",
       margin: 0,
       lineHeight: 1.6
     }
@@ -1061,9 +1181,9 @@ function MonthlyReport() {
     }
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
     style: {
-      background: "#f8fafc",
-      borderTop: "1px solid #e2e8f0",
-      borderBottom: "1px solid #e2e8f0"
+      background: "#111827",
+      borderTop: "1px solid rgba(255,255,255,0.08)",
+      borderBottom: "1px solid rgba(255,255,255,0.08)"
     }
   }, ["#", "Location", "Coordinates", "Raw Score", "Total Tickets", "Avg Severity", /*#__PURE__*/React.createElement("span", {
     title: "Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric.",
@@ -1083,21 +1203,20 @@ function MonthlyReport() {
     return /*#__PURE__*/React.createElement("tr", {
       key: cell.rank,
       style: {
-        background: i % 2 === 0 ? "#fff" : "#fafbfc",
-        borderBottom: "1px solid #f1f5f9"
+        background: i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.02)"
       }
     }, /*#__PURE__*/React.createElement("td", {
       style: _objectSpread(_objectSpread({}, TD), {}, {
         textAlign: "center",
         fontWeight: 700,
-        color: "#0f172a"
+        color: "#f1f5f9"
       })
     }, cell.rank), /*#__PURE__*/React.createElement("td", {
       style: TD
     }, /*#__PURE__*/React.createElement("div", {
       style: {
         fontWeight: 600,
-        color: "#0f172a",
+        color: "#e2e8f0",
         lineHeight: 1.3
       }
     }, info.name), /*#__PURE__*/React.createElement("div", {
@@ -1117,7 +1236,7 @@ function MonthlyReport() {
     }, cell.lat.toFixed(3), ", ", cell.lon.toFixed(3))), /*#__PURE__*/React.createElement("td", {
       style: _objectSpread(_objectSpread({}, TD), {}, {
         fontWeight: 600,
-        color: "#0f172a"
+        color: "#f1f5f9"
       })
     }, cell.congestionScore.toLocaleString("en-IN", {
       maximumFractionDigits: 1
@@ -1132,47 +1251,49 @@ function MonthlyReport() {
     })));
   })))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "12px 28px",
-      borderTop: "1px solid #f1f5f9"
+      padding: "10px 24px 14px",
+      borderTop: "1px solid rgba(255,255,255,0.05)"
     }
   }, /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 12,
-      color: "#64748b",
+      color: "#334155",
       margin: 0,
       fontStyle: "italic"
     }
-  }, "Congestion Impact Score of 100 = highest urgency. Deploy here first. Congestion scores and ticket counts are cumulative over the full dataset \u2014 these locations are chronic across all months."))), /*#__PURE__*/React.createElement("div", {
+  }, "Congestion Impact Score of 100 = highest urgency. Deploy here first. Congestion scores and ticket counts are cumulative over the full dataset \u2014 these locations are chronic across all months."))),
+ /*#__PURE__*/React.createElement("div", {
     style: {
-      background: "#fff",
-      border: "1px solid #e2e8f0",
-      borderRadius: 12,
-      marginBottom: 20,
+      background: "rgba(15,23,42,0.7)",
+      backdropFilter: "blur(12px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 14,
+      marginBottom: 16,
       overflow: "hidden"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "24px 28px 16px"
+      padding: "22px 24px 14px"
     }
   }, /*#__PURE__*/React.createElement("h2", {
     style: {
-      fontSize: 18,
+      fontSize: 17,
       fontWeight: 700,
-      color: "#2563eb",
+      color: "#60a5fa",
       margin: "0 0 6px"
     }
   }, "How Much Can Be Collected This Month"), /*#__PURE__*/React.createElement("p", {
     style: {
-      fontSize: 14,
-      color: "#475569",
+      fontSize: 13,
+      color: "#64748b",
       margin: 0,
       lineHeight: 1.6
     }
   }, "Based on the number of tickets logged, here is the estimated fine amount if all violations are processed.")), /*#__PURE__*/React.createElement("div", {
     style: {
-      border: "1px solid #e2e8f0",
+      border: "1px solid rgba(255,255,255,0.06)",
       borderRadius: 8,
-      margin: "0 24px 20px",
+      margin: "0 20px 18px",
       overflow: "hidden"
     }
   }, /*#__PURE__*/React.createElement(RevenueRow, {
@@ -1193,22 +1314,22 @@ function MonthlyReport() {
     isTotal: true
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "0 28px 20px"
+      padding: "0 20px 18px"
     }
   }, /*#__PURE__*/React.createElement("p", {
     style: {
       fontSize: 12,
-      color: "#64748b",
+      color: "#334155",
       margin: 0,
       fontStyle: "italic"
     }
   }, "This is a maximum estimate. Actual collection depends on case approvals. Vehicle split estimated from full-dataset proportions (46.2% two-wheelers, 43.7% cars/autos, 10.1% heavy)."))), /*#__PURE__*/React.createElement("div", {
     style: {
       textAlign: "center",
-      padding: "16px",
-      fontSize: 13,
-      color: "#94a3b8",
-      borderTop: "1px solid #e2e8f0"
+      padding: "14px",
+      fontSize: 12,
+      color: "#334155",
+      borderTop: "1px solid rgba(255,255,255,0.05)"
     }
   }, "Bengaluru Traffic Police \xA0|\xA0 Powered by GridLock Enforcement Intelligence")), drawer && /*#__PURE__*/React.createElement(RecordsDrawer, {
     drawerType: drawer,
