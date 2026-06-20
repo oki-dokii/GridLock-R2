@@ -517,8 +517,10 @@ export default function MonthlyReport({ reportData } = {}) {
             <table style={{ width:"100%", borderCollapse:"collapse", fontSize:13 }}>
               <thead>
                 <tr style={{ background:"#f8fafc", borderTop:"1px solid #e2e8f0", borderBottom:"1px solid #e2e8f0" }}>
-                  {["#","Location","Coordinates","Congestion Score","Total Tickets","Avg Severity","Priority Score"].map(h => (
-                    <th key={h} style={{ ...TH, textAlign: h==="#" ? "center" : "left" }}>{h}</th>
+                  {["#", "Location", "Coordinates", "Raw Score", "Total Tickets", "Avg Severity", 
+                    <span title="Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric." style={{ cursor: "help", borderBottom: "1px dotted #64748b" }}>Congestion Impact Score (0-100) ⓘ</span>
+                  ].map((h, i) => (
+                    <th key={i} style={{ ...TH, textAlign: h==="#" ? "center" : "left" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -551,7 +553,7 @@ export default function MonthlyReport({ reportData } = {}) {
           </div>
           <div style={{ padding:"12px 28px", borderTop:"1px solid #f1f5f9" }}>
             <p style={{ fontSize:12, color:"#64748b", margin:0, fontStyle:"italic" }}>
-              Priority Score of 100 = highest urgency. Deploy here first.
+              Congestion Impact Score of 100 = highest urgency. Deploy here first.
               Congestion scores and ticket counts are cumulative over the full dataset — these locations are chronic across all months.
             </p>
           </div>

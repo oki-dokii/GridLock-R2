@@ -640,8 +640,10 @@
             </div>
             <div class="flex gap-4 text-xs mb-3 border-t border-b border-slate-200 py-2">
               <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${Math.round(displayCount)}${isFiltered ? ` <span class='text-indigo-500 text-[9px]'>(filtered)</span>` : ''}</span></div>
-              <div class="ml-auto"><span class="text-slate-500">Priority Score (PCU):</span> <span class="font-bold text-red-600 text-sm ml-1">${Math.round(hs.filteredPCU)}</span><span class="text-slate-400 text-[10px]"></span></div>
-            </div>
+              <div class="ml-auto group relative flex items-center cursor-help" title="Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric.">
+                <span class="text-slate-500 border-b border-dotted border-slate-500">Congestion Impact Score (0-100):</span> 
+                <span class="font-bold text-red-600 text-sm ml-1">${Math.round(hs.filteredPCU)}</span>
+              </div>            </div>
 
             <!-- XAI Explainability Layer -->
             <div class="mb-3 border border-slate-200 rounded overflow-hidden">
@@ -972,7 +974,7 @@ Given ONLY the following real computed data for a parking violation hotspot, wri
 
 Data:
 - Station/Zone: ${hs.station || 'Unknown'}
-- Enforcement Priority Score: ${hs.priorityScore}/100
+- <span title="Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric." class="cursor-help border-b border-dotted border-slate-500">Congestion Impact Score (0-100)</span>: ${hs.priorityScore}/100
 - Trend Classification: ${hs.trend}
 - Model Confidence: ${hs.confidence}
 - Total Violations (Nov 2023–Apr 2024): ${hs.count}

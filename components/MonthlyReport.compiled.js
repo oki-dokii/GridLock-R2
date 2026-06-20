@@ -1065,9 +1065,15 @@ function MonthlyReport() {
       borderTop: "1px solid #e2e8f0",
       borderBottom: "1px solid #e2e8f0"
     }
-  }, ["#", "Location", "Coordinates", "Congestion Score", "Total Tickets", "Avg Severity", "Priority Score"].map(function (h) {
+  }, ["#", "Location", "Coordinates", "Raw Score", "Total Tickets", "Avg Severity", /*#__PURE__*/React.createElement("span", {
+    title: "Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric.",
+    style: {
+      cursor: "help",
+      borderBottom: "1px dotted #64748b"
+    }
+  }, "Congestion Impact Score (0-100) \u24D8")].map(function (h, i) {
     return /*#__PURE__*/React.createElement("th", {
-      key: h,
+      key: i,
       style: _objectSpread(_objectSpread({}, TH), {}, {
         textAlign: h === "#" ? "center" : "left"
       })
@@ -1136,7 +1142,7 @@ function MonthlyReport() {
       margin: 0,
       fontStyle: "italic"
     }
-  }, "Priority Score of 100 = highest urgency. Deploy here first. Congestion scores and ticket counts are cumulative over the full dataset \u2014 these locations are chronic across all months."))), /*#__PURE__*/React.createElement("div", {
+  }, "Congestion Impact Score of 100 = highest urgency. Deploy here first. Congestion scores and ticket counts are cumulative over the full dataset \u2014 these locations are chronic across all months."))), /*#__PURE__*/React.createElement("div", {
     style: {
       background: "#fff",
       border: "1px solid #e2e8f0",

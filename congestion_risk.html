@@ -244,7 +244,9 @@
                     <th class="py-2.5 px-3 text-center">Rank</th>
                     <th class="py-2.5 px-3">Area Corridor</th>
                     <th class="py-2.5 px-3 text-right">Raw Violations</th>
-                    <th class="py-2.5 px-3 text-right">PCS Footprint</th>
+                    <th class="py-2.5 px-3 text-right">
+                      <span class="border-b border-dotted border-slate-500 cursor-help" title="Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric.">Impact Score</span>
+                    </th>
                     <th class="py-2.5 px-3 text-center">Risk Score (0-100)</th>
                     <th class="py-2.5 px-3 text-center">Status</th>
                   </tr>
@@ -361,7 +363,7 @@
             <span id="detail-trust" class="text-white">0.88</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-500">Estimated PCS:</span>
+            <span class="text-slate-500 border-b border-dotted border-slate-500 cursor-help" title="Composite of vehicle-type PCU, time-of-day weight, and violation-type severity. Literature-derived proxy, not a measured traffic metric.">Congestion Impact Score:</span>
             <span id="detail-pcs" class="text-amber-400 font-bold">0.00</span>
           </div>
         </div>
