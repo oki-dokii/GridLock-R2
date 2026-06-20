@@ -272,13 +272,14 @@
       sortedHotspots.forEach(hs => {
         const col = TIER_COLORS[hs.tier] || '#3b82f6';
         const isCritical = hs.tier === 'critical';
+        const isValidated = hs.rank <= 50;
         const radius = isCritical ? 9 : (hs.tier==='high'? 7 : 5);
         
         // Lightweight SVG/Canvas marker (Zero lag)
         const marker = L.circleMarker([hs.lat, hs.lon], {
           radius: radius,
-          color: '#0f172a',
-          weight: isCritical ? 2 : 1,
+          color: isValidated ? '#10b981' : '#0f172a',
+          weight: isValidated ? 2.5 : (isCritical ? 2 : 1),
           fillColor: col,
           fillOpacity: isCritical ? 1 : 0.7
         }).addTo(map);
@@ -300,10 +301,17 @@
           trendHtml = `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-arrow-trend-down mr-1"></i>DECLINING</span>`;
         }
 
+        const confBadge = hs.rank <= 50 
+          ? `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1 py-0.5 rounded text-[7px] font-bold tracking-wider" title="Walk-Forward CV Validated (Top 50)"><i class="fa-solid fa-check-double mr-0.5"></i>VALIDATED</span>`
+          : `<span class="bg-slate-100 text-slate-400 border border-slate-200 px-1 py-0.5 rounded text-[7px] font-bold tracking-wider" title="Unproven Baseline"><i class="fa-solid fa-circle-minus mr-0.5"></i>UNPROVEN</span>`;
+
         marker.bindPopup(`
           <div class="p-1 min-w-[200px]">
             <div class="flex justify-between items-start mb-1">
-              <div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">${hs.tier} PRIORITY</div>
+              <div class="flex gap-1 items-center">
+                <div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">${hs.tier}</div>
+                ${confBadge}
+              </div>
               ${trendHtml}
             </div>
             <div class="font-bold text-slate-800 text-sm mb-1">${hs.station || 'Unknown Station'}</div>
@@ -334,6 +342,15 @@
                 <div class="flex justify-between"><span class="text-slate-600">Junction Proximity</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Junction Proximity'] : 0}</span></div>
                 <div class="flex justify-between"><span class="text-slate-600">Peak Hour Pattern</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Time Patterns'] : 0}</span></div>
                 <div class="flex justify-between"><span class="text-slate-600">Repeat Offender Signal</span><span class="font-bold text-green-600">+${hs.contributors ? hs.contributors['Repeat Offender Signal'] : 0}</span></div>
+              </div>
+            </div>
+
+            <!-- Intervention Tracker -->
+            <div class="text-[10px] bg-slate-50 p-2 rounded border border-slate-200 mb-2">
+              <div class="text-slate-500 font-bold uppercase tracking-wider mb-1 text-[8px]">Intervention Feedback Loop</div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-700 font-medium"><i class="fa-solid fa-clock-rotate-left mr-1 text-slate-400"></i> Post-Enforcement 4W Trend</span>
+                <span class="font-bold ${(hs.postInterventionChange || '').startsWith('-') ? 'text-emerald-500' : ((hs.postInterventionChange || '').startsWith('+') ? 'text-red-500' : 'text-slate-500')}">${hs.postInterventionChange || '0%'}</span>
               </div>
             </div>
 

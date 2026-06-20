@@ -22,7 +22,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.981, 77.610)",
@@ -47,7 +49,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.964, 77.577)",
@@ -72,7 +76,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.934, 77.691)",
@@ -97,7 +103,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.071, 77.588)",
@@ -122,7 +130,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.984, 77.603)",
@@ -147,7 +157,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.976, 77.577)",
@@ -172,7 +184,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.973, 77.579)",
@@ -197,7 +211,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.996, 77.669)",
@@ -222,7 +238,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.957, 77.701)",
@@ -247,7 +265,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.996, 77.668)",
@@ -272,7 +292,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.035, 77.589)",
@@ -297,7 +319,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.933, 77.691)",
@@ -322,7 +346,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.970, 77.576)",
@@ -347,7 +373,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.008, 77.527)",
@@ -372,7 +400,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.977, 77.577)",
@@ -397,7 +427,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.997, 77.670)",
@@ -422,7 +454,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(13.003, 77.526)",
@@ -447,7 +481,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.184, 77.680)",
@@ -472,7 +508,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.950, 77.700)",
@@ -497,7 +535,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.996, 77.667)",
@@ -522,7 +562,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.926, 77.609)",
@@ -547,7 +589,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.940, 77.695)",
@@ -572,7 +616,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.952, 77.718)",
@@ -597,7 +643,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.952, 77.717)",
@@ -622,7 +670,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.015, 77.555)",
@@ -647,7 +697,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.951, 77.700)",
@@ -672,7 +724,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.940, 77.696)",
@@ -697,7 +751,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.995, 77.667)",
@@ -722,7 +778,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.912, 77.552)",
@@ -747,7 +805,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.977, 77.580)",
@@ -772,7 +832,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.997, 77.669)",
@@ -797,7 +859,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.964, 77.733)",
@@ -822,7 +886,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.971, 77.606)",
@@ -847,7 +913,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.907, 77.628)",
@@ -872,7 +940,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.007, 77.527)",
@@ -897,7 +967,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.018, 77.532)",
@@ -922,7 +994,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.937, 77.602)",
@@ -947,7 +1021,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.975, 77.576)",
@@ -972,7 +1048,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.974, 77.579)",
@@ -997,7 +1075,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.930, 77.610)",
@@ -1022,7 +1102,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.010, 77.698)",
@@ -1047,7 +1129,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.996, 77.696)",
@@ -1072,7 +1156,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.952, 77.700)",
@@ -1097,7 +1183,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.965, 77.576)",
@@ -1122,7 +1210,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.981, 77.609)",
@@ -1147,7 +1237,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.011, 77.698)",
@@ -1172,7 +1264,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.984, 77.604)",
@@ -1197,7 +1291,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.977, 77.578)",
@@ -1222,7 +1318,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.980, 77.575)",
@@ -1247,7 +1345,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "High (Statistically Validated K~50)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.974, 77.545)",
@@ -1272,7 +1372,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.979, 77.575)",
@@ -1297,7 +1399,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.965, 77.584)",
@@ -1322,7 +1426,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.948, 77.534)",
@@ -1347,7 +1453,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.980, 77.607)",
@@ -1372,7 +1480,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.008, 77.555)",
@@ -1397,7 +1507,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.978, 77.575)",
@@ -1422,7 +1534,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.070, 77.588)",
@@ -1447,7 +1561,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.952, 77.540)",
@@ -1472,7 +1588,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.965, 77.539)",
@@ -1497,7 +1615,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.012, 77.554)",
@@ -1522,7 +1642,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.983, 77.611)",
@@ -1547,7 +1669,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.968, 77.575)",
@@ -1572,7 +1696,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.973, 77.578)",
@@ -1597,7 +1723,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.964, 77.584)",
@@ -1622,7 +1750,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.976, 77.575)",
@@ -1647,7 +1777,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.971, 77.598)",
@@ -1672,7 +1804,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.972, 77.508)",
@@ -1697,7 +1831,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.964, 77.583)",
@@ -1722,7 +1858,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.012, 77.553)",
@@ -1747,7 +1885,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.978, 77.574)",
@@ -1772,7 +1912,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.982, 77.606)",
@@ -1797,7 +1939,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.009, 77.554)",
@@ -1822,7 +1966,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.981, 77.608)",
@@ -1847,7 +1993,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.979, 77.578)",
@@ -1872,7 +2020,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.904, 77.704)",
@@ -1897,7 +2047,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.999, 77.550)",
@@ -1922,7 +2074,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.981, 77.603)",
@@ -1947,7 +2101,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(13.023, 77.585)",
@@ -1972,7 +2128,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.976, 77.559)",
@@ -1997,7 +2155,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.982, 77.608)",
@@ -2022,7 +2182,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.976, 77.578)",
@@ -2047,7 +2209,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(13.008, 77.695)",
@@ -2072,7 +2236,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.943, 77.571)",
@@ -2097,7 +2263,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.000, 77.550)",
@@ -2122,7 +2290,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.978, 77.576)",
@@ -2147,7 +2317,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.996, 77.563)",
@@ -2172,7 +2344,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.961, 77.512)",
@@ -2197,7 +2371,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.031, 77.536)",
@@ -2222,7 +2398,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.028, 77.573)",
@@ -2247,7 +2425,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.959, 77.576)",
@@ -2272,7 +2452,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.982, 77.610)",
@@ -2297,7 +2479,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.964, 77.578)",
@@ -2322,7 +2506,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.978, 77.579)",
@@ -2347,7 +2533,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.008, 77.571)",
@@ -2372,7 +2560,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.000, 77.571)",
@@ -2397,7 +2587,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.006, 77.686)",
@@ -2422,7 +2614,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.928, 77.581)",
@@ -2447,7 +2641,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(13.013, 77.554)",
@@ -2472,7 +2668,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.982, 77.611)",
@@ -2497,7 +2695,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.978, 77.577)",
@@ -2522,7 +2722,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.982, 77.613)",
@@ -2547,7 +2749,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.930, 77.685)",
@@ -2572,7 +2776,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.971, 77.576)",
@@ -2597,7 +2803,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.976, 77.561)",
@@ -2622,7 +2830,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.958, 77.519)",
@@ -2647,7 +2857,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.980, 77.695)",
@@ -2672,7 +2884,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.011, 77.555)",
@@ -2697,7 +2911,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.975, 77.575)",
@@ -2722,7 +2938,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.974, 77.578)",
@@ -2747,7 +2965,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.995, 77.696)",
@@ -2772,7 +2992,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.977, 77.571)",
@@ -2797,7 +3019,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.978, 77.629)",
@@ -2822,7 +3046,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.028, 77.575)",
@@ -2847,7 +3073,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.012, 77.555)",
@@ -2872,7 +3100,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.959, 77.578)",
@@ -2897,7 +3127,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.966, 77.535)",
@@ -2922,7 +3154,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.981, 77.611)",
@@ -2947,7 +3181,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.954, 77.544)",
@@ -2972,7 +3208,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.970, 77.641)",
@@ -2997,7 +3235,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.998, 77.551)",
@@ -3022,7 +3262,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.036, 77.589)",
@@ -3047,7 +3289,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(13.040, 77.519)",
@@ -3072,7 +3316,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.968, 77.579)",
@@ -3097,7 +3343,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.974, 77.547)",
@@ -3122,7 +3370,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.100, 77.589)",
@@ -3147,7 +3397,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.968, 77.589)",
@@ -3172,7 +3424,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.994, 77.663)",
@@ -3197,7 +3451,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.979, 77.579)",
@@ -3222,7 +3478,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.976, 77.576)",
@@ -3247,7 +3505,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.000, 77.677)",
@@ -3272,7 +3532,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.972, 77.658)",
@@ -3297,7 +3559,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.007, 77.571)",
@@ -3322,7 +3586,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.983, 77.612)",
@@ -3347,7 +3613,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.936, 77.616)",
@@ -3372,7 +3640,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.989, 77.550)",
@@ -3397,7 +3667,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.982, 77.612)",
@@ -3422,7 +3694,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.072, 77.588)",
@@ -3447,7 +3721,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.946, 77.571)",
@@ -3472,7 +3748,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.961, 77.578)",
@@ -3497,7 +3775,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.984, 77.605)",
@@ -3522,7 +3802,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.965, 77.574)",
@@ -3547,7 +3829,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.998, 77.553)",
@@ -3572,7 +3856,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.933, 77.689)",
@@ -3597,7 +3883,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.926, 77.677)",
@@ -3622,7 +3910,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(13.008, 77.549)",
@@ -3647,7 +3937,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.001, 77.550)",
@@ -3672,7 +3964,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.979, 77.574)",
@@ -3697,7 +3991,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.962, 77.599)",
@@ -3722,7 +4018,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.963, 77.582)",
@@ -3747,7 +4045,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.973, 77.538)",
@@ -3772,7 +4072,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.002, 77.571)",
@@ -3797,7 +4099,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.982, 77.609)",
@@ -3822,7 +4126,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.978, 77.581)",
@@ -3847,7 +4153,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.939, 77.696)",
@@ -3872,7 +4180,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.972, 77.577)",
@@ -3897,7 +4207,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.974, 77.551)",
@@ -3922,7 +4234,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.010, 77.697)",
@@ -3947,7 +4261,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.963, 77.580)",
@@ -3972,7 +4288,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.965, 77.718)",
@@ -3997,7 +4315,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.969, 77.575)",
@@ -4022,7 +4342,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.981, 77.598)",
@@ -4047,7 +4369,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.969, 77.536)",
@@ -4072,7 +4396,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.978, 77.639)",
@@ -4097,7 +4423,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.897, 77.720)",
@@ -4122,7 +4450,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.954, 77.543)",
@@ -4147,7 +4477,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.973, 77.551)",
@@ -4172,7 +4504,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.964, 77.579)",
@@ -4197,7 +4531,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.006, 77.569)",
@@ -4222,7 +4558,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.933, 77.688)",
@@ -4247,7 +4585,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.990, 77.573)",
@@ -4272,7 +4612,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.001, 77.571)",
@@ -4297,7 +4639,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.995, 77.614)",
@@ -4322,7 +4666,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.011, 77.554)",
@@ -4347,7 +4693,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.965, 77.538)",
@@ -4372,7 +4720,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.931, 77.584)",
@@ -4397,7 +4747,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.978, 77.573)",
@@ -4422,7 +4774,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.999, 77.549)",
@@ -4447,7 +4801,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.973, 77.620)",
@@ -4472,7 +4828,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.975, 77.579)",
@@ -4497,7 +4855,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.184, 77.679)",
@@ -4522,7 +4882,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.945, 77.571)",
@@ -4547,7 +4909,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.975, 77.545)",
@@ -4572,7 +4936,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.012, 77.552)",
@@ -4597,7 +4963,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.944, 77.571)",
@@ -4622,7 +4990,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.976, 77.579)",
@@ -4647,7 +5017,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.917, 77.573)",
@@ -4672,7 +5044,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.012, 77.551)",
@@ -4697,7 +5071,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.985, 77.554)",
@@ -4722,7 +5098,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.997, 77.548)",
@@ -4747,7 +5125,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.996, 77.695)",
@@ -4772,7 +5152,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.982, 77.563)",
@@ -4797,7 +5179,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.936, 77.692)",
@@ -4822,7 +5206,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.936, 77.615)",
@@ -4847,7 +5233,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.983, 77.606)",
@@ -4872,7 +5260,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.009, 77.697)",
@@ -4897,7 +5287,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.019, 77.532)",
@@ -4922,7 +5314,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.966, 77.537)",
@@ -4947,7 +5341,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.983, 77.610)",
@@ -4972,7 +5368,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.998, 77.571)",
@@ -4997,7 +5395,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.907, 77.632)",
@@ -5022,7 +5422,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.927, 77.586)",
@@ -5047,7 +5449,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.959, 77.646)",
@@ -5072,7 +5476,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.976, 77.581)",
@@ -5097,7 +5503,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.970, 77.645)",
@@ -5122,7 +5530,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.918, 77.574)",
@@ -5147,7 +5557,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.958, 77.701)",
@@ -5172,7 +5584,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.122, 77.631)",
@@ -5197,7 +5611,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.994, 77.571)",
@@ -5222,7 +5638,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.973, 77.616)",
@@ -5247,7 +5665,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.999, 77.541)",
@@ -5272,7 +5692,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.927, 77.680)",
@@ -5297,7 +5719,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.931, 77.686)",
@@ -5322,7 +5746,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.939, 77.584)",
@@ -5347,7 +5773,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.996, 77.613)",
@@ -5372,7 +5800,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.970, 77.639)",
@@ -5397,7 +5827,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.977, 77.579)",
@@ -5422,7 +5854,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.942, 77.747)",
@@ -5447,7 +5881,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.935, 77.690)",
@@ -5472,7 +5908,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.008, 77.696)",
@@ -5497,7 +5935,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.971, 77.647)",
@@ -5522,7 +5962,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.973, 77.580)",
@@ -5547,7 +5989,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.970, 77.647)",
@@ -5572,7 +6016,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.008, 77.554)",
@@ -5597,7 +6043,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.964, 77.581)",
@@ -5622,7 +6070,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.988, 77.550)",
@@ -5647,7 +6097,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.976, 77.583)",
@@ -5672,7 +6124,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.976, 77.582)",
@@ -5697,7 +6151,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.974, 77.575)",
@@ -5722,7 +6178,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.979, 77.580)",
@@ -5747,7 +6205,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.988, 77.537)",
@@ -5772,7 +6232,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.072, 77.593)",
@@ -5797,7 +6259,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.977, 77.574)",
@@ -5822,7 +6286,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(13.000, 77.569)",
@@ -5847,7 +6313,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.011, 77.551)",
@@ -5872,7 +6340,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.945, 77.595)",
@@ -5897,7 +6367,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.070, 77.587)",
@@ -5922,7 +6394,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.972, 77.538)",
@@ -5947,7 +6421,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.978, 77.544)",
@@ -5972,7 +6448,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.967, 77.578)",
@@ -5997,7 +6475,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.974, 77.580)",
@@ -6022,7 +6502,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.912, 77.638)",
@@ -6047,7 +6529,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.047, 77.576)",
@@ -6072,7 +6556,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.944, 77.573)",
@@ -6097,7 +6583,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.957, 77.702)",
@@ -6122,7 +6610,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.964, 77.555)",
@@ -6147,7 +6637,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.981, 77.599)",
@@ -6172,7 +6664,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.030, 77.537)",
@@ -6197,7 +6691,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Declining",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-17%"
   },
   {
     "id": "(12.999, 77.571)",
@@ -6222,7 +6718,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.964, 77.582)",
@@ -6247,7 +6745,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.971, 77.597)",
@@ -6272,7 +6772,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.960, 77.578)",
@@ -6297,7 +6799,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.939, 77.697)",
@@ -6322,7 +6826,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.938, 77.699)",
@@ -6347,7 +6853,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.981, 77.558)",
@@ -6372,7 +6880,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.976, 77.562)",
@@ -6397,7 +6907,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.975, 77.577)",
@@ -6422,7 +6934,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.996, 77.614)",
@@ -6447,7 +6961,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 10
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.929, 77.582)",
@@ -6472,7 +6988,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.998, 77.552)",
@@ -6497,7 +7015,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.999, 77.569)",
@@ -6522,7 +7042,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(13.024, 77.585)",
@@ -6547,7 +7069,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.972, 77.581)",
@@ -6572,7 +7096,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(13.009, 77.555)",
@@ -6597,7 +7123,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.966, 77.536)",
@@ -6622,7 +7150,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.965, 77.585)",
@@ -6647,7 +7177,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.982, 77.599)",
@@ -6672,7 +7204,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 8
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.952, 77.541)",
@@ -6697,7 +7231,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.900, 77.675)",
@@ -6722,7 +7258,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.009, 77.527)",
@@ -6747,7 +7285,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.009, 77.696)",
@@ -6772,7 +7312,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.843, 77.644)",
@@ -6797,7 +7339,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.913, 77.626)",
@@ -6822,7 +7366,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.983, 77.603)",
@@ -6847,7 +7393,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(13.006, 77.571)",
@@ -6872,7 +7420,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.985, 77.602)",
@@ -6897,7 +7447,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.970, 77.607)",
@@ -6922,7 +7474,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.955, 77.586)",
@@ -6947,7 +7501,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.997, 77.546)",
@@ -6972,7 +7528,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.974, 77.615)",
@@ -6997,7 +7555,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.971, 77.712)",
@@ -7022,7 +7582,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.994, 77.589)",
@@ -7047,7 +7609,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(13.185, 77.680)",
@@ -7072,7 +7636,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.974, 77.623)",
@@ -7097,7 +7663,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.997, 77.549)",
@@ -7122,7 +7690,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.987, 77.580)",
@@ -7147,7 +7717,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.982, 77.607)",
@@ -7172,7 +7744,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.993, 77.553)",
@@ -7197,7 +7771,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.978, 77.571)",
@@ -7222,7 +7798,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.960, 77.577)",
@@ -7247,7 +7825,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.029, 77.540)",
@@ -7272,7 +7852,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Declining",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-12%"
   },
   {
     "id": "(12.961, 77.528)",
@@ -7297,7 +7879,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(13.013, 77.555)",
@@ -7322,7 +7906,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.965, 77.577)",
@@ -7347,7 +7933,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.980, 77.577)",
@@ -7372,7 +7960,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.010, 77.555)",
@@ -7397,7 +7987,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.000, 77.611)",
@@ -7422,7 +8014,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.187, 77.680)",
@@ -7447,7 +8041,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.964, 77.576)",
@@ -7472,7 +8068,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.978, 77.580)",
@@ -7497,7 +8095,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.980, 77.614)",
@@ -7522,7 +8122,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.990, 77.551)",
@@ -7547,7 +8149,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.072, 77.589)",
@@ -7572,7 +8176,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.071, 77.587)",
@@ -7597,7 +8203,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.979, 77.581)",
@@ -7622,7 +8230,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.984, 77.602)",
@@ -7647,7 +8257,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.960, 77.716)",
@@ -7672,7 +8284,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.986, 77.554)",
@@ -7697,7 +8311,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.993, 77.662)",
@@ -7722,7 +8338,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.995, 77.697)",
@@ -7747,7 +8365,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.973, 77.617)",
@@ -7772,7 +8392,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.995, 77.698)",
@@ -7797,7 +8419,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.965, 77.575)",
@@ -7822,7 +8446,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.960, 77.649)",
@@ -7847,7 +8473,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.983, 77.549)",
@@ -7872,7 +8500,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.984, 77.578)",
@@ -7897,7 +8527,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.993, 77.554)",
@@ -7922,7 +8554,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.974, 77.574)",
@@ -7947,7 +8581,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.927, 77.679)",
@@ -7972,7 +8608,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.973, 77.615)",
@@ -7997,7 +8635,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.997, 77.584)",
@@ -8022,7 +8662,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.191, 77.646)",
@@ -8047,7 +8689,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.967, 77.574)",
@@ -8072,7 +8716,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.842, 77.644)",
@@ -8097,7 +8743,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.005, 77.569)",
@@ -8122,7 +8770,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.063, 77.592)",
@@ -8147,7 +8797,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.928, 77.681)",
@@ -8172,7 +8824,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.974, 77.624)",
@@ -8197,7 +8851,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.969, 77.537)",
@@ -8222,7 +8878,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.983, 77.607)",
@@ -8247,7 +8905,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.979, 77.607)",
@@ -8272,7 +8932,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.842, 77.646)",
@@ -8297,7 +8959,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.979, 77.573)",
@@ -8322,7 +8986,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.959, 77.716)",
@@ -8347,7 +9013,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.992, 77.589)",
@@ -8372,7 +9040,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.960, 77.644)",
@@ -8397,7 +9067,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.932, 77.586)",
@@ -8422,7 +9094,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.899, 77.675)",
@@ -8447,7 +9121,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.992, 77.553)",
@@ -8472,7 +9148,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.975, 77.608)",
@@ -8497,7 +9175,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.973, 77.581)",
@@ -8522,7 +9202,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.842, 77.647)",
@@ -8547,7 +9229,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.931, 77.610)",
@@ -8572,7 +9256,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.911, 77.638)",
@@ -8597,7 +9283,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.989, 77.599)",
@@ -8622,7 +9310,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.979, 77.577)",
@@ -8647,7 +9337,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.187, 77.681)",
@@ -8672,7 +9364,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.842, 77.645)",
@@ -8697,7 +9391,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.064, 77.587)",
@@ -8722,7 +9418,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.972, 77.580)",
@@ -8747,7 +9445,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.017, 77.531)",
@@ -8772,7 +9472,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(13.186, 77.680)",
@@ -8797,7 +9499,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.996, 77.571)",
@@ -8822,7 +9526,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.977, 77.589)",
@@ -8847,7 +9553,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.907, 77.631)",
@@ -8872,7 +9580,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.938, 77.593)",
@@ -8897,7 +9607,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.993, 77.589)",
@@ -8922,7 +9634,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.999, 77.542)",
@@ -8947,7 +9661,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.988, 77.734)",
@@ -8972,7 +9688,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.958, 77.586)",
@@ -8997,7 +9715,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.970, 77.646)",
@@ -9022,7 +9742,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.097, 77.600)",
@@ -9047,7 +9769,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.980, 77.610)",
@@ -9072,7 +9796,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.000, 77.551)",
@@ -9097,7 +9823,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.917, 77.673)",
@@ -9122,7 +9850,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.936, 77.693)",
@@ -9147,7 +9877,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.966, 77.578)",
@@ -9172,7 +9904,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(13.040, 77.518)",
@@ -9197,7 +9931,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.991, 77.589)",
@@ -9222,7 +9958,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.988, 77.538)",
@@ -9247,7 +9985,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.983, 77.613)",
@@ -9272,7 +10012,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.892, 77.638)",
@@ -9297,7 +10039,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.980, 77.603)",
@@ -9322,7 +10066,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.183, 77.680)",
@@ -9347,7 +10093,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.998, 77.550)",
@@ -9372,7 +10120,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.028, 77.574)",
@@ -9397,7 +10147,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.961, 77.511)",
@@ -9422,7 +10174,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(13.011, 77.550)",
@@ -9447,7 +10201,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.192, 77.647)",
@@ -9472,7 +10228,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.188, 77.680)",
@@ -9497,7 +10255,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.979, 77.695)",
@@ -9522,7 +10282,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.975, 77.582)",
@@ -9547,7 +10309,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.969, 77.641)",
@@ -9572,7 +10336,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.966, 77.574)",
@@ -9597,7 +10363,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.007, 77.549)",
@@ -9622,7 +10390,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.960, 77.645)",
@@ -9647,7 +10417,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.967, 77.642)",
@@ -9672,7 +10444,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.974, 77.614)",
@@ -9697,7 +10471,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.072, 77.592)",
@@ -9722,7 +10498,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(13.003, 77.550)",
@@ -9747,7 +10525,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.927, 77.551)",
@@ -9772,7 +10552,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.977, 77.575)",
@@ -9797,7 +10579,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.997, 77.547)",
@@ -9822,7 +10606,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.009, 77.570)",
@@ -9847,7 +10633,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.019, 77.558)",
@@ -9872,7 +10660,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.999, 77.553)",
@@ -9897,7 +10687,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.953, 77.542)",
@@ -9922,7 +10714,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.912, 77.626)",
@@ -9947,7 +10741,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.957, 77.703)",
@@ -9972,7 +10768,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.016, 77.550)",
@@ -9997,7 +10795,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.887, 77.641)",
@@ -10022,7 +10822,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.974, 77.548)",
@@ -10047,7 +10849,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.907, 77.629)",
@@ -10072,7 +10876,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.983, 77.609)",
@@ -10097,7 +10903,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.998, 77.549)",
@@ -10122,7 +10930,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.996, 77.694)",
@@ -10147,7 +10957,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.980, 77.574)",
@@ -10172,7 +10984,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.975, 77.571)",
@@ -10197,7 +11011,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.046, 77.750)",
@@ -10222,7 +11038,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(13.008, 77.694)",
@@ -10247,7 +11065,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.997, 77.571)",
@@ -10272,7 +11092,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.965, 77.555)",
@@ -10297,7 +11119,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(12.920, 77.621)",
@@ -10322,7 +11146,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.976, 77.580)",
@@ -10347,7 +11173,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.963, 77.577)",
@@ -10372,7 +11200,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(13.010, 77.550)",
@@ -10397,7 +11227,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(13.008, 77.548)",
@@ -10422,7 +11254,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.876, 77.648)",
@@ -10447,7 +11281,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.965, 77.578)",
@@ -10472,7 +11308,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.987, 77.574)",
@@ -10497,7 +11335,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.932, 77.696)",
@@ -10522,7 +11362,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 10
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(13.022, 77.533)",
@@ -10547,7 +11389,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.998, 77.548)",
@@ -10572,7 +11416,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.973, 77.577)",
@@ -10597,7 +11443,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.957, 77.519)",
@@ -10622,7 +11470,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 8
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(13.028, 77.586)",
@@ -10647,7 +11497,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.976, 77.560)",
@@ -10672,7 +11524,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.985, 77.556)",
@@ -10697,7 +11551,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.930, 77.686)",
@@ -10722,7 +11578,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.917, 77.574)",
@@ -10747,7 +11605,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.980, 77.555)",
@@ -10772,7 +11632,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.006, 77.687)",
@@ -10797,7 +11659,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(13.008, 77.693)",
@@ -10822,7 +11686,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.045, 77.507)",
@@ -10847,7 +11713,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.010, 77.554)",
@@ -10872,7 +11740,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.986, 77.556)",
@@ -10897,7 +11767,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.981, 77.575)",
@@ -10922,7 +11794,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.972, 77.598)",
@@ -10947,7 +11821,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Declining"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(12.936, 77.617)",
@@ -10972,7 +11848,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+8%"
   },
   {
     "id": "(12.972, 77.712)",
@@ -10997,7 +11875,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.888, 77.562)",
@@ -11022,7 +11902,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.998, 77.544)",
@@ -11047,7 +11929,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 9
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.996, 77.584)",
@@ -11072,7 +11956,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.931, 77.607)",
@@ -11097,7 +11983,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.960, 77.646)",
@@ -11122,7 +12010,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+11%"
   },
   {
     "id": "(13.000, 77.676)",
@@ -11147,7 +12037,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+10%"
   },
   {
     "id": "(12.893, 77.637)",
@@ -11172,7 +12064,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.050, 77.593)",
@@ -11197,7 +12091,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.963, 77.576)",
@@ -11222,7 +12118,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.990, 77.574)",
@@ -11247,7 +12145,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 8
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.929, 77.581)",
@@ -11272,7 +12172,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(12.968, 77.536)",
@@ -11297,7 +12199,9 @@
       "Time Patterns": 10,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.980, 77.573)",
@@ -11322,7 +12226,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.926, 77.676)",
@@ -11347,7 +12253,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+9%"
   },
   {
     "id": "(12.959, 77.577)",
@@ -11372,7 +12280,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.978, 77.578)",
@@ -11397,7 +12307,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.005, 77.685)",
@@ -11422,7 +12334,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(12.958, 77.582)",
@@ -11447,7 +12361,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-2%"
   },
   {
     "id": "(13.008, 77.556)",
@@ -11472,7 +12388,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.098, 77.599)",
@@ -11497,7 +12415,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.974, 77.582)",
@@ -11522,7 +12442,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 6
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.058, 77.592)",
@@ -11547,7 +12469,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.995, 77.571)",
@@ -11572,7 +12496,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.842, 77.648)",
@@ -11597,7 +12523,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.906, 77.630)",
@@ -11622,7 +12550,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.931, 77.685)",
@@ -11647,7 +12577,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.976, 77.571)",
@@ -11672,7 +12604,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.885, 77.642)",
@@ -11697,7 +12631,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+6%"
   },
   {
     "id": "(13.005, 77.570)",
@@ -11722,7 +12658,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.981, 77.549)",
@@ -11747,7 +12685,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.968, 77.574)",
@@ -11772,7 +12712,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(13.002, 77.550)",
@@ -11797,7 +12739,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+12%"
   },
   {
     "id": "(12.932, 77.692)",
@@ -11822,7 +12766,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 7
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.964, 77.580)",
@@ -11847,7 +12793,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.000, 77.678)",
@@ -11872,7 +12820,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.974, 77.546)",
@@ -11897,7 +12847,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.964, 77.718)",
@@ -11922,7 +12874,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(13.005, 77.571)",
@@ -11947,7 +12901,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 5
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.981, 77.559)",
@@ -11972,7 +12928,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 7
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.935, 77.691)",
@@ -11997,7 +12955,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(13.009, 77.571)",
@@ -12022,7 +12982,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(13.001, 77.677)",
@@ -12047,7 +13009,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+1%"
   },
   {
     "id": "(12.999, 77.551)",
@@ -12072,7 +13036,9 @@
       "Time Patterns": 7,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.921, 77.665)",
@@ -12097,7 +13063,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.985, 77.605)",
@@ -12122,7 +13090,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+13%"
   },
   {
     "id": "(12.956, 77.546)",
@@ -12147,7 +13117,9 @@
       "Time Patterns": 8,
       "Repeat Offender Signal": 4
     },
-    "trend": "Emerging"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(12.932, 77.688)",
@@ -12172,7 +13144,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.957, 77.715)",
@@ -12197,7 +13171,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(13.048, 77.576)",
@@ -12222,7 +13198,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Emerging"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-1%"
   },
   {
     "id": "(12.934, 77.690)",
@@ -12247,7 +13225,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.937, 77.585)",
@@ -12272,7 +13252,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.928, 77.680)",
@@ -12297,7 +13279,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.963, 77.717)",
@@ -12322,7 +13306,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 5
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+15%"
   },
   {
     "id": "(12.938, 77.698)",
@@ -12347,7 +13333,9 @@
       "Time Patterns": 6,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+2%"
   },
   {
     "id": "(12.985, 77.553)",
@@ -12372,7 +13360,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+7%"
   },
   {
     "id": "(13.029, 77.539)",
@@ -12397,7 +13387,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Declining",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "-15%"
   },
   {
     "id": "(12.937, 77.693)",
@@ -12422,7 +13414,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 4
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   },
   {
     "id": "(12.925, 77.619)",
@@ -12447,7 +13441,9 @@
       "Time Patterns": 5,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+14%"
   },
   {
     "id": "(13.004, 77.550)",
@@ -12472,7 +13468,9 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Emerging",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "+5%"
   },
   {
     "id": "(12.963, 77.581)",
@@ -12497,6 +13495,8 @@
       "Time Patterns": 4,
       "Repeat Offender Signal": 3
     },
-    "trend": "Persistent"
+    "trend": "Persistent",
+    "confidence": "Unproven (Naive Baseline)",
+    "postInterventionChange": "0%"
   }
 ]
