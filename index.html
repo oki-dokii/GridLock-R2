@@ -105,24 +105,24 @@
       </div>
 
       <!-- Priority Tiers -->
-      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier</div>
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier (Click to Filter)</div>
       <div class="space-y-1.5 mb-3">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-critical" onclick="toggleTierFilter('critical')">
           <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5"/></svg>
           <span class="text-[11px] text-slate-200 font-medium">Critical</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 5%</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-high" onclick="toggleTierFilter('high')">
           <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5"/></svg>
           <span class="text-[11px] text-slate-200 font-medium">High</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 20%</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-medium" onclick="toggleTierFilter('medium')">
           <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5"/></svg>
           <span class="text-[11px] text-slate-200 font-medium">Medium</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 50%</span>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-low" onclick="toggleTierFilter('low')">
           <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5"/></svg>
           <span class="text-[11px] text-slate-200 font-medium">Low</span>
           <span class="text-[9px] text-slate-500 ml-auto">Rest</span>
@@ -397,6 +397,7 @@
     // Vehicle filter state — bucket name → bool
     const VEHICLE_BUCKETS = ['Two-Wheeler', 'Car / Jeep', 'Auto', 'Heavy Vehicle', 'Bus'];
     let VEHICLE_FILTER = Object.fromEntries(VEHICLE_BUCKETS.map(b => [b, true]));
+    let TIER_FILTER = { critical: true, high: true, medium: true, low: true };
     const VEH_IDS = {
       'Two-Wheeler': 'veh-tw', 'Car / Jeep': 'veh-car',
       'Auto': 'veh-auto', 'Heavy Vehicle': 'veh-hv', 'Bus': 'veh-bus'
@@ -614,6 +615,8 @@
       // Render active zones on top
       [...activeZones].sort((a, b) => a.filteredPCU - b.filteredPCU).forEach(hs => {
         const tier = isFiltered ? hs._tier : hs.tier;
+        if (!TIER_FILTER[tier]) return; // Apply legend filter
+        
         let col  = TIER_COLORS[tier] || '#3b82f6';
         const isCritical  = tier === 'critical';
         const isValidated = hs.rank <= 50;
@@ -1088,6 +1091,18 @@ Write the briefing now:`;
       });
       document.getElementById('slider-label').textContent =
         Math.min(from,to) + ' – ' + Math.max(from,to);
+    }
+    
+    // Toggle Tier filters from the legend
+    function toggleTierFilter(tier) {
+      TIER_FILTER[tier] = !TIER_FILTER[tier];
+      const el = document.getElementById('legend-' + tier);
+      if (TIER_FILTER[tier]) {
+        el.classList.remove('opacity-30', 'grayscale');
+      } else {
+        el.classList.add('opacity-30', 'grayscale');
+      }
+      renderMarkers();
     }
 
     function onSliderChange() {
