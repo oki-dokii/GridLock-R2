@@ -52,6 +52,58 @@
   <!-- Map Container -->
   <div id="map"></div>
 
+  <!-- Map Legend -->
+  <div class="absolute bottom-6 left-6 z-40 pointer-events-none" style="z-index:1000;">
+    <div class="glass-panel rounded-xl p-3 min-w-[165px]">
+      <div class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2.5 flex items-center gap-1.5">
+        <i class="fa-solid fa-circle-info text-slate-500"></i> Map Legend
+      </div>
+
+      <!-- Priority Tiers -->
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Critical</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 5%</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">High</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 20%</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Medium</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 50%</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Low</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rest</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-slate-700 mb-2.5"></div>
+
+      <!-- Model Confidence Ring -->
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Model Confidence</div>
+      <div class="space-y-1.5">
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#10b981" stroke-width="2.5"/></svg>
+          <span class="text-[11px] text-emerald-400 font-semibold">Validated</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rank 1–50</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#0f172a" stroke-width="1"/></svg>
+          <span class="text-[11px] text-slate-400 font-medium">Unproven</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rank 51+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Top Search Bar -->
   <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
     <div class="w-full max-w-md pointer-events-auto">
