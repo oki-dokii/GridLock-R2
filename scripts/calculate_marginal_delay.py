@@ -70,9 +70,11 @@ def calculate_marginal_delay(hotspots):
             "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
             "formula": "T_f * 0.15 * ((V/(C - assumedCapacityReduction*PCU))^4 - (V/C)^4) * V",
             "assumedCapacity": c_base,
+            "assumedVCRatio": v_c_ratio_base,
+            "assumedVolume": V,
             "assumedCapacityReductionPerPCU": 150.0,
             "pcuFactor": pcu,
-            "note": "Capacity reduction of 150 veh/hr per PCU is a logical assumption, not an HCM-cited metric."
+            "note": "Traffic volume (V) is assumed at a near-peak V/C ratio of 0.85. Capacity reduction of 150 veh/hr per PCU is a logical assumption, not an HCM-cited metric."
         }
         updated += 1
         
