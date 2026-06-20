@@ -84,6 +84,13 @@
         "count": 17,
         "pcu_score": 51.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -171,6 +178,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -258,6 +272,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -345,6 +366,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -432,6 +460,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3858.53,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -519,6 +554,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -606,6 +648,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -693,6 +742,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -780,6 +836,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -867,6 +930,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -954,6 +1024,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1041,6 +1118,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1128,6 +1212,13 @@
         "count": 34,
         "pcu_score": 102.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -1215,6 +1306,13 @@
         "count": 53,
         "pcu_score": 159.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1302,6 +1400,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -1389,6 +1494,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1496.18,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1476,6 +1588,13 @@
         "count": 191,
         "pcu_score": 573.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1563,6 +1682,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1650,6 +1776,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1737,6 +1870,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -1824,6 +1964,13 @@
         "count": 17,
         "pcu_score": 51.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1911,6 +2058,13 @@
         "count": 11,
         "pcu_score": 33.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -1998,6 +2152,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2085,6 +2246,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2172,6 +2340,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2259,6 +2434,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2346,6 +2528,13 @@
         "count": 8,
         "pcu_score": 24.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -2433,6 +2622,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2520,6 +2716,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2607,6 +2810,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2694,6 +2904,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -2781,6 +2998,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -2868,6 +3092,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -2955,6 +3186,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3042,6 +3280,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3129,6 +3374,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3858.53,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 900,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3216,6 +3468,13 @@
         "count": 83,
         "pcu_score": 249.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3303,6 +3562,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3390,6 +3656,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3477,6 +3750,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3564,6 +3844,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3651,6 +3938,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3738,6 +4032,13 @@
         "count": 87,
         "pcu_score": 261.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -3825,6 +4126,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3912,6 +4220,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -3999,6 +4314,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4086,6 +4408,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4173,6 +4502,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4260,6 +4596,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -4347,6 +4690,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4434,6 +4784,13 @@
         "count": 13,
         "pcu_score": 39.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -4521,6 +4878,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4608,6 +4972,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -4695,6 +5066,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4782,6 +5160,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4869,6 +5254,13 @@
         "count": 10,
         "pcu_score": 30.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -4956,6 +5348,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -5043,6 +5442,13 @@
         "count": 43,
         "pcu_score": 129.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5130,6 +5536,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -5217,6 +5630,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -5304,6 +5724,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5391,6 +5818,13 @@
         "count": 12,
         "pcu_score": 36.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5478,6 +5912,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -5565,6 +6006,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5652,6 +6100,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5739,6 +6194,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -5826,6 +6288,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -5913,6 +6382,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6000,6 +6476,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6087,6 +6570,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6174,6 +6664,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6261,6 +6758,13 @@
         "count": 35,
         "pcu_score": 105.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -6348,6 +6852,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -6435,6 +6946,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6522,6 +7040,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6609,6 +7134,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6696,6 +7228,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6783,6 +7322,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6870,6 +7416,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -6957,6 +7510,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7044,6 +7604,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7131,6 +7698,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7218,6 +7792,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7305,6 +7886,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7392,6 +7980,13 @@
         "count": 44,
         "pcu_score": 132.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7479,6 +8074,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -7566,6 +8168,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7653,6 +8262,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -7740,6 +8356,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7827,6 +8450,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -7914,6 +8544,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8001,6 +8638,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8088,6 +8732,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8175,6 +8826,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8262,6 +8920,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8349,6 +9014,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8436,6 +9108,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -8523,6 +9202,13 @@
         "count": 78,
         "pcu_score": 234.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -8610,6 +9296,13 @@
         "count": 122,
         "pcu_score": 366.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -8697,6 +9390,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -8784,6 +9484,13 @@
         "count": 8,
         "pcu_score": 24.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -8871,6 +9578,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -8958,6 +9672,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -9045,6 +9766,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9132,6 +9860,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9219,6 +9954,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9306,6 +10048,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9393,6 +10142,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9480,6 +10236,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -9567,6 +10330,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9654,6 +10424,13 @@
         "count": 19,
         "pcu_score": 57.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -9741,6 +10518,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -9828,6 +10612,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -9915,6 +10706,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -10002,6 +10800,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -10089,6 +10894,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10176,6 +10988,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10263,6 +11082,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -10350,6 +11176,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10437,6 +11270,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -10524,6 +11364,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10611,6 +11458,13 @@
         "count": 46,
         "pcu_score": 138.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -10698,6 +11552,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10785,6 +11646,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10872,6 +11740,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -10959,6 +11834,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11046,6 +11928,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -11133,6 +12022,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11220,6 +12116,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11307,6 +12210,13 @@
         "count": 13,
         "pcu_score": 39.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -11394,6 +12304,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11481,6 +12398,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -11568,6 +12492,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -11655,6 +12586,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11742,6 +12680,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -11829,6 +12774,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -11916,6 +12868,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12003,6 +12962,13 @@
         "count": 17,
         "pcu_score": 51.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12090,6 +13056,13 @@
         "count": 64,
         "pcu_score": 192.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -12177,6 +13150,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12264,6 +13244,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12351,6 +13338,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -12438,6 +13432,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -12525,6 +13526,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12612,6 +13620,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12699,6 +13714,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12786,6 +13808,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -12873,6 +13902,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -12960,6 +13996,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13047,6 +14090,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -13134,6 +14184,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -13221,6 +14278,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13308,6 +14372,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13395,6 +14466,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13482,6 +14560,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -13569,6 +14654,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -13656,6 +14748,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -13743,6 +14842,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13830,6 +14936,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -13917,6 +15030,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -14004,6 +15124,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -14091,6 +15218,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14178,6 +15312,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14265,6 +15406,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -14352,6 +15500,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14439,6 +15594,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14526,6 +15688,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14613,6 +15782,13 @@
         "count": 18,
         "pcu_score": 54.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -14700,6 +15876,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14787,6 +15970,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14874,6 +16064,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -14961,6 +16158,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1411.43,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15048,6 +16252,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15135,6 +16346,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -15222,6 +16440,13 @@
         "count": 8,
         "pcu_score": 24.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15309,6 +16534,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -15396,6 +16628,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -15483,6 +16722,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15570,6 +16816,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15657,6 +16910,13 @@
         "count": 12,
         "pcu_score": 36.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -15744,6 +17004,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15831,6 +17098,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -15918,6 +17192,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -16005,6 +17286,13 @@
         "count": 10,
         "pcu_score": 30.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -16092,6 +17380,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16179,6 +17474,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -16266,6 +17568,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16353,6 +17662,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16440,6 +17756,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16527,6 +17850,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16614,6 +17944,13 @@
         "count": 6,
         "pcu_score": 18.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -16701,6 +18038,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -16788,6 +18132,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16875,6 +18226,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -16962,6 +18320,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17049,6 +18414,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -17136,6 +18508,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -17223,6 +18602,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17310,6 +18696,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -17397,6 +18790,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -17484,6 +18884,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17571,6 +18978,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17658,6 +19072,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17745,6 +19166,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17832,6 +19260,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -17919,6 +19354,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18006,6 +19448,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18093,6 +19542,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18180,6 +19636,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18267,6 +19730,13 @@
         "count": 14,
         "pcu_score": 42.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -18354,6 +19824,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -18441,6 +19918,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18528,6 +20012,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -18615,6 +20106,13 @@
         "count": 18,
         "pcu_score": 54.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18702,6 +20200,13 @@
         "count": 14,
         "pcu_score": 42.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18789,6 +20294,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -18876,6 +20388,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -18963,6 +20482,13 @@
         "count": 28,
         "pcu_score": 84.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19050,6 +20576,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19137,6 +20670,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19224,6 +20764,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19311,6 +20858,13 @@
         "count": 34,
         "pcu_score": 102.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 610982.22,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -19398,6 +20952,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -19485,6 +21046,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19572,6 +21140,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19659,6 +21234,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19746,6 +21328,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -19833,6 +21422,13 @@
         "count": 47,
         "pcu_score": 141.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 26612.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -19920,6 +21516,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20007,6 +21610,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20094,6 +21704,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20181,6 +21798,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20268,6 +21892,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20355,6 +21986,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20442,6 +22080,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20529,6 +22174,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20616,6 +22268,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20703,6 +22362,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20790,6 +22456,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -20877,6 +22550,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -20964,6 +22644,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21051,6 +22738,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -21138,6 +22832,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -21225,6 +22926,13 @@
         "count": 18,
         "pcu_score": 54.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -21312,6 +23020,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21399,6 +23114,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21486,6 +23208,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -21573,6 +23302,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21660,6 +23396,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21747,6 +23490,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21834,6 +23584,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -21921,6 +23678,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -22008,6 +23772,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22095,6 +23866,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -22182,6 +23960,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22269,6 +24054,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22356,6 +24148,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22443,6 +24242,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22530,6 +24336,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -22617,6 +24430,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -22704,6 +24524,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22791,6 +24618,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -22878,6 +24712,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -22965,6 +24806,13 @@
         "count": 21,
         "pcu_score": 63.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23052,6 +24900,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -23139,6 +24994,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23226,6 +25088,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23313,6 +25182,13 @@
         "count": 16,
         "pcu_score": 48.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23400,6 +25276,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -23487,6 +25370,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -23574,6 +25464,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -23661,6 +25558,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23748,6 +25652,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -23835,6 +25746,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -23922,6 +25840,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -24009,6 +25934,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24096,6 +26028,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24183,6 +26122,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24270,6 +26216,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24357,6 +26310,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 3382.95,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 1200,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -24444,6 +26404,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24531,6 +26498,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -24618,6 +26592,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24705,6 +26686,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -24792,6 +26780,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -24879,6 +26874,13 @@
         "count": 11,
         "pcu_score": 33.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -24966,6 +26968,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25053,6 +27062,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25140,6 +27156,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -25227,6 +27250,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25314,6 +27344,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25401,6 +27438,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25488,6 +27532,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25575,6 +27626,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25662,6 +27720,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25749,6 +27814,13 @@
         "count": 23,
         "pcu_score": 69.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -25836,6 +27908,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -25923,6 +28002,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -26010,6 +28096,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -26097,6 +28190,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26184,6 +28284,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -26271,6 +28378,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -26358,6 +28472,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26445,6 +28566,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26532,6 +28660,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26619,6 +28754,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26706,6 +28848,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26793,6 +28942,13 @@
         "count": 19,
         "pcu_score": 57.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 610982.22,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 3.0
     }
   },
   {
@@ -26880,6 +29036,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -26967,6 +29130,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27054,6 +29224,13 @@
         "count": 9,
         "pcu_score": 27.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -27141,6 +29318,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27228,6 +29412,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27315,6 +29506,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27402,6 +29600,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27489,6 +29694,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27576,6 +29788,13 @@
         "count": 30,
         "pcu_score": 90.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27663,6 +29882,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27750,6 +29976,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -27837,6 +30070,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -27924,6 +30164,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28011,6 +30258,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28098,6 +30352,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -28185,6 +30446,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28272,6 +30540,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -28359,6 +30634,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28446,6 +30728,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28533,6 +30822,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28620,6 +30916,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -28707,6 +31010,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28794,6 +31104,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -28881,6 +31198,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -28968,6 +31292,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29055,6 +31386,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29142,6 +31480,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -29229,6 +31574,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29316,6 +31668,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29403,6 +31762,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -29490,6 +31856,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -29577,6 +31950,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -29664,6 +32044,13 @@
         "count": 6,
         "pcu_score": 18.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29751,6 +32138,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -29838,6 +32232,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -29925,6 +32326,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30012,6 +32420,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -30099,6 +32514,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -30186,6 +32608,13 @@
         "count": 8,
         "pcu_score": 24.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30273,6 +32702,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30360,6 +32796,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30447,6 +32890,13 @@
         "count": 8,
         "pcu_score": 24.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30534,6 +32984,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30621,6 +33078,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30708,6 +33172,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -30795,6 +33266,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -30882,6 +33360,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -30969,6 +33454,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -31056,6 +33548,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31143,6 +33642,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31230,6 +33736,13 @@
         "count": 14,
         "pcu_score": 42.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -31317,6 +33830,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31404,6 +33924,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31491,6 +34018,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31578,6 +34112,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31665,6 +34206,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31752,6 +34300,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -31839,6 +34394,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -31926,6 +34488,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32013,6 +34582,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32100,6 +34676,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32187,6 +34770,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32274,6 +34864,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32361,6 +34958,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32448,6 +35052,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32535,6 +35146,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -32622,6 +35240,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32709,6 +35334,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -32796,6 +35428,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32883,6 +35522,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -32970,6 +35616,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33057,6 +35710,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33144,6 +35804,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33231,6 +35898,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33318,6 +35992,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33405,6 +36086,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33492,6 +36180,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33579,6 +36274,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -33666,6 +36368,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -33753,6 +36462,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33840,6 +36556,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -33927,6 +36650,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -34014,6 +36744,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34101,6 +36838,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -34188,6 +36932,13 @@
         "count": 18,
         "pcu_score": 54.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -34275,6 +37026,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34362,6 +37120,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34449,6 +37214,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -34536,6 +37308,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34623,6 +37402,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34710,6 +37496,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34797,6 +37590,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -34884,6 +37684,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -34971,6 +37778,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35058,6 +37872,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35145,6 +37966,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -35232,6 +38060,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -35319,6 +38154,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35406,6 +38248,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35493,6 +38342,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35580,6 +38436,13 @@
         "count": 10,
         "pcu_score": 30.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35667,6 +38530,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35754,6 +38624,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -35841,6 +38718,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -35928,6 +38812,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36015,6 +38906,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36102,6 +39000,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36189,6 +39094,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36276,6 +39188,13 @@
         "count": 19,
         "pcu_score": 57.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36363,6 +39282,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36450,6 +39376,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36537,6 +39470,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36624,6 +39564,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36711,6 +39658,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36798,6 +39752,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -36885,6 +39846,13 @@
         "count": 26,
         "pcu_score": 78.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -36972,6 +39940,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37059,6 +40034,13 @@
         "count": 7,
         "pcu_score": 21.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -37146,6 +40128,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37233,6 +40222,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37320,6 +40316,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37407,6 +40410,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37494,6 +40504,13 @@
         "count": 16,
         "pcu_score": 48.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37581,6 +40598,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37668,6 +40692,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37755,6 +40786,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -37842,6 +40880,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -37929,6 +40974,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38016,6 +41068,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38103,6 +41162,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -38190,6 +41256,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38277,6 +41350,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38364,6 +41444,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38451,6 +41538,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -38538,6 +41632,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38625,6 +41726,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -38712,6 +41820,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38799,6 +41914,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38886,6 +42008,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -38973,6 +42102,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -39060,6 +42196,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39147,6 +42290,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39234,6 +42384,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39321,6 +42478,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39408,6 +42572,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39495,6 +42666,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -39582,6 +42760,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39669,6 +42854,13 @@
         "count": 21,
         "pcu_score": 63.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39756,6 +42948,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39843,6 +43042,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -39930,6 +43136,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -40017,6 +43230,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40104,6 +43324,13 @@
         "count": 6,
         "pcu_score": 18.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40191,6 +43418,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40278,6 +43512,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40365,6 +43606,13 @@
         "count": 14,
         "pcu_score": 42.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -40452,6 +43700,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40539,6 +43794,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40626,6 +43888,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40713,6 +43982,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40800,6 +44076,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40887,6 +44170,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -40974,6 +44264,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41061,6 +44358,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41148,6 +44452,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -41235,6 +44546,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41322,6 +44640,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41409,6 +44734,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41496,6 +44828,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -41583,6 +44922,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41670,6 +45016,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -41757,6 +45110,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -41844,6 +45204,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -41931,6 +45298,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42018,6 +45392,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42105,6 +45486,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42192,6 +45580,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42279,6 +45674,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42366,6 +45768,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42453,6 +45862,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42540,6 +45956,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42627,6 +46050,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42714,6 +46144,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 1691.48,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 0.5
     }
   },
   {
@@ -42801,6 +46238,13 @@
         "count": 1,
         "pcu_score": 3.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42888,6 +46332,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -42975,6 +46426,13 @@
         "count": 2,
         "pcu_score": 6.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43062,6 +46520,13 @@
         "count": 5,
         "pcu_score": 15.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43149,6 +46614,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43236,6 +46708,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43323,6 +46802,13 @@
         "count": 4,
         "pcu_score": 12.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43410,6 +46896,13 @@
         "count": 0,
         "pcu_score": 0.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   },
   {
@@ -43497,6 +46990,13 @@
         "count": 3,
         "pcu_score": 9.0
       }
+    },
+    "marginalImpact": {
+      "delaySecondsPerHour": 5176.56,
+      "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
+      "formula": "T_f * 0.15 * ((V/(C - 150*PCU))^4 - (V/C)^4) * V",
+      "assumedCapacity": 600,
+      "pcuFactor": 1.0
     }
   }
 ]
