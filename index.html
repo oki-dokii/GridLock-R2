@@ -73,6 +73,23 @@
       color: #fff !important;
       border-color: #6366f1 !important;
     }
+
+    /* Vehicle checkboxes */
+    .veh-check { display: none; }
+    .veh-label {
+      display: flex; align-items: center; gap: 4px;
+      padding: 2px 8px; border-radius: 9999px;
+      border: 1px solid #334155;
+      background: rgba(51,65,85,0.5);
+      font-size: 9px; font-weight: 700;
+      cursor: pointer; user-select: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .veh-check:checked + .veh-label {
+      border-color: var(--veh-color);
+      background: color-mix(in srgb, var(--veh-color) 20%, transparent);
+      color: var(--veh-color);
+    }
   </style>
 </head>
 <body class="text-slate-200">
@@ -155,9 +172,27 @@
           <span class="text-[9px] text-slate-500 w-5">23</span>
           <span id="slider-label" class="text-[10px] text-indigo-300 font-mono font-bold w-16 text-center">0 – 23</span>
         </div>
+        <!-- Row 3: vehicle type checkboxes -->
+        <div class="flex items-center gap-1.5 mt-2 flex-wrap">
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-car-side mr-1"></i>Vehicle</span>
+          <input type="checkbox" id="veh-tw"   class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-tw"   class="veh-label" style="--veh-color:#f97316"><i class="fa-solid fa-motorcycle text-[8px]"></i> Two-Wheeler <span class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-car"  class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-car"  class="veh-label" style="--veh-color:#3b82f6"><i class="fa-solid fa-car text-[8px]"></i> Car / Jeep <span class="opacity-50 font-normal">PCU×1.0</span></label>
+          <input type="checkbox" id="veh-auto" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-auto" class="veh-label" style="--veh-color:#a78bfa"><i class="fa-solid fa-taxi text-[8px]"></i> Auto <span class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-hv"   class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-hv"   class="veh-label" style="--veh-color:#f43f5e"><i class="fa-solid fa-truck text-[8px]"></i> Heavy <span class="opacity-50 font-normal">PCU×1.5–3</span></label>
+          <input type="checkbox" id="veh-bus"  class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-bus"  class="veh-label" style="--veh-color:#10b981"><i class="fa-solid fa-bus text-[8px]"></i> Bus <span class="opacity-50 font-normal">PCU×3.0</span></label>
+          <button onclick="setAllVehicles(true)"  class="ml-auto text-[8px] text-slate-500 hover:text-slate-300 underline">All</button>
+          <button onclick="setAllVehicles(false)" class="text-[8px] text-slate-500 hover:text-slate-300 underline">None</button>
+          <span id="veh-filter-label" class="text-[9px] text-emerald-400 font-mono font-bold w-20 text-right">PCU: All</span>
+        </div>
       </div>
     </div>
   </div>
+
 
 
   <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
@@ -305,6 +340,13 @@
     let map = null;
     // Time filter state
     let TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: false };
+    // Vehicle filter state — bucket name → bool
+    const VEHICLE_BUCKETS = ['Two-Wheeler', 'Car / Jeep', 'Auto', 'Heavy Vehicle', 'Bus'];
+    let VEHICLE_FILTER = Object.fromEntries(VEHICLE_BUCKETS.map(b => [b, true]));
+    const VEH_IDS = {
+      'Two-Wheeler': 'veh-tw', 'Car / Jeep': 'veh-car',
+      'Auto': 'veh-auto', 'Heavy Vehicle': 'veh-hv', 'Bus': 'veh-bus'
+    };
 
     const AREAS = [
       {name:'Shivajinagar',lat:12.9850,lon:77.6010,zone:'Central'},
@@ -376,30 +418,55 @@
       mapMarkers = [];
 
       const { fromHour, toHour, weekendOnly } = TIME_FILTER;
-      const isFiltered = fromHour > 0 || toHour < 23 || weekendOnly;
-
+      const vehActive = Object.values(VEHICLE_FILTER).some(v => v);
+      const isFiltered = fromHour > 0 || toHour < 23 || weekendOnly || !vehActive || Object.values(VEHICLE_FILTER).includes(false);
 
       // All hotspots stay on map — zero-filtered ones become ghost dots
       const allWithCounts = HOTSPOTS.map(hs => {
         let filteredCount = 0;
+        let filteredPCU = 0;
+        
+        const vp = hs.vehicleProfile || {};
+
         if (weekendOnly) {
           const dp = hs.dowProfile || [];
-          filteredCount = (dp[5] || 0) + (dp[6] || 0);
+          const weekendRatio = hs.count > 0 ? ((dp[5] || 0) + (dp[6] || 0)) / hs.count : 0;
+          
+          for (const b of VEHICLE_BUCKETS) {
+            if (VEHICLE_FILTER[b] && vp[b]) {
+              filteredCount += vp[b].count * weekendRatio;
+              filteredPCU   += vp[b].pcu_score * weekendRatio;
+            }
+          }
         } else {
           const hp = hs.hourProfile || [];
+          let timeSum = 0;
           for (let h = fromHour; h <= toHour; h++) {
-            filteredCount += hp[h] || 0;
+            timeSum += hp[h] || 0;
+          }
+          const timeRatio = hs.count > 0 ? timeSum / hs.count : 0;
+
+          for (const b of VEHICLE_BUCKETS) {
+            if (VEHICLE_FILTER[b] && vp[b]) {
+              filteredCount += vp[b].count * timeRatio;
+              filteredPCU   += vp[b].pcu_score * timeRatio;
+            }
           }
         }
-        return { ...hs, filteredCount: isFiltered ? filteredCount : hs.count };
+        
+        return { 
+          ...hs, 
+          filteredCount: isFiltered ? filteredCount : hs.count,
+          filteredPCU: isFiltered ? filteredPCU : (hs.totalPCS || hs.count)
+        };
       });
 
       const activeZones = allWithCounts.filter(hs => hs.filteredCount > 0);
       const maxFiltered = activeZones.length > 0
-        ? Math.max(...activeZones.map(h => h.filteredCount)) : 1;
+        ? Math.max(...activeZones.map(h => h.filteredPCU)) : 1;
 
-      // Re-tier only the active zones
-      const sortedActive = [...activeZones].sort((a, b) => b.filteredCount - a.filteredCount);
+      // Re-tier only the active zones (using PCU)
+      const sortedActive = [...activeZones].sort((a, b) => b.filteredPCU - a.filteredPCU);
       const totalActive = sortedActive.length;
       sortedActive.forEach((hs, i) => {
         hs._tier = i < totalActive * 0.05 ? 'critical' :
@@ -422,14 +489,14 @@
         });
 
       // Render active zones on top
-      [...activeZones].sort((a, b) => a.filteredCount - b.filteredCount).forEach(hs => {
+      [...activeZones].sort((a, b) => a.filteredPCU - b.filteredPCU).forEach(hs => {
         const tier = isFiltered ? hs._tier : hs.tier;
         const col  = TIER_COLORS[tier] || '#3b82f6';
         const isCritical  = tier === 'critical';
         const isValidated = hs.rank <= 50;
 
-        // Scale radius by filtered intensity (min 4, max 12)
-        const intensity = maxFiltered > 0 ? hs.filteredCount / maxFiltered : 0;
+        // Scale radius by filtered PCU intensity (min 4, max 12)
+        const intensity = maxFiltered > 0 ? hs.filteredPCU / maxFiltered : 0;
         const radius = isFiltered
           ? Math.max(4, Math.round(4 + intensity * 8))
           : (isCritical ? 9 : (tier === 'high' ? 7 : 5));
@@ -487,8 +554,8 @@
               <i class="fa-solid fa-triangle-exclamation"></i> ${rawViolation}
             </div>
             <div class="flex gap-4 text-xs mb-3 border-t border-b border-slate-200 py-2">
-              <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${displayCount}${isFiltered ? ` <span class='text-indigo-500 text-[9px]'>(filtered)</span>` : ''}</span></div>
-              <div class="ml-auto"><span class="text-slate-500">Priority Score:</span> <span class="font-bold text-red-600 text-sm ml-1">${hs.priorityScore || hs.totalPCS || 0}</span><span class="text-slate-400 text-[10px]">/100</span></div>
+              <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${Math.round(displayCount)}${isFiltered ? ` <span class='text-indigo-500 text-[9px]'>(filtered)</span>` : ''}</span></div>
+              <div class="ml-auto"><span class="text-slate-500">Priority Score (PCU):</span> <span class="font-bold text-red-600 text-sm ml-1">${Math.round(hs.filteredPCU)}</span><span class="text-slate-400 text-[10px]"></span></div>
             </div>
 
             <!-- XAI Explainability Layer -->
@@ -987,6 +1054,24 @@ Write the briefing now:`;
       }
       updateSliderTrack();
       renderMarkers();
+    };
+
+    window.onVehicleChange = function() {
+      for (const bucket of VEHICLE_BUCKETS) {
+        VEHICLE_FILTER[bucket] = document.getElementById(VEH_IDS[bucket]).checked;
+      }
+      const activeCount = Object.values(VEHICLE_FILTER).filter(v=>v).length;
+      document.getElementById('veh-filter-label').textContent = 
+        activeCount === 5 ? 'PCU: All' : (activeCount === 0 ? 'PCU: None' : `PCU: ${activeCount}/5`);
+      renderMarkers();
+    };
+
+    window.setAllVehicles = function(state) {
+      for (const bucket of VEHICLE_BUCKETS) {
+        VEHICLE_FILTER[bucket] = state;
+        document.getElementById(VEH_IDS[bucket]).checked = state;
+      }
+      onVehicleChange();
     };
 
     // Init
