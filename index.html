@@ -661,9 +661,9 @@
         
         // Popup
         let resources = 'Standard patrol';
-        if (tier === 'critical') resources = 'Tow truck + 2 constables';
-        else if (tier === 'high') resources = 'Wheel clamps + 2 constables';
-        else if (tier === 'medium') resources = '1 constable';
+        if (baseTier === 'critical') resources = 'Tow truck + 2 constables';
+        else if (baseTier === 'high') resources = 'Wheel clamps + 2 constables';
+        else if (baseTier === 'medium') resources = '1 constable';
 
         if (isUnassignedHighRisk) {
           resources = '<span class="text-purple-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>High priority — unassigned</span>';
@@ -692,7 +692,7 @@
           <div class="p-1 min-w-[200px]">
             <div class="flex justify-between items-start mb-1">
               <div class="flex gap-1 items-center">
-                <div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">${hs.tier}</div>
+                <div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">${baseTier}</div>
                 ${confBadge}
               </div>
               ${trendHtml}
