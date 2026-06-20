@@ -658,6 +658,10 @@
         if (isUnassignedHighRisk) {
           resources = '<span class="text-purple-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>High priority — unassigned</span>';
         }
+        
+        if (hs.marginalImpact && hs.marginalImpact.delaySecondsPerVehicle > 0) {
+          resources += `<div class="w-full text-[10px] text-emerald-600 mt-1.5 pt-1.5 border-t border-slate-200/60 font-bold"><i class="fa-solid fa-stopwatch mr-1"></i>Averts ${hs.marginalImpact.delaySecondsPerVehicle.toFixed(1)}s delay per vehicle cleared</div>`;
+        }
 
         const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
         
@@ -899,11 +903,15 @@
 
       // Render Panel Results
       let totalImpact = deployments.reduce((sum, d) => sum + (d.target.priorityScore || d.target.totalPCS || 0), 0);
+      let totalDelayAvertedSecs = deployments.reduce((sum, d) => sum + (d.target.marginalImpact ? d.target.marginalImpact.delaySecondsPerVehicle * 10 : 0), 0); // Assuming 10 vehicles cleared per deployment hour
+      let delayAvertedText = totalDelayAvertedSecs > 0 ? `<div class="text-[10px] text-emerald-400 font-bold mb-2"><i class="fa-solid fa-stopwatch mr-1"></i> Est. Network Savings: ${(totalDelayAvertedSecs / 60).toFixed(1)} mins delay/hr</div>` : '';
+
       let html = `
-        <div class="flex justify-between items-center mb-2">
+        <div class="flex justify-between items-center mb-1">
           <span class="text-xs text-slate-400 uppercase font-bold">Optimal Plan</span>
           <span class="text-[10px] bg-green-500/20 text-green-400 px-2 py-0.5 rounded font-bold border border-green-500/30">Score: ${totalImpact}</span>
         </div>
+        ${delayAvertedText}
       `;
       
       const hq = [12.9716, 77.5946]; // Default HQ center (Bengaluru)
@@ -958,6 +966,9 @@
       const top10Violations = sortedByCount.slice(0, 10).reduce((sum, h) => sum + h.count, 0);
       const top10Percentage = ((top10Violations / totalViolations) * 100).toFixed(1);
       
+      const top10DelaySavedSecs = sortedByCount.slice(0, 10).reduce((sum, h) => sum + (h.count * (h.marginalImpact ? h.marginalImpact.delaySecondsPerVehicle : 0)), 0);
+      const delaySavedHours = (top10DelaySavedSecs / 3600).toFixed(1);
+      
       // Metric 2: Parking specifically
       const parkingSpots = sortedByCount.filter(h => h.violation && h.violation.toLowerCase().includes('parking'));
       const totalParking = parkingSpots.reduce((sum, h) => sum + h.count, 0);
@@ -978,6 +989,7 @@
         <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
           <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">What-If: Eliminate Top 10 Zones</div>
           <div class="text-sm font-medium text-white">City-wide violation reduction: <span class="text-blue-400 font-bold ml-1">${top10Percentage}%</span></div>
+          <div class="text-[10px] text-emerald-400 font-bold mt-1"><i class="fa-solid fa-stopwatch mr-1"></i> Averts ${delaySavedHours} total hours of commuter delay</div>
         </div>
         
         <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
