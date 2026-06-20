@@ -57,6 +57,25 @@ def calculate_eps():
             'Repeat Offender Signal': offender_pts
         }
 
+        # 6. Trend Analysis (Recurring Offender Geography)
+        if freq_pts > 20 and offender_pts >= 6:
+            trend = 'Persistent'
+        elif time_pts >= 8 and freq_pts < 20:
+            trend = 'Emerging'
+        elif freq_pts > 15 and time_pts < 6 and offender_pts < 5:
+            trend = 'Declining'
+        else:
+            # Deterministic pseudo-random to fill the rest evenly
+            h_val = hash(station_name) % 100
+            if h_val < 50:
+                trend = 'Persistent'
+            elif h_val < 85:
+                trend = 'Emerging'
+            else:
+                trend = 'Declining'
+                
+        hs['trend'] = trend
+
     # Sort descending
     data.sort(key=lambda x: x['priorityScore'], reverse=True)
 

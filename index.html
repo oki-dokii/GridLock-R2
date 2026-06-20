@@ -290,10 +290,22 @@
         else if (hs.tier === 'medium') resources = '1 constable';
 
         const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
+        
+        let trendHtml = '';
+        if(hs.trend === 'Persistent') {
+          trendHtml = `<span class="bg-red-50 text-red-600 border border-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-circle text-[6px] mr-1 align-middle"></i>PERSISTENT</span>`;
+        } else if(hs.trend === 'Emerging') {
+          trendHtml = `<span class="bg-purple-50 text-purple-600 border border-purple-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-arrow-trend-up mr-1"></i>EMERGING</span>`;
+        } else {
+          trendHtml = `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider"><i class="fa-solid fa-arrow-trend-down mr-1"></i>DECLINING</span>`;
+        }
 
         marker.bindPopup(`
           <div class="p-1 min-w-[200px]">
-            <div class="text-[10px] uppercase text-slate-500 font-bold mb-1 tracking-widest">${hs.tier} PRIORITY</div>
+            <div class="flex justify-between items-start mb-1">
+              <div class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">${hs.tier} PRIORITY</div>
+              ${trendHtml}
+            </div>
             <div class="font-bold text-slate-800 text-sm mb-1">${hs.station || 'Unknown Station'}</div>
             
             <!-- Road Context -->
@@ -609,6 +621,11 @@
       const arterialViolations = arterialSpots.reduce((sum, h) => sum + h.count, 0);
       const arterialPercentage = ((arterialViolations / totalViolations) * 100).toFixed(1);
 
+      // Metric 4: Trend Analysis (Emerging Risk)
+      const criticalSpots = sortedByCount.filter(h => h.tier === 'critical');
+      const emergingCritical = criticalSpots.filter(h => h.trend === 'Emerging').length;
+      const emergingPercentage = criticalSpots.length > 0 ? ((emergingCritical / criticalSpots.length) * 100).toFixed(1) : 0;
+
       document.getElementById('exec-intel-content').innerHTML = `
         <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
           <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">What-If: Eliminate Top 10 Zones</div>
@@ -623,6 +640,11 @@
         <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
           <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Arterial Impact</div>
           <div class="text-sm font-medium text-white"><span class="text-red-400 font-bold mr-1">${arterialPercentage}%</span> of all violations occur on Arterial Highways.</div>
+        </div>
+
+        <div class="bg-slate-800/80 p-2.5 rounded border border-slate-700">
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Preemptive Risk Analysis</div>
+          <div class="text-sm font-medium text-white"><span class="text-purple-400 font-bold mr-1">${emergingPercentage}%</span> of critical zones are <span class="text-purple-400 font-bold">Emerging</span> hotspots.</div>
         </div>
       `;
     }
