@@ -246,14 +246,14 @@
             <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
             <span id="val-patrols" class="text-sm font-bold text-white">5</span>
           </div>
-          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; simulateCoverage();">
+          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; renderMarkers();">
         </div>
         <div>
           <div class="flex justify-between items-center mb-1">
             <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
             <span id="val-tows" class="text-sm font-bold text-white">2</span>
           </div>
-          <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; simulateCoverage();">
+          <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; renderMarkers();">
         </div>
       </div>
       
@@ -402,8 +402,6 @@
         const res = await fetch('hotspot_data.json');
         HOTSPOTS = await res.json();
         renderMarkers();
-        updateRadar();
-        simulateCoverage(); // Run simulator once loaded
         generateExecutiveIntelligence(); // Run What-If Analysis
         if (HOTSPOTS.length > 0) {
           map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
@@ -465,14 +463,55 @@
       const maxFiltered = activeZones.length > 0
         ? Math.max(...activeZones.map(h => h.filteredPCU)) : 1;
 
-      // Re-tier only the active zones (using PCU)
       const sortedActive = [...activeZones].sort((a, b) => b.filteredPCU - a.filteredPCU);
       const totalActive = sortedActive.length;
       sortedActive.forEach((hs, i) => {
         hs._tier = i < totalActive * 0.05 ? 'critical' :
                    i < totalActive * 0.20 ? 'high' :
                    i < totalActive * 0.50 ? 'medium' : 'low';
+        hs._assigned = false;
       });
+
+      // --- SIMULATE COVERAGE (GREEDY ALLOCATOR) ---
+      const numPatrols = parseInt(document.getElementById('opt-patrols').value) || 0;
+      const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
+      const CRITICAL_POOL_SIZE = 40;
+      let pool = [...sortedActive];
+      let topRiskPool = pool.slice(0, CRITICAL_POOL_SIZE);
+      let maxPossibleScore = topRiskPool.reduce((sum, h) => sum + (h.filteredPCU || 0), 0);
+      let coveredScore = 0;
+
+      for(let i=0; i<numTows; i++) {
+        let idx = pool.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
+        if(idx === -1) idx = 0;
+        if(pool.length === 0) break;
+        let picked = pool.splice(idx, 1)[0];
+        picked._assigned = true;
+        coveredScore += picked.filteredPCU || 0;
+      }
+      for(let i=0; i<numPatrols; i++) {
+        if(pool.length === 0) break;
+        let picked = pool.shift();
+        picked._assigned = true;
+        coveredScore += picked.filteredPCU || 0;
+      }
+      
+      let percentage = maxPossibleScore > 0 ? Math.min((coveredScore / maxPossibleScore) * 100, 100) : 100;
+      const bar = document.getElementById('coverage-bar');
+      const text = document.getElementById('coverage-text');
+      text.innerText = percentage.toFixed(1) + '%';
+      bar.style.width = percentage.toFixed(1) + '%';
+      if(percentage < 40) { 
+        bar.className = 'bg-red-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-red-400'; 
+      } else if(percentage < 70) { 
+        bar.className = 'bg-yellow-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-yellow-400'; 
+      } else { 
+        bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300'; 
+        text.className = 'text-lg font-bold text-green-400'; 
+      }
+      // --- END SIMULATOR ---
 
       // Render ghosts first (below active markers)
       allWithCounts
@@ -491,9 +530,14 @@
       // Render active zones on top
       [...activeZones].sort((a, b) => a.filteredPCU - b.filteredPCU).forEach(hs => {
         const tier = isFiltered ? hs._tier : hs.tier;
-        const col  = TIER_COLORS[tier] || '#3b82f6';
+        let col  = TIER_COLORS[tier] || '#3b82f6';
         const isCritical  = tier === 'critical';
         const isValidated = hs.rank <= 50;
+
+        const isUnassignedHighRisk = hs._assigned === false && (tier === 'critical' || tier === 'high');
+        if (isUnassignedHighRisk) {
+          col = '#a855f7'; // Purple-500 distinct visual style
+        }
 
         // Scale radius by filtered PCU intensity (min 4, max 12)
         const intensity = maxFiltered > 0 ? hs.filteredPCU / maxFiltered : 0;
@@ -504,10 +548,10 @@
         // Lightweight SVG/Canvas marker (Zero lag)
         const marker = L.circleMarker([hs.lat, hs.lon], {
           radius: radius,
-          color: isValidated ? '#10b981' : '#0f172a',
-          weight: isValidated ? 2.5 : (isCritical ? 2 : 1),
+          color: isUnassignedHighRisk ? '#f8fafc' : (isValidated ? '#10b981' : '#0f172a'),
+          weight: isValidated ? 2.5 : (isCritical || isUnassignedHighRisk ? 2 : 1),
           fillColor: col,
-          fillOpacity: isCritical ? 1 : 0.7
+          fillOpacity: isCritical || isUnassignedHighRisk ? 1 : 0.7
         }).addTo(map);
 
         const displayCount = isFiltered ? hs.filteredCount : hs.count;
@@ -517,6 +561,10 @@
         if (tier === 'critical') resources = 'Tow truck + 2 constables';
         else if (tier === 'high') resources = 'Wheel clamps + 2 constables';
         else if (tier === 'medium') resources = '1 constable';
+
+        if (isUnassignedHighRisk) {
+          resources = '<span class="text-purple-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>High priority — unassigned</span>';
+        }
 
         const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
         
@@ -598,6 +646,7 @@
 
         mapMarkers.push(marker);
       });
+      updateRadar();
     }
 
     // ── SEARCH LOGIC ───────────────────────────────────────────────────────────
@@ -804,55 +853,6 @@
         map.fitBounds(group.getBounds().pad(0.1));
       }
     }
-
-
-
-    function simulateCoverage() {
-      if(!HOTSPOTS.length) return;
-      
-      const numPatrols = parseInt(document.getElementById('opt-patrols').value) || 0;
-      const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
-      
-      // Define total "High Risk Pool" as the top 40 hotspots
-      const CRITICAL_POOL_SIZE = 40;
-      let available = [...HOTSPOTS].sort((a,b) => (b.priorityScore||0) - (a.priorityScore||0));
-      let topRiskPool = available.slice(0, CRITICAL_POOL_SIZE);
-      let maxPossibleScore = topRiskPool.reduce((sum, h) => sum + (h.priorityScore || 0), 0);
-      
-      let coveredScore = 0;
-      
-      for(let i=0; i<numTows; i++) {
-        let idx = available.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
-        if(idx === -1) idx = 0;
-        if(available.length === 0) break;
-        coveredScore += available.splice(idx, 1)[0].priorityScore || 0;
-      }
-
-      for(let i=0; i<numPatrols; i++) {
-        if(available.length === 0) break;
-        coveredScore += available.shift().priorityScore || 0;
-      }
-      
-      let percentage = Math.min((coveredScore / maxPossibleScore) * 100, 100);
-      
-      const bar = document.getElementById('coverage-bar');
-      const text = document.getElementById('coverage-text');
-      
-      text.innerText = percentage.toFixed(1) + '%';
-      bar.style.width = percentage.toFixed(1) + '%';
-      
-      if(percentage < 40) { 
-        bar.className = 'bg-red-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-red-400'; 
-      } else if(percentage < 70) { 
-        bar.className = 'bg-yellow-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-yellow-400'; 
-      } else { 
-        bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-green-400'; 
-      }
-    }
-
     function generateExecutiveIntelligence() {
       if(!HOTSPOTS.length) return;
       
