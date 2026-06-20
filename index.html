@@ -45,6 +45,34 @@
     
     .radar-quadrant { transition: all 0.3s ease; }
     .radar-active { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); }
+
+    /* Time slider */
+    .time-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 4px;
+      background: linear-gradient(to right, #6366f1 var(--pct-l), #334155 var(--pct-l), #334155 var(--pct-r), #6366f1 var(--pct-r));
+      outline: none;
+      cursor: pointer;
+    }
+    .time-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #818cf8;
+      border: 2px solid #1e1b4b;
+      cursor: pointer;
+      box-shadow: 0 0 6px #6366f188;
+    }
+    .preset-btn {
+      transition: background 0.15s, color 0.15s;
+    }
+    .preset-btn.active {
+      background: #4f46e5 !important;
+      color: #fff !important;
+      border-color: #6366f1 !important;
+    }
   </style>
 </head>
 <body class="text-slate-200">
@@ -103,8 +131,34 @@
       </div>
     </div>
   </div>
+  <!-- Time Filter Bar -->
+  <div id="time-filter-bar" class="absolute bottom-0 left-0 right-0 z-50 pointer-events-auto" style="z-index:1001;">
+    <div class="glass-panel border-t border-slate-700/60 px-4 py-3">
+      <div class="max-w-2xl mx-auto">
+        <!-- Row 1: presets + active label -->
+        <div class="flex items-center gap-2 mb-2 flex-wrap">
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-clock mr-1"></i>Time Filter</span>
+          <button id="preset-all"     onclick="applyPreset('all')"     class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All Hours</button>
+          <button id="preset-morning" onclick="applyPreset('morning')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Morning Peak (8–11)</button>
+          <button id="preset-evening" onclick="applyPreset('evening')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Evening Peak (17–19)</button>
+          <button id="preset-weekend" onclick="applyPreset('weekend')" class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
+          <span id="filter-active-label" class="ml-auto text-[9px] text-indigo-400 font-mono font-bold">Showing: All Hours</span>
+        </div>
+        <!-- Row 2: dual range sliders + hour labels -->
+        <div id="hour-slider-row" class="flex items-center gap-2">
+          <span class="text-[9px] text-slate-500 w-5 text-right">0</span>
+          <div class="relative flex-1 h-5 flex items-center">
+            <input type="range" id="slider-from" min="0" max="23" value="0"  class="time-range-slider absolute w-full" oninput="onSliderChange()">
+            <input type="range" id="slider-to"   min="0" max="23" value="23" class="time-range-slider absolute w-full" oninput="onSliderChange()">
+          </div>
+          <span class="text-[9px] text-slate-500 w-5">23</span>
+          <span id="slider-label" class="text-[10px] text-indigo-300 font-mono font-bold w-16 text-center">0 – 23</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Top Search Bar -->
+
   <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
     <div class="w-full max-w-md pointer-events-auto">
       <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
@@ -248,6 +302,8 @@
     let HOTSPOTS = [];
     let mapMarkers = [];
     let map = null;
+    // Time filter state
+    let TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: false };
 
     const AREAS = [
       {name:'Shivajinagar',lat:12.9850,lon:77.6010,zone:'Central'},
@@ -318,14 +374,51 @@
       mapMarkers.forEach(m => map.removeLayer(m));
       mapMarkers = [];
 
-      // Sort so critical markers render on top of others
-      const sortedHotspots = [...HOTSPOTS].sort((a,b) => (a.totalPCS||0) - (b.totalPCS||0));
+      const { fromHour, toHour, weekendOnly } = TIME_FILTER;
+      const isFiltered = fromHour > 0 || toHour < 23 || weekendOnly;
 
-      sortedHotspots.forEach(hs => {
-        const col = TIER_COLORS[hs.tier] || '#3b82f6';
-        const isCritical = hs.tier === 'critical';
+      // Compute filtered count for each hotspot from real hour/dow profiles
+      const filtered = HOTSPOTS.map(hs => {
+        let filteredCount = 0;
+        if (weekendOnly) {
+          // dow 5=Sat, 6=Sun
+          const dp = hs.dowProfile || [];
+          filteredCount = (dp[5] || 0) + (dp[6] || 0);
+        } else {
+          const hp = hs.hourProfile || [];
+          for (let h = fromHour; h <= toHour; h++) {
+            filteredCount += hp[h] || 0;
+          }
+        }
+        return { ...hs, filteredCount: isFiltered ? filteredCount : hs.count };
+      }).filter(hs => hs.filteredCount > 0);
+
+      if (filtered.length === 0) return;
+
+      // Recompute tiers from filtered counts
+      const maxFiltered = Math.max(...filtered.map(h => h.filteredCount));
+      filtered.sort((a, b) => b.filteredCount - a.filteredCount);
+      const total = filtered.length;
+      filtered.forEach((hs, i) => {
+        hs._tier = i < total * 0.05 ? 'critical' :
+                   i < total * 0.20 ? 'high' :
+                   i < total * 0.50 ? 'medium' : 'low';
+      });
+
+      // Sort so critical renders on top
+      filtered.sort((a, b) => (a.filteredCount || 0) - (b.filteredCount || 0));
+
+      filtered.forEach(hs => {
+        const tier = isFiltered ? hs._tier : hs.tier;
+        const col  = TIER_COLORS[tier] || '#3b82f6';
+        const isCritical  = tier === 'critical';
         const isValidated = hs.rank <= 50;
-        const radius = isCritical ? 9 : (hs.tier==='high'? 7 : 5);
+
+        // Scale radius by filtered intensity (min 4, max 12)
+        const intensity = maxFiltered > 0 ? hs.filteredCount / maxFiltered : 0;
+        const radius = isFiltered
+          ? Math.max(4, Math.round(4 + intensity * 8))
+          : (isCritical ? 9 : (tier === 'high' ? 7 : 5));
         
         // Lightweight SVG/Canvas marker (Zero lag)
         const marker = L.circleMarker([hs.lat, hs.lon], {
@@ -335,12 +428,14 @@
           fillColor: col,
           fillOpacity: isCritical ? 1 : 0.7
         }).addTo(map);
+
+        const displayCount = isFiltered ? hs.filteredCount : hs.count;
         
         // Popup
         let resources = 'Standard patrol';
-        if (hs.tier === 'critical') resources = 'Tow truck + 2 constables';
-        else if (hs.tier === 'high') resources = 'Wheel clamps + 2 constables';
-        else if (hs.tier === 'medium') resources = '1 constable';
+        if (tier === 'critical') resources = 'Tow truck + 2 constables';
+        else if (tier === 'high') resources = 'Wheel clamps + 2 constables';
+        else if (tier === 'medium') resources = '1 constable';
 
         const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
         
@@ -378,7 +473,7 @@
               <i class="fa-solid fa-triangle-exclamation"></i> ${rawViolation}
             </div>
             <div class="flex gap-4 text-xs mb-3 border-t border-b border-slate-200 py-2">
-              <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${hs.count}</span></div>
+              <div><span class="text-slate-500">Violations:</span> <span class="font-bold">${displayCount}${isFiltered ? ` <span class='text-indigo-500 text-[9px]'>(filtered)</span>` : ''}</span></div>
               <div class="ml-auto"><span class="text-slate-500">Priority Score:</span> <span class="font-bold text-red-600 text-sm ml-1">${hs.priorityScore || hs.totalPCS || 0}</span><span class="text-slate-400 text-[10px]">/100</span></div>
             </div>
 
@@ -814,9 +909,71 @@ Write the briefing now:`;
       }
     };
 
+    // ── TIME FILTER ENGINE ─────────────────────────────────────────────────────
+    function updateSliderTrack() {
+      const from = parseInt(document.getElementById('slider-from').value);
+      const to   = parseInt(document.getElementById('slider-to').value);
+      const pctL = (Math.min(from,to) / 23 * 100).toFixed(1) + '%';
+      const pctR = (Math.max(from,to) / 23 * 100).toFixed(1) + '%';
+      document.querySelectorAll('.time-range-slider').forEach(s => {
+        s.style.setProperty('--pct-l', pctL);
+        s.style.setProperty('--pct-r', pctR);
+      });
+      document.getElementById('slider-label').textContent =
+        Math.min(from,to) + ' – ' + Math.max(from,to);
+    }
+
+    function onSliderChange() {
+      const from = parseInt(document.getElementById('slider-from').value);
+      const to   = parseInt(document.getElementById('slider-to').value);
+      TIME_FILTER = { fromHour: Math.min(from,to), toHour: Math.max(from,to), weekendOnly: false };
+      updateSliderTrack();
+      document.getElementById('filter-active-label').textContent =
+        `Showing: ${Math.min(from,to)}:00 – ${Math.max(from,to)}:59`;
+      // Clear all preset buttons
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      if (from === 0 && to === 23) {
+        document.getElementById('preset-all').classList.add('active');
+        document.getElementById('filter-active-label').textContent = 'Showing: All Hours';
+      }
+      renderMarkers();
+    }
+
+    window.applyPreset = function(preset) {
+      document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(`preset-${preset}`).classList.add('active');
+      document.getElementById('hour-slider-row').style.opacity =
+        preset === 'weekend' ? '0.4' : '1';
+
+      if (preset === 'all') {
+        TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: false };
+        document.getElementById('slider-from').value = 0;
+        document.getElementById('slider-to').value   = 23;
+        document.getElementById('filter-active-label').textContent = 'Showing: All Hours';
+      } else if (preset === 'morning') {
+        TIME_FILTER = { fromHour: 8, toHour: 11, weekendOnly: false };
+        document.getElementById('slider-from').value = 8;
+        document.getElementById('slider-to').value   = 11;
+        document.getElementById('filter-active-label').textContent = 'Morning Peak: 08:00 – 11:59';
+      } else if (preset === 'evening') {
+        TIME_FILTER = { fromHour: 17, toHour: 19, weekendOnly: false };
+        document.getElementById('slider-from').value = 17;
+        document.getElementById('slider-to').value   = 19;
+        document.getElementById('filter-active-label').textContent = 'Evening Peak: 17:00 – 19:59';
+      } else if (preset === 'weekend') {
+        TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: true };
+        document.getElementById('slider-from').value = 0;
+        document.getElementById('slider-to').value   = 23;
+        document.getElementById('filter-active-label').textContent = 'Weekend Only (Sat + Sun)';
+      }
+      updateSliderTrack();
+      renderMarkers();
+    };
+
     // Init
     initMap();
     fetchHotspots();
+
 
   </script>
 </body>
