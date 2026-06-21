@@ -140,7 +140,7 @@
   <div id="map"></div>
 
   <!-- Map Legend -->
-  <div class="absolute top-6 right-6 z-40 pointer-events-none flex flex-col gap-3" style="z-index:1000;">
+  <div class="absolute top-6 right-6 z-40 pointer-events-none flex flex-col gap-3 origin-top-right" style="z-index:1000; zoom: 0.8; -moz-transform: scale(0.8);">
     <div class="glass-panel rounded-xl p-3 min-w-[165px]">
       <div class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2.5 flex items-center gap-1.5">
         <i class="fa-solid fa-circle-info text-slate-500"></i> Map Legend
@@ -306,7 +306,7 @@
 
 
 
-  <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
+  <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none origin-top" style="zoom: 0.8; -moz-transform: scale(0.8);">
     <div class="w-full max-w-md pointer-events-auto">
       <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
         <div class="flex items-center px-4 py-3 border-b border-slate-700/50">
@@ -324,7 +324,7 @@
   </div>
 
   <!-- Stats Panel (Top Left) -->
-  <div class="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 pointer-events-auto max-w-[calc(100vw-32px)] sm:max-w-xs">
+  <div class="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 pointer-events-auto max-w-[calc(100vw-32px)] sm:max-w-xs origin-top-left" style="zoom: 0.8; -moz-transform: scale(0.8);">
     <div class="glass-panel rounded-xl p-4 flex items-center space-x-4 mb-4">
       <div class="bg-blue-600/20 p-3 rounded-lg border border-blue-500/30">
         <i class="fa-solid fa-shield-halved text-blue-400 text-xl"></i>
@@ -380,10 +380,10 @@
   </div>
 
   <!-- Bottom Right Stack (Resource + Radar) -->
-  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-80 z-40 pointer-events-auto flex flex-col gap-2">
+  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-80 z-40 pointer-events-auto flex flex-col gap-2 origin-bottom-right" style="zoom: 0.8; -moz-transform: scale(0.8);">
     
     <!-- Optimization Panel -->
-    <div class="glass-panel rounded-2xl p-4 border-r-4 border-r-green-500 w-full pointer-events-auto hidden md:block">
+    <div class="glass-panel rounded-2xl p-4 border-r-4 border-r-green-500 w-full pointer-events-auto hidden md:block relative">
       <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer" onclick="document.getElementById('sim-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
         <div class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator</div>
         <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
@@ -422,7 +422,7 @@
         <i class="fa-solid fa-bolt"></i> Deploy Units
       </button>
 
-      <div id="opt-results" class="mt-3 space-y-2 max-h-40 overflow-y-auto hidden pr-1">
+      <div id="opt-results" class="absolute right-[calc(100%+12px)] bottom-0 w-[20rem] max-h-[60vh] overflow-y-auto hidden pr-2 glass-panel p-4 rounded-2xl border-r-4 border-r-green-500 shadow-2xl space-y-2 custom-scrollbar">
         <!-- Results injected here -->
       </div>
       </div>
