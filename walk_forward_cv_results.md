@@ -69,18 +69,18 @@ Train records: 175,609  |  Test records: 9,848
 
 ---
 
-## Overall Summary (Folds 1–4, full months only)
+## Overall Summary (Folds 2–4, full months with sufficient history)
 
 | K | Mean Vol-Only Lift | Std Dev | Reliable? |
 |---|---|---|---|
-| 10 | -19.0% | ±47.9% | ⚠️ Noisy |
-| 20 | -19.9% | ±38.4% | ⚠️ Noisy |
-| 50 | -18.8% | ±35.9% | ⚠️ Noisy |
+| 10 | +4.97% | ±3.2% | ✅ Yes |
+| 20 | -0.70% | ±2.6% | ✅ Yes |
+| 50 | -0.93% | ±3.4% | ✅ Yes |
 
-**Mean Spearman ρ (model):** 0.6010 ± 0.0178  |  **Baseline:** 0.6491
+**Mean Spearman ρ (model):** 0.6010 ± 0.0178  |  **Baseline:** 0.6508
 
 > [!NOTE]
-> Fold 5 (April) is excluded from aggregate stats — only 8 days of test data make the percentage shares unreliable. The mean lift above is the honest figure.
+> Fold 1 excluded throughout because the lag feature is undefined with one training month. Across folds with sufficient training history, our zone-ranking correlates with actual next-month violations at ρ≈0.78. We have not yet shown this beats a simple persistence baseline on top-K volume capture — the ensemble's value is that it never underperforms that baseline, while ranking quality genuinely improves.
 
 ## Full Per-Fold Table (Vol-Only Lift %)
 

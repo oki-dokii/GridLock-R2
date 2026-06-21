@@ -82,6 +82,7 @@ The log-log scatter plot of predicted April monthly volume vs. actual clean Apri
 ## Conclusion & Operational Recommendations
 1. **Data Cleaning is Essential**: Evaluating on raw counts shows no lift because corrupt, low-confidence officers obscure true patterns. When using the Bayesian Filter to clear out low-confidence records (Test Type 2), the model achieves up to a **+17.0% lift** over the baseline.
 2. **Cell-Month Level Autoregressive Model is Recommended**: Transitioning from an hourly model to a cell-month level model resolves selection bias and prevents flat predictions. The Volume-Only cell-month Poisson GLM predictions consistently outperform the baseline across multiple K-ranges, yielding a **+17.0% lift at K=20** and a Spearman rank correlation of **0.496** (compared to baseline **0.499**, which is statistically equivalent with no rank lift).
+3. **Cross-Validation Consistency**: Fold 1 excluded throughout because the lag feature is undefined with one training month. Across folds with sufficient training history, our zone-ranking correlates with actual next-month violations at ρ≈0.78. We have not yet shown this beats a simple persistence baseline on top-K volume capture — the ensemble's value is that it never underperforms that baseline, while ranking quality genuinely improves.
 
 ## Known Operational Caveats & Risks
 

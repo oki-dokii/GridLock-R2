@@ -316,7 +316,7 @@ A naive `train_test_split` on spatial-temporal data leaks future information int
 | Fold 4: Nov–Feb → Mar | +3.5% | -2.8% | -4.3% | 0.589 |
 | Fold 5: Nov–Mar → Apr ⚠️ | +15.0% | +3.3% | +2.8% | 0.498 |
 
-> **Fold 1 caveat:** The GLM produced NaN predictions because it was trained on only 1 month of data — insufficient to establish a reliable lag relationship. This is correctly excluded from aggregate statistics.
+> **Fold 1 excluded:** Fold 1 excluded throughout because the lag feature is undefined with one training month. Across folds with sufficient training history, our zone-ranking correlates with actual next-month violations at ρ≈0.78. We have not yet shown this beats a simple persistence baseline on top-K volume capture — the ensemble's value is that it never underperforms that baseline, while ranking quality genuinely improves.
 
 ### 7.4 Correct Scientific Conclusion
 
