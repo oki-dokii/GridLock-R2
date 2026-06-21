@@ -1,0 +1,133 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+
+% Setup colors and links
+\definecolor{primary}{HTML}{0F172A}
+\definecolor{accent}{HTML}{2563EB}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accent,
+    filecolor=accent,      
+    urlcolor=accent,
+}
+
+\titleformat{\section}{\Large\bfseries\color{primary}}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{primary}}{\thesubsection}{1em}{}
+
+\title{
+    \vspace{-2cm}
+    \textbf{\Huge GridLock-R2: Solving Poor Visibility on Parking-Induced Congestion}\\
+    \vspace{0.5cm}
+    \large Detailed Implementation and Evaluation Report\\
+    \vspace{0.2cm}
+}
+\author{
+    \textbf{Team Name:} COMMITTMENT\_ISSUES \\
+    \textbf{Members:} \\
+    Soham Banerjee (Lead) \\
+    Thrissha Arcot \\
+    Gourav Nayak \\
+    Thapan Komaravelly
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+    On-street illegal parking and spillover parking near commercial areas, metro stations, and events severely choke carriageways and intersections in major metropolitan areas like Bengaluru. Currently, enforcement remains patrol-based and reactive, lacking dynamic heatmaps to correlate parking violations with congestion impact, making targeted enforcement difficult. This report details \textbf{GridLock-R2}, an AI-driven parking intelligence system developed to detect illegal parking hotspots, quantify their marginal impact on traffic flow, and mathematically optimize targeted enforcement operations. 
+\end{abstract}
+
+\vspace{0.5cm}
+\tableofcontents
+\newpage
+
+\section{Introduction and Operational Challenge}
+
+Urban mobility is heavily hindered by unauthorized parking. Vehicles parked illegally on main roads, footpaths, and near transit hubs significantly reduce the effective width of the carriageway, forming critical bottlenecks. 
+
+\subsection{Why It’s Hard Today}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Enforcement is Reactive:} Current traffic police operations rely on localized patrol intuition or ad-hoc complaints rather than data-driven deployment.
+    \item \textbf{No Correlation with Congestion Impact:} There is no existing heatmap that maps parking violation volume directly to network delay or congestion risk.
+    \item \textbf{Difficult to Prioritize Zones:} Without impact quantification, it is impossible for dispatchers to distinguish between a high-volume parking hotspot on a quiet residential street versus a low-volume hotspot that bottlenecks a critical arterial road.
+\end{itemize}
+
+\subsection{Problem Statement}
+\textit{How can AI-driven parking intelligence detect illegal parking hotspots and quantify their impact on traffic flow to enable targeted enforcement?}
+
+This submission provides the necessary implementation, codebase, and documentation addressing the problem statement by bridging the gap between raw violation data, congestion metrics, and resource allocation.
+
+\section{System Architecture: GridLock-R2}
+
+GridLock-R2 addresses these challenges through a three-stage pipeline:
+\begin{enumerate}
+    \item \textbf{Bayesian Data Calibration:} Filtering unreliable and biased enforcement data.
+    \item \textbf{AI Hotspot Prediction (GLM) \& Impact Quantification:} Forecasting future hotspots and measuring their congestion cost.
+    \item \textbf{Operations Research (Greedy Knapsack):} Optimizing patrol deployments based on quantified impact.
+\end{enumerate}
+
+\subsection{Stage 1: Bayesian Validation and Data Cleaning}
+Raw traffic violation data suffers from severe officer-level selection bias. Some officers mass-upload images from cameras, while others log specific localized violations, distorting the spatial distribution of actual violations.
+
+To solve this, GridLock utilizes a Bayesian Beta-Binomial model to estimate the true validity rate ($\hat{p}$) of each officer's records. Records from low-confidence officers ($\hat{p} < 0.50$) are programmatically excluded from the spatial prediction pipeline. This ensures the model learns true geographic hotspots rather than the patrolling habits of specific officers.
+
+\subsection{Stage 2: AI Hotspot Prediction and Impact Quantification}
+We aggregated the cleaned Bengaluru traffic data into a spatial hex-grid (Uber H3, Resolution 9) at a monthly level.
+
+\subsubsection{Autoregressive Poisson GLM}
+We predict future violations using a Poisson Generalized Linear Model (GLM). The model uses historical autoregressive lags (e.g., previous month's volume) and a \textit{Persistence Index} to predict the next month's violation counts. 
+
+\subsubsection{Quantifying Traffic Flow Impact (The BPR Model)}
+To answer the core problem statement—\textit{quantifying impact on traffic flow}—we integrated OpenStreetMap (OSM) metadata with the Bureau of Public Roads (BPR) delay function. 
+
+For each identified hotspot, we calculate the Marginal Delay Averted per vehicle cleared:
+\begin{equation}
+    t = t_0 \left( 1 + \alpha \left( \frac{V}{C - C_{parked}} \right)^\beta \right)
+\end{equation}
+
+By dynamically identifying the road type (e.g., Arterial, Residential) and calculating the capacity reduction ($C_{parked}$) caused by illegal parking, we convert parking violations into \textbf{Seconds of Delay per Vehicle}. This directly quantifies the congestion impact of each parking hotspot.
+
+\subsection{Stage 3: Targeted Enforcement via Greedy Knapsack}
+GridLock-R2 translates predictions into action using a Resource Simulator based on a Greedy Knapsack algorithm. Given a constrained budget of Tow Trucks and Patrol Cars, the system allocates resources to maximize the total network savings (delay averted). 
+
+Tow trucks are directed to high-delay, high-severity nodes, while patrol officers (who possess a higher hourly clearance rate of 2 vehicles/hr, empirically derived from historical dataset averages) are deployed to maximize geographic coverage of volume hotspots.
+
+\section{Evaluation and Results}
+
+GridLock-R2 was rigorously evaluated using Walk-Forward Cross-Validation across five months (Nov 2023 - Apr 2024).
+
+\subsection{Statistical Reliability}
+Fold 1 is excluded throughout because the lag feature is undefined with one training month. Across folds with sufficient training history, our zone-ranking correlates with actual next-month violations at $\rho \approx 0.78$. We have not yet shown this beats a simple persistence baseline on top-K volume capture — the ensemble's value is that it never underperforms that baseline, while ranking quality genuinely improves.
+
+\subsection{Operational Lift}
+When evaluating the holdout test set (April 2024), the Volume-Only Poisson GLM yields a \textbf{+17.0\% lift at K=20} over a naive persistence baseline in identifying valid, high-impact hotspots.
+
+\section{Conclusion and Deliverables}
+
+GridLock-R2 directly solves the challenge of poor visibility in parking-induced congestion by replacing reactive patrols with a mathematical, impact-driven dispatch framework. 
+
+\textbf{Provided Deliverables in the Submission Repository:}
+\begin{itemize}
+    \item \texttt{index.html}: Interactive Tactical Map and Resource Simulator.
+    \item \texttt{monthly\_report.html}: Automated reporting system visualizing predictive confidence.
+    \item \texttt{congestion\_risk.html}: Deep-dive analytics on the BPR impact model.
+    \item \texttt{GridLock\_Implementation\_Pipeline.ipynb}: The core data science and AI modeling pipeline containing the Bayesian filter, Poisson GLM, and Walk-Forward CV evaluations.
+\end{itemize}
+
+\end{document}
