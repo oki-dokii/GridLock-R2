@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BTP Field Officer App</title>
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -27,9 +28,21 @@
   </script>
 
   <style>
-    body { font-family: 'Inter', sans-serif; overflow: hidden; background: #0f172a; }
-    #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
-    
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      background: #0f172a;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
     .glass-panel {
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(12px);
@@ -39,12 +52,27 @@
     }
 
     /* Custom Scrollbar for search */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
-    
-    .radar-quadrant { transition: all 0.3s ease; }
-    .radar-active { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px;
+    }
+
+    .radar-quadrant {
+      transition: all 0.3s ease;
+    }
+
+    .radar-active {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+    }
 
     /* Time slider */
     .time-range-slider {
@@ -56,18 +84,22 @@
       outline: none;
       cursor: pointer;
     }
+
     .time-range-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 14px; height: 14px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       background: #818cf8;
       border: 2px solid #1e1b4b;
       cursor: pointer;
       box-shadow: 0 0 6px #6366f188;
     }
+
     .preset-btn {
       transition: background 0.15s, color 0.15s;
     }
+
     .preset-btn.active {
       background: #4f46e5 !important;
       color: #fff !important;
@@ -75,23 +107,33 @@
     }
 
     /* Vehicle checkboxes */
-    .veh-check { display: none; }
+    .veh-check {
+      display: none;
+    }
+
     .veh-label {
-      display: flex; align-items: center; gap: 4px;
-      padding: 2px 8px; border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 9999px;
       border: 1px solid #334155;
-      background: rgba(51,65,85,0.5);
-      font-size: 9px; font-weight: 700;
-      cursor: pointer; user-select: none;
+      background: rgba(51, 65, 85, 0.5);
+      font-size: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
       transition: background 0.15s, border-color 0.15s;
     }
-    .veh-check:checked + .veh-label {
+
+    .veh-check:checked+.veh-label {
       border-color: var(--veh-color);
       background: color-mix(in srgb, var(--veh-color) 20%, transparent);
       color: var(--veh-color);
     }
   </style>
 </head>
+
 <body class="text-slate-200">
 
   <!-- Map Container -->
@@ -105,36 +147,52 @@
       </div>
 
       <!-- Priority Tiers -->
-      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier (Click to Filter)</div>
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier (Click to Filter)
+      </div>
       <div class="space-y-1.5 mb-3">
-        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-critical" onclick="toggleTierFilter('critical')">
-          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5"/></svg>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+          id="legend-critical" onclick="toggleTierFilter('critical')">
+          <svg width="16" height="16" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5" />
+          </svg>
           <span class="text-[11px] text-slate-200 font-medium">Critical</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 5%</span>
         </div>
-        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-high" onclick="toggleTierFilter('high')">
-          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5"/></svg>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+          id="legend-high" onclick="toggleTierFilter('high')">
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5" />
+          </svg>
           <span class="text-[11px] text-slate-200 font-medium">High</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 20%</span>
         </div>
-        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-medium" onclick="toggleTierFilter('medium')">
-          <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5"/></svg>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+          id="legend-medium" onclick="toggleTierFilter('medium')">
+          <svg width="12" height="12" viewBox="0 0 12 12">
+            <circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5" />
+          </svg>
           <span class="text-[11px] text-slate-200 font-medium">Medium</span>
           <span class="text-[9px] text-slate-500 ml-auto">Top 50%</span>
         </div>
-        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-low" onclick="toggleTierFilter('low')">
-          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5"/></svg>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+          id="legend-low" onclick="toggleTierFilter('low')">
+          <svg width="10" height="10" viewBox="0 0 10 10">
+            <circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5" />
+          </svg>
           <span class="text-[11px] text-slate-200 font-medium">Low</span>
           <span class="text-[9px] text-slate-500 ml-auto">Rest</span>
         </div>
       </div>
-      
+
       <!-- Deployment Status -->
       <div class="border-t border-slate-700 mb-2.5"></div>
       <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Deployment Status</div>
       <div class="space-y-1.5 mb-3">
-        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-unassigned" onclick="toggleTierFilter('unassigned')">
-          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#a855f7" stroke="#f8fafc" stroke-width="1.5"/></svg>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+          id="legend-unassigned" onclick="toggleTierFilter('unassigned')">
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <circle cx="7" cy="7" r="6" fill="#a855f7" stroke="#f8fafc" stroke-width="1.5" />
+          </svg>
           <span class="text-[11px] text-purple-400 font-bold">Unassigned Risk</span>
           <span class="text-[9px] text-slate-500 ml-auto">Gap</span>
         </div>
@@ -147,12 +205,16 @@
       <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Model Confidence</div>
       <div class="space-y-1.5">
         <div class="flex items-center gap-2">
-          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#10b981" stroke-width="2.5"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <circle cx="7" cy="7" r="5" fill="#f97316" stroke="#10b981" stroke-width="2.5" />
+          </svg>
           <span class="text-[11px] text-emerald-400 font-semibold">Validated</span>
           <span class="text-[9px] text-slate-500 ml-auto">Rank 1–50</span>
         </div>
         <div class="flex items-center gap-2">
-          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#0f172a" stroke-width="1"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14">
+            <circle cx="7" cy="7" r="5" fill="#f97316" stroke="#0f172a" stroke-width="1" />
+          </svg>
           <span class="text-[11px] text-slate-400 font-medium">Unproven</span>
           <span class="text-[9px] text-slate-500 ml-auto">Rank 51+</span>
         </div>
@@ -161,7 +223,9 @@
 
     <!-- Top 10 Critical Locations Panel -->
     <div class="glass-panel rounded-xl p-3 min-w-[220px] max-w-[280px] pointer-events-auto hidden md:block">
-      <div class="text-[9px] text-red-400 uppercase font-bold tracking-widest flex items-center justify-between cursor-pointer" onclick="document.getElementById('top-10-list-container').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+      <div
+        class="text-[9px] text-red-400 uppercase font-bold tracking-widest flex items-center justify-between cursor-pointer"
+        onclick="document.getElementById('top-10-list-container').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
         <div class="flex items-center gap-1.5"><i class="fa-solid fa-list-ol"></i> Top 10 Critical</div>
         <i class="fa-solid fa-chevron-down text-slate-500 transition-transform duration-200 toggle-icon"></i>
       </div>
@@ -173,45 +237,68 @@
     </div>
   </div>
   <!-- Time Filter Bar -->
-  <div id="time-filter-bar" class="absolute bottom-0 left-0 right-0 z-50 pointer-events-auto" style="z-index:1001;">
-    <div class="glass-panel border-t border-slate-700/60 px-4 py-3">
+  <div id="time-filter-bar" class="absolute bottom-6 left-0 right-0 z-50 pointer-events-none flex justify-center" style="z-index:1001;">
+    <div class="glass-panel border border-slate-700/60 px-6 py-3 rounded-2xl pointer-events-auto shadow-2xl w-auto">
       <div class="max-w-2xl mx-auto">
         <!-- Row 1: presets + active label -->
         <div class="flex items-center gap-2 mb-2 flex-wrap">
-          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-clock mr-1"></i>Time Filter</span>
-          <button id="preset-all"      onclick="applyPreset('all')"      class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All Hours</button>
-          <button id="preset-morning"  onclick="applyPreset('morning')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">AM Peak (9–11)</button>
-          <button id="preset-earlyam"  onclick="applyPreset('earlyam')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Early Morning (4–7)</button>
-          <button id="preset-midday"   onclick="applyPreset('midday')"   class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Midday (12–14)</button>
-          <button id="preset-weekend"  onclick="applyPreset('weekend')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
-          <span id="filter-active-label" class="ml-auto text-[9px] text-indigo-400 font-mono font-bold">Showing: All Hours</span>
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i
+              class="fa-solid fa-clock mr-1"></i>Time Filter</span>
+          <button id="preset-all" onclick="applyPreset('all')"
+            class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All
+            Hours</button>
+          <button id="preset-morning" onclick="applyPreset('morning')"
+            class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">AM
+            Peak (9–11)</button>
+          <button id="preset-earlyam" onclick="applyPreset('earlyam')"
+            class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Early
+            Morning (4–7)</button>
+          <button id="preset-midday" onclick="applyPreset('midday')"
+            class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Midday
+            (12–14)</button>
+          <button id="preset-weekend" onclick="applyPreset('weekend')"
+            class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
+          <span id="filter-active-label" class="ml-auto text-[9px] text-indigo-400 font-mono font-bold">Showing: All
+            Hours</span>
         </div>
         <!-- Row 2: dual range sliders + hour labels -->
         <div id="hour-slider-row" class="flex items-center gap-2">
           <span class="text-[9px] text-slate-500 w-5 text-right">0</span>
           <div class="relative flex-1 h-5 flex items-center">
-            <input type="range" id="slider-from" min="0" max="23" value="0"  class="time-range-slider absolute w-full" oninput="onSliderChange()">
-            <input type="range" id="slider-to"   min="0" max="23" value="23" class="time-range-slider absolute w-full" oninput="onSliderChange()">
+            <input type="range" id="slider-from" min="0" max="23" value="0" class="time-range-slider absolute w-full"
+              oninput="onSliderChange()">
+            <input type="range" id="slider-to" min="0" max="23" value="23" class="time-range-slider absolute w-full"
+              oninput="onSliderChange()">
           </div>
           <span class="text-[9px] text-slate-500 w-5">23</span>
           <span id="slider-label" class="text-[10px] text-indigo-300 font-mono font-bold w-16 text-center">0 – 23</span>
         </div>
         <!-- Row 3: vehicle type checkboxes -->
         <div class="flex items-center gap-1.5 mt-2 flex-wrap">
-          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-car-side mr-1"></i>Vehicle</span>
-          <input type="checkbox" id="veh-tw"   class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-tw"   class="veh-label" style="--veh-color:#f97316"><i class="fa-solid fa-motorcycle text-[8px]"></i> Two-Wheeler <span class="opacity-50 font-normal">PCU×0.5</span></label>
-          <input type="checkbox" id="veh-car"  class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-car"  class="veh-label" style="--veh-color:#3b82f6"><i class="fa-solid fa-car text-[8px]"></i> Car / Jeep <span class="opacity-50 font-normal">PCU×1.0</span></label>
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i
+              class="fa-solid fa-car-side mr-1"></i>Vehicle</span>
+          <input type="checkbox" id="veh-tw" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-tw" class="veh-label" style="--veh-color:#f97316"><i
+              class="fa-solid fa-motorcycle text-[8px]"></i> Two-Wheeler <span
+              class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-car" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-car" class="veh-label" style="--veh-color:#3b82f6"><i class="fa-solid fa-car text-[8px]"></i>
+            Car / Jeep <span class="opacity-50 font-normal">PCU×1.0</span></label>
           <input type="checkbox" id="veh-auto" class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-auto" class="veh-label" style="--veh-color:#a78bfa"><i class="fa-solid fa-taxi text-[8px]"></i> Auto <span class="opacity-50 font-normal">PCU×0.5</span></label>
-          <input type="checkbox" id="veh-hv"   class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-hv"   class="veh-label" style="--veh-color:#f43f5e"><i class="fa-solid fa-truck text-[8px]"></i> Heavy <span class="opacity-50 font-normal">PCU×1.5–3</span></label>
-          <input type="checkbox" id="veh-bus"  class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-bus"  class="veh-label" style="--veh-color:#10b981"><i class="fa-solid fa-bus text-[8px]"></i> Bus <span class="opacity-50 font-normal">PCU×3.0</span></label>
-          <button onclick="setAllVehicles(true)"  class="ml-auto text-[8px] text-slate-500 hover:text-slate-300 underline">All</button>
-          <button onclick="setAllVehicles(false)" class="text-[8px] text-slate-500 hover:text-slate-300 underline">None</button>
-          <span id="veh-filter-label" class="text-[9px] text-emerald-400 font-mono font-bold w-20 text-right">PCU: All</span>
+          <label for="veh-auto" class="veh-label" style="--veh-color:#a78bfa"><i
+              class="fa-solid fa-taxi text-[8px]"></i> Auto <span class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-hv" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-hv" class="veh-label" style="--veh-color:#f43f5e"><i class="fa-solid fa-truck text-[8px]"></i>
+            Heavy <span class="opacity-50 font-normal">PCU×1.5–3</span></label>
+          <input type="checkbox" id="veh-bus" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-bus" class="veh-label" style="--veh-color:#10b981"><i class="fa-solid fa-bus text-[8px]"></i>
+            Bus <span class="opacity-50 font-normal">PCU×3.0</span></label>
+          <button onclick="setAllVehicles(true)"
+            class="ml-auto text-[8px] text-slate-500 hover:text-slate-300 underline">All</button>
+          <button onclick="setAllVehicles(false)"
+            class="text-[8px] text-slate-500 hover:text-slate-300 underline">None</button>
+          <span id="veh-filter-label" class="text-[9px] text-emerald-400 font-mono font-bold w-20 text-right">PCU:
+            All</span>
         </div>
       </div>
     </div>
@@ -224,9 +311,10 @@
       <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
         <div class="flex items-center px-4 py-3 border-b border-slate-700/50">
           <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
-          <input type="text" id="searchInput" placeholder="Search operational area..." 
-                 class="w-full bg-transparent border-none outline-none px-3 text-slate-100 placeholder-slate-400 font-medium text-lg">
-          <button id="clearSearch" class="text-slate-400 hover:text-white hidden"><i class="fa-solid fa-times"></i></button>
+          <input type="text" id="searchInput" placeholder="Search operational area..."
+            class="w-full bg-transparent border-none outline-none px-3 text-slate-100 placeholder-slate-400 font-medium text-lg">
+          <button id="clearSearch" class="text-slate-400 hover:text-white hidden"><i
+              class="fa-solid fa-times"></i></button>
         </div>
         <div id="searchResults" class="max-h-60 overflow-y-auto hidden">
           <!-- Results injected here -->
@@ -250,22 +338,25 @@
     <!-- Navigation Modules Panel -->
     <div class="glass-panel rounded-xl p-4 flex flex-col space-y-3 mb-4 pointer-events-auto">
       <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Active Modules</div>
-      
-      <a href="index.html" class="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+
+      <a href="index.html"
+        class="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
         <div class="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
           <i class="fa-solid fa-map-location-dot"></i>
         </div>
         Tactical Map
       </a>
-      
-      <a href="congestion_risk.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+
+      <a href="congestion_risk.html"
+        class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
         <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
           <i class="fa-solid fa-chart-line text-amber-500"></i>
         </div>
         Congestion Risk
       </a>
 
-      <a href="monthly_report.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+      <a href="monthly_report.html"
+        class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
         <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
           <i class="fa-solid fa-file-invoice text-emerald-500"></i>
         </div>
@@ -273,56 +364,13 @@
       </a>
     </div>
 
-    <!-- Optimization Panel -->
-    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80 pointer-events-auto hidden md:block">
-      <h2 class="text-lg font-bold text-white flex items-center justify-between mb-4 cursor-pointer" onclick="document.getElementById('sim-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
-        <div class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator</div>
-        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
-      </h2>
-      <div id="sim-content">
-      
-      <!-- Coverage Meter -->
-      <div class="mb-4 bg-slate-800/80 p-3 rounded border border-slate-700">
-        <div class="flex justify-between items-end mb-1">
-          <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">High-Risk Coverage</span>
-          <span id="coverage-text" class="text-lg font-bold text-green-400">0%</span>
-        </div>
-        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
-          <div id="coverage-bar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-        </div>
-      </div>
-      
-      <div class="space-y-4 mb-4">
-        <div>
-          <div class="flex justify-between items-center mb-1">
-            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
-            <span id="val-patrols" class="text-sm font-bold text-white">5</span>
-          </div>
-          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; renderMarkers();">
-        </div>
-        <div>
-          <div class="flex justify-between items-center mb-1">
-            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
-            <span id="val-tows" class="text-sm font-bold text-white">2</span>
-          </div>
-          <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; renderMarkers();">
-        </div>
-      </div>
-      
-      <button onclick="runOptimizer()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded shadow transition-colors flex justify-center items-center gap-2">
-        <i class="fa-solid fa-bolt"></i> Deploy Units
-      </button>
 
-      <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
-        <!-- Results injected here -->
-      </div>
-      </div>
-    </div>
-    
     <!-- Executive Intelligence Panel (What-If Analysis) -->
     <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-blue-500 w-80 mt-4 pointer-events-auto hidden md:block">
-      <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer" onclick="document.getElementById('exec-intel-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
-        <div class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence</div>
+      <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer"
+        onclick="document.getElementById('exec-intel-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence
+        </div>
         <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
       </h2>
       <div id="exec-intel-content" class="space-y-3">
@@ -331,55 +379,109 @@
     </div>
   </div>
 
-  <!-- Radar Panel (Bottom Right) -->
-  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-96 z-40 pointer-events-auto">
-    <div class="glass-panel rounded-2xl p-5 border-t-4 border-t-blue-500">
+  <!-- Bottom Right Stack (Resource + Radar) -->
+  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-80 z-40 pointer-events-auto flex flex-col gap-2">
+    
+    <!-- Optimization Panel -->
+    <div class="glass-panel rounded-2xl p-4 border-r-4 border-r-green-500 w-full pointer-events-auto hidden md:block">
+      <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer" onclick="document.getElementById('sim-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator</div>
+        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
+      </h2>
+      <div id="sim-content">
       
-      <div class="flex justify-between items-start mb-4">
+      <!-- Coverage Meter -->
+      <div class="mb-3 bg-slate-800/80 p-2 rounded border border-slate-700">
+        <div class="flex justify-between items-end mb-1">
+          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">High-Risk Coverage</span>
+          <span id="coverage-text" class="text-sm font-bold text-green-400">0%</span>
+        </div>
+        <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden">
+          <div id="coverage-bar" class="bg-green-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+      </div>
+      
+      <div class="space-y-3 mb-3">
         <div>
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-[10px] text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
+            <span id="val-patrols" class="text-xs font-bold text-white">5</span>
+          </div>
+          <input type="range" id="opt-patrols" value="5" min="0" max="100" class="w-full h-1 accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; renderMarkers();">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-[10px] text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
+            <span id="val-tows" class="text-xs font-bold text-white">2</span>
+          </div>
+          <input type="range" id="opt-tows" value="2" min="0" max="50" class="w-full h-1 accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; renderMarkers();">
+        </div>
+      </div>
+      
+      <button onclick="runOptimizer()" class="w-full bg-green-600 hover:bg-green-500 text-white text-xs font-bold py-1.5 rounded shadow transition-colors flex justify-center items-center gap-2">
+        <i class="fa-solid fa-bolt"></i> Deploy Units
+      </button>
+
+      <div id="opt-results" class="mt-3 space-y-2 max-h-40 overflow-y-auto hidden pr-1">
+        <!-- Results injected here -->
+      </div>
+      </div>
+    </div>
+
+    <!-- Radar Panel -->
+    <div class="glass-panel rounded-2xl p-4 border-r-4 border-r-blue-500 w-full">
+
+      <div class="flex justify-between items-start mb-3">
+        <div>
+          <h2 class="text-sm font-bold text-white flex items-center gap-2">
             <i class="fa-solid fa-satellite-dish text-blue-400"></i> Tactical Radar
           </h2>
-          <p class="text-xs text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing Current View</p>
+          <p class="text-[9px] text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing Current View</p>
         </div>
-        <div class="bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-white border border-slate-600 flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        <div
+          class="bg-slate-800 px-2 py-0.5 rounded-full text-[10px] font-bold text-white border border-slate-600 flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
           <span id="radar-target-count">0</span> Targets
         </div>
       </div>
 
       <!-- Radar Grid -->
-      <div class="grid grid-cols-2 gap-2 mb-4 relative">
+      <div class="grid grid-cols-2 gap-1.5 mb-3 relative">
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center z-10 shadow-lg">
-            <i class="fa-solid fa-location-crosshairs text-blue-400 text-xs"></i>
+          <div
+            class="w-6 h-6 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center z-10 shadow-lg">
+            <i class="fa-solid fa-location-crosshairs text-blue-400 text-[10px]"></i>
           </div>
         </div>
-        
-        <div id="quad-NW" class="radar-quadrant bg-slate-800/50 rounded-tl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
-          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH WEST</span>
-          <span class="text-xl font-bold text-slate-300 val">0</span>
+
+        <div id="quad-NW"
+          class="radar-quadrant bg-slate-800/50 rounded-tl-xl border border-slate-700 p-2 flex flex-col items-center justify-center h-14">
+          <span class="text-[9px] text-slate-500 font-bold mb-0.5">NORTH WEST</span>
+          <span class="text-sm font-bold text-slate-300 val">0</span>
         </div>
-        <div id="quad-NE" class="radar-quadrant bg-slate-800/50 rounded-tr-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
-          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH EAST</span>
-          <span class="text-xl font-bold text-slate-300 val">0</span>
+        <div id="quad-NE"
+          class="radar-quadrant bg-slate-800/50 rounded-tr-xl border border-slate-700 p-2 flex flex-col items-center justify-center h-14">
+          <span class="text-[9px] text-slate-500 font-bold mb-0.5">NORTH EAST</span>
+          <span class="text-sm font-bold text-slate-300 val">0</span>
         </div>
-        <div id="quad-SW" class="radar-quadrant bg-slate-800/50 rounded-bl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
-          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH WEST</span>
-          <span class="text-xl font-bold text-slate-300 val">0</span>
+        <div id="quad-SW"
+          class="radar-quadrant bg-slate-800/50 rounded-bl-xl border border-slate-700 p-2 flex flex-col items-center justify-center h-14">
+          <span class="text-[9px] text-slate-500 font-bold mb-0.5">SOUTH WEST</span>
+          <span class="text-sm font-bold text-slate-300 val">0</span>
         </div>
-        <div id="quad-SE" class="radar-quadrant bg-slate-800/50 rounded-br-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
-          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH EAST</span>
-          <span class="text-xl font-bold text-slate-300 val">0</span>
+        <div id="quad-SE"
+          class="radar-quadrant bg-slate-800/50 rounded-br-xl border border-slate-700 p-2 flex flex-col items-center justify-center h-14">
+          <span class="text-[9px] text-slate-500 font-bold mb-0.5">SOUTH EAST</span>
+          <span class="text-sm font-bold text-slate-300 val">0</span>
         </div>
       </div>
 
       <!-- Senior Advice -->
-      <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700">
-        <div class="text-[10px] text-blue-400 uppercase font-bold mb-1 tracking-wider flex items-center gap-1">
+      <div class="bg-slate-800/80 rounded-lg p-2.5 border border-slate-700">
+        <div class="text-[9px] text-blue-400 uppercase font-bold mb-1 tracking-wider flex items-center gap-1">
           <i class="fa-solid fa-user-shield"></i> Senior Advice
         </div>
-        <p id="senior-advice" class="text-sm text-slate-300 leading-relaxed font-medium">
+        <p id="senior-advice" class="text-xs text-slate-300 leading-relaxed font-medium">
           Pan the map or search an area to receive tactical deployment advice.
         </p>
       </div>
@@ -399,44 +501,44 @@
     let VEHICLE_FILTER = Object.fromEntries(VEHICLE_BUCKETS.map(b => [b, true]));
     let TIER_FILTER = { critical: true, high: true, medium: true, low: true, unassigned: true };
     let optLayers = []; // Optimizer visualization layers
-    
+
     const VEH_IDS = {
       'Two-Wheeler': 'veh-tw', 'Car / Jeep': 'veh-car',
       'Auto': 'veh-auto', 'Heavy Vehicle': 'veh-hv', 'Bus': 'veh-bus'
     };
 
     const AREAS = [
-      {name:'Shivajinagar',lat:12.9850,lon:77.6010,zone:'Central'},
-      {name:'City Market (KR)',lat:12.9716,lon:77.5946,zone:'Central'},
-      {name:'Malleshwaram',lat:13.0035,lon:77.5700,zone:'North West'},
-      {name:'Rajajinagar',lat:12.9940,lon:77.5560,zone:'North West'},
-      {name:'MG Road',lat:12.9756,lon:77.6098,zone:'Central'},
-      {name:'Whitefield',lat:12.9698,lon:77.7499,zone:'East'},
-      {name:'KR Pura',lat:13.0000,lon:77.6900,zone:'East'},
-      {name:'HSR Layout',lat:12.9116,lon:77.6389,zone:'South East'},
-      {name:'Electronic City',lat:12.8450,lon:77.6600,zone:'South'},
-      {name:'JP Nagar',lat:12.9063,lon:77.5857,zone:'South'},
-      {name:'Vijayanagara',lat:12.9650,lon:77.5270,zone:'West'},
-      {name:'Magadi Road',lat:12.9740,lon:77.5510,zone:'West'},
-      {name:'Kodigehalli',lat:13.0710,lon:77.5880,zone:'North'},
-      {name:'Silk Board',lat:12.9172,lon:77.6224,zone:'South East'},
-      {name:'Yeshwanthpur',lat:13.0200,lon:77.5500,zone:'North West'},
-      {name:'Upparpet',lat:12.9720,lon:77.5800,zone:'Central'},
-      {name:'Byatarayanapura',lat:13.0600,lon:77.5380,zone:'North West'},
-      {name:'HAL Airport Area',lat:12.9650,lon:77.6600,zone:'East'},
-      {name:'Jeevanbheemanagar',lat:12.9340,lon:77.6910,zone:'East'},
-      {name:'Indiranagar',lat:12.9784,lon:77.6408,zone:'East'},
-      {name:'Koramangala',lat:12.9352,lon:77.6245,zone:'South East'},
-      {name:'Jayanagar',lat:12.9299,lon:77.5826,zone:'South'}
+      { name: 'Shivajinagar', lat: 12.9850, lon: 77.6010, zone: 'Central' },
+      { name: 'City Market (KR)', lat: 12.9716, lon: 77.5946, zone: 'Central' },
+      { name: 'Malleshwaram', lat: 13.0035, lon: 77.5700, zone: 'North West' },
+      { name: 'Rajajinagar', lat: 12.9940, lon: 77.5560, zone: 'North West' },
+      { name: 'MG Road', lat: 12.9756, lon: 77.6098, zone: 'Central' },
+      { name: 'Whitefield', lat: 12.9698, lon: 77.7499, zone: 'East' },
+      { name: 'KR Pura', lat: 13.0000, lon: 77.6900, zone: 'East' },
+      { name: 'HSR Layout', lat: 12.9116, lon: 77.6389, zone: 'South East' },
+      { name: 'Electronic City', lat: 12.8450, lon: 77.6600, zone: 'South' },
+      { name: 'JP Nagar', lat: 12.9063, lon: 77.5857, zone: 'South' },
+      { name: 'Vijayanagara', lat: 12.9650, lon: 77.5270, zone: 'West' },
+      { name: 'Magadi Road', lat: 12.9740, lon: 77.5510, zone: 'West' },
+      { name: 'Kodigehalli', lat: 13.0710, lon: 77.5880, zone: 'North' },
+      { name: 'Silk Board', lat: 12.9172, lon: 77.6224, zone: 'South East' },
+      { name: 'Yeshwanthpur', lat: 13.0200, lon: 77.5500, zone: 'North West' },
+      { name: 'Upparpet', lat: 12.9720, lon: 77.5800, zone: 'Central' },
+      { name: 'Byatarayanapura', lat: 13.0600, lon: 77.5380, zone: 'North West' },
+      { name: 'HAL Airport Area', lat: 12.9650, lon: 77.6600, zone: 'East' },
+      { name: 'Jeevanbheemanagar', lat: 12.9340, lon: 77.6910, zone: 'East' },
+      { name: 'Indiranagar', lat: 12.9784, lon: 77.6408, zone: 'East' },
+      { name: 'Koramangala', lat: 12.9352, lon: 77.6245, zone: 'South East' },
+      { name: 'Jayanagar', lat: 12.9299, lon: 77.5826, zone: 'South' }
     ];
 
-    const TIER_COLORS = {critical:'#ef4444', high:'#f97316', medium:'#eab308', low:'#3b82f6'};
+    const TIER_COLORS = { critical: '#ef4444', high: '#f97316', medium: '#eab308', low: '#3b82f6' };
 
     // ── MAP INIT ───────────────────────────────────────────────────────────────
     function initMap() {
       // Init Leaflet
       map = L.map('map', { zoomControl: false }).setView([12.9716, 77.5946], 13);
-      
+
       // CartoDB Dark Matter Base
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -457,15 +559,15 @@
     function renderTop10() {
       const container = document.getElementById('top-10-list');
       if (!container || !HOTSPOTS.length) return;
-      
+
       const top10 = [...HOTSPOTS].sort((a, b) => b.priorityScore - a.priorityScore).slice(0, 10);
-      
+
       container.innerHTML = top10.map((hs, i) => {
         let tierColor = 'text-blue-400';
         if (hs.tier === 'critical') tierColor = 'text-red-400';
         else if (hs.tier === 'high') tierColor = 'text-orange-400';
         else if (hs.tier === 'medium') tierColor = 'text-amber-400';
-        
+
         return `
           <div class="flex items-center justify-between p-2 rounded bg-slate-800/80 border border-slate-700/50 cursor-pointer hover:bg-slate-700 transition-colors group" onclick="flyToArea(${hs.lat}, ${hs.lon}, '${hs.station ? hs.station.replace(/'/g, "\\'") : 'Unknown'}')">
             <div class="flex items-center gap-2">
@@ -501,7 +603,7 @@
     function renderMarkers() {
       mapMarkers.forEach(m => map.removeLayer(m));
       mapMarkers = [];
-      
+
       if (typeof optLayers !== 'undefined') {
         optLayers.forEach(l => map.removeLayer(l));
         optLayers = [];
@@ -515,17 +617,17 @@
       const allWithCounts = HOTSPOTS.map(hs => {
         let filteredCount = 0;
         let filteredPCU = 0;
-        
+
         const vp = hs.vehicleProfile || {};
 
         if (weekendOnly) {
           const dp = hs.dowProfile || [];
           const weekendRatio = hs.count > 0 ? ((dp[5] || 0) + (dp[6] || 0)) / hs.count : 0;
-          
+
           for (const b of VEHICLE_BUCKETS) {
             if (VEHICLE_FILTER[b] && vp[b]) {
               filteredCount += vp[b].count * weekendRatio;
-              filteredPCU   += vp[b].pcu_score * weekendRatio;
+              filteredPCU += vp[b].pcu_score * weekendRatio;
             }
           }
         } else {
@@ -539,13 +641,13 @@
           for (const b of VEHICLE_BUCKETS) {
             if (VEHICLE_FILTER[b] && vp[b]) {
               filteredCount += vp[b].count * timeRatio;
-              filteredPCU   += vp[b].pcu_score * timeRatio;
+              filteredPCU += vp[b].pcu_score * timeRatio;
             }
           }
         }
-        
-        return { 
-          ...hs, 
+
+        return {
+          ...hs,
           filteredCount: isFiltered ? filteredCount : hs.count,
           filteredPCU: isFiltered ? filteredPCU : (hs.totalPCS || hs.count)
         };
@@ -559,8 +661,8 @@
       const totalActive = sortedActive.length;
       sortedActive.forEach((hs, i) => {
         hs._tier = i < totalActive * 0.05 ? 'critical' :
-                   i < totalActive * 0.20 ? 'high' :
-                   i < totalActive * 0.50 ? 'medium' : 'low';
+          i < totalActive * 0.20 ? 'high' :
+            i < totalActive * 0.50 ? 'medium' : 'low';
         hs._assigned = false;
       });
 
@@ -573,35 +675,35 @@
       let maxPossibleScore = topRiskPool.reduce((sum, h) => sum + (h.filteredPCU || 0), 0);
       let coveredScore = 0;
 
-      for(let i=0; i<numTows; i++) {
+      for (let i = 0; i < numTows; i++) {
         let idx = pool.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
-        if(idx === -1) idx = 0;
-        if(pool.length === 0) break;
+        if (idx === -1) idx = 0;
+        if (pool.length === 0) break;
         let picked = pool.splice(idx, 1)[0];
         picked._assigned = true;
         coveredScore += picked.filteredPCU || 0;
       }
-      for(let i=0; i<numPatrols; i++) {
-        if(pool.length === 0) break;
+      for (let i = 0; i < numPatrols; i++) {
+        if (pool.length === 0) break;
         let picked = pool.shift();
         picked._assigned = true;
         coveredScore += picked.filteredPCU || 0;
       }
-      
+
       let percentage = maxPossibleScore > 0 ? Math.min((coveredScore / maxPossibleScore) * 100, 100) : 100;
       const bar = document.getElementById('coverage-bar');
       const text = document.getElementById('coverage-text');
       text.innerText = percentage.toFixed(1) + '%';
       bar.style.width = percentage.toFixed(1) + '%';
-      if(percentage < 40) { 
-        bar.className = 'bg-red-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-red-400'; 
-      } else if(percentage < 70) { 
-        bar.className = 'bg-yellow-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-yellow-400'; 
-      } else { 
-        bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300'; 
-        text.className = 'text-lg font-bold text-green-400'; 
+      if (percentage < 40) {
+        bar.className = 'bg-red-500 h-2 rounded-full transition-all duration-300';
+        text.className = 'text-lg font-bold text-red-400';
+      } else if (percentage < 70) {
+        bar.className = 'bg-yellow-500 h-2 rounded-full transition-all duration-300';
+        text.className = 'text-lg font-bold text-yellow-400';
+      } else {
+        bar.className = 'bg-green-500 h-2 rounded-full transition-all duration-300';
+        text.className = 'text-lg font-bold text-green-400';
       }
       // --- END SIMULATOR ---
 
@@ -631,15 +733,15 @@
         const baseTier = isFiltered ? hs._tier : hs.tier;
         const isUnassignedHighRisk = hs._assigned === false && (baseTier === 'critical' || baseTier === 'high');
         const visualTier = isUnassignedHighRisk ? 'unassigned' : baseTier;
-        
+
         if (!TIER_FILTER[visualTier]) return; // Apply legend filter
-        
+
         let col = TIER_COLORS[baseTier] || '#3b82f6';
         if (isUnassignedHighRisk) {
           col = '#a855f7'; // Purple-500 distinct visual style
         }
-        
-        const isCritical  = baseTier === 'critical';
+
+        const isCritical = baseTier === 'critical';
         const isValidated = hs.rank <= 50;
 
         // Scale radius by filtered PCU intensity (min 4, max 12)
@@ -647,7 +749,7 @@
         const radius = isFiltered
           ? Math.max(4, Math.round(4 + intensity * 8))
           : (isCritical ? 9 : (baseTier === 'high' ? 7 : 5));
-        
+
         // Lightweight SVG/Canvas marker (Zero lag)
         const marker = L.circleMarker([hs.lat, hs.lon], {
           radius: radius,
@@ -658,7 +760,7 @@
         }).addTo(map);
 
         const displayCount = isFiltered ? hs.filteredCount : hs.count;
-        
+
         // Popup
         let resources = 'Standard patrol';
         if (baseTier === 'critical') resources = 'Tow truck + 2 constables';
@@ -668,23 +770,23 @@
         if (isUnassignedHighRisk) {
           resources = '<span class="text-purple-400 font-bold"><i class="fa-solid fa-triangle-exclamation mr-1"></i>High priority — unassigned</span>';
         }
-        
+
         if (hs.marginalImpact && hs.marginalImpact.delaySecondsPerVehicle > 0) {
           resources += `<div class="w-full text-[10px] text-emerald-600 mt-1.5 pt-1.5 border-t border-slate-200/60 font-bold"><i class="fa-solid fa-stopwatch mr-1"></i>Averts ${hs.marginalImpact.delaySecondsPerVehicle.toFixed(1)}s delay per vehicle cleared</div>`;
         }
 
         const rawViolation = hs.violation ? hs.violation.replace(/[\\[\\]"]/g, '') : 'Violation';
-        
+
         let trendHtml = '';
-        if(hs.trend === 'Persistent') {
+        if (hs.trend === 'Persistent') {
           trendHtml = `<span class="bg-red-50 text-red-600 border border-red-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-circle text-[6px] mr-1 align-middle"></i>PERSISTENT*</span>`;
-        } else if(hs.trend === 'Emerging') {
+        } else if (hs.trend === 'Emerging') {
           trendHtml = `<span class="bg-purple-50 text-purple-600 border border-purple-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-arrow-trend-up mr-1"></i>EMERGING*</span>`;
         } else {
           trendHtml = `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1.5 py-0.5 rounded text-[9px] font-bold tracking-wider" title="Methodological Estimate"><i class="fa-solid fa-arrow-trend-down mr-1"></i>DECLINING*</span>`;
         }
 
-        const confBadge = hs.rank <= 50 
+        const confBadge = hs.rank <= 50
           ? `<span class="bg-emerald-50 text-emerald-600 border border-emerald-200 px-1 py-0.5 rounded text-[7px] font-bold tracking-wider" title="Walk-Forward CV Validated (Top 50)"><i class="fa-solid fa-check-double mr-0.5"></i>VALIDATED</span>`
           : `<span class="bg-slate-100 text-slate-400 border border-slate-200 px-1 py-0.5 rounded text-[7px] font-bold tracking-wider" title="Unproven Baseline"><i class="fa-solid fa-circle-minus mr-0.5"></i>UNPROVEN</span>`;
 
@@ -703,9 +805,9 @@
             <div class="bg-blue-50 border border-blue-100 rounded px-2 py-1.5 mb-2 flex justify-between items-center text-[10px]">
               <div class="flex flex-col gap-0.5">
                 <span class="text-blue-800 font-bold"><i class="fa-solid fa-road mr-1 text-blue-600"></i>${hs.roadType || 'Local Street'}</span>
-                ${hs.roadSource === 'OSM' ? 
-                  `<span class="text-blue-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-satellite-dish mr-0.5"></i>OSM Verified</span>` : 
-                  `<span class="text-slate-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-calculator mr-0.5"></i>Estimated (Fallback)</span>`}
+                ${hs.roadSource === 'OSM' ?
+            `<span class="text-blue-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-satellite-dish mr-0.5"></i>OSM Verified</span>` :
+            `<span class="text-slate-500 text-[8px] uppercase tracking-wider font-semibold"><i class="fa-solid fa-calculator mr-0.5"></i>Estimated (Fallback)</span>`}
               </div>
               <span class="text-blue-600 font-bold bg-white px-1.5 rounded shadow-sm">${(hs.impactMultiplier || 1.0).toFixed(1)}x Impact</span>
             </div>
@@ -770,7 +872,7 @@
 
     searchInput.addEventListener('input', (e) => {
       const q = e.target.value.toLowerCase();
-      if(q.length > 0) {
+      if (q.length > 0) {
         clearSearch.classList.remove('hidden');
         const matches = AREAS.filter(a => a.name.toLowerCase().includes(q) || a.zone.toLowerCase().includes(q));
         renderSearchResults(matches);
@@ -788,7 +890,7 @@
     });
 
     function renderSearchResults(results) {
-      if(results.length === 0) {
+      if (results.length === 0) {
         searchResults.innerHTML = `<div class="px-4 py-3 text-slate-400 text-sm">No operational areas found.</div>`;
       } else {
         searchResults.innerHTML = results.map(r => `
@@ -811,26 +913,26 @@
 
     // ── RADAR LOGIC ────────────────────────────────────────────────────────────
     function updateRadar() {
-      if(!HOTSPOTS.length) return;
+      if (!HOTSPOTS.length) return;
 
       const bounds = map.getBounds();
       const center = map.getCenter();
-      
+
       let inView = 0;
-      const quads = { NW:0, NE:0, SW:0, SE:0 };
+      const quads = { NW: 0, NE: 0, SW: 0, SE: 0 };
       let highestRisk = { val: 0, dir: '', resources: 'Standard patrol', eps: 0 };
 
       HOTSPOTS.forEach(hs => {
-        if(bounds.contains([hs.lat, hs.lon])) {
+        if (bounds.contains([hs.lat, hs.lon])) {
           inView++;
           let latDir = hs.lat > center.lat ? 'N' : 'S';
           let lonDir = hs.lon > center.lng ? 'E' : 'W';
           let dir = latDir + lonDir;
-          
+
           let score = hs.totalPCS || 10;
           quads[dir] += score; // weight by EPS
 
-          if(score > highestRisk.eps) {
+          if (score > highestRisk.eps) {
             highestRisk.eps = score;
             if (hs.tier === 'critical') highestRisk.resources = 'Tow trucks + Heavy deployment';
             else if (hs.tier === 'high') highestRisk.resources = 'Wheel clamps unit';
@@ -842,7 +944,7 @@
       document.getElementById('radar-target-count').innerText = inView;
 
       // Reset UI
-      ['NW','NE','SW','SE'].forEach(q => {
+      ['NW', 'NE', 'SW', 'SE'].forEach(q => {
         const el = document.getElementById(`quad-${q}`);
         el.querySelector('.val').innerText = Math.round(quads[q]);
         el.classList.remove('radar-active', 'text-red-400', 'text-orange-400');
@@ -850,7 +952,7 @@
         el.querySelector('.val').classList.replace('text-orange-400', 'text-slate-300');
       });
 
-      if(inView === 0) {
+      if (inView === 0) {
         document.getElementById('senior-advice').innerHTML = `<span class="text-slate-400">Area is clear. Maintain standard patrols.</span>`;
         return;
       }
@@ -858,8 +960,8 @@
       // Find highest quadrant
       let dominantDir = 'NW';
       let maxVal = -1;
-      for(let q in quads) {
-        if(quads[q] > maxVal) { maxVal = quads[q]; dominantDir = q; }
+      for (let q in quads) {
+        if (quads[q] > maxVal) { maxVal = quads[q]; dominantDir = q; }
       }
 
       // Highlight dominant
@@ -868,13 +970,13 @@
       domEl.querySelector('.val').classList.replace('text-slate-300', 'text-red-400');
 
       // Generate Advice
-      const dirNames = { NW:'North-West', NE:'North-East', SW:'South-West', SE:'South-East' };
+      const dirNames = { NW: 'North-West', NE: 'North-East', SW: 'South-West', SE: 'South-East' };
       const advices = [
         `Concentrated violations detected in the <b>${dirNames[dominantDir]}</b> sector. Deploy <b>${highestRisk.resources}</b> to intercept.`,
         `Heavy gridlock forming <b>${dirNames[dominantDir]}</b>. Immediate dispatch advised: <b>${highestRisk.resources}</b>.`,
         `Direct units to the <b>${dirNames[dominantDir]}</b> quadrant. <b>${highestRisk.resources}</b> required for enforcement.`
       ];
-      
+
       const advice = advices[Math.floor(Math.random() * advices.length)];
       document.getElementById('senior-advice').innerHTML = advice;
     }
@@ -882,8 +984,8 @@
     // ── RESOURCE OPTIMIZER (OPERATIONS RESEARCH) ───────────────────────────────
 
     function runOptimizer() {
-      if(!HOTSPOTS.length) return;
-      
+      if (!HOTSPOTS.length) return;
+
       // Clear previous
       optLayers.forEach(l => map.removeLayer(l));
       optLayers = [];
@@ -895,24 +997,24 @@
       const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
 
       // Greedy Knapsack: Sort by EPS (totalPCS) descending
-      let available = [...HOTSPOTS].sort((a,b) => (b.totalPCS||0) - (a.totalPCS||0));
+      let available = [...HOTSPOTS].sort((a, b) => (b.totalPCS || 0) - (a.totalPCS || 0));
       let deployments = [];
-      
+
       // 1. Assign Tow Trucks (prioritize "Parking" violations)
-      for(let i=0; i<numTows; i++) {
+      for (let i = 0; i < numTows; i++) {
         let idx = available.findIndex(h => h.violation && h.violation.toLowerCase().includes('parking'));
-        if(idx === -1) idx = 0; // fallback to highest overall if no parking violations left
-        if(available.length === 0) break;
-        
+        if (idx === -1) idx = 0; // fallback to highest overall if no parking violations left
+        if (available.length === 0) break;
+
         const target = available.splice(idx, 1)[0];
-        deployments.push({ type: 'Tow Truck', unit: i+1, target, color: '#f97316', icon: 'fa-truck-pickup' });
+        deployments.push({ type: 'Tow Truck', unit: i + 1, target, color: '#f97316', icon: 'fa-truck-pickup' });
       }
 
       // 2. Assign Patrol Vehicles (overall highest remaining EPS)
-      for(let i=0; i<numPatrols; i++) {
-        if(available.length === 0) break;
+      for (let i = 0; i < numPatrols; i++) {
+        if (available.length === 0) break;
         const target = available.shift();
-        deployments.push({ type: 'Patrol', unit: i+1, target, color: '#3b82f6', icon: 'fa-car-side' });
+        deployments.push({ type: 'Patrol', unit: i + 1, target, color: '#3b82f6', icon: 'fa-car-side' });
       }
 
       // Render Panel Results
@@ -927,9 +1029,9 @@
         </div>
         ${delayAvertedText}
       `;
-      
+
       const hq = [12.9716, 77.5946]; // Default HQ center (Bengaluru)
-      
+
       deployments.forEach(d => {
         html += `
           <div class="bg-slate-800 border border-slate-700 p-2 rounded flex flex-col gap-1">
@@ -948,7 +1050,7 @@
           opacity: 0.6,
           dashArray: '5, 8'
         }).addTo(map);
-        
+
         // Highlight deployed marker
         const pulseMarker = L.circleMarker([d.target.lat, d.target.lon], {
           radius: 18,
@@ -958,37 +1060,37 @@
           weight: 2,
           className: 'animate-ping'
         }).addTo(map);
-        
+
         optLayers.push(line, pulseMarker);
       });
 
       resultsDiv.innerHTML = html;
-      
+
       // Fit map bounds to show HQ and all deployments
       const group = new L.featureGroup(optLayers);
-      if(optLayers.length > 0) {
+      if (optLayers.length > 0) {
         map.fitBounds(group.getBounds().pad(0.1));
       }
     }
     function generateExecutiveIntelligence() {
-      if(!HOTSPOTS.length) return;
-      
-      const sortedByCount = [...HOTSPOTS].sort((a,b) => b.count - a.count);
+      if (!HOTSPOTS.length) return;
+
+      const sortedByCount = [...HOTSPOTS].sort((a, b) => b.count - a.count);
       const totalViolations = sortedByCount.reduce((sum, h) => sum + h.count, 0);
-      
+
       // Metric 1: Top 10 Reduction
       const top10Violations = sortedByCount.slice(0, 10).reduce((sum, h) => sum + h.count, 0);
       const top10Percentage = ((top10Violations / totalViolations) * 100).toFixed(1);
-      
+
       const top10DelaySavedSecs = sortedByCount.slice(0, 10).reduce((sum, h) => sum + (h.count * (h.marginalImpact ? h.marginalImpact.delaySecondsPerVehicle : 0)), 0);
       const delaySavedHours = (top10DelaySavedSecs / 3600).toFixed(1);
-      
+
       // Metric 2: Parking specifically
       const parkingSpots = sortedByCount.filter(h => h.violation && h.violation.toLowerCase().includes('parking'));
       const totalParking = parkingSpots.reduce((sum, h) => sum + h.count, 0);
       const top5Parking = parkingSpots.slice(0, 5).reduce((sum, h) => sum + h.count, 0);
       const parkingPercentage = totalParking > 0 ? ((top5Parking / totalParking) * 100).toFixed(1) : 0;
-      
+
       // Metric 3: Arterial Road impact
       const arterialSpots = sortedByCount.filter(h => h.roadType === 'Arterial Road');
       const arterialViolations = arterialSpots.reduce((sum, h) => sum + h.count, 0);
@@ -1048,9 +1150,9 @@
       const road = (hs.roadType || 'a local street').toLowerCase();
       const c = hs.contributors || {};
       let reasons = [];
-      if(c['Time Patterns'] >= 8) reasons.push('exhibits strong peak-hour clustering');
-      if(c['Junction Proximity'] >= 15) reasons.push('lies within 100m of a critical junction');
-      if(c['Repeat Offender Signal'] >= 6) reasons.push(`has ${hs.repeatOffenderCount} confirmed repeat-offender vehicles`);
+      if (c['Time Patterns'] >= 8) reasons.push('exhibits strong peak-hour clustering');
+      if (c['Junction Proximity'] >= 15) reasons.push('lies within 100m of a critical junction');
+      if (c['Repeat Offender Signal'] >= 6) reasons.push(`has ${hs.repeatOffenderCount} confirmed repeat-offender vehicles`);
       const primary = `${station} is ranked Priority ${score}/100 due to sustained violations on a ${road}.`;
       return reasons.length > 0 ? `${primary} It also ${reasons.join(', and ')}.` : primary;
     }
@@ -1071,7 +1173,7 @@ Data:
 - Junction: ${hs.isJunction ? `Yes — ${hs.junctionName}` : 'No'}
 - Repeat Offender Vehicles: ${hs.repeatOffenderCount}
 - Peak Enforcement Hour: ${hs.bestHour}:00
-- Score Breakdown: Frequency +${c['Violation Frequency']||0}, Road +${c['Road Hierarchy']||0}, Junction +${c['Junction Proximity']||0}, Peak Hour +${c['Time Patterns']||0}, Repeat Offenders +${c['Repeat Offender Signal']||0}
+- Score Breakdown: Frequency +${c['Violation Frequency'] || 0}, Road +${c['Road Hierarchy'] || 0}, Junction +${c['Junction Proximity'] || 0}, Peak Hour +${c['Time Patterns'] || 0}, Repeat Offenders +${c['Repeat Offender Signal'] || 0}
 - Post-Intervention Trend: ${hs.postInterventionChange || 'N/A'}
 
 Write the briefing now:`;
@@ -1087,7 +1189,7 @@ Write the briefing now:`;
       })();
     }
 
-    window.triggerCopilot = async function(btn, hotspotId) {
+    window.triggerCopilot = async function (btn, hotspotId) {
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Thinking...';
       const responseDiv = btn.nextElementSibling;
@@ -1121,17 +1223,17 @@ Write the briefing now:`;
     // ── TIME FILTER ENGINE ─────────────────────────────────────────────────────
     function updateSliderTrack() {
       const from = parseInt(document.getElementById('slider-from').value);
-      const to   = parseInt(document.getElementById('slider-to').value);
-      const pctL = (Math.min(from,to) / 23 * 100).toFixed(1) + '%';
-      const pctR = (Math.max(from,to) / 23 * 100).toFixed(1) + '%';
+      const to = parseInt(document.getElementById('slider-to').value);
+      const pctL = (Math.min(from, to) / 23 * 100).toFixed(1) + '%';
+      const pctR = (Math.max(from, to) / 23 * 100).toFixed(1) + '%';
       document.querySelectorAll('.time-range-slider').forEach(s => {
         s.style.setProperty('--pct-l', pctL);
         s.style.setProperty('--pct-r', pctR);
       });
       document.getElementById('slider-label').textContent =
-        Math.min(from,to) + ' – ' + Math.max(from,to);
+        Math.min(from, to) + ' – ' + Math.max(from, to);
     }
-    
+
     // Toggle Tier filters from the legend
     function toggleTierFilter(tier) {
       TIER_FILTER[tier] = !TIER_FILTER[tier];
@@ -1146,11 +1248,11 @@ Write the briefing now:`;
 
     function onSliderChange() {
       const from = parseInt(document.getElementById('slider-from').value);
-      const to   = parseInt(document.getElementById('slider-to').value);
-      TIME_FILTER = { fromHour: Math.min(from,to), toHour: Math.max(from,to), weekendOnly: false };
+      const to = parseInt(document.getElementById('slider-to').value);
+      TIME_FILTER = { fromHour: Math.min(from, to), toHour: Math.max(from, to), weekendOnly: false };
       updateSliderTrack();
       document.getElementById('filter-active-label').textContent =
-        `Showing: ${Math.min(from,to)}:00 – ${Math.max(from,to)}:59`;
+        `Showing: ${Math.min(from, to)}:00 – ${Math.max(from, to)}:59`;
       // Clear all preset buttons
       document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
       if (from === 0 && to === 23) {
@@ -1160,7 +1262,7 @@ Write the briefing now:`;
       renderMarkers();
     }
 
-    window.applyPreset = function(preset) {
+    window.applyPreset = function (preset) {
       document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(`preset-${preset}`).classList.add('active');
       document.getElementById('hour-slider-row').style.opacity =
@@ -1169,44 +1271,44 @@ Write the briefing now:`;
       if (preset === 'all') {
         TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: false };
         document.getElementById('slider-from').value = 0;
-        document.getElementById('slider-to').value   = 23;
+        document.getElementById('slider-to').value = 23;
         document.getElementById('filter-active-label').textContent = 'Showing: All Hours';
       } else if (preset === 'morning') {
         TIME_FILTER = { fromHour: 9, toHour: 11, weekendOnly: false };
         document.getElementById('slider-from').value = 9;
-        document.getElementById('slider-to').value   = 11;
+        document.getElementById('slider-to').value = 11;
         document.getElementById('filter-active-label').textContent = 'AM Peak: 09:00 – 11:59 (real data peak)';
       } else if (preset === 'earlyam') {
         TIME_FILTER = { fromHour: 4, toHour: 7, weekendOnly: false };
         document.getElementById('slider-from').value = 4;
-        document.getElementById('slider-to').value   = 7;
+        document.getElementById('slider-to').value = 7;
         document.getElementById('filter-active-label').textContent = 'Early Morning: 04:00 – 07:59';
       } else if (preset === 'midday') {
         TIME_FILTER = { fromHour: 12, toHour: 14, weekendOnly: false };
         document.getElementById('slider-from').value = 12;
-        document.getElementById('slider-to').value   = 14;
+        document.getElementById('slider-to').value = 14;
         document.getElementById('filter-active-label').textContent = 'Midday: 12:00 – 14:59';
       } else if (preset === 'weekend') {
         TIME_FILTER = { fromHour: 0, toHour: 23, weekendOnly: true };
         document.getElementById('slider-from').value = 0;
-        document.getElementById('slider-to').value   = 23;
+        document.getElementById('slider-to').value = 23;
         document.getElementById('filter-active-label').textContent = 'Weekend Only (Sat + Sun)';
       }
       updateSliderTrack();
       renderMarkers();
     };
 
-    window.onVehicleChange = function() {
+    window.onVehicleChange = function () {
       for (const bucket of VEHICLE_BUCKETS) {
         VEHICLE_FILTER[bucket] = document.getElementById(VEH_IDS[bucket]).checked;
       }
-      const activeCount = Object.values(VEHICLE_FILTER).filter(v=>v).length;
-      document.getElementById('veh-filter-label').textContent = 
+      const activeCount = Object.values(VEHICLE_FILTER).filter(v => v).length;
+      document.getElementById('veh-filter-label').textContent =
         activeCount === 5 ? 'PCU: All' : (activeCount === 0 ? 'PCU: None' : `PCU: ${activeCount}/5`);
       renderMarkers();
     };
 
-    window.setAllVehicles = function(state) {
+    window.setAllVehicles = function (state) {
       for (const bucket of VEHICLE_BUCKETS) {
         VEHICLE_FILTER[bucket] = state;
         document.getElementById(VEH_IDS[bucket]).checked = state;
@@ -1221,4 +1323,5 @@ Write the briefing now:`;
 
   </script>
 </body>
+
 </html>
