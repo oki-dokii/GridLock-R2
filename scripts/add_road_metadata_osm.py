@@ -253,7 +253,7 @@ def assign_metadata():
     for h in data[:5]:
         print(f"     #{h['rank']} {h['station']:20s} | {h['roadType']:15s} "
               f"({h.get('osmHighwayTag','?'):12s}) | {h['osmRoadName'] or '—':30s} "
-              f"| Score={h['priorityScore']}  Count={h['count']}")
+              f"| Score={h.get('priorityScore', 'N/A')}  Count={h['count']}")
 
 
 if __name__ == '__main__':

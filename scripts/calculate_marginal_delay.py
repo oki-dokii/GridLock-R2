@@ -66,6 +66,7 @@ def calculate_marginal_delay(hotspots):
         total_delay_seconds_per_hour = marginal_delay_per_vehicle * V
         
         hs["marginalImpact"] = {
+            "delaySecondsPerVehicle": round(marginal_delay_per_vehicle, 4),
             "delaySecondsPerHour": round(total_delay_seconds_per_hour, 2),
             "model": "Bureau of Public Roads (BPR) Volume-Delay Function",
             "formula": "T_f * 0.15 * ((V/max(0.1*C, C - assumedCapacityReduction*PCU))^4 - (V/C)^4) * V",

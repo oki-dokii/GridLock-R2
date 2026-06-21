@@ -1019,8 +1019,11 @@
 
       // Render Panel Results
       let totalImpact = deployments.reduce((sum, d) => sum + (d.target.priorityScore || d.target.totalPCS || 0), 0);
-      let totalDelayAvertedSecs = deployments.reduce((sum, d) => sum + (d.target.marginalImpact ? d.target.marginalImpact.delaySecondsPerVehicle * 10 : 0), 0);
-      let delayAvertedText = totalDelayAvertedSecs > 0 ? `<div class="text-[10px] text-emerald-400 font-bold mb-2 flex flex-col gap-1"><div flex items-center><i class="fa-solid fa-stopwatch mr-1"></i> Est. Network Savings: ${(totalDelayAvertedSecs / 60).toFixed(1)} mins delay/hr</div> <div class="text-[8px] text-emerald-500/70 font-normal">Assumes 10 vehicles cleared per deployment hour</div></div>` : '';
+      let totalDelayAvertedSecs = deployments.reduce((sum, d) => {
+        const clearanceRate = d.type === 'Patrol' ? 2 : 3.5;
+        return sum + (d.target.marginalImpact ? d.target.marginalImpact.delaySecondsPerVehicle * clearanceRate : 0);
+      }, 0);
+      let delayAvertedText = totalDelayAvertedSecs > 0 ? `<div class="text-[10px] text-emerald-400 font-bold mb-2 flex flex-col gap-1"><div flex items-center><i class="fa-solid fa-stopwatch mr-1"></i> Est. Network Savings: ${(totalDelayAvertedSecs / 60).toFixed(1)} mins delay/hr</div> <div class="text-[8px] text-emerald-500/70 font-normal">Patrol clearance rate: 2/hr (derived from historical officer activity, n=73,191 officer-hours)<br>Tow clearance rate: ~3.5/hr (estimated, not derived from data — no historical tow-cycle data available)</div></div>` : '';
 
       let html = `
         <div class="flex justify-between items-center mb-1">
