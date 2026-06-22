@@ -295,13 +295,16 @@
     
     <!-- Patrols popover toggle -->
     <div class="relative">
-      <button onclick="event.stopPropagation(); togglePopover('popover-patrols')" class="flex items-center gap-1.5 text-xs text-white hover:text-blue-300 transition" id="btn-patrols">
+      <button onclick="event.stopPropagation(); toggleUIPopover('popover-patrols')" class="flex items-center gap-1.5 text-xs text-white hover:text-blue-300 transition" id="btn-patrols">
         <i class="fa-solid fa-car-side text-blue-400"></i>
         <span class="font-bold">Patrols: <span id="val-patrols">5</span></span>
       </button>
-      <div id="popover-patrols" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-48 border border-slate-600">
+      <div id="popover-patrols" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-[220px] border border-slate-600">
         <label class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2 block text-center">Adjust Patrols</label>
-        <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; renderMarkers();">
+        <div class="flex items-center gap-2">
+          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="flex-1 accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; document.getElementById('num-patrols').value=this.value; renderMarkers();">
+          <input type="number" id="num-patrols" value="5" min="0" max="30" class="w-12 bg-slate-800 border border-slate-600 text-white text-[10px] px-1 py-1 rounded text-center outline-none focus:border-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; document.getElementById('opt-patrols').value=this.value; renderMarkers();">
+        </div>
       </div>
     </div>
 
@@ -309,13 +312,16 @@
 
     <!-- Tows popover toggle -->
     <div class="relative">
-      <button onclick="event.stopPropagation(); togglePopover('popover-tows')" class="flex items-center gap-1.5 text-xs text-white hover:text-orange-300 transition" id="btn-tows">
+      <button onclick="event.stopPropagation(); toggleUIPopover('popover-tows')" class="flex items-center gap-1.5 text-xs text-white hover:text-orange-300 transition" id="btn-tows">
         <i class="fa-solid fa-truck-pickup text-orange-400"></i>
         <span class="font-bold">Tows: <span id="val-tows">2</span></span>
       </button>
-      <div id="popover-tows" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-48 border border-slate-600">
+      <div id="popover-tows" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-[220px] border border-slate-600">
         <label class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2 block text-center">Adjust Tow Trucks</label>
-        <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; renderMarkers();">
+        <div class="flex items-center gap-2">
+          <input type="range" id="opt-tows" value="2" min="0" max="15" class="flex-1 accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; document.getElementById('num-tows').value=this.value; renderMarkers();">
+          <input type="number" id="num-tows" value="2" min="0" max="15" class="w-12 bg-slate-800 border border-slate-600 text-white text-[10px] px-1 py-1 rounded text-center outline-none focus:border-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; document.getElementById('opt-tows').value=this.value; renderMarkers();">
+        </div>
       </div>
     </div>
 
@@ -335,7 +341,7 @@
   <div class="absolute top-4 right-4 z-40 pointer-events-auto flex gap-2">
     <!-- Vehicle Toggle -->
     <div class="relative">
-      <button onclick="event.stopPropagation(); togglePopover('popover-vehicle')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-vehicle">
+      <button onclick="event.stopPropagation(); toggleUIPopover('popover-vehicle')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-vehicle">
         <i class="fa-solid fa-car"></i>
       </button>
       <div id="popover-vehicle" class="popover absolute top-full right-0 mt-2 glass-panel p-3 rounded-xl w-64 border border-slate-600">
@@ -364,7 +370,7 @@
 
     <!-- Time Toggle -->
     <div class="relative">
-      <button onclick="event.stopPropagation(); togglePopover('time-filter-bar')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-time">
+      <button onclick="event.stopPropagation(); toggleUIPopover('time-filter-bar')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-time">
         <i class="fa-solid fa-clock"></i>
       </button>
       <div id="time-filter-bar" class="popover absolute top-full right-0 mt-2 glass-panel p-3 rounded-xl w-[320px] border border-slate-600">
@@ -542,7 +548,7 @@
       }
     }
     
-    function togglePopover(id) {
+    function toggleUIPopover(id) {
       const el = document.getElementById(id);
       const isOpen = el.classList.contains('popover-open');
       // close all popovers
@@ -563,7 +569,7 @@
     
     // Make sure we close popovers if clicked outside
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.popover') && !e.target.closest('button[onclick^="togglePopover"]')) {
+      if (!e.target.closest('.popover') && !e.target.closest('button[onclick^="toggleUIPopover"]')) {
         document.querySelectorAll('.popover-open').forEach(p => p.classList.remove('popover-open'));
       }
     });
