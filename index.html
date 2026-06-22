@@ -1445,8 +1445,8 @@ Write the briefing now:`;
     const steps = [
       {
         id: null,
-        title: '🚔 Welcome to BTP Field Ops',
-        body: 'This is the Bengaluru Traffic Police Field Operations command center. Let me walk you through the key tools in under a minute.',
+        title: '👋 Welcome to GridLock',
+        body: 'Welcome to the BTP Tactical Map. This interface uses progressive disclosure to keep the map clean while giving you powerful analytical tools. Let’s take a quick tour.',
         pos: 'center',
       },
       {
@@ -1456,48 +1456,64 @@ Write the briefing now:`;
         pos: 'bottom', pad: 12,
       },
       {
-        id: 'time-filter-bar',
-        title: '🕐 Time Filter',
-        body: 'Use the preset buttons (AM Peak, Early Morning, Midday, Weekend) or drag the dual sliders to filter map hotspots by the hour range you care about.',
-        pos: 'top', pad: 8,
+        id: 'stats-bar',
+        title: '⚡ Deployment & Coverage',
+        body: 'This central bar tracks your live High-Risk Coverage percentage. Adjust Patrol and Tow counts, then click "Deploy Units" to optimize their placement.',
+        pos: 'bottom', pad: 8,
       },
       {
-        id: 'veh-tw',
-        title: '🚗 Vehicle Type Filter',
-        body: 'Toggle vehicle types — Two-Wheelers, Cars, Autos, Heavy Vehicles, Buses — to see how each category contributes to congestion in weighted PCU units.',
-        pos: 'top', pad: 16,
-        interactOn: 'change',
-      },
-      {
-        id: 'legend-critical',
-        title: '🔴 Priority Tier Legend',
-        body: 'Click any tier in the legend to toggle it on/off on the map. Critical = Top 5% by PCU-weighted violations. Purple dots = high-risk zones with no unit assigned yet.',
-        pos: 'left', pad: 10,
-        interactOn: 'click',
-      },
-      {
-        id: 'sim-content',
-        title: '⚡ Resource Simulator',
-        body: 'Adjust patrol vehicle and tow truck counts, then click "Deploy Units" to run a greedy allocation across top-risk hotspots and see the High-Risk Coverage percentage update live.',
-        pos: 'right', pad: 10,
-      },
-      {
-        id: 'quad-NW',
-        title: '📡 Tactical Radar',
-        body: 'As you pan the map, this radar shows how many violation-weighted hotspots fall in each directional quadrant — and gives the senior officer a deployment recommendation.',
-        pos: 'top', pad: 10,
-      },
-      {
-        id: 'top-10-list-container',
-        title: '📋 Top 10 Critical Locations',
-        body: 'Click the "Top 10 Critical" header to expand this list. Click any row to fly the map straight to that hotspot.',
+        id: 'btn-time',
+        title: '🕐 Time Constraints',
+        body: 'Click this floating button to filter map hotspots by preset shifts (AM Peak, Weekend) or a custom hour range.',
         pos: 'left', pad: 8,
+      },
+      {
+        id: 'btn-vehicle',
+        title: '🚗 Vehicle Profile',
+        body: 'Click here to toggle specific vehicle types (Two-Wheelers, Heavy Vehicles, etc.) and see their specific congestion impact.',
+        pos: 'left', pad: 8,
+      },
+      {
+        id: 'filters-drawer',
+        title: '🎛️ Map Layers & Legend',
+        body: 'We’ve opened the Filters Drawer for you. Here you can toggle PCU Priority Tiers, Model Confidence views, and Deployment status overlays.',
+        pos: 'right', pad: 10,
+        onShow: () => { 
+          const el = document.getElementById('filters-drawer'); 
+          if(el.classList.contains('drawer-closed-left')) toggleDrawer('filters-drawer', 'drawer-closed-left'); 
+        }
+      },
+      {
+        id: 'intel-drawer',
+        title: '🧠 Intelligence Panel',
+        body: 'We’ve opened the Intelligence Drawer. The Tactical Radar analyzes quadrants in your current view, and Senior Advice gives you contextual recommendations.',
+        pos: 'left', pad: 10,
+        onShow: () => { 
+          const f = document.getElementById('filters-drawer'); 
+          if(!f.classList.contains('drawer-closed-left')) toggleDrawer('filters-drawer', 'drawer-closed-left'); 
+          const i = document.getElementById('intel-drawer'); 
+          if(i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
+        }
+      },
+      {
+        id: 'tab-top10-btn',
+        title: '📋 Top 10 Critical Locations',
+        body: 'Inside the Intel Panel, you can switch to the Top 10 tab to see a ranked list of the worst bottlenecks and fly the map straight to them.',
+        pos: 'left', pad: 6,
+        onShow: () => { 
+          const i = document.getElementById('intel-drawer'); 
+          if(i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
+        }
       },
       {
         id: 'tour-restart-btn',
         title: '🎉 Tour Complete!',
-        body: 'You can relaunch this walkthrough at any time using the "Take Tour" button in the header. Happy patrolling!',
+        body: 'You can relaunch this walkthrough at any time. Click Finish, close the drawers, and begin your patrol!',
         pos: 'right', pad: 12,
+        onShow: () => { 
+          const i = document.getElementById('intel-drawer'); 
+          if(!i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
+        }
       },
     ];
 
