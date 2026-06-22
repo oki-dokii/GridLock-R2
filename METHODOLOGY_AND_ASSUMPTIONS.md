@@ -37,5 +37,6 @@ To prevent over-indexing on statistical noise, especially in low-volume spatial 
 
 To validate the causal impact of GridLock deployment, we use a DiD framework rather than naive before-and-after tracking. 
 
+*   **Target Selection (Avoiding Regression to the Mean):** Selecting target zones based strictly on the immediate pre-intervention period guarantees an artificial "drop" purely due to statistical regression to the mean. Instead, target selection utilizes a trailing average of historical months (e.g., Jan/Feb) that strictly pre-dates the measurement window.
 *   **Matched Windows:** To handle irregular data availability (e.g., April 2024 data truncation), the DiD tracking must use strictly matched temporal windows (e.g., Days 1-8 of Month A vs Days 1-8 of Month B) to ensure apples-to-apples baseline comparisons. 
 *   **Mechanism:** By comparing a targeted "Treatment" cohort's % change against a natural "Control" cohort's % change, we isolate the net intervention effect of GridLock, stripping away massive seasonal or reporting-driven network drops.
