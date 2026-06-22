@@ -268,7 +268,7 @@
     <div id="searchResults" class="glass-panel rounded-lg max-h-48 overflow-y-auto hidden mb-2"></div>
 
     <!-- Active Modules -->
-    <div class="glass-panel rounded-lg p-2 flex gap-2 overflow-x-auto no-scrollbar">
+    <div class="glass-panel rounded-lg p-2 flex gap-2 flex-wrap">
       <a href="index.html" class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-blue-500/20 border border-blue-500/30 text-[10px] font-semibold text-blue-400 shrink-0">
         <i class="fa-solid fa-map-location-dot"></i> Tactical Map
       </a>
@@ -458,10 +458,10 @@
 
   <!-- 5. Right Edge: Intelligence Drawer Toggle -->
   <div class="absolute top-1/2 right-0 -translate-y-1/2 z-40 pointer-events-auto flex items-center">
-    <button onclick="toggleDrawer('intel-drawer', 'drawer-closed-right')" class="bg-slate-800/90 text-slate-300 hover:text-white p-2 rounded-l-lg border border-r-0 border-slate-600 shadow-lg" id="btn-intel">
-      <i class="fa-solid fa-chevron-left text-xs"></i><br>
-      <i class="fa-solid fa-brain text-lg my-2 text-indigo-400"></i><br>
-      <span style="writing-mode: vertical-rl; text-orientation: mixed;" class="text-[10px] font-bold uppercase tracking-widest mt-1">Intelligence</span>
+    <button onclick="toggleDrawer('intel-drawer', 'drawer-closed-right')" class="bg-slate-800/90 text-slate-300 hover:text-white py-3 px-2 rounded-l-lg border border-r-0 border-slate-600 shadow-lg flex flex-col items-center justify-center gap-2" id="btn-intel">
+      <i class="fa-solid fa-chevron-left text-xs"></i>
+      <i class="fa-solid fa-brain text-lg text-indigo-400"></i>
+      <span style="writing-mode: vertical-rl; text-orientation: mixed;" class="text-[10px] font-bold uppercase tracking-widest leading-none rotate-180">Intelligence</span>
     </button>
     
     <!-- Collapsible Intelligence Drawer -->
@@ -567,6 +567,7 @@
         document.querySelectorAll('.popover-open').forEach(p => p.classList.remove('popover-open'));
       }
     });
+</script>
   <script>
     // ── STATE ──────────────────────────────────────────────────────────────────
     let HOTSPOTS = [];
