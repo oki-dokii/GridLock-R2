@@ -30,10 +30,10 @@ This report measures classification metrics (Precision, Recall, F1, Accuracy) fo
 | CAR | XGBoost | 20 | 21.7% | 21.7% | **61.0%** | 0.217 | 99.5% (BR: 99.7%) | 34805 |
 | CAR | GLM-Ensemble | 50 | 63.3% | 63.3% | **74.3%** | 0.633 | 97.0% (BR: 95.9%) | 34805 |
 | CAR | XGBoost | 50 | 45.3% | 45.3% | **61.0%** | 0.453 | 99.1% (BR: 99.1%) | 34805 |
-| FACTORY BUS | GLM-Ensemble | 20 | 1.7% | 2.2% | **4.8%** | 0.019 | 97.1% (BR: 98.3%) | 98 |
-| FACTORY BUS | XGBoost | 20 | 0.0% | 0.0% | **22.1%** | 0.000 | 99.3% (BR: 99.7%) | 98 |
-| FACTORY BUS | GLM-Ensemble | 50 | 4.7% | 14.2% | **4.8%** | 0.070 | 94.9% (BR: 95.9%) | 98 |
-| FACTORY BUS | XGBoost | 50 | 2.0% | 4.7% | **22.1%** | 0.028 | 98.8% (BR: 99.1%) | 98 |
+| FACTORY BUS | GLM-Ensemble | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 98 |
+| FACTORY BUS | XGBoost | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 98 |
+| FACTORY BUS | GLM-Ensemble | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 98 |
+| FACTORY BUS | XGBoost | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 98 |
 | GOODS AUTO | GLM-Ensemble | 20 | 51.7% | 51.7% | **43.3%** | 0.517 | 98.4% (BR: 98.3%) | 1262 |
 | GOODS AUTO | XGBoost | 20 | 20.0% | 20.0% | **30.6%** | 0.200 | 99.5% (BR: 99.7%) | 1262 |
 | GOODS AUTO | GLM-Ensemble | 50 | 40.7% | 40.7% | **43.3%** | 0.407 | 95.1% (BR: 95.9%) | 1262 |
@@ -58,10 +58,10 @@ This report measures classification metrics (Precision, Recall, F1, Accuracy) fo
 | MAXI-CAB | XGBoost | 20 | 6.7% | 6.7% | **41.2%** | 0.067 | 99.4% (BR: 99.7%) | 4644 |
 | MAXI-CAB | GLM-Ensemble | 50 | 37.3% | 37.3% | **47.6%** | 0.373 | 94.8% (BR: 95.9%) | 4644 |
 | MAXI-CAB | XGBoost | 50 | 15.3% | 15.3% | **41.2%** | 0.153 | 98.5% (BR: 99.1%) | 4644 |
-| MINI LORRY | GLM-Ensemble | 20 | 20.0% | 21.2% | **29.4%** | 0.205 | 97.4% (BR: 98.3%) | 75 |
-| MINI LORRY | XGBoost | 20 | 3.3% | 3.3% | **18.9%** | 0.033 | 99.3% (BR: 99.7%) | 75 |
-| MINI LORRY | GLM-Ensemble | 50 | 14.0% | 34.5% | **29.4%** | 0.198 | 95.3% (BR: 95.9%) | 75 |
-| MINI LORRY | XGBoost | 50 | 2.7% | 5.6% | **18.9%** | 0.036 | 98.8% (BR: 99.1%) | 75 |
+| MINI LORRY | GLM-Ensemble | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 75 |
+| MINI LORRY | XGBoost | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 75 |
+| MINI LORRY | GLM-Ensemble | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 75 |
+| MINI LORRY | XGBoost | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 75 |
 | MOPED | GLM-Ensemble | 20 | 46.7% | 46.7% | **39.4%** | 0.467 | 98.2% (BR: 98.3%) | 799 |
 | MOPED | XGBoost | 20 | 26.7% | 26.7% | **32.6%** | 0.267 | 99.5% (BR: 99.7%) | 799 |
 | MOPED | GLM-Ensemble | 50 | 34.7% | 34.7% | **39.4%** | 0.347 | 94.6% (BR: 95.9%) | 799 |
@@ -102,10 +102,10 @@ This report measures classification metrics (Precision, Recall, F1, Accuracy) fo
 | TOURIST BUS | XGBoost | 20 | 0.0% | 0.0% | **20.6%** | 0.000 | 99.3% (BR: 99.7%) | 160 |
 | TOURIST BUS | GLM-Ensemble | 50 | 19.3% | 30.8% | **25.2%** | 0.237 | 94.9% (BR: 95.9%) | 160 |
 | TOURIST BUS | XGBoost | 50 | 6.7% | 8.3% | **20.6%** | 0.074 | 98.6% (BR: 99.1%) | 160 |
-| TRACTOR | GLM-Ensemble | 20 | 3.3% | 8.3% | **23.4%** | 0.048 | 97.6% (BR: 98.3%) | 32 |
-| TRACTOR | XGBoost | 20 | 1.7% | 2.4% | **24.7%** | 0.020 | 99.5% (BR: 99.7%) | 32 |
-| TRACTOR | GLM-Ensemble | 50 | 6.0% | 32.7% | **23.4%** | 0.101 | 95.5% (BR: 95.9%) | 32 |
-| TRACTOR | XGBoost | 50 | 2.7% | 14.0% | **24.7%** | 0.045 | 99.0% (BR: 99.1%) | 32 |
+| TRACTOR | GLM-Ensemble | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 32 |
+| TRACTOR | XGBoost | 20 | `low_conf` | `low_conf` | `low_conf` | - | - | 32 |
+| TRACTOR | GLM-Ensemble | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 32 |
+| TRACTOR | XGBoost | 50 | `low_conf` | `low_conf` | `low_conf` | - | - | 32 |
 | VAN | GLM-Ensemble | 20 | 51.7% | 51.7% | **38.8%** | 0.517 | 98.4% (BR: 98.3%) | 581 |
 | VAN | XGBoost | 20 | 20.0% | 20.0% | **29.8%** | 0.200 | 99.4% (BR: 99.7%) | 581 |
 | VAN | GLM-Ensemble | 50 | 35.3% | 35.3% | **38.8%** | 0.353 | 94.7% (BR: 95.9%) | 581 |
