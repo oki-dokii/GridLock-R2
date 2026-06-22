@@ -77,15 +77,15 @@ Pearson r: Model=0.8755 Baseline=0.9062 | Spearman ρ: Model=0.6989 Baseline=0.7
 
 ---
 
-## Summary — Full Months Only (Folds 1–4)
+## Summary — Full Months Only (Folds 2–4)
 
 | K | Vol-Only Lift | Soft-PI Lift | **Ensemble Lift** | Reliable? |
 |---|---|---|---|---|
-| 10 | -19.8% | -19.8% | **-0.3% ±1.1%** | ❌ No |
-| 20 | -17.4% | -17.4% | **+0.1% ±0.2%** | ⚠️ Noisy |
-| 50 | -10.9% | -10.4% | **-0.4% ±0.7%** | ❌ No |
+| 10 | -1.0% | -1.0% | **-0.5% ±1.4%** | ❌ No |
+| 20 | -1.3% | -1.3% | **+0.2% ±0.3%** | ⚠️ Noisy |
+| 50 | -1.0% | -0.3% | **-0.5% ±0.8%** | ❌ No |
 
-**Mean Spearman ρ (model):** 0.5833 ±0.3889  |  **Baseline:** 0.5984
+**Mean Spearman ρ (model):** 0.7777 ±0.0076  |  **Baseline:** 0.7979
 
 ## Full Per-Fold Ensemble Lift
 
@@ -98,8 +98,9 @@ Pearson r: Model=0.8755 Baseline=0.9062 | Spearman ρ: Model=0.6989 Baseline=0.7
 | Fold 5: Nov–Mar → Apr ⚠️ | 0.2 | +0.0% | +0.0% | +1.6% | 0.6989 |
 
 > [!NOTE]
+> Fold 1 (Dec) excluded from aggregate stats — 1-month autoregressive lag undefined.
 > Fold 5 (April) excluded from aggregate stats — only 8 days of test data.
 
 ## Interpretation
 
-The Ensemble model achieves positive lift at K=20 in 1/4 full-month folds. The 500m coarser grid reduces sparsity from 50.8% to 29.2% of cell-months ≤2, providing a more reliable signal for the Poisson GLM lag coefficient. Ensemble blending (w tuned per fold) guarantees the system never does appreciably worse than the persistence baseline.
+The Ensemble model achieves positive lift at K=20 in 1/3 full-month folds. The 500m coarser grid reduces sparsity from 50.8% to 29.2% of cell-months ≤2, providing a more reliable signal for the Poisson GLM lag coefficient. Ensemble blending (w tuned per fold) guarantees the system never does appreciably worse than the persistence baseline.
