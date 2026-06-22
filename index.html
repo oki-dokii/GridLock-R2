@@ -491,12 +491,12 @@
             <h3 class="text-xs font-bold text-slate-200">Tactical Radar</h3>
             <p class="text-[9px] text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing View</p>
           </div>
-          <div class="bg-slate-800 px-2 py-0.5 rounded-full text-[10px] font-bold text-white border border-slate-600 flex items-center gap-1">
+          <div class="bg-slate-800 px-2 py-0.5 rounded-full text-[10px] font-bold text-white border border-slate-600 flex items-center gap-1 cursor-help" title="Active hotspots visible in current map boundaries">
             <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
             <span id="radar-target-count">0</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2 mb-4 relative" id="quad-NW">
+        <div class="grid grid-cols-2 gap-2 mb-1 relative" id="quad-NW">
           <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div class="w-6 h-6 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center z-10 shadow-lg">
               <i class="fa-solid fa-location-crosshairs text-blue-400 text-[10px]"></i>
@@ -514,6 +514,9 @@
           <div id="quad-SE-el" class="radar-quadrant bg-slate-800/50 rounded-br-lg border border-slate-700 p-2 flex flex-col items-center justify-center h-16">
             <span class="text-[9px] text-slate-500 font-bold mb-0.5">SE</span><span class="text-lg font-bold text-slate-300 val">0</span>
           </div>
+        </div>
+        <div class="text-[8px] text-slate-500 uppercase tracking-widest text-center mb-4">
+          Values = Total Congestion Impact Score
         </div>
         <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 mt-2">
           <div class="text-[9px] text-blue-400 uppercase font-bold mb-1 tracking-wider"><i class="fa-solid fa-user-shield"></i> Senior Advice</div>
