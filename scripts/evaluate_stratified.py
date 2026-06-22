@@ -1,4 +1,4 @@
-import os, warnings, json
+import os, warnings
 import numpy as np
 import pandas as pd
 import statsmodels.api as sm
@@ -6,7 +6,6 @@ import statsmodels.formula.api as smf
 from scipy.spatial import cKDTree
 import xgboost as xgb
 from sklearn.preprocessing import LabelEncoder
-from collections import defaultdict
 
 warnings.filterwarnings('ignore')
 
@@ -15,7 +14,7 @@ script_dir   = os.path.dirname(os.path.abspath(__file__))
 repo_root    = os.path.dirname(script_dir)
 cleaned_path = os.path.join(repo_root, 'cleaned_violations.csv')
 
-print("Loading clean data …")
+print("Loading clean data ...")
 df = pd.read_csv(cleaned_path)
 df['ts_ist'] = pd.to_datetime(df['ts_ist'], utc=True).dt.tz_convert('Asia/Kolkata')
 df['month']  = df['ts_ist'].dt.month
@@ -50,9 +49,9 @@ if 'station' not in df.columns:
     df['station'] = df.apply(lambda r: nearest_station(r['lat_g'], r['lon_g']), axis=1)
 
 FOLDS = [
-    {'name':'Fold 2','label':'Nov–Dec → Jan','train':[11,12],       'test':1},
-    {'name':'Fold 3','label':'Nov–Jan → Feb','train':[11,12,1],     'test':2},
-    {'name':'Fold 4','label':'Nov–Feb → Mar','train':[11,12,1,2],   'test':3},
+    {'name':'Fold 2','label':'Nov-Dec -> Jan','train':[11,12],       'test':1},
+    {'name':'Fold 3','label':'Nov-Jan -> Feb','train':[11,12,1],     'test':2},
+    {'name':'Fold 4','label':'Nov-Feb -> Mar','train':[11,12,1,2],   'test':3},
 ]
 
 # ── Evaluator Helper ─────────────────────────────────────────────────────────
@@ -259,28 +258,55 @@ for fold in FOLDS:
     best_w = tune_blend_weight(pred_df_glm, train_clean, fold['train'])
     pred_df_glm['EPS_blend'] = best_w * pred_df_glm['train_count'] + (1 - best_w) * pred_df_glm['pred_vol']
     
+    xgb_total_cells = len(pred_panel_xgb)
+    glm_total_cells = len(pred_df_glm)
+
     for k in [20, 50]:
         xgb_top_k = pred_panel_xgb.nlargest(k, 'xgb_pred')['grid_id'].tolist()
         glm_top_k = pred_df_glm.nlargest(k, 'EPS_blend')['grid_c'].tolist()
-        
-        xgb_total_cells = len(pred_panel_xgb)
-        glm_total_cells = len(pred_df_glm)
         
         # Overall
         xgb_eval = evaluate_predictions(xgb_top_k, test_df, 'grid_id', k, xgb_total_cells)
         glm_eval = evaluate_predictions(glm_top_k, test_df, 'grid_c', k, glm_total_cells)
         
-        results_agg.append({'fold': fname, 'k': k, 'model': 'XGBoost', 'group': 'Overall', 'subgroup': 'Overall', **xgb_eval})
-        results_agg.append({'fold': fname, 'k': k, 'model': 'GLM-Ensemble', 'group': 'Overall', 'subgroup': 'Overall', **glm_eval})
+        results_agg.append({'fold': fname, 'k': k, 'model': 'XGBoost', 'group': 'Overall', 'subgroup': 'Overall', 
+                            'p': xgb_eval['p'], 'r': xgb_eval['r'], 'r_within': xgb_eval['r'],
+                            'f1': xgb_eval['f1'], 'acc': xgb_eval['acc'], 'br': xgb_eval['br'], 'n': xgb_eval['n']})
+        results_agg.append({'fold': fname, 'k': k, 'model': 'GLM-Ensemble', 'group': 'Overall', 'subgroup': 'Overall', 
+                            'p': glm_eval['p'], 'r': glm_eval['r'], 'r_within': glm_eval['r'],
+                            'f1': glm_eval['f1'], 'acc': glm_eval['acc'], 'br': glm_eval['br'], 'n': glm_eval['n']})
         
         # Stratified
         for group_name, sub_vals in subgroups.items():
             for sub_val in sub_vals:
+                sub_train = train_df[train_df[group_name] == sub_val]
                 sub_test = test_df[test_df[group_name] == sub_val]
-                x_ev = evaluate_predictions(xgb_top_k, sub_test, 'grid_id', k, xgb_total_cells)
-                g_ev = evaluate_predictions(glm_top_k, sub_test, 'grid_c', k, glm_total_cells)
-                results_agg.append({'fold': fname, 'k': k, 'model': 'XGBoost', 'group': group_name, 'subgroup': sub_val, **x_ev})
-                results_agg.append({'fold': fname, 'k': k, 'model': 'GLM-Ensemble', 'group': group_name, 'subgroup': sub_val, **g_ev})
+                if len(sub_test) == 0: continue
+                
+                # Global K eval
+                x_ev_global = evaluate_predictions(xgb_top_k, sub_test, 'grid_id', k, xgb_total_cells)
+                g_ev_global = evaluate_predictions(glm_top_k, sub_test, 'grid_c', k, glm_total_cells)
+                
+                # Within-Subgroup K eval
+                U_S_xgb = set(sub_train['grid_id'].unique()).union(set(sub_test['grid_id'].unique()))
+                U_S_glm = set(sub_train['grid_c'].unique()).union(set(sub_test['grid_c'].unique()))
+                
+                K_S_xgb = max(5, int(0.20 * len(U_S_xgb)))
+                xgb_preds_sub = pred_panel_xgb[pred_panel_xgb['grid_id'].isin(U_S_xgb)]
+                xgb_top_Ks = xgb_preds_sub.nlargest(K_S_xgb, 'xgb_pred')['grid_id'].tolist()
+                x_ev_within = evaluate_predictions(xgb_top_Ks, sub_test, 'grid_id', K_S_xgb, len(U_S_xgb))
+                
+                K_S_glm = max(5, int(0.20 * len(U_S_glm)))
+                glm_preds_sub = pred_df_glm[pred_df_glm['grid_c'].isin(U_S_glm)]
+                glm_top_Ks = glm_preds_sub.nlargest(K_S_glm, 'EPS_blend')['grid_c'].tolist()
+                g_ev_within = evaluate_predictions(glm_top_Ks, sub_test, 'grid_c', K_S_glm, len(U_S_glm))
+                
+                results_agg.append({'fold': fname, 'k': k, 'model': 'XGBoost', 'group': group_name, 'subgroup': sub_val, 
+                                    'p': x_ev_global['p'], 'r': x_ev_global['r'], 'r_within': x_ev_within['r'],
+                                    'f1': x_ev_global['f1'], 'acc': x_ev_global['acc'], 'br': x_ev_global['br'], 'n': x_ev_global['n']})
+                results_agg.append({'fold': fname, 'k': k, 'model': 'GLM-Ensemble', 'group': group_name, 'subgroup': sub_val, 
+                                    'p': g_ev_global['p'], 'r': g_ev_global['r'], 'r_within': g_ev_within['r'],
+                                    'f1': g_ev_global['f1'], 'acc': g_ev_global['acc'], 'br': g_ev_global['br'], 'n': g_ev_global['n']})
 
 res_df = pd.DataFrame(results_agg)
 
@@ -289,22 +315,28 @@ md = ["# Stratified Evaluation Results\n\nThis report measures classification me
 
 # Findings
 md.append("## Findings: Operational Blind Spots\n")
-k20 = res_df[(res_df['k'] == 20) & (res_df['n'] >= 30) & (res_df['group'] != 'Overall')]
-worst_prec = k20.loc[k20['p'].idxmin()]
-worst_rec = k20.loc[k20['r'].idxmin()]
-md.append(f"- **Lowest Precision Subgroup (K=20):** `{worst_prec['subgroup']}` ({worst_prec['group']}) with {worst_prec['model']} | Precision: {worst_prec['p']:.1%} (n={worst_prec['n']})")
-md.append(f"- **Lowest Recall Subgroup (K=20):** `{worst_rec['subgroup']}` ({worst_rec['group']}) with {worst_rec['model']} | Recall: {worst_rec['r']:.1%} (n={worst_rec['n']})")
+k20 = res_df[(res_df['k'] == 20) & (res_df['group'] != 'Overall')]
+agg_k20 = k20.groupby(['group', 'subgroup', 'model']).agg({'p':'mean', 'r':'mean', 'n':'sum'}).reset_index()
+agg_k20_conf = agg_k20[agg_k20['n'] >= 30]
+
+if len(agg_k20_conf) > 0:
+    worst_prec = agg_k20_conf.loc[agg_k20_conf['p'].idxmin()]
+    worst_rec = agg_k20_conf.loc[agg_k20_conf['r'].idxmin()]
+    md.append(f"- **Lowest Precision Subgroup (K=20):** `{worst_prec['subgroup']}` ({worst_prec['group']}) with {worst_prec['model']} | Global Precision: {worst_prec['p']:.1%} (n={worst_prec['n']})")
+    md.append(f"- **Lowest Recall Subgroup (K=20):** `{worst_rec['subgroup']}` ({worst_rec['group']}) with {worst_rec['model']} | Global Recall: {worst_rec['r']:.1%} (n={worst_rec['n']})")
+else:
+    md.append("- Not enough data volume to identify reliable blind spots (n < 30 across all).")
 md.append("\n---\n")
 
 def format_table(df_sub):
-    agg = df_sub.groupby(['group', 'subgroup', 'model', 'k']).agg({'p':'mean', 'r':'mean', 'f1':'mean', 'acc':'mean', 'br':'mean', 'n':'sum'}).reset_index()
-    lines = ["| Subgroup | Model | K | Precision | Recall | F1 Score | Accuracy (vs Base Rate) | n (test) |", "|---|---|---|---|---|---|---|---|"]
+    agg = df_sub.groupby(['group', 'subgroup', 'model', 'k']).agg({'p':'mean', 'r':'mean', 'r_within':'mean', 'f1':'mean', 'acc':'mean', 'br':'mean', 'n':'sum'}).reset_index()
+    lines = ["| Subgroup | Model | Global K | Precision | Global Recall | Within-Group Recall (Top 20%) | F1 Score | Accuracy (vs Base Rate) | n (test) |", "|---|---|---|---|---|---|---|---|---|"]
     for _, r in agg.sort_values(['group', 'subgroup', 'k', 'model']).iterrows():
         if r['n'] < 30:
-            lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | `low_confidence: true` | - | - | - | {r['n']:.0f} |")
+            lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | `low_conf` | `low_conf` | `low_conf` | - | - | {r['n']:.0f} |")
         else:
             acc_str = f"{r['acc']:.1%} (BR: {r['br']:.1%})"
-            lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | {r['p']:.1%} | {r['r']:.1%} | {r['f1']:.3f} | {acc_str} | {r['n']:.0f} |")
+            lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | {r['p']:.1%} | {r['r']:.1%} | **{r['r_within']:.1%}** | {r['f1']:.3f} | {acc_str} | {r['n']:.0f} |")
     return "\n".join(lines)
 
 md.append("## Overall Metrics\n")
