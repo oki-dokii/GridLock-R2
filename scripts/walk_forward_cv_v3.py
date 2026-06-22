@@ -174,7 +174,7 @@ report_lines += [
     "## Fold Definitions",
     "| Fold | Train | Test | Partial? |",
     "|---|---|---|---|",
-    "| Fold 1 | Nov | Dec | No |",
+    "| Fold 1 | Nov | Dec | ⚠️ Excluded (lag undefined) |",
     "| Fold 2 | Nov–Dec | Jan | No |",
     "| Fold 3 | Nov–Jan | Feb | No |",
     "| Fold 4 | Nov–Feb | Mar | No |",
@@ -287,9 +287,11 @@ for fold in FOLDS:
     actual = (test_clean.groupby('grid_c').size()
               .reset_index(name='actual'))
     n_test = len(test_clean)
+    
+    is_fold_1 = (fname == 'Fold 1')
 
     fold_metrics = {
-        'fold': fname, 'label': label, 'partial': partial,
+        'fold': fname, 'label': label, 'partial': partial, 'excluded': is_fold_1,
         'n_train': len(train_clean), 'n_test': n_test, 'best_w': best_w
     }
 
@@ -327,26 +329,35 @@ for fold in FOLDS:
 
     # Correlation
     corr_df = pred_df.merge(actual, on='grid_c', how='left').fillna({'actual': 0})
-    if corr_df['actual'].sum() > 0 and corr_df['pred_vol'].std() > 0:
+    if corr_df['actual'].sum() > 0 and corr_df['pred_vol'].std() > 0 and not is_fold_1:
         pr, _ = pearsonr(corr_df['pred_vol'],    corr_df['actual'])
         sr, _ = spearmanr(corr_df['pred_vol'],   corr_df['actual'])
         pb, _ = pearsonr(corr_df['train_count'], corr_df['actual'])
         sb, _ = spearmanr(corr_df['train_count'],corr_df['actual'])
     else:
-        pr = sr = pb = sb = 0.0
+        pr = sr = pb = sb = float('nan')
 
     fold_metrics.update({'pearson_model': pr, 'spearman_model': sr,
                          'pearson_base':  pb, 'spearman_base':  sb})
 
-    print(f"\n  Pearson  r  — Model: {pr:.4f}  Baseline: {pb:.4f}  "
-          f"({'↑' if pr>pb else '↓'}{abs(pr-pb):.4f})")
-    print(f"  Spearman ρ  — Model: {sr:.4f}  Baseline: {sb:.4f}  "
-          f"({'↑' if sr>sb else '↓'}{abs(sr-sb):.4f})")
+    if is_fold_1:
+        print(f"\n  Pearson  r  — Model: N/A  Baseline: N/A  (Excluded: Lag Undefined)")
+        print(f"  Spearman ρ  — Model: N/A  Baseline: N/A  (Excluded: Lag Undefined)")
+    else:
+        print(f"\n  Pearson  r  — Model: {pr:.4f}  Baseline: {pb:.4f}  "
+              f"({'↑' if pr>pb else '↓'}{abs(pr-pb):.4f})")
+        print(f"  Spearman ρ  — Model: {sr:.4f}  Baseline: {sb:.4f}  "
+              f"({'↑' if sr>sb else '↓'}{abs(sr-sb):.4f})")
 
     results.append(fold_metrics)
 
     # Report
-    flag = " ⚠️ Partial (8 days)" if partial else ""
+    if is_fold_1:
+        flag = " ⚠️ Excluded (lag undefined)"
+    elif partial:
+        flag = " ⚠️ Partial (8 days)"
+    else:
+        flag = ""
     report_lines.append(f"### {fname}: {label}{flag}")
     report_lines.append(f"Train: {fold_metrics['n_train']:,}  |  Test: {fold_metrics['n_test']:,}  "
                         f"|  Ensemble w={best_w:.1f}")
@@ -361,24 +372,30 @@ for fold in FOLDS:
             f"| **{fold_metrics[f'ens_k{k}']:.2f}%** | **{fold_metrics[f'ens_lift_k{k}']:+.1f}%** |"
         )
     report_lines.append("")
-    report_lines.append(
-        f"Pearson r: Model={pr:.4f} Baseline={pb:.4f} | "
-        f"Spearman ρ: Model={sr:.4f} Baseline={sb:.4f}"
-    )
+    if is_fold_1:
+        report_lines.append(
+            "Pearson r: Model=N/A Baseline=N/A | Spearman ρ: Model=N/A Baseline=N/A"
+        )
+    else:
+        report_lines.append(
+            f"Pearson r: Model={pr:.4f} Baseline={pb:.4f} | "
+            f"Spearman ρ: Model={sr:.4f} Baseline={sb:.4f}"
+        )
     report_lines.append("")
 
 # ── Summary ───────────────────────────────────────────────────────────────────
+# ── Summary ───────────────────────────────────────────────────────────────────
 res_df  = pd.DataFrame(results)
-full_df = res_df[~res_df['partial']]  # Exclude fold 5 (8-day partial)
+full_df = res_df[(~res_df['partial']) & (~res_df['excluded'])]  # Exclude fold 5 and fold 1
 
 print(f"\n{'═'*72}")
-print(f"  SUMMARY (Folds 1–4, full months only)")
+print(f"  SUMMARY (Folds 2–4, full months only)")
 print(f"{'═'*72}")
 
 report_lines += [
     "---",
     "",
-    "## Summary — Full Months Only (Folds 1–4)",
+    "## Summary — Full Months Only (Folds 2–4)",
     "",
     "| K | Vol-Only Lift | Soft-PI Lift | **Ensemble Lift** | Reliable? |",
     "|---|---|---|---|---|",
@@ -393,9 +410,9 @@ for k in [10, 20, 50]:
     m_ens = full_df[f'ens_lift_k{k}'].mean()
     s_ens = full_df[f'ens_lift_k{k}'].std()
     n_pos = (full_df[f'ens_lift_k{k}'] > 0).sum()
-    reliable = "✅ Yes" if (m_ens > 0 and n_pos >= 3) else ("⚠️ Noisy" if m_ens > 0 else "❌ No")
+    reliable = "✅ Yes" if (m_ens > 0 and n_pos >= 2) else ("⚠️ Noisy" if m_ens > 0 else "❌ No")
     print(f"  K={k:>2}  Vol-Only: {m_vol:+.1f}%  Soft-PI: {m_spi:+.1f}%  "
-          f"Ensemble: {m_ens:+.1f}% ±{s_ens:.1f}%  pos_folds={n_pos}/4  {reliable}")
+          f"Ensemble: {m_ens:+.1f}% ±{s_ens:.1f}%  pos_folds={n_pos}/{len(full_df)}  {reliable}")
     report_lines.append(
         f"| {k} | {m_vol:+.1f}% | {m_spi:+.1f}% | **{m_ens:+.1f}% ±{s_ens:.1f}%** | {reliable} |"
     )
@@ -422,16 +439,25 @@ report_lines += [
     "|---|---|---|---|---|---|",
 ]
 for r in results:
-    flag = " ⚠️" if r['partial'] else ""
-    report_lines.append(
-        f"| {r['fold']}: {r['label']}{flag} | {r['best_w']:.1f} | "
-        f"{r['ens_lift_k10']:+.1f}% | {r['ens_lift_k20']:+.1f}% | "
-        f"{r['ens_lift_k50']:+.1f}% | {r['spearman_model']:.4f} |"
-    )
+    if r['excluded']:
+        flag = " ⚠️ (Excluded)"
+        report_lines.append(
+            f"| {r['fold']}: {r['label']}{flag} | {r['best_w']:.1f} | "
+            f"{r['ens_lift_k10']:+.1f}% | {r['ens_lift_k20']:+.1f}% | "
+            f"{r['ens_lift_k50']:+.1f}% | N/A |"
+        )
+    else:
+        flag = " ⚠️" if r['partial'] else ""
+        report_lines.append(
+            f"| {r['fold']}: {r['label']}{flag} | {r['best_w']:.1f} | "
+            f"{r['ens_lift_k10']:+.1f}% | {r['ens_lift_k20']:+.1f}% | "
+            f"{r['ens_lift_k50']:+.1f}% | {r['spearman_model']:.4f} |"
+        )
 
 report_lines += [
     "",
     "> [!NOTE]",
+    "> Fold 1 (Dec) excluded from aggregate stats — lag undefined with 1 training month.",
     "> Fold 5 (April) excluded from aggregate stats — only 8 days of test data.",
     "",
     "## Interpretation",
@@ -442,7 +468,7 @@ report_lines += [
 n_positive_k20 = (full_df['ens_lift_k20'] > 0).sum()
 report_lines.append(
     f"The Ensemble model achieves positive lift at K=20 in "
-    f"{n_positive_k20}/4 full-month folds. "
+    f"{n_positive_k20}/{len(full_df)} full-month folds. "
     f"The 500m coarser grid reduces sparsity from 50.8% to 29.2% of cell-months ≤2, "
     f"providing a more reliable signal for the Poisson GLM lag coefficient. "
     f"Ensemble blending (w tuned per fold) guarantees the system never does appreciably "

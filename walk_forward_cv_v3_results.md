@@ -12,7 +12,7 @@
 ## Fold Definitions
 | Fold | Train | Test | Partial? |
 |---|---|---|---|
-| Fold 1 | Nov | Dec | No |
+| Fold 1 | Nov | Dec | ⚠️ Excluded (lag undefined) |
 | Fold 2 | Nov–Dec | Jan | No |
 | Fold 3 | Nov–Jan | Feb | No |
 | Fold 4 | Nov–Feb | Mar | No |
@@ -20,7 +20,7 @@
 
 ## Per-Fold Results
 
-### Fold 1: Nov → Dec
+### Fold 1: Nov → Dec ⚠️ Excluded (lag undefined)
 Train: 27,523  |  Test: 39,245  |  Ensemble w=0.5
 
 | K | Baseline | Vol-Only | Lift | Soft-PI | Lift | **Ensemble** | Lift |
@@ -29,7 +29,7 @@ Train: 27,523  |  Test: 39,245  |  Ensemble w=0.5
 | 20 | 35.21% | 12.09% | -65.7% | 12.09% | -65.7% | **35.21%** | **+0.0%** |
 | 50 | 51.97% | 30.80% | -40.7% | 30.80% | -40.7% | **51.97%** | **+0.0%** |
 
-Pearson r: Model=0.0000 Baseline=0.0000 | Spearman ρ: Model=0.0000 Baseline=0.0000
+Pearson r: Model=N/A Baseline=N/A | Spearman ρ: Model=N/A Baseline=N/A
 
 ### Fold 2: Nov–Dec → Jan
 Train: 68,013  |  Test: 40,331  |  Ensemble w=0.0
@@ -83,22 +83,22 @@ Pearson r: Model=0.8755 Baseline=0.9062 | Spearman ρ: Model=0.6989 Baseline=0.7
 |---|---|---|---|---|
 | 10 | -1.0% | -1.0% | **-0.5% ±1.4%** | ❌ No |
 | 20 | -1.3% | -1.3% | **+0.2% ±0.3%** | ⚠️ Noisy |
-| 50 | -1.0% | -0.3% | **-0.5% ±0.8%** | ❌ No |
+| 50 | -0.9% | -0.3% | **-0.5% ±0.8%** | ❌ No |
 
-**Mean Spearman ρ (model):** 0.7777 ±0.0076  |  **Baseline:** 0.7979
+**Mean Spearman ρ (model):** 0.7777 ±0.0077  |  **Baseline:** 0.7979
 
 ## Full Per-Fold Ensemble Lift
 
 | Fold | w | K=10 | K=20 | K=50 | Spearman ρ |
 |---|---|---|---|---|---|
-| Fold 1: Nov → Dec | 0.5 | +0.0% | +0.0% | +0.0% | 0.0000 |
+| Fold 1: Nov → Dec ⚠️ (Excluded) | 0.5 | +0.0% | +0.0% | +0.0% | N/A |
 | Fold 2: Nov–Dec → Jan | 0.0 | +0.6% | +0.5% | -0.4% | 0.7766 |
 | Fold 3: Nov–Jan → Feb | 0.4 | +0.0% | +0.0% | -1.3% | 0.7706 |
 | Fold 4: Nov–Feb → Mar | 0.6 | -2.0% | +0.0% | +0.2% | 0.7858 |
 | Fold 5: Nov–Mar → Apr ⚠️ | 0.2 | +0.0% | +0.0% | +1.6% | 0.6989 |
 
 > [!NOTE]
-> Fold 1 (Dec) excluded from aggregate stats — 1-month autoregressive lag undefined.
+> Fold 1 (Dec) excluded from aggregate stats — lag undefined with 1 training month.
 > Fold 5 (April) excluded from aggregate stats — only 8 days of test data.
 
 ## Interpretation
