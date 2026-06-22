@@ -285,16 +285,16 @@ for fold in FOLDS:
 res_df = pd.DataFrame(results_agg)
 
 # Format to markdown
-md = ["# Stratified Evaluation Results\\n\\nThis report measures classification metrics (Precision, Recall, F1, Accuracy) for our models' Predicted Top-K hotspots against actual Top-K subgroups.\\n"]
+md = ["# Stratified Evaluation Results\n\nThis report measures classification metrics (Precision, Recall, F1, Accuracy) for our models' Predicted Top-K hotspots against actual Top-K subgroups.\n"]
 
 # Findings
-md.append("## Findings: Operational Blind Spots\\n")
+md.append("## Findings: Operational Blind Spots\n")
 k20 = res_df[(res_df['k'] == 20) & (res_df['n'] >= 30) & (res_df['group'] != 'Overall')]
 worst_prec = k20.loc[k20['p'].idxmin()]
 worst_rec = k20.loc[k20['r'].idxmin()]
 md.append(f"- **Lowest Precision Subgroup (K=20):** `{worst_prec['subgroup']}` ({worst_prec['group']}) with {worst_prec['model']} | Precision: {worst_prec['p']:.1%} (n={worst_prec['n']})")
 md.append(f"- **Lowest Recall Subgroup (K=20):** `{worst_rec['subgroup']}` ({worst_rec['group']}) with {worst_rec['model']} | Recall: {worst_rec['r']:.1%} (n={worst_rec['n']})")
-md.append("\\n---\\n")
+md.append("\n---\n")
 
 def format_table(df_sub):
     agg = df_sub.groupby(['group', 'subgroup', 'model', 'k']).agg({'p':'mean', 'r':'mean', 'f1':'mean', 'acc':'mean', 'br':'mean', 'n':'sum'}).reset_index()
@@ -305,18 +305,18 @@ def format_table(df_sub):
         else:
             acc_str = f"{r['acc']:.1%} (BR: {r['br']:.1%})"
             lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | {r['p']:.1%} | {r['r']:.1%} | {r['f1']:.3f} | {acc_str} | {r['n']:.0f} |")
-    return "\\n".join(lines)
+    return "\n".join(lines)
 
-md.append("## Overall Metrics\\n")
+md.append("## Overall Metrics\n")
 md.append(format_table(res_df[res_df['group'] == 'Overall']))
 
-md.append("\\n## By Vehicle Type\\n")
+md.append("\n## By Vehicle Type\n")
 md.append(format_table(res_df[res_df['group'] == 'vehicle_type']))
 
-md.append("\\n## By Police Station\\n")
+md.append("\n## By Police Station\n")
 md.append(format_table(res_df[res_df['group'] == 'police_station']))
 
 with open(os.path.join(repo_root, "stratified_evaluation_results.md"), "w") as f:
-    f.write("\\n".join(md))
+    f.write("\n".join(md))
 
 print("Results written to stratified_evaluation_results.md")
