@@ -1506,6 +1506,16 @@ Write the briefing now:`;
         }
       },
       {
+        id: null,
+        title: '📍 Hotspot Insights',
+        body: 'Click on any of the dots on the map to get more info, view road context, and receive AI Copilot insights for that specific location.',
+        pos: 'center',
+        onShow: () => { 
+          const i = document.getElementById('intel-drawer'); 
+          if(!i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
+        }
+      },
+      {
         id: 'tour-restart-btn',
         title: '🎉 Tour Complete!',
         body: 'You can relaunch this walkthrough at any time. Click Finish, close the drawers, and begin your patrol!',
