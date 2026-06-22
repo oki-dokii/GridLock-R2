@@ -311,29 +311,34 @@ for fold in FOLDS:
 res_df = pd.DataFrame(results_agg)
 
 # Format to markdown
-md = ["# Stratified Evaluation Results\n\nThis report measures classification metrics (Precision, Recall, F1, Accuracy) for our models' Predicted Top-K hotspots against actual Top-K subgroups.\n"]
+md = ["# Stratified Evaluation Results\n\nThis report measures classification metrics (Precision, Recall, F1, Accuracy) for our models' Predicted Top-K hotspots against actual Top-K subgroups.\n\n*Note: Metrics marked with `⚠️` have limited test volume (30 ≤ n < 100) and wider margins of error.*\n"]
 
 # Findings
 md.append("## Findings: Operational Blind Spots\n")
 k20 = res_df[(res_df['k'] == 20) & (res_df['group'] != 'Overall')]
 agg_k20 = k20.groupby(['group', 'subgroup', 'model']).agg({'p':'mean', 'r':'mean', 'n':'sum'}).reset_index()
-agg_k20_conf = agg_k20[agg_k20['n'] >= 100]
+agg_k20_conf = agg_k20[agg_k20['n'] >= 30]
 
 if len(agg_k20_conf) > 0:
     worst_prec = agg_k20_conf.loc[agg_k20_conf['p'].idxmin()]
     worst_rec = agg_k20_conf.loc[agg_k20_conf['r'].idxmin()]
-    md.append(f"- **Lowest Precision Subgroup (K=20):** `{worst_prec['subgroup']}` ({worst_prec['group']}) with {worst_prec['model']} | Global Precision: {worst_prec['p']:.1%} (n={worst_prec['n']})")
-    md.append(f"- **Lowest Recall Subgroup (K=20):** `{worst_rec['subgroup']}` ({worst_rec['group']}) with {worst_rec['model']} | Global Recall: {worst_rec['r']:.1%} (n={worst_rec['n']})")
+    p_warn = " ⚠️" if worst_prec['n'] < 100 else ""
+    r_warn = " ⚠️" if worst_rec['n'] < 100 else ""
+    md.append(f"- **Lowest Precision Subgroup (K=20):** `{worst_prec['subgroup']}` ({worst_prec['group']}) with {worst_prec['model']} | Global Precision: {worst_prec['p']:.1%} (n={worst_prec['n']}){p_warn}")
+    md.append(f"- **Lowest Recall Subgroup (K=20):** `{worst_rec['subgroup']}` ({worst_rec['group']}) with {worst_rec['model']} | Global Recall: {worst_rec['r']:.1%} (n={worst_rec['n']}){r_warn}")
 else:
-    md.append("- Not enough data volume to identify reliable blind spots (n < 100 across all).")
+    md.append("- Not enough data volume to identify reliable blind spots (n < 30 across all).")
 md.append("\n---\n")
 
 def format_table(df_sub):
     agg = df_sub.groupby(['group', 'subgroup', 'model', 'k']).agg({'p':'mean', 'r':'mean', 'r_within':'mean', 'f1':'mean', 'acc':'mean', 'br':'mean', 'n':'sum'}).reset_index()
     lines = ["| Subgroup | Model | Global K | Precision | Global Recall | Within-Group Recall (Top 20%) | F1 Score | Accuracy (vs Base Rate) | n (test) |", "|---|---|---|---|---|---|---|---|---|"]
     for _, r in agg.sort_values(['group', 'subgroup', 'k', 'model']).iterrows():
-        if r['n'] < 100:
+        if r['n'] < 30:
             lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | `low_conf` | `low_conf` | `low_conf` | - | - | {r['n']:.0f} |")
+        elif r['n'] < 100:
+            acc_str = f"{r['acc']:.1%} (BR: {r['br']:.1%})"
+            lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | {r['p']:.1%} ⚠️ | {r['r']:.1%} ⚠️ | **{r['r_within']:.1%}** ⚠️ | {r['f1']:.3f} ⚠️ | {acc_str} | {r['n']:.0f} |")
         else:
             acc_str = f"{r['acc']:.1%} (BR: {r['br']:.1%})"
             lines.append(f"| {r['subgroup']} | {r['model']} | {r['k']} | {r['p']:.1%} | {r['r']:.1%} | **{r['r_within']:.1%}** | {r['f1']:.3f} | {acc_str} | {r['n']:.0f} |")
