@@ -69,8 +69,32 @@ def overpass_query(query_str, cache_key):
         with open(cache_file) as f:
             return json.load(f)
 
-    # Rate limited by Overpass. Use cache only for now to finish the pipeline.
-    # print(f"    ⚠️  Overpass rate limit active - Falling back to heuristic")
+    # Actual HTTP request with retries
+    url = OVERPASS_URL
+    data = urllib.parse.urlencode({'data': query_str}).encode('utf-8')
+    req = urllib.request.Request(url, data=data)
+    
+    max_retries = 6
+    for attempt in range(max_retries):
+        try:
+            time.sleep(REQUEST_DELAY)
+            with urllib.request.urlopen(req) as response:
+                result = json.loads(response.read().decode('utf-8'))
+                with open(cache_file, 'w') as f:
+                    json.dump(result, f)
+                return result
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                sleep_time = 30 * (attempt + 1)
+                print(f"    ⚠️  Overpass rate limit (429). Waiting {sleep_time}s...")
+                time.sleep(sleep_time)
+            else:
+                print(f"    ⚠️  Overpass HTTP error: {e}")
+                time.sleep(5)
+        except Exception as e:
+            print(f"    ⚠️  Overpass connection error: {e}")
+            time.sleep(5)
+
     return None
 
 

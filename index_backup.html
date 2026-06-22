@@ -90,23 +90,6 @@
       background: color-mix(in srgb, var(--veh-color) 20%, transparent);
       color: var(--veh-color);
     }
-  
-    /* Progressive Disclosure Panels */
-    .drawer {
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-    }
-    .drawer-closed-left { transform: translateX(-120%); opacity: 0; pointer-events: none; }
-    .drawer-closed-right { transform: translateX(120%); opacity: 0; pointer-events: none; }
-    
-    .popover {
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      opacity: 0; pointer-events: none; transform: translateY(-10px);
-    }
-    .popover-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    
-    .tab-btn { transition: all 0.2s; border-bottom: 2px solid transparent; }
-    .tab-btn.active { border-bottom-color: #6366f1; color: #fff; }
-
   </style>
 
   <!-- ===== ONBOARDING TOUR STYLES ===== -->
@@ -144,12 +127,12 @@
       border-radius: 16px; padding: 20px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 24px rgba(99,102,241,0.12);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      pointer-events: none;
+      pointer-events: auto;
       opacity: 0; transform: translateY(6px) scale(0.97);
       transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
       font-family: 'Inter', sans-serif;
     }
-    #tour-tooltip.tour-visible { pointer-events: auto; opacity: 1; transform: translateY(0) scale(1); }
+    #tour-tooltip.tour-visible { opacity: 1; transform: translateY(0) scale(1); }
 
     .tour-pill {
       display: inline-flex; align-items: center; gap: 5px;
@@ -242,345 +225,303 @@
   <!-- Map Container -->
   <div id="map"></div>
 
-  <!-- 1. Top Left: Brand, Nav & Search -->
-  <div class="absolute top-4 left-4 z-40 pointer-events-auto w-[320px] max-w-[calc(100vw-32px)]">
-    <!-- Brand / Header -->
-    <div class="glass-panel rounded-xl p-3 flex items-center space-x-3 mb-2">
-      <div class="bg-blue-600/20 p-2 rounded-lg border border-blue-500/30">
-        <i class="fa-solid fa-shield-halved text-blue-400 text-lg"></i>
+  <!-- Map Legend -->
+  <div class="absolute top-6 right-6 z-40 pointer-events-none flex flex-col gap-3" style="z-index:1000;">
+    <div class="glass-panel rounded-xl p-3 min-w-[165px]">
+      <div class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2.5 flex items-center gap-1.5">
+        <i class="fa-solid fa-circle-info text-slate-500"></i> Map Legend
+      </div>
+
+      <!-- Priority Tiers -->
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier (Click to Filter)</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-critical" onclick="toggleTierFilter('critical')">
+          <svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Critical</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 5%</span>
+        </div>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-high" onclick="toggleTierFilter('high')">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">High</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 20%</span>
+        </div>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-medium" onclick="toggleTierFilter('medium')">
+          <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Medium</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Top 50%</span>
+        </div>
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-low" onclick="toggleTierFilter('low')">
+          <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-slate-200 font-medium">Low</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rest</span>
+        </div>
+      </div>
+      
+      <!-- Deployment Status -->
+      <div class="border-t border-slate-700 mb-2.5"></div>
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Deployment Status</div>
+      <div class="space-y-1.5 mb-3">
+        <div class="flex items-center gap-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity" id="legend-unassigned" onclick="toggleTierFilter('unassigned')">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#a855f7" stroke="#f8fafc" stroke-width="1.5"/></svg>
+          <span class="text-[11px] text-purple-400 font-bold">Unassigned Risk</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Gap</span>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-slate-700 mb-2.5"></div>
+
+      <!-- Model Confidence Ring -->
+      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Model Confidence</div>
+      <div class="space-y-1.5">
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#10b981" stroke-width="2.5"/></svg>
+          <span class="text-[11px] text-emerald-400 font-semibold">Validated</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rank 1–50</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#0f172a" stroke-width="1"/></svg>
+          <span class="text-[11px] text-slate-400 font-medium">Unproven</span>
+          <span class="text-[9px] text-slate-500 ml-auto">Rank 51+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top 10 Critical Locations Panel -->
+    <div class="glass-panel rounded-xl p-3 min-w-[220px] max-w-[280px] pointer-events-auto hidden md:block">
+      <div class="text-[9px] text-red-400 uppercase font-bold tracking-widest flex items-center justify-between cursor-pointer" onclick="document.getElementById('top-10-list-container').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-1.5"><i class="fa-solid fa-list-ol"></i> Top 10 Critical</div>
+        <i class="fa-solid fa-chevron-down text-slate-500 transition-transform duration-200 toggle-icon"></i>
+      </div>
+      <div id="top-10-list-container" class="hidden mt-2">
+        <div id="top-10-list" class="space-y-1.5 overflow-y-auto max-h-[200px] pr-1 custom-scrollbar">
+          <!-- populated via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Time Filter Bar -->
+  <div id="time-filter-bar" class="absolute bottom-0 left-0 right-0 z-50 pointer-events-auto" style="z-index:1001;">
+    <div class="glass-panel border-t border-slate-700/60 px-4 py-3">
+      <div class="max-w-2xl mx-auto">
+        <!-- Row 1: presets + active label -->
+        <div class="flex items-center gap-2 mb-2 flex-wrap">
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-clock mr-1"></i>Time Filter</span>
+          <button id="preset-all"      onclick="applyPreset('all')"      class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All Hours</button>
+          <button id="preset-morning"  onclick="applyPreset('morning')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">AM Peak (9–11)</button>
+          <button id="preset-earlyam"  onclick="applyPreset('earlyam')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Early Morning (4–7)</button>
+          <button id="preset-midday"   onclick="applyPreset('midday')"   class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Midday (12–14)</button>
+          <button id="preset-weekend"  onclick="applyPreset('weekend')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
+          <span id="filter-active-label" class="ml-auto text-[9px] text-indigo-400 font-mono font-bold">Showing: All Hours</span>
+        </div>
+        <!-- Row 2: dual range sliders + hour labels -->
+        <div id="hour-slider-row" class="flex items-center gap-2">
+          <span class="text-[9px] text-slate-500 w-5 text-right">0</span>
+          <div class="relative flex-1 h-5 flex items-center">
+            <input type="range" id="slider-from" min="0" max="23" value="0"  class="time-range-slider absolute w-full" oninput="onSliderChange()">
+            <input type="range" id="slider-to"   min="0" max="23" value="23" class="time-range-slider absolute w-full" oninput="onSliderChange()">
+          </div>
+          <span class="text-[9px] text-slate-500 w-5">23</span>
+          <span id="slider-label" class="text-[10px] text-indigo-300 font-mono font-bold w-16 text-center">0 – 23</span>
+        </div>
+        <!-- Row 3: vehicle type checkboxes -->
+        <div class="flex items-center gap-1.5 mt-2 flex-wrap">
+          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mr-1"><i class="fa-solid fa-car-side mr-1"></i>Vehicle</span>
+          <input type="checkbox" id="veh-tw"   class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-tw"   class="veh-label" style="--veh-color:#f97316"><i class="fa-solid fa-motorcycle text-[8px]"></i> Two-Wheeler <span class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-car"  class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-car"  class="veh-label" style="--veh-color:#3b82f6"><i class="fa-solid fa-car text-[8px]"></i> Car / Jeep <span class="opacity-50 font-normal">PCU×1.0</span></label>
+          <input type="checkbox" id="veh-auto" class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-auto" class="veh-label" style="--veh-color:#a78bfa"><i class="fa-solid fa-taxi text-[8px]"></i> Auto <span class="opacity-50 font-normal">PCU×0.5</span></label>
+          <input type="checkbox" id="veh-hv"   class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-hv"   class="veh-label" style="--veh-color:#f43f5e"><i class="fa-solid fa-truck text-[8px]"></i> Heavy <span class="opacity-50 font-normal">PCU×1.5–3</span></label>
+          <input type="checkbox" id="veh-bus"  class="veh-check" checked onchange="onVehicleChange()">
+          <label for="veh-bus"  class="veh-label" style="--veh-color:#10b981"><i class="fa-solid fa-bus text-[8px]"></i> Bus <span class="opacity-50 font-normal">PCU×3.0</span></label>
+          <button onclick="setAllVehicles(true)"  class="ml-auto text-[8px] text-slate-500 hover:text-slate-300 underline">All</button>
+          <button onclick="setAllVehicles(false)" class="text-[8px] text-slate-500 hover:text-slate-300 underline">None</button>
+          <span id="veh-filter-label" class="text-[9px] text-emerald-400 font-mono font-bold w-20 text-right">PCU: All</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="absolute top-6 left-0 right-0 z-50 px-4 md:px-0 flex justify-center pointer-events-none">
+    <div class="w-full max-w-md pointer-events-auto">
+      <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
+        <div class="flex items-center px-4 py-3 border-b border-slate-700/50">
+          <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+          <input type="text" id="searchInput" placeholder="Search operational area..." 
+                 class="w-full bg-transparent border-none outline-none px-3 text-slate-100 placeholder-slate-400 font-medium text-lg">
+          <button id="clearSearch" class="text-slate-400 hover:text-white hidden"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div id="searchResults" class="max-h-60 overflow-y-auto hidden">
+          <!-- Results injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Panel (Top Left) -->
+  <div class="absolute top-4 left-4 sm:top-6 sm:left-6 z-40 pointer-events-auto max-w-[calc(100vw-32px)] sm:max-w-xs">
+    <div class="glass-panel rounded-xl p-4 flex items-center space-x-4 mb-4">
+      <div class="bg-blue-600/20 p-3 rounded-lg border border-blue-500/30">
+        <i class="fa-solid fa-shield-halved text-blue-400 text-xl"></i>
       </div>
       <div>
-        <h1 class="font-bold text-white text-sm tracking-wider">BTP FIELD OPS</h1>
-        <p class="text-[10px] text-slate-400 font-medium">Command Center</p>
+        <h1 class="font-bold text-white tracking-wider">BTP FIELD OPS</h1>
+        <p class="text-xs text-slate-400 font-medium">Command Center</p>
+        <button id="tour-restart-btn" onclick="TourEngine.start()" title="Restart guided walkthrough" class="mt-2">
+          <i class="fa-solid fa-circle-question"></i> Take Tour
+        </button>
       </div>
-      <button id="tour-restart-btn" onclick="TourEngine.start()" title="Restart tour" class="ml-auto text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-1 rounded border border-indigo-500/30 hover:bg-indigo-500/40 transition">
-        <i class="fa-solid fa-circle-question"></i> Tour
-      </button>
     </div>
-    
-    <!-- Search -->
-    <div class="glass-panel rounded-lg overflow-hidden flex items-center px-3 py-2 mb-2">
-      <i class="fa-solid fa-magnifying-glass text-slate-400 text-sm"></i>
-      <input type="text" id="searchInput" placeholder="Search operational area..." 
-             class="w-full bg-transparent border-none outline-none px-2 text-slate-100 placeholder-slate-500 text-xs font-medium">
-      <button id="clearSearch" class="text-slate-400 hover:text-white hidden"><i class="fa-solid fa-times"></i></button>
-    </div>
-    <div id="searchResults" class="glass-panel rounded-lg max-h-48 overflow-y-auto hidden mb-2"></div>
 
-    <!-- Active Modules -->
-    <div class="glass-panel rounded-lg p-2 flex gap-2 flex-wrap">
-      <a href="index.html" class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-blue-500/20 border border-blue-500/30 text-[10px] font-semibold text-blue-400 shrink-0">
-        <i class="fa-solid fa-map-location-dot"></i> Tactical Map
+    <!-- Navigation Modules Panel -->
+    <div class="glass-panel rounded-xl p-4 flex flex-col space-y-3 mb-4 pointer-events-auto">
+      <div class="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-1">Active Modules</div>
+      
+      <a href="index.html" class="flex items-center gap-3 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+        <div class="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        Tactical Map
       </a>
-      <a href="congestion_risk.html" class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-slate-800 border border-slate-700 text-[10px] font-medium text-slate-300 hover:text-white shrink-0">
-        <i class="fa-solid fa-chart-line text-amber-500"></i> Congestion Risk
+      
+      <a href="congestion_risk.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+        <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
+          <i class="fa-solid fa-chart-line text-amber-500"></i>
+        </div>
+        Congestion Risk
       </a>
-      <a href="monthly_report.html" class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-slate-800 border border-slate-700 text-[10px] font-medium text-slate-300 hover:text-white shrink-0">
-        <i class="fa-solid fa-file-invoice text-emerald-500"></i> Monthly Report
+
+      <a href="monthly_report.html" class="flex items-center gap-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+        <div class="w-6 h-6 rounded bg-slate-800 flex items-center justify-center border border-slate-700">
+          <i class="fa-solid fa-file-invoice text-emerald-500"></i>
+        </div>
+        Monthly Report
       </a>
       <a href="methodology_and_assumptions.html" class="flex items-center gap-1.5 px-2 py-1.5 rounded bg-slate-800 border border-slate-700 text-[10px] font-medium text-slate-300 hover:text-white shrink-0">
         <i class="fa-solid fa-scale-balanced text-[11px] opacity-80"></i>
         <span>Methodology</span>
       </a>
     </div>
-  </div>
 
-  <!-- 2. Top Center: Thin Stats & Deployment Bar -->
-  <div id="stats-bar" class="absolute top-4 left-1/2 -translate-x-1/2 z-40 pointer-events-auto hidden md:flex items-center gap-4 glass-panel rounded-full px-4 py-2 border-t border-slate-600">
-    <div class="flex items-center gap-2">
-      <span class="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Coverage</span>
-      <span id="coverage-text" class="text-xs font-bold text-green-400">0%</span>
-      <div class="w-16 bg-slate-900 rounded-full h-1.5 overflow-hidden ml-1">
-        <div id="coverage-bar" class="bg-green-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
-      </div>
-    </div>
-    
-    <div class="w-px h-4 bg-slate-700"></div>
-    
-    <!-- Patrols popover toggle -->
-    <div class="relative">
-      <button onclick="event.stopPropagation(); toggleUIPopover('popover-patrols')" class="flex items-center gap-1.5 text-xs text-white hover:text-blue-300 transition" id="btn-patrols">
-        <i class="fa-solid fa-car-side text-blue-400"></i>
-        <span class="font-bold">Patrols: <span id="val-patrols">5</span></span>
-      </button>
-      <div id="popover-patrols" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-[220px] border border-slate-600">
-        <label class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2 block text-center">Adjust Patrols</label>
-        <div class="flex items-center gap-2">
-          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="flex-1 accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; document.getElementById('num-patrols').value=this.value; renderMarkers();">
-          <input type="number" id="num-patrols" value="5" min="0" max="30" class="w-12 bg-slate-800 border border-slate-600 text-white text-[10px] px-1 py-1 rounded text-center outline-none focus:border-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; document.getElementById('opt-patrols').value=this.value; renderMarkers();">
+    <!-- Optimization Panel -->
+    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-green-500 w-80 pointer-events-auto hidden md:block">
+      <h2 class="text-lg font-bold text-white flex items-center justify-between mb-4 cursor-pointer" onclick="document.getElementById('sim-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-network-wired text-green-400"></i> Resource Simulator</div>
+        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
+      </h2>
+      <div id="sim-content">
+      
+      <!-- Coverage Meter -->
+      <div class="mb-4 bg-slate-800/80 p-3 rounded border border-slate-700">
+        <div class="flex justify-between items-end mb-1">
+          <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">High-Risk Coverage</span>
+          <span id="coverage-text" class="text-lg font-bold text-green-400">0%</span>
         </div>
-      </div>
-    </div>
-
-    <div class="w-px h-4 bg-slate-700"></div>
-
-    <!-- Tows popover toggle -->
-    <div class="relative">
-      <button onclick="event.stopPropagation(); toggleUIPopover('popover-tows')" class="flex items-center gap-1.5 text-xs text-white hover:text-orange-300 transition" id="btn-tows">
-        <i class="fa-solid fa-truck-pickup text-orange-400"></i>
-        <span class="font-bold">Tows: <span id="val-tows">2</span></span>
-      </button>
-      <div id="popover-tows" class="popover absolute top-full left-1/2 -translate-x-1/2 mt-2 glass-panel p-3 rounded-lg w-[220px] border border-slate-600">
-        <label class="text-[9px] text-slate-400 uppercase font-bold tracking-widest mb-2 block text-center">Adjust Tow Trucks</label>
-        <div class="flex items-center gap-2">
-          <input type="range" id="opt-tows" value="2" min="0" max="15" class="flex-1 accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; document.getElementById('num-tows').value=this.value; renderMarkers();">
-          <input type="number" id="num-tows" value="2" min="0" max="15" class="w-12 bg-slate-800 border border-slate-600 text-white text-[10px] px-1 py-1 rounded text-center outline-none focus:border-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; document.getElementById('opt-tows').value=this.value; renderMarkers();">
-        </div>
-      </div>
-    </div>
-
-    <div class="w-px h-4 bg-slate-700"></div>
-
-    <button onclick="runOptimizer()" class="bg-green-600 hover:bg-green-500 text-white text-[10px] font-bold px-3 py-1.5 rounded shadow transition-colors flex items-center gap-1.5" id="sim-content">
-      <i class="fa-solid fa-bolt"></i> Deploy Units
-    </button>
-    
-    <!-- We still need a place to put opt-results. We can absolute position it below the bar -->
-    <div id="opt-results-container" class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 z-50">
-      <div id="opt-results" class="glass-panel rounded-lg p-3 max-h-56 overflow-y-auto hidden"></div>
-    </div>
-  </div>
-
-  <!-- 3. Top Right: Time & Vehicle Icon Toggles -->
-  <div class="absolute top-4 right-4 z-40 pointer-events-auto flex gap-2">
-    <!-- Vehicle Toggle -->
-    <div class="relative">
-      <button onclick="event.stopPropagation(); toggleUIPopover('popover-vehicle')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-vehicle">
-        <i class="fa-solid fa-car"></i>
-      </button>
-      <div id="popover-vehicle" class="popover absolute top-full right-0 mt-2 glass-panel p-3 rounded-xl w-64 border border-slate-600">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest"><i class="fa-solid fa-car-side mr-1"></i>Vehicle Type</span>
-          <span id="veh-filter-label" class="text-[9px] text-emerald-400 font-mono font-bold">PCU: All</span>
-        </div>
-        <div class="flex items-center gap-1.5 flex-wrap">
-          <input type="checkbox" id="veh-tw"   class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-tw"   class="veh-label" style="--veh-color:#f97316"><i class="fa-solid fa-motorcycle text-[8px]"></i> 2W <span class="opacity-50">×0.5</span></label>
-          <input type="checkbox" id="veh-car"  class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-car"  class="veh-label" style="--veh-color:#3b82f6"><i class="fa-solid fa-car text-[8px]"></i> Car <span class="opacity-50">×1.0</span></label>
-          <input type="checkbox" id="veh-auto" class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-auto" class="veh-label" style="--veh-color:#a78bfa"><i class="fa-solid fa-taxi text-[8px]"></i> Auto <span class="opacity-50">×0.5</span></label>
-          <input type="checkbox" id="veh-hv"   class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-hv"   class="veh-label" style="--veh-color:#f43f5e"><i class="fa-solid fa-truck text-[8px]"></i> HV <span class="opacity-50">×2.0</span></label>
-          <input type="checkbox" id="veh-bus"  class="veh-check" checked onchange="onVehicleChange()">
-          <label for="veh-bus"  class="veh-label" style="--veh-color:#10b981"><i class="fa-solid fa-bus text-[8px]"></i> Bus <span class="opacity-50">×3.0</span></label>
-        </div>
-        <div class="flex gap-2 mt-2 justify-end border-t border-slate-700/50 pt-2">
-          <button onclick="setAllVehicles(true)"  class="text-[9px] text-slate-400 hover:text-white">All</button>
-          <button onclick="setAllVehicles(false)" class="text-[9px] text-slate-400 hover:text-white">None</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Time Toggle -->
-    <div class="relative">
-      <button onclick="event.stopPropagation(); toggleUIPopover('time-filter-bar')" class="w-10 h-10 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg" id="btn-time">
-        <i class="fa-solid fa-clock"></i>
-      </button>
-      <div id="time-filter-bar" class="popover absolute top-full right-0 mt-2 glass-panel p-3 rounded-xl w-[320px] border border-slate-600">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-[9px] text-slate-400 uppercase font-bold tracking-widest"><i class="fa-solid fa-clock mr-1"></i>Time Filter</span>
-          <span id="filter-active-label" class="text-[9px] text-indigo-400 font-mono font-bold">Showing: All Hours</span>
-        </div>
-        <div class="flex flex-wrap gap-1.5 mb-3">
-          <button id="preset-all"      onclick="applyPreset('all')"      class="preset-btn active text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">All</button>
-          <button id="preset-morning"  onclick="applyPreset('morning')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">AM Peak</button>
-          <button id="preset-earlyam"  onclick="applyPreset('earlyam')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Early AM</button>
-          <button id="preset-midday"   onclick="applyPreset('midday')"   class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Midday</button>
-          <button id="preset-weekend"  onclick="applyPreset('weekend')"  class="preset-btn text-[9px] px-2 py-0.5 rounded border border-slate-600 bg-slate-700/60 text-slate-300 font-bold">Weekend</button>
-        </div>
-        <div id="hour-slider-row" class="flex items-center gap-2">
-          <span class="text-[9px] text-slate-500 w-4 text-right">0</span>
-          <div class="relative flex-1 h-5 flex items-center">
-            <input type="range" id="slider-from" min="0" max="23" value="0"  class="time-range-slider absolute w-full" oninput="onSliderChange()">
-            <input type="range" id="slider-to"   min="0" max="23" value="23" class="time-range-slider absolute w-full" oninput="onSliderChange()">
-          </div>
-          <span class="text-[9px] text-slate-500 w-4">23</span>
-          <span id="slider-label" class="text-[10px] text-indigo-300 font-mono font-bold w-12 text-right">0 – 23</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 4. Bottom Left: Map Legend / Filters Toggle -->
-  <div class="absolute bottom-6 left-4 z-40 pointer-events-auto flex items-end gap-3" style="z-index: 1000;">
-    <button onclick="event.stopPropagation(); toggleDrawer('filters-drawer', 'drawer-closed-left')" class="w-12 h-12 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-700 transition border border-slate-600 shadow-lg text-lg" id="btn-filters">
-      <i class="fa-solid fa-layer-group"></i>
-    </button>
-
-    <!-- Unified Filters Drawer -->
-    <div id="filters-drawer" class="drawer drawer-closed-left glass-panel rounded-xl p-3 w-48 border border-slate-600 origin-bottom-left absolute bottom-14 left-0">
-      <div class="flex justify-between items-center mb-2.5">
-        <div class="text-[9px] text-slate-400 uppercase font-bold tracking-widest flex items-center gap-1.5">
-          <i class="fa-solid fa-filter text-slate-500"></i> Map Filters
-        </div>
-        <button onclick="event.stopPropagation(); toggleDrawer('filters-drawer', 'drawer-closed-left')" class="text-slate-500 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
-      </div>
-
-      <!-- Priority Tiers -->
-      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Priority Tier</div>
-      <div class="space-y-1.5 mb-3">
-        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" id="legend-critical" onclick="toggleTierFilter('critical')">
-          <svg width="12" height="12" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#ef4444" stroke="#0f172a" stroke-width="1.5"/></svg>
-          <span class="text-[10px] text-slate-200 font-medium">Critical</span>
-        </div>
-        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" id="legend-high" onclick="toggleTierFilter('high')">
-          <svg width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#f97316" stroke="#0f172a" stroke-width="1.5"/></svg>
-          <span class="text-[10px] text-slate-200 font-medium">High</span>
-        </div>
-        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" id="legend-medium" onclick="toggleTierFilter('medium')">
-          <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#eab308" stroke="#0f172a" stroke-width="1.5"/></svg>
-          <span class="text-[10px] text-slate-200 font-medium">Medium</span>
-        </div>
-        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" id="legend-low" onclick="toggleTierFilter('low')">
-          <svg width="12" height="12" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#3b82f6" stroke="#0f172a" stroke-width="1.5"/></svg>
-          <span class="text-[10px] text-slate-200 font-medium">Low</span>
+        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden">
+          <div id="coverage-bar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
         </div>
       </div>
       
-      <div class="border-t border-slate-700 mb-2"></div>
-      
-      <!-- Deployment Status -->
-      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Status</div>
-      <div class="space-y-1.5 mb-3">
-        <div class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity" id="legend-unassigned" onclick="toggleTierFilter('unassigned')">
-          <svg width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="#a855f7" stroke="#f8fafc" stroke-width="1.5"/></svg>
-          <span class="text-[10px] text-purple-400 font-bold">Unassigned Risk</span>
+      <div class="space-y-4 mb-4">
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-car-side text-blue-400 mr-2"></i>Patrol Vehicles</label>
+            <span id="val-patrols" class="text-sm font-bold text-white">5</span>
+          </div>
+          <input type="range" id="opt-patrols" value="5" min="0" max="30" class="w-full accent-blue-500" oninput="document.getElementById('val-patrols').innerText=this.value; renderMarkers();">
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs text-slate-300 font-medium"><i class="fa-solid fa-truck-pickup text-orange-400 mr-2"></i>Tow Trucks</label>
+            <span id="val-tows" class="text-sm font-bold text-white">2</span>
+          </div>
+          <input type="range" id="opt-tows" value="2" min="0" max="15" class="w-full accent-orange-500" oninput="document.getElementById('val-tows').innerText=this.value; renderMarkers();">
         </div>
       </div>
+      
+      <button onclick="runOptimizer()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-2 rounded shadow transition-colors flex justify-center items-center gap-2">
+        <i class="fa-solid fa-bolt"></i> Deploy Units
+      </button>
 
-      <div class="border-t border-slate-700 mb-2"></div>
-
-      <!-- Model Confidence Ring -->
-      <div class="text-[8px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Model Confidence</div>
-      <div class="space-y-1.5">
-        <div class="flex items-center gap-2">
-          <svg width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#10b981" stroke-width="2.5"/></svg>
-          <span class="text-[10px] text-emerald-400 font-semibold">Validated</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <svg width="12" height="12" viewBox="0 0 14 14"><circle cx="7" cy="7" r="5" fill="#f97316" stroke="#0f172a" stroke-width="1"/></svg>
-          <span class="text-[10px] text-slate-400 font-medium">Unproven</span>
-        </div>
+      <div id="opt-results" class="mt-4 space-y-2 max-h-56 overflow-y-auto hidden pr-1">
+        <!-- Results injected here -->
+      </div>
+      </div>
+    </div>
+    
+    <!-- Executive Intelligence Panel (What-If Analysis) -->
+    <div class="glass-panel rounded-2xl p-5 border-l-4 border-l-blue-500 w-80 mt-4 pointer-events-auto hidden md:block">
+      <h2 class="text-sm font-bold text-white flex items-center justify-between mb-3 cursor-pointer" onclick="document.getElementById('exec-intel-content').classList.toggle('hidden'); this.querySelector('.toggle-icon').classList.toggle('rotate-180')">
+        <div class="flex items-center gap-2"><i class="fa-solid fa-chart-pie text-blue-400"></i> Executive Intelligence</div>
+        <i class="fa-solid fa-chevron-up text-slate-500 text-xs transition-transform duration-200 toggle-icon"></i>
+      </h2>
+      <div id="exec-intel-content" class="space-y-3">
+        <div class="text-xs text-slate-400 animate-pulse">Calculating intelligence...</div>
       </div>
     </div>
   </div>
 
-  <!-- 5. Right Edge: Intelligence Drawer Toggle -->
-  <div class="absolute top-1/2 right-0 -translate-y-1/2 z-40 pointer-events-auto flex items-center">
-    <button onclick="event.stopPropagation(); toggleDrawer('intel-drawer', 'drawer-closed-right')" class="bg-slate-800/90 text-slate-300 hover:text-white py-3 px-2 rounded-l-lg border border-r-0 border-slate-600 shadow-lg flex flex-col items-center justify-center gap-2" id="btn-intel">
-      <i class="fa-solid fa-chevron-left text-xs"></i>
-      <i class="fa-solid fa-brain text-lg text-indigo-400"></i>
-      <span style="writing-mode: vertical-rl; text-orientation: mixed;" class="text-[10px] font-bold uppercase tracking-widest leading-none rotate-180">Intelligence</span>
-    </button>
-    
-    <!-- Collapsible Intelligence Drawer -->
-    <div id="intel-drawer" class="drawer drawer-closed-right glass-panel w-[320px] max-w-[calc(100vw-40px)] border-l border-slate-600 h-[80vh] absolute right-0 top-1/2 -translate-y-1/2 rounded-l-2xl flex flex-col shadow-2xl">
-      <div class="flex justify-between items-center p-4 border-b border-slate-700/50">
-        <h2 class="text-sm font-bold text-white flex items-center gap-2"><i class="fa-solid fa-brain text-indigo-400"></i> Field Intelligence</h2>
-        <button onclick="event.stopPropagation(); toggleDrawer('intel-drawer', 'drawer-closed-right')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-      </div>
+  <!-- Radar Panel (Bottom Right) -->
+  <div class="absolute bottom-6 right-6 left-6 md:left-auto md:w-96 z-40 pointer-events-auto">
+    <div class="glass-panel rounded-2xl p-5 border-t-4 border-t-blue-500">
       
-      <!-- Tabs -->
-      <div class="flex px-2 border-b border-slate-700/50">
-        <button class="tab-btn active flex-1 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-400" onclick="switchTab('tab-radar', this)">Radar</button>
-        <button class="tab-btn flex-1 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-400" onclick="switchTab('tab-advice', this)">What-If</button>
-        <button class="tab-btn flex-1 py-2 text-[10px] font-bold uppercase tracking-wider text-slate-400" onclick="switchTab('tab-top10', this)" id="top-10-list-container">Top 10</button>
-      </div>
-
-      <!-- Tab Content: Radar -->
-      <div id="tab-radar" class="tab-content flex-1 overflow-y-auto p-4 block">
-        <div class="flex justify-between items-start mb-4">
-          <div>
-            <h3 class="text-xs font-bold text-slate-200">Tactical Radar</h3>
-            <p class="text-[9px] text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing View</p>
-          </div>
-          <div class="bg-slate-800 px-2 py-0.5 rounded-full text-[10px] font-bold text-white border border-slate-600 flex items-center gap-1 cursor-help" title="Active hotspots visible in current map boundaries">
-            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-            <span id="radar-target-count">0</span>
-          </div>
+      <div class="flex justify-between items-start mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-satellite-dish text-blue-400"></i> Tactical Radar
+          </h2>
+          <p class="text-xs text-slate-400 uppercase tracking-wider" id="radar-area-label">Analyzing Current View</p>
         </div>
-        <div class="grid grid-cols-2 gap-2 mb-1 relative" id="quad-NW">
-          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div class="w-6 h-6 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center z-10 shadow-lg">
-              <i class="fa-solid fa-location-crosshairs text-blue-400 text-[10px]"></i>
-            </div>
-          </div>
-          <div id="quad-NW-el" class="radar-quadrant bg-slate-800/50 rounded-tl-lg border border-slate-700 p-2 flex flex-col items-center justify-center h-16">
-            <span class="text-[9px] text-slate-500 font-bold mb-0.5">NW</span><span class="text-lg font-bold text-slate-300 val">0</span>
-          </div>
-          <div id="quad-NE-el" class="radar-quadrant bg-slate-800/50 rounded-tr-lg border border-slate-700 p-2 flex flex-col items-center justify-center h-16">
-            <span class="text-[9px] text-slate-500 font-bold mb-0.5">NE</span><span class="text-lg font-bold text-slate-300 val">0</span>
-          </div>
-          <div id="quad-SW-el" class="radar-quadrant bg-slate-800/50 rounded-bl-lg border border-slate-700 p-2 flex flex-col items-center justify-center h-16">
-            <span class="text-[9px] text-slate-500 font-bold mb-0.5">SW</span><span class="text-lg font-bold text-slate-300 val">0</span>
-          </div>
-          <div id="quad-SE-el" class="radar-quadrant bg-slate-800/50 rounded-br-lg border border-slate-700 p-2 flex flex-col items-center justify-center h-16">
-            <span class="text-[9px] text-slate-500 font-bold mb-0.5">SE</span><span class="text-lg font-bold text-slate-300 val">0</span>
-          </div>
-        </div>
-        <div class="text-[8px] text-slate-500 uppercase tracking-widest text-center mb-4">
-          Values = Total Congestion Impact Score
-        </div>
-        <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700 mt-2">
-          <div class="text-[9px] text-blue-400 uppercase font-bold mb-1 tracking-wider"><i class="fa-solid fa-user-shield"></i> Senior Advice</div>
-          <p id="senior-advice" class="text-xs text-slate-300 leading-relaxed font-medium">Pan the map for advice.</p>
+        <div class="bg-slate-800 px-3 py-1 rounded-full text-xs font-bold text-white border border-slate-600 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span id="radar-target-count">0</span> Targets
         </div>
       </div>
 
-      <!-- Tab Content: What-If (Executive Intel) -->
-      <div id="tab-advice" class="tab-content flex-1 overflow-y-auto p-4 hidden">
-        <div id="exec-intel-content" class="space-y-3">
-          <div class="text-xs text-slate-400 animate-pulse">Calculating intelligence...</div>
+      <!-- Radar Grid -->
+      <div class="grid grid-cols-2 gap-2 mb-4 relative">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-8 h-8 rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center z-10 shadow-lg">
+            <i class="fa-solid fa-location-crosshairs text-blue-400 text-xs"></i>
+          </div>
+        </div>
+        
+        <div id="quad-NW" class="radar-quadrant bg-slate-800/50 rounded-tl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH WEST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
+        </div>
+        <div id="quad-NE" class="radar-quadrant bg-slate-800/50 rounded-tr-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">NORTH EAST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
+        </div>
+        <div id="quad-SW" class="radar-quadrant bg-slate-800/50 rounded-bl-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH WEST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
+        </div>
+        <div id="quad-SE" class="radar-quadrant bg-slate-800/50 rounded-br-xl border border-slate-700 p-3 flex flex-col items-center justify-center h-20">
+          <span class="text-[10px] text-slate-500 font-bold mb-1">SOUTH EAST</span>
+          <span class="text-xl font-bold text-slate-300 val">0</span>
         </div>
       </div>
 
-      <!-- Tab Content: Top 10 -->
-      <div id="tab-top10" class="tab-content flex-1 overflow-y-auto p-4 hidden">
-        <div id="top-10-list" class="space-y-1.5 custom-scrollbar pr-1"></div>
+      <!-- Senior Advice -->
+      <div class="bg-slate-800/80 rounded-lg p-3 border border-slate-700">
+        <div class="text-[10px] text-blue-400 uppercase font-bold mb-1 tracking-wider flex items-center gap-1">
+          <i class="fa-solid fa-user-shield"></i> Senior Advice
+        </div>
+        <p id="senior-advice" class="text-sm text-slate-300 leading-relaxed font-medium">
+          Pan the map or search an area to receive tactical deployment advice.
+        </p>
       </div>
+
     </div>
   </div>
 
-  <script>
-    // Progressive Disclosure UI Logic
-    function toggleDrawer(id, closedClass) {
-      const el = document.getElementById(id);
-      if (el.classList.contains(closedClass)) {
-        // close all other popovers to be clean
-        document.querySelectorAll('.popover-open').forEach(p => p.classList.remove('popover-open'));
-        el.classList.remove(closedClass);
-      } else {
-        el.classList.add(closedClass);
-      }
-    }
-    
-    function toggleUIPopover(id) {
-      const el = document.getElementById(id);
-      const isOpen = el.classList.contains('popover-open');
-      // close all popovers
-      document.querySelectorAll('.popover-open').forEach(p => p.classList.remove('popover-open'));
-      if (!isOpen) {
-        el.classList.add('popover-open');
-        // also close drawers if needed, but we can leave them
-      }
-    }
-
-    function switchTab(tabId, btnEl) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(tabId).classList.remove('hidden');
-      document.getElementById(tabId).classList.add('block');
-      btnEl.classList.add('active');
-    }
-    
-    // Make sure we close popovers if clicked outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.popover') && !e.target.closest('button[onclick^="toggleUIPopover"]')) {
-        document.querySelectorAll('.popover-open').forEach(p => p.classList.remove('popover-open'));
-      }
-    });
-</script>
   <script>
     // ── STATE ──────────────────────────────────────────────────────────────────
     let HOTSPOTS = [];
@@ -1037,7 +978,7 @@
 
       // Reset UI
       ['NW','NE','SW','SE'].forEach(q => {
-        const el = document.getElementById(`quad-${q}-el`);
+        const el = document.getElementById(`quad-${q}`);
         el.querySelector('.val').innerText = Math.round(quads[q]);
         el.classList.remove('radar-active', 'text-red-400', 'text-orange-400');
         el.querySelector('.val').classList.replace('text-red-400', 'text-slate-300');
@@ -1057,7 +998,7 @@
       }
 
       // Highlight dominant
-      const domEl = document.getElementById(`quad-${dominantDir}-el`);
+      const domEl = document.getElementById(`quad-${dominantDir}`);
       domEl.classList.add('radar-active');
       domEl.querySelector('.val').classList.replace('text-slate-300', 'text-red-400');
 
@@ -1452,8 +1393,8 @@ Write the briefing now:`;
     const steps = [
       {
         id: null,
-        title: '👋 Welcome to GridLock',
-        body: 'Welcome to the BTP Tactical Map. This interface uses progressive disclosure to keep the map clean while giving you powerful analytical tools. Let’s take a quick tour.',
+        title: '🚔 Welcome to BTP Field Ops',
+        body: 'This is the Bengaluru Traffic Police Field Operations command center. Let me walk you through the key tools in under a minute.',
         pos: 'center',
       },
       {
@@ -1463,74 +1404,48 @@ Write the briefing now:`;
         pos: 'bottom', pad: 12,
       },
       {
-        id: 'stats-bar',
-        title: '⚡ Deployment & Coverage',
-        body: 'This central bar tracks your live High-Risk Coverage percentage. Adjust Patrol and Tow counts, then click "Deploy Units" to optimize their placement.',
-        pos: 'bottom', pad: 8,
+        id: 'time-filter-bar',
+        title: '🕐 Time Filter',
+        body: 'Use the preset buttons (AM Peak, Early Morning, Midday, Weekend) or drag the dual sliders to filter map hotspots by the hour range you care about.',
+        pos: 'top', pad: 8,
       },
       {
-        id: 'btn-time',
-        title: '🕐 Time Constraints',
-        body: 'Click this floating button to filter map hotspots by preset shifts (AM Peak, Weekend) or a custom hour range.',
-        pos: 'left', pad: 8,
+        id: 'veh-tw',
+        title: '🚗 Vehicle Type Filter',
+        body: 'Toggle vehicle types — Two-Wheelers, Cars, Autos, Heavy Vehicles, Buses — to see how each category contributes to congestion in weighted PCU units.',
+        pos: 'top', pad: 16,
+        interactOn: 'change',
       },
       {
-        id: 'btn-vehicle',
-        title: '🚗 Vehicle Profile',
-        body: 'Click here to toggle specific vehicle types (Two-Wheelers, Heavy Vehicles, etc.) and see their specific congestion impact.',
-        pos: 'left', pad: 8,
-      },
-      {
-        id: 'filters-drawer',
-        title: '🎛️ Map Layers & Legend',
-        body: 'We’ve opened the Filters Drawer for you. Here you can toggle PCU Priority Tiers, Model Confidence views, and Deployment status overlays.',
-        pos: 'right', pad: 10,
-        onShow: () => { 
-          const el = document.getElementById('filters-drawer'); 
-          if(el.classList.contains('drawer-closed-left')) toggleDrawer('filters-drawer', 'drawer-closed-left'); 
-        }
-      },
-      {
-        id: 'intel-drawer',
-        title: '🧠 Intelligence Panel',
-        body: 'We’ve opened the Intelligence Drawer. The Tactical Radar analyzes quadrants in your current view, and Senior Advice gives you contextual recommendations.',
+        id: 'legend-critical',
+        title: '🔴 Priority Tier Legend',
+        body: 'Click any tier in the legend to toggle it on/off on the map. Critical = Top 5% by PCU-weighted violations. Purple dots = high-risk zones with no unit assigned yet.',
         pos: 'left', pad: 10,
-        onShow: () => { 
-          const f = document.getElementById('filters-drawer'); 
-          if(!f.classList.contains('drawer-closed-left')) toggleDrawer('filters-drawer', 'drawer-closed-left'); 
-          const i = document.getElementById('intel-drawer'); 
-          if(i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
-        }
+        interactOn: 'click',
       },
       {
-        id: 'tab-top10-btn',
+        id: 'sim-content',
+        title: '⚡ Resource Simulator',
+        body: 'Adjust patrol vehicle and tow truck counts, then click "Deploy Units" to run a greedy allocation across top-risk hotspots and see the High-Risk Coverage percentage update live.',
+        pos: 'right', pad: 10,
+      },
+      {
+        id: 'quad-NW',
+        title: '📡 Tactical Radar',
+        body: 'As you pan the map, this radar shows how many violation-weighted hotspots fall in each directional quadrant — and gives the senior officer a deployment recommendation.',
+        pos: 'top', pad: 10,
+      },
+      {
+        id: 'top-10-list-container',
         title: '📋 Top 10 Critical Locations',
-        body: 'Inside the Intel Panel, you can switch to the Top 10 tab to see a ranked list of the worst bottlenecks and fly the map straight to them.',
-        pos: 'left', pad: 6,
-        onShow: () => { 
-          const i = document.getElementById('intel-drawer'); 
-          if(i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
-        }
-      },
-      {
-        id: null,
-        title: '📍 Hotspot Insights',
-        body: 'Click on any of the dots on the map to get more info, view road context, and receive AI Copilot insights for that specific location.',
-        pos: 'center',
-        onShow: () => { 
-          const i = document.getElementById('intel-drawer'); 
-          if(!i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
-        }
+        body: 'Click the "Top 10 Critical" header to expand this list. Click any row to fly the map straight to that hotspot.',
+        pos: 'left', pad: 8,
       },
       {
         id: 'tour-restart-btn',
         title: '🎉 Tour Complete!',
-        body: 'You can relaunch this walkthrough at any time. Click Finish, close the drawers, and begin your patrol!',
+        body: 'You can relaunch this walkthrough at any time using the "Take Tour" button in the header. Happy patrolling!',
         pos: 'right', pad: 12,
-        onShow: () => { 
-          const i = document.getElementById('intel-drawer'); 
-          if(!i.classList.contains('drawer-closed-right')) toggleDrawer('intel-drawer', 'drawer-closed-right'); 
-        }
       },
     ];
 
@@ -1598,9 +1513,6 @@ Write the briefing now:`;
       const step = steps[idx];
       const t = tt();
       t.classList.remove('tour-visible');
-      
-      // Auto-expand required panels
-      if (step.onShow) step.onShow();
 
       setTimeout(() => {
         $('tour-title').textContent = step.title;

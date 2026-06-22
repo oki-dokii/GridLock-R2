@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GridLock — Mathematical Foundation</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"/>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2128;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent2: #f78166;
+      --accent3: #7ee787;
+      --accent4: #ffa657;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --formula-bg: #0d1117;
+      --formula-border: #388bfd30;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #1a237e 0%, #0d1117 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 48px 36px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(88,166,255,0.15);
+      border: 1px solid rgba(88,166,255,0.4);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 640px;
+    }
+    .pipeline-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 28px;
+      margin: 28px 48px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: var(--muted);
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.8;
+    }
+    .pipeline-banner .hl { color: var(--accent); }
+    .pipeline-banner .hl2 { color: var(--accent3); }
+    .pipeline-banner .hl3 { color: var(--accent4); }
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 32px 48px 80px;
+    }
+    .module {
+      margin-bottom: 64px;
+    }
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .module-num {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .m1 { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+    .m2 { background: rgba(126,231,135,0.15); color: var(--accent3); border: 1px solid rgba(126,231,135,0.3); }
+    .m3 { background: rgba(247,129,102,0.15); color: var(--accent2); border: 1px solid rgba(247,129,102,0.3); }
+    .m4 { background: rgba(255,166,87,0.15); color: var(--accent4); border: 1px solid rgba(255,166,87,0.3); }
+    .m5 { background: rgba(188,140,255,0.15); color: #bc8cff; border: 1px solid rgba(188,140,255,0.3); }
+    .m6 { background: rgba(248,81,73,0.15); color: #f85149; border: 1px solid rgba(248,81,73,0.3); }
+    .module-title { font-size: 1.25rem; font-weight: 700; }
+    .module-subtitle { color: var(--muted); font-size: 13px; margin-top: 2px; }
+    h3 { font-size: 15px; font-weight: 600; color: var(--muted); margin: 28px 0 12px; text-transform: uppercase; letter-spacing: 0.5px; font-family: 'JetBrains Mono', monospace; }
+    p { color: #c9d1d9; margin-bottom: 14px; }
+    .formula-block {
+      background: var(--formula-bg);
+      border: 1px solid var(--formula-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 18px 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+    .formula-block.boxed {
+      border-left-color: var(--accent3);
+      background: rgba(126,231,135,0.04);
+    }
+    .formula-block.key {
+      border-left-color: var(--accent4);
+      background: rgba(255,166,87,0.05);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13.5px;
+    }
+    th {
+      background: var(--surface2);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    td {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      color: #c9d1d9;
+      vertical-align: top;
+    }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td:first-child { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); }
+    .note {
+      background: rgba(88,166,255,0.08);
+      border: 1px solid rgba(88,166,255,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #a8c6e8;
+    }
+    .note strong { color: var(--accent); }
+    .warn {
+      background: rgba(255,166,87,0.08);
+      border: 1px solid rgba(255,166,87,0.25);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #e8c88a;
+    }
+    .warn strong { color: var(--accent4); }
+    .example {
+      background: rgba(126,231,135,0.06);
+      border: 1px solid rgba(126,231,135,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13.5px;
+      color: #a8e6b0;
+    }
+    .example strong { color: var(--accent3); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .metric-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px; }
+    .metric-card .val { font-size: 14px; color: var(--text); font-weight: 500; }
+    .metric-card .why { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(255,255,255,0.07);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #e6edf3;
+    }
+    .pipeline-diagram {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+      color: var(--muted);
+      line-height: 2;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .pipeline-diagram .step { color: var(--accent); }
+    .pipeline-diagram .arrow { color: var(--muted); }
+    .pipeline-diagram .out { color: var(--accent3); }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-badge">Methodology & Assumptions</div>
+    <h1>System Parameters & Assumptions</h1>
+    <p>A centralized log of parameters, heuristic assumptions, and confidence tiering rules utilized across the GridLock-R2 platform. Documented to ensure transparency and accurately track uncertainty.</p>
+  </header>
+
+  <main>
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num m1">1</div>
+        <div>
+          <div class="module-title">Traffic Flow & PCU Constraints</div>
+          <div class="module-subtitle">Road capacity scaling and threshold limits</div>
+        </div>
+      </div>
+      <p>GridLock uses an established heuristic for estimating road network capacity under constraint.</p>
+      
+      <div class="formula-block boxed">
+        $$V/C = 0.85$$
+      </div>
+      <div class="note">
+        <strong>V/C Threshold:</strong> We define the maximum acceptable volume-to-capacity (V/C) ratio before cascading gridlock as <strong>0.85</strong>. This is a standard traffic engineering assumption acknowledging that at 85% capacity, any minor disruption (such as illegal parking) forces traffic to a standstill.
+      </div>
+
+      <div class="formula-block boxed">
+        $$	ext{Capacity} pprox 150 	ext{ veh/hr/PCU}$$
+      </div>
+      <div class="note">
+        <strong>Lane Capacity:</strong> We assume an operational flow limit of <strong>150 vehicles per hour per Passenger Car Unit (PCU)</strong> in urban Indian contexts, heavily influenced by mixed-traffic dynamics and friction.
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num m2">2</div>
+        <div>
+          <div class="module-title">Operational Capacity (BTP)</div>
+          <div class="module-subtitle">Resource constraints for enforcement units</div>
+        </div>
+      </div>
+      <p>To produce realistic dispatch routing and avoid overwhelming local police stations, the model binds optimization targets to assumed hardware availability.</p>
+      
+      <div class="metrics-grid">
+        <div class="formula-block">
+          <h3>Patrol Vehicles</h3>
+          <p style="font-size: 2rem; color: var(--accent3); font-weight: 700; margin-bottom: 0;">2</p>
+          <p style="color: var(--muted); font-size: 13px;">per station</p>
+        </div>
+        <div class="formula-block">
+          <h3>Tow Trucks</h3>
+          <p style="font-size: 2rem; color: var(--accent3); font-weight: 700; margin-bottom: 0;">3.5</p>
+          <p style="color: var(--muted); font-size: 13px;">per station (avg)</p>
+        </div>
+      </div>
+      <div class="warn">
+        <strong>Assumption Risk:</strong> These are flat heuristic averages. Real capacity fluctuates daily based on maintenance, staffing, and VIP movement. Future iterations should integrate live BTP fleet availability.
+      </div>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num m3">3</div>
+        <div>
+          <div class="module-title">OpenStreetMap (OSM) Infrastructure</div>
+          <div class="module-subtitle">Road type and junction proximity metadata</div>
+        </div>
+      </div>
+      <p>The model maps raw violation coordinates to the actual road network to derive structural vulnerability (e.g., proximity to arterial roads or major intersections).</p>
+      
+      <div class="example">
+        <strong>Current Coverage:</strong> ~60% mapped via Overpass API.<br>
+        <strong>Target Coverage:</strong> >90% (Background batch fetching is active to respect Overpass rate limits and exponentially back off on HTTP 429s).
+      </div>
+      <p>For the remaining uncovered points, the model temporarily falls back to a spatial heuristic, estimating road type based on aggregate traffic density in the immediate grid cell.</p>
+    </div>
+
+    <div class="module">
+      <div class="module-header">
+        <div class="module-num m4">4</div>
+        <div>
+          <div class="module-title">Confidence Tiering (Low-n Filtering)</div>
+          <div class="module-subtitle">Visual tracking of statistical uncertainty</div>
+        </div>
+      </div>
+      <p>When reporting stratified evaluation metrics (Precision/Recall across specific vehicle types or police stations), sample size (n) dramatically impacts reliability. Instead of presenting unstable metrics as facts, GridLock uses a 3-tier reporting system.</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Sample Size (n)</th>
+            <th>Display Logic</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>n < 30</td>
+            <td><span style="color:#f85149">Hidden</span> (Replaced with "low_conf")</td>
+            <td>Distribution is untrustworthy. Discarded to prevent misinterpretation of volatile percentages.</td>
+          </tr>
+          <tr>
+            <td>30 ≤ n < 100</td>
+            <td><span style="color:#ffa657">Visible but Flagged (⚠️)</span></td>
+            <td>Reported, but the margin of error is wide. Treat as directional rather than definitive.</td>
+          </tr>
+          <tr>
+            <td>n ≥ 100</td>
+            <td><span style="color:#7ee787">Normal Display</span></td>
+            <td>Statistically stable subgroup suitable for hard operational decisions.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</body>
+</html>
