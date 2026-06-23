@@ -89,6 +89,4 @@ However, running our standard placebo check on the month-to-month swings in the 
 
 **Conclusion:** The observed intervention shift of **-2.02 pp** is entirely within the historical noise floor of the metric (which swings by up to 5 pp month-to-month). 
 
-Every single observational metric—Naive Before/After, Global DiD, PSM Matched Control, Trend Extrapolation, and Share-Based Distribution—has failed a basic placebo stress-test. This exhaustively proves that the underlying dataset is fundamentally incompatible with pre/post observational causal inference.
-
-The only mathematically valid way to evaluate the GridLock platform in deployment is a **strict A/B Test with Randomized Holdouts** (e.g., enforcing a hotspot on Monday, but holding it back as a control on Tuesday) to bypass temporal and spatial instability entirely.
+We tested five independent causal-impact designs against this dataset; all five failed placebo validation, each for reasons traced to the same root cause (officer-capacity fluctuation during the observation window). We could not find an observational method that survives this confound with the data and time available — the correct path for validating real impact is a randomized A/B holdout at deployment, not a sixth retrospective metric.
