@@ -33,10 +33,10 @@ To prevent over-indexing on statistical noise, especially in low-volume spatial 
 *   **⚠️ Low Confidence Tier (30 ≤ n < 100):** Results are reported but explicitly flagged with a warning icon (`⚠️`). A sample size of under 100 yields a wide margin of error for binomial proportion metrics like Recall. Caution is advised when interpreting pattern shifts (e.g., model routing advantages) in these tiers.
 *   **Suppressed Tier (n < 30):** Results are completely hidden (`low_conf`). Sample sizes under 30 are statistically unreliable and are removed to prevent misleading insights.
 
-## 4. Difference-in-Differences (DiD) Tracker
+## 4. Impact Validation (Synthetic Controls)
 
-To validate the causal impact of GridLock deployment, we use a DiD framework rather than naive before-and-after tracking. 
+To validate the causal impact of GridLock deployment, we rely on a matched-control framework rather than naive before-and-after tracking or global Difference-in-Differences (DiD). 
 
+*   **The Parallel Trends Problem:** Placebo testing on historical data revealed that high-volume transit hubs and standard residential grids do not share parallel seasonal trends. Therefore, subtracting global network shifts from targeted hotspots is mathematically invalid.
 *   **Target Selection (Avoiding Regression to the Mean):** Selecting target zones based strictly on the immediate pre-intervention period guarantees an artificial "drop" purely due to statistical regression to the mean. Instead, target selection utilizes a trailing average of historical months (e.g., Jan/Feb) that strictly pre-dates the measurement window.
-*   **Matched Windows:** To handle irregular data availability (e.g., April 2024 data truncation), the DiD tracking must use strictly matched temporal windows (e.g., Days 1-8 of Month A vs Days 1-8 of Month B) to ensure apples-to-apples baseline comparisons. 
-*   **Mechanism:** By comparing a targeted "Treatment" cohort's % change against a natural "Control" cohort's % change, we isolate the net intervention effect of GridLock, stripping away massive seasonal or reporting-driven network drops.
+*   **Mechanism (Propensity Score Matching):** The live platform isolates the net intervention effect by tracking enforced hotspots exclusively against a "Synthetic Control" cohort—a matched set of unenforced hotspots that share similar historical volumes, road types, and congestion variances.
