@@ -32,4 +32,4 @@ The 76% drop in violation records in April (15,432 vs. 54K-65K in other months) 
 | 2024-04-08 | 2,044 | 244 |
 
 ## Conclusion
-The April volume drop is a **truncation artifact**. The model evaluation framework correctly handles this by evaluating volume *shares* (percentages) rather than absolute volumes, and by applying a **Volume Calibration Scaling Factor** ($pprox 0.222$) in Test Type 5 to match the 8-day holdout window.
+The April volume drop is a **truncation artifact**. The model evaluation framework correctly handles this by evaluating volume *shares* (percentages) rather than absolute volumes, and by applying a **Volume Calibration Scaling Factor** ($\approx 0.222$) in Test Type 5 to match the 8-day holdout window.
