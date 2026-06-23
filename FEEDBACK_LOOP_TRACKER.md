@@ -46,3 +46,24 @@ Because high-volume hotspots behave differently than the rest of the city, subtr
 **The Solution:** The live GridLock platform will implement **Propensity Score Matching (PSM)** or **Synthetic Controls**. We must track our enforced hotspots exclusively against a matched cohort of unenforced hotspots that share similar historical volumes, road types, and congestion variances. 
 
 By stress-testing our own measurement frameworks, we avoid defending a flawed simulation and establish a truly causal tracking pipeline for deployment.
+
+---
+
+### Phase 4: Root Cause Analysis (Instrument Volatility)
+Why did all causal and temporal baselines fail the placebo tests so severely? To find out, we looked past the spatial data and investigated the **measurement instrument itself**: the traffic officers logging the violations.
+
+**Network-Wide Operational Scale (Nov 2023 - Mar 2024)**
+
+| Month | Total Violations | Active Officers | Violations per Officer |
+| :--- | :--- | :--- | :--- |
+| **November** | 28,753 | 1,531 | 18.8 / officer |
+| **December** | 40,152 | 1,693 | 23.7 / officer |
+| **January** | 41,226 | 1,663 | 24.8 / officer |
+| **February** | 32,147 | 1,562 | 20.6 / officer |
+| **March** | 34,611 | 1,604 | 21.6 / officer |
+
+The raw counts reveal that the massive dataset instability isn't driven by actual parking behavior—it's driven entirely by operational enforcement scale. 
+
+Between November and January, both **headcount** (+10.6%) and **logging intensity** (+32%) surged simultaneously, driving a massive spike in total violations. In February, both metrics dropped in lockstep. Because the total violation count is just a proxy for the shifting capacity and focus of the police force, it swamps any attempt to extract a stable behavioral baseline. 
+
+This confirms that the only mathematically valid way to evaluate GridLock in deployment is an **A/B Test with Randomized Holdouts** (e.g., enforcing a specific hotspot on Monday, but holding it back as a control on Tuesday) rather than attempting to normalize against a fundamentally unstable network trend.

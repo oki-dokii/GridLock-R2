@@ -1,0 +1,1752 @@
+[
+  {
+    "treatment_grid": "(13.012, 77.554)",
+    "road_type": "Arterial Road",
+    "hist_vol": 149.0,
+    "t_pct_change": 159.4,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 111.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.934, 77.691)",
+    "road_type": "Arterial Road",
+    "hist_vol": 422.0,
+    "t_pct_change": -83.3,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -131.2,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.577)",
+    "road_type": "Local Street",
+    "hist_vol": 230.0,
+    "t_pct_change": 66.1,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 58.4,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.965, 77.539)",
+    "road_type": "Collector Road",
+    "hist_vol": 185.0,
+    "t_pct_change": -100.0,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -281.4,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.008, 77.695)",
+    "road_type": "Arterial Road",
+    "hist_vol": 169.0,
+    "t_pct_change": 37.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -10.0,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.580)",
+    "road_type": "Local Street",
+    "hist_vol": 168.0,
+    "t_pct_change": 26.7,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 19.0,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.943, 77.571)",
+    "road_type": "Local Street",
+    "hist_vol": 113.5,
+    "t_pct_change": 144.4,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 136.8,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.035, 77.589)",
+    "road_type": "Arterial Road",
+    "hist_vol": 295.5,
+    "t_pct_change": -79.6,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -127.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.071, 77.588)",
+    "road_type": "Collector Road",
+    "hist_vol": 330.0,
+    "t_pct_change": 136.6,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -44.9,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.981, 77.609)",
+    "road_type": "Collector Road",
+    "hist_vol": 133.0,
+    "t_pct_change": 100.0,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -81.4,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.965, 77.718)",
+    "road_type": "Arterial Road",
+    "hist_vol": 149.0,
+    "t_pct_change": -100.0,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -147.9,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.964, 77.584)",
+    "road_type": "Arterial Road",
+    "hist_vol": 109.0,
+    "t_pct_change": 4.3,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -43.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.578)",
+    "road_type": "Local Street",
+    "hist_vol": 105.0,
+    "t_pct_change": -9.7,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -17.3,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.968, 77.575)",
+    "road_type": "Local Street",
+    "hist_vol": 134.5,
+    "t_pct_change": -44.8,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -52.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.976, 77.577)",
+    "road_type": "Arterial Road",
+    "hist_vol": 204.0,
+    "t_pct_change": -70.7,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -118.6,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.974, 77.579)",
+    "road_type": "Arterial Road",
+    "hist_vol": 182.0,
+    "t_pct_change": 0.0,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -47.9,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.974, 77.545)",
+    "road_type": "Arterial Road",
+    "hist_vol": 169.5,
+    "t_pct_change": -71.1,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -118.9,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.982, 77.608)",
+    "road_type": "Local Street",
+    "hist_vol": 182.0,
+    "t_pct_change": -38.3,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -46.0,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.980, 77.575)",
+    "road_type": "Arterial Road",
+    "hist_vol": 100.5,
+    "t_pct_change": -21.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -69.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.973, 77.579)",
+    "road_type": "Arterial Road",
+    "hist_vol": 323.0,
+    "t_pct_change": -13.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -61.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.979, 77.579)",
+    "road_type": "Local Street",
+    "hist_vol": 113.5,
+    "t_pct_change": 96.9,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 89.2,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.965, 77.584)",
+    "road_type": "Arterial Road",
+    "hist_vol": 130.5,
+    "t_pct_change": 158.8,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 111.0,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.184, 77.680)",
+    "road_type": "Collector Road",
+    "hist_vol": 228.0,
+    "t_pct_change": -43.0,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -224.5,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.976, 77.576)",
+    "road_type": "Arterial Road",
+    "hist_vol": 139.5,
+    "t_pct_change": -50.6,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -98.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.978, 77.575)",
+    "road_type": "Arterial Road",
+    "hist_vol": 137.5,
+    "t_pct_change": 185.7,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 137.8,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.973, 77.578)",
+    "road_type": "Arterial Road",
+    "hist_vol": 108.5,
+    "t_pct_change": 116.7,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 68.8,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.974, 77.578)",
+    "road_type": "Arterial Road",
+    "hist_vol": 156.5,
+    "t_pct_change": 8.3,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -39.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.983, 77.611)",
+    "road_type": "Local Street",
+    "hist_vol": 101.0,
+    "t_pct_change": 83.8,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 76.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.000, 77.550)",
+    "road_type": "Arterial Road",
+    "hist_vol": 103.5,
+    "t_pct_change": 340.0,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 292.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.008, 77.696)",
+    "road_type": "Arterial Road",
+    "hist_vol": 139.5,
+    "t_pct_change": -11.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -59.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.965, 77.576)",
+    "road_type": "Arterial Road",
+    "hist_vol": 212.5,
+    "t_pct_change": -50.7,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -98.6,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.972, 77.658)",
+    "road_type": "Arterial Road",
+    "hist_vol": 144.5,
+    "t_pct_change": -20.8,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -68.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.976, 77.578)",
+    "road_type": "Local Street",
+    "hist_vol": 122.5,
+    "t_pct_change": 12.9,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 5.2,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.571)",
+    "road_type": "Arterial Road",
+    "hist_vol": 108.0,
+    "t_pct_change": -86.4,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -134.3,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.933, 77.691)",
+    "road_type": "Arterial Road",
+    "hist_vol": 348.5,
+    "t_pct_change": -89.2,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -137.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.970, 77.576)",
+    "road_type": "Local Street",
+    "hist_vol": 197.5,
+    "t_pct_change": -31.4,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -39.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.576)",
+    "road_type": "Arterial Road",
+    "hist_vol": 378.5,
+    "t_pct_change": 43.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -3.9,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.978, 77.574)",
+    "road_type": "Arterial Road",
+    "hist_vol": 161.5,
+    "t_pct_change": 173.9,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 126.0,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.964, 77.577)",
+    "road_type": "Arterial Road",
+    "hist_vol": 419.0,
+    "t_pct_change": 2.7,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -45.2,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.984, 77.604)",
+    "road_type": "Local Street",
+    "hist_vol": 259.5,
+    "t_pct_change": -59.1,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -66.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.012, 77.553)",
+    "road_type": "Arterial Road",
+    "hist_vol": 123.5,
+    "t_pct_change": 132.1,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 84.3,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.977, 77.579)",
+    "road_type": "Local Street",
+    "hist_vol": 123.0,
+    "t_pct_change": 59.4,
+    "mean_matched_control_change": 7.7,
+    "net_effect": 51.7,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.008, 77.571)",
+    "road_type": "Arterial Road",
+    "hist_vol": 102.0,
+    "t_pct_change": 290.0,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 242.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.981, 77.610)",
+    "road_type": "Collector Road",
+    "hist_vol": 403.0,
+    "t_pct_change": 52.3,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -129.1,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.980, 77.607)",
+    "road_type": "Local Street",
+    "hist_vol": 159.5,
+    "t_pct_change": -7.7,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -15.3,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.982, 77.610)",
+    "road_type": "Collector Road",
+    "hist_vol": 143.5,
+    "t_pct_change": -34.0,
+    "mean_matched_control_change": 181.4,
+    "net_effect": -215.4,
+    "matched_controls": [
+      {
+        "grid_id": "(13.011, 77.555)",
+        "hist_vol": 95.5,
+        "pct_change": 250.0
+      },
+      {
+        "grid_id": "(13.070, 77.588)",
+        "hist_vol": 88.5,
+        "pct_change": 61.9
+      },
+      {
+        "grid_id": "(12.959, 77.576)",
+        "hist_vol": 86.5,
+        "pct_change": 533.3
+      },
+      {
+        "grid_id": "(13.008, 77.555)",
+        "hist_vol": 82.5,
+        "pct_change": -23.7
+      },
+      {
+        "grid_id": "(12.997, 77.548)",
+        "hist_vol": 75.5,
+        "pct_change": 85.7
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.984, 77.603)",
+    "road_type": "Local Street",
+    "hist_vol": 197.5,
+    "t_pct_change": -12.8,
+    "mean_matched_control_change": 7.7,
+    "net_effect": -20.5,
+    "matched_controls": [
+      {
+        "grid_id": "(12.982, 77.606)",
+        "hist_vol": 87.5,
+        "pct_change": -73.7
+      },
+      {
+        "grid_id": "(13.186, 77.680)",
+        "hist_vol": 86.5,
+        "pct_change": -87.0
+      },
+      {
+        "grid_id": "(12.981, 77.608)",
+        "hist_vol": 86.5,
+        "pct_change": -60.0
+      },
+      {
+        "grid_id": "(12.979, 77.575)",
+        "hist_vol": 85.5,
+        "pct_change": 96.4
+      },
+      {
+        "grid_id": "(12.842, 77.646)",
+        "hist_vol": 82.0,
+        "pct_change": 162.5
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(13.000, 77.677)",
+    "road_type": "Arterial Road",
+    "hist_vol": 114.0,
+    "t_pct_change": 280.0,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 232.1,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.964, 77.578)",
+    "road_type": "Arterial Road",
+    "hist_vol": 165.0,
+    "t_pct_change": 69.2,
+    "mean_matched_control_change": 47.9,
+    "net_effect": 21.4,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  },
+  {
+    "treatment_grid": "(12.975, 77.576)",
+    "road_type": "Arterial Road",
+    "hist_vol": 155.0,
+    "t_pct_change": -31.4,
+    "mean_matched_control_change": 47.9,
+    "net_effect": -79.3,
+    "matched_controls": [
+      {
+        "grid_id": "(12.996, 77.668)",
+        "hist_vol": 100.0,
+        "pct_change": -40.0
+      },
+      {
+        "grid_id": "(12.996, 77.669)",
+        "hist_vol": 99.5,
+        "pct_change": -65.8
+      },
+      {
+        "grid_id": "(12.974, 77.551)",
+        "hist_vol": 98.0,
+        "pct_change": 22.2
+      },
+      {
+        "grid_id": "(13.012, 77.552)",
+        "hist_vol": 93.5,
+        "pct_change": 416.7
+      },
+      {
+        "grid_id": "(12.981, 77.599)",
+        "hist_vol": 93.5,
+        "pct_change": -93.8
+      }
+    ]
+  }
+]
