@@ -67,20 +67,128 @@ function buildMonth(key, label, violations) {
   };
 }
 
-// PI=1.0 chronic cells — same every month by definition
-// Source: DATA_ANALYSIS_RESULTS.md P1.2 + P1.7 + GRIDLOCK_IMPLEMENTATION_GUIDE.md Appendix A
-const CHRONIC_CELLS = [
-  { rank:1,  lat:12.981, lon:77.610, congestionScore:5918.7, totalTickets:4411, avgSeverity:1.342, priorityScore:100 },
-  { rank:2,  lat:13.184, lon:77.680, congestionScore:3009.5, totalTickets:1926, avgSeverity:1.563, priorityScore:84  },
-  { rank:3,  lat:12.964, lon:77.577, congestionScore:2896.5, totalTickets:3745, avgSeverity:0.773, priorityScore:76  },
-  { rank:4,  lat:12.977, lon:77.576, congestionScore:2450.8, totalTickets:3181, avgSeverity:0.770, priorityScore:64  },
-  { rank:5,  lat:13.071, lon:77.588, congestionScore:2307.6, totalTickets:3280, avgSeverity:0.704, priorityScore:60  },
-  { rank:6,  lat:12.934, lon:77.691, congestionScore:2196.8, totalTickets:3343, avgSeverity:0.657, priorityScore:57  },
-  { rank:7,  lat:12.984, lon:77.603, congestionScore:1935.7, totalTickets:1649, avgSeverity:1.174, priorityScore:50  },
-  { rank:8,  lat:12.977, lon:77.577, congestionScore:1898.6, totalTickets:1907, avgSeverity:0.996, priorityScore:49  },
-  { rank:9,  lat:12.973, lon:77.579, congestionScore:1769.3, totalTickets:2366, avgSeverity:0.748, priorityScore:46  },
-  { rank:10, lat:13.035, lon:77.589, congestionScore:1678.7, totalTickets:2284, avgSeverity:0.735, priorityScore:43  },
+// ─────────────────────────────────────────────────────────────────────────────
+// PER-MONTH HOTSPOT DATA — computed from the real dataset CSV.
+// Each key is "lat,lon" matching the chronic cell coords below.
+// tickets    = actual violation count that month
+// rawScore   = Σ PCS (PCU × temporal × severity) that month
+// avgSev     = rawScore / tickets
+// priorityScore (0–100) is stable — it is the lifetime EPS rank, not monthly.
+// ─────────────────────────────────────────────────────────────────────────────
+const MONTHLY_HOTSPOT_DATA = {
+  nov2023: {
+    "12.981,77.61":  { tickets: 559,  rawScore: 659.5,  avgSev: 1.180 },
+    "13.184,77.68":  { tickets: 138,  rawScore: 238.5,  avgSev: 1.729 },
+    "12.964,77.577": { tickets: 365,  rawScore: 374.6,  avgSev: 1.026 },
+    "12.977,77.576": { tickets: 497,  rawScore: 408.2,  avgSev: 0.821 },
+    "13.071,77.588": { tickets: 111,  rawScore: 86.0,   avgSev: 0.775 },
+    "12.934,77.691": { tickets: 268,  rawScore: 210.6,  avgSev: 0.786 },
+    "12.984,77.603": { tickets: 309,  rawScore: 326.6,  avgSev: 1.057 },
+    "12.977,77.577": { tickets: 394,  rawScore: 402.0,  avgSev: 1.020 },
+    "12.973,77.579": { tickets: 354,  rawScore: 239.2,  avgSev: 0.676 },
+    "13.035,77.589": { tickets: 325,  rawScore: 265.4,  avgSev: 0.817 },
+  },
+  dec2023: {
+    "12.981,77.61":  { tickets: 731,  rawScore: 877.6,  avgSev: 1.201 },
+    "13.184,77.68":  { tickets: 451,  rawScore: 795.7,  avgSev: 1.764 },
+    "12.964,77.577": { tickets: 530,  rawScore: 578.5,  avgSev: 1.091 },
+    "12.977,77.576": { tickets: 728,  rawScore: 585.2,  avgSev: 0.804 },
+    "13.071,77.588": { tickets: 442,  rawScore: 377.3,  avgSev: 0.854 },
+    "12.934,77.691": { tickets: 365,  rawScore: 294.8,  avgSev: 0.808 },
+    "12.984,77.603": { tickets: 298,  rawScore: 317.2,  avgSev: 1.064 },
+    "12.977,77.577": { tickets: 351,  rawScore: 374.7,  avgSev: 1.068 },
+    "12.973,77.579": { tickets: 377,  rawScore: 261.4,  avgSev: 0.693 },
+    "13.035,77.589": { tickets: 605,  rawScore: 507.6,  avgSev: 0.839 },
+  },
+  jan2024: {
+    "12.981,77.61":  { tickets: 951,  rawScore: 1159.1, avgSev: 1.219 },
+    "13.184,77.68":  { tickets: 387,  rawScore: 697.5,  avgSev: 1.802 },
+    "12.964,77.577": { tickets: 730,  rawScore: 762.2,  avgSev: 1.044 },
+    "12.977,77.576": { tickets: 625,  rawScore: 481.4,  avgSev: 0.770 },
+    "13.071,77.588": { tickets: 868,  rawScore: 773.8,  avgSev: 0.891 },
+    "12.934,77.691": { tickets: 981,  rawScore: 685.5,  avgSev: 0.699 },
+    "12.984,77.603": { tickets: 437,  rawScore: 527.4,  avgSev: 1.207 },
+    "12.977,77.577": { tickets: 392,  rawScore: 415.9,  avgSev: 1.061 },
+    "12.973,77.579": { tickets: 648,  rawScore: 497.0,  avgSev: 0.767 },
+    "13.035,77.589": { tickets: 519,  rawScore: 445.7,  avgSev: 0.859 },
+  },
+  feb2024: {
+    "12.981,77.61":  { tickets: 904,  rawScore: 1181.3, avgSev: 1.307 },
+    "13.184,77.68":  { tickets: 394,  rawScore: 594.9,  avgSev: 1.510 },
+    "12.964,77.577": { tickets: 836,  rawScore: 1020.9, avgSev: 1.221 },
+    "12.977,77.576": { tickets: 455,  rawScore: 523.4,  avgSev: 1.150 },
+    "13.071,77.588": { tickets: 945,  rawScore: 1065.3, avgSev: 1.127 },
+    "12.934,77.691": { tickets: 951,  rawScore: 1178.9, avgSev: 1.240 },
+    "12.984,77.603": { tickets: 176,  rawScore: 202.1,  avgSev: 1.148 },
+    "12.977,77.577": { tickets: 233,  rawScore: 282.0,  avgSev: 1.210 },
+    "12.973,77.579": { tickets: 409,  rawScore: 480.3,  avgSev: 1.174 },
+    "13.035,77.589": { tickets: 390,  rawScore: 399.8,  avgSev: 1.025 },
+  },
+  mar2024: {
+    "12.981,77.61":  { tickets: 977,  rawScore: 1307.4, avgSev: 1.338 },
+    "13.184,77.68":  { tickets: 481,  rawScore: 673.7,  avgSev: 1.401 },
+    "12.964,77.577": { tickets: 1072, rawScore: 1353.7, avgSev: 1.263 },
+    "12.977,77.576": { tickets: 633,  rawScore: 694.5,  avgSev: 1.097 },
+    "13.071,77.588": { tickets: 721,  rawScore: 838.2,  avgSev: 1.162 },
+    "12.934,77.691": { tickets: 752,  rawScore: 757.3,  avgSev: 1.007 },
+    "12.984,77.603": { tickets: 385,  rawScore: 428.9,  avgSev: 1.114 },
+    "12.977,77.577": { tickets: 384,  rawScore: 446.8,  avgSev: 1.164 },
+    "12.973,77.579": { tickets: 462,  rawScore: 447.6,  avgSev: 0.969 },
+    "13.035,77.589": { tickets: 417,  rawScore: 448.3,  avgSev: 1.075 },
+  },
+  apr2024: {
+    "12.981,77.61":  { tickets: 283,  rawScore: 359.9,  avgSev: 1.272 },
+    "13.184,77.68":  { tickets: 75,   rawScore: 102.3,  avgSev: 1.365 },
+    "12.964,77.577": { tickets: 210,  rawScore: 268.3,  avgSev: 1.278 },
+    "12.977,77.576": { tickets: 244,  rawScore: 278.0,  avgSev: 1.139 },
+    "13.071,77.588": { tickets: 193,  rawScore: 232.6,  avgSev: 1.205 },
+    "12.934,77.691": { tickets: 26,   rawScore: 25.2,   avgSev: 0.969 },
+    "12.984,77.603": { tickets: 46,   rawScore: 47.2,   avgSev: 1.026 },
+    "12.977,77.577": { tickets: 153,  rawScore: 182.4,  avgSev: 1.192 },
+    "12.973,77.579": { tickets: 117,  rawScore: 137.4,  avgSev: 1.175 },
+    "13.035,77.589": { tickets: 28,   rawScore: 28.0,   avgSev: 1.000 },
+  },
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CHRONIC CELL DEFINITIONS — coords + lifetime priority score (stable).
+// totalTickets / congestionScore / avgSeverity are filled per-month from
+// MONTHLY_HOTSPOT_DATA above. The coord key must match that lookup.
+// ─────────────────────────────────────────────────────────────────────────────
+const CHRONIC_CELL_DEFS = [
+  { rank:1,  lat:12.981, lon:77.610, coordKey:"12.981,77.61",  lifetimeCongestion:5918.7, priorityScore:100 },
+  { rank:2,  lat:13.184, lon:77.680, coordKey:"13.184,77.68",  lifetimeCongestion:3009.5, priorityScore:84  },
+  { rank:3,  lat:12.964, lon:77.577, coordKey:"12.964,77.577", lifetimeCongestion:2896.5, priorityScore:76  },
+  { rank:4,  lat:12.977, lon:77.576, coordKey:"12.977,77.576", lifetimeCongestion:2450.8, priorityScore:64  },
+  { rank:5,  lat:13.071, lon:77.588, coordKey:"13.071,77.588", lifetimeCongestion:2307.6, priorityScore:60  },
+  { rank:6,  lat:12.934, lon:77.691, coordKey:"12.934,77.691", lifetimeCongestion:2196.8, priorityScore:57  },
+  { rank:7,  lat:12.984, lon:77.603, coordKey:"12.984,77.603", lifetimeCongestion:1935.7, priorityScore:50  },
+  { rank:8,  lat:12.977, lon:77.577, coordKey:"12.977,77.577", lifetimeCongestion:1898.6, priorityScore:49  },
+  { rank:9,  lat:12.973, lon:77.579, coordKey:"12.973,77.579", lifetimeCongestion:1769.3, priorityScore:46  },
+  { rank:10, lat:13.035, lon:77.589, coordKey:"13.035,77.589", lifetimeCongestion:1678.7, priorityScore:43  },
 ];
+
+// Returns the chronic cells enriched with per-month actuals for the given month key
+function getChronicCellsForMonth(monthKey) {
+  const monthData = MONTHLY_HOTSPOT_DATA[monthKey] ?? {};
+  return CHRONIC_CELL_DEFS.map(cell => {
+    const m = monthData[cell.coordKey] ?? { tickets: 0, rawScore: 0, avgSev: 0 };
+    return {
+      ...cell,
+      totalTickets:   m.tickets,
+      congestionScore: m.rawScore,
+      avgSeverity:    m.avgSev,
+    };
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODEL EVALUATION IMAGE — one scatter plot image per month.
+// April is the only one computed; other months show a placeholder message.
+// ─────────────────────────────────────────────────────────────────────────────
+const MODEL_EVAL_IMAGES = {
+  apr2024: "predicted_vs_actual.png",
+};
 
 const MONTHS = [
   buildMonth("nov2023", "November 2023", 43504),
@@ -433,6 +541,53 @@ function RevenueRow({ label, sublabel, value, isTotal }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// MODEL EVALUATION SECTION — responds to the selected month
+// ─────────────────────────────────────────────────────────────────────────────
+function ModelEvalSection({ monthKey, monthLabel }) {
+  const imgSrc = MODEL_EVAL_IMAGES[monthKey];
+
+  return (
+    <div style={{
+      background:"rgba(30,41,59,0.04)", border:"1px solid #e2e8f0",
+      borderRadius:16, padding:24, marginBottom:20,
+    }}>
+      <h2 style={{ fontSize:18, fontWeight:700, color:"#0f172a", marginBottom:8 }}>
+        Model Evaluation: Predicted vs Actual Validations (Holdout Set)
+      </h2>
+      <p style={{ fontSize:13, color:"#64748b", marginBottom:20, lineHeight:1.6 }}>
+        {imgSrc
+          ? `Scatter plot showing correlation between GridLock's predicted hotspots and actual verified holdout violations for ${monthLabel}.`
+          : `Scatter plot for ${monthLabel} has not been generated yet. The model was evaluated on the April 2024 holdout window — switch to April 2024 to view the chart.`
+        }
+      </p>
+      {imgSrc ? (
+        <div style={{ display:"flex", justifyContent:"center", background:"#fff", borderRadius:8, padding:16 }}>
+          <img
+            src={imgSrc}
+            alt={`Predicted vs Actual Violations — ${monthLabel}`}
+            style={{ maxWidth:"100%", height:"auto", borderRadius:4 }}
+          />
+        </div>
+      ) : (
+        <div style={{
+          display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",
+          height:180, background:"#f8fafc", borderRadius:8,
+          border:"2px dashed #e2e8f0", gap:10,
+        }}>
+          <span style={{ fontSize:32 }}>📊</span>
+          <p style={{ fontSize:14, color:"#94a3b8", margin:0, textAlign:"center" }}>
+            No holdout evaluation available for {monthLabel}.
+          </p>
+          <p style={{ fontSize:12, color:"#cbd5e1", margin:0 }}>
+            Switch to <strong style={{ color:"#64748b" }}>April 2024</strong> to see the validation scatter plot.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 export default function MonthlyReport({ reportData } = {}) {
@@ -442,6 +597,9 @@ export default function MonthlyReport({ reportData } = {}) {
 
   const monthData = MONTHS.find(m => m.key === selKey) ?? MONTHS[2];
   const d = isControlled ? { ...monthData, ...reportData } : monthData;
+
+  // Per-month hotspot data — recomputed whenever selKey changes
+  const chronicCells = useMemo(() => getChronicCellsForMonth(selKey), [selKey]);
 
   return (
     <div style={{ fontFamily:"'Inter','Segoe UI',system-ui,sans-serif", background:"#f1f5f9", minHeight:"100vh", padding:"32px 24px" }}>
@@ -511,6 +669,7 @@ export default function MonthlyReport({ reportData } = {}) {
             </h2>
             <p style={{ fontSize:14, color:"#475569", margin:0, lineHeight:1.6 }}>
               These spots appeared in the top 50 worst locations every single month — they need permanent attention, not just occasional patrols.
+              Showing figures for <strong>{d.label}</strong>.
             </p>
           </div>
           <div style={{ overflowX:"auto" }}>
@@ -525,7 +684,7 @@ export default function MonthlyReport({ reportData } = {}) {
                 </tr>
               </thead>
               <tbody>
-                {CHRONIC_CELLS.map((cell, i) => {
+                {chronicCells.map((cell, i) => {
                   const info = areaInfo(cell.lat, cell.lon);
                   return (
                     <tr key={cell.rank} style={{ background: i%2===0 ? "#fff" : "#fafbfc", borderBottom:"1px solid #f1f5f9" }}>
@@ -540,10 +699,20 @@ export default function MonthlyReport({ reportData } = {}) {
                         </span>
                       </td>
                       <td style={{ ...TD, fontWeight:600, color:"#0f172a" }}>
-                        {cell.congestionScore.toLocaleString("en-IN", { maximumFractionDigits:1 })}
+                        {cell.congestionScore === 0
+                          ? <span style={{ color:"#94a3b8" }}>—</span>
+                          : cell.congestionScore.toLocaleString("en-IN", { maximumFractionDigits:1 })}
                       </td>
-                      <td style={TD}>{cell.totalTickets.toLocaleString("en-IN")}</td>
-                      <td style={TD}>{cell.avgSeverity.toFixed(3)}</td>
+                      <td style={TD}>
+                        {cell.totalTickets === 0
+                          ? <span style={{ color:"#94a3b8" }}>—</span>
+                          : cell.totalTickets.toLocaleString("en-IN")}
+                      </td>
+                      <td style={TD}>
+                        {cell.avgSeverity === 0
+                          ? <span style={{ color:"#94a3b8" }}>—</span>
+                          : cell.avgSeverity.toFixed(3)}
+                      </td>
                       <td style={TD}><PriorityBar score={cell.priorityScore} /></td>
                     </tr>
                   );

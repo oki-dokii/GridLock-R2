@@ -46,16 +46,8 @@
 
   <div id="root"></div>
 
-  <!-- Evaluation Graph Container -->
-  <div style="max-width: 1200px; margin: 0 auto 60px; padding: 0 24px;">
-    <div style="background: rgba(30,41,59,0.4); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px;">
-      <h2 style="font-size: 18px; font-weight: 700; color: #f1f5f9; margin-bottom: 8px;">Model Evaluation: Predicted vs Actual Validations (Holdout Set)</h2>
-      <p style="font-size: 13px; color: #94a3b8; margin-bottom: 24px; line-height: 1.5;">Scatter plot demonstrating the correlation between GridLock's predicted hotspots and the actual verified holdout violations for April 2024.</p>
-      <div style="display: flex; justify-content: center; background: #fff; border-radius: 8px; padding: 16px;">
-        <img src="predicted_vs_actual.png" alt="Predicted vs Actual Violations" style="max-width: 100%; height: auto; border-radius: 4px;" />
-      </div>
-    </div>
-  </div>
+  <!-- Model Evaluation is now rendered inside the React component (ModelEvalSection)
+       and correctly responds to the month selector. No static HTML needed here. -->
   <script src="components/MonthlyReport.compiled.js"></script>
 </body>
 </html>
