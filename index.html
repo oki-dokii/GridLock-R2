@@ -861,6 +861,7 @@
   <script>
     // ── STATE ──────────────────────────────────────────────────────────────────
     let HOTSPOTS = [];
+    let ACTIVE_HOTSPOTS = [];
     let mapMarkers = [];
     let map = null;
     // Time filter state
@@ -938,9 +939,9 @@
     // ── DATA FETCH & RENDER ────────────────────────────────────────────────────
     function renderTop10() {
       const container = document.getElementById('top-10-list');
-      if (!container || !HOTSPOTS.length) return;
+      if (!container || !ACTIVE_HOTSPOTS.length) return;
 
-      const top10 = [...HOTSPOTS].sort((a, b) => b.priorityScore - a.priorityScore).slice(0, 10);
+      const top10 = [...ACTIVE_HOTSPOTS].sort((a, b) => b.priorityScore - a.priorityScore).slice(0, 10);
 
       container.innerHTML = top10.map((hs, i) => {
         let tierColor = 'text-blue-400';
@@ -970,8 +971,6 @@
         const res = await fetch('hotspot_data.json');
         HOTSPOTS = await res.json();
         renderMarkers();
-        renderTop10();
-        generateExecutiveIntelligence(); // Run What-If Analysis
         if (HOTSPOTS.length > 0) {
           map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
         }
@@ -1028,12 +1027,18 @@
 
         return {
           ...hs,
+          count: isFiltered ? filteredCount : hs.count,
+          totalPCS: isFiltered ? filteredPCU : (hs.totalPCS || hs.count),
+          priorityScore: isFiltered ? filteredPCU : hs.priorityScore,
           filteredCount: isFiltered ? filteredCount : hs.count,
           filteredPCU: isFiltered ? filteredPCU : (hs.totalPCS || hs.count)
         };
       });
 
       const activeZones = allWithCounts.filter(hs => hs.filteredCount > 0);
+      ACTIVE_HOTSPOTS = activeZones;
+      renderTop10();
+      generateExecutiveIntelligence();
       const maxFiltered = activeZones.length > 0
         ? Math.max(...activeZones.map(h => h.filteredPCU)) : 1;
 
@@ -1092,21 +1097,7 @@
         return;
       }
 
-      // Render ghosts first (below active markers)
-      allWithCounts
-        .filter(hs => hs.filteredCount === 0)
-        .forEach(hs => {
-          const visualTier = (hs._assigned === false && (hs.tier === 'critical' || hs.tier === 'high')) ? 'unassigned' : hs.tier;
-          if (!TIER_FILTER[visualTier]) return; // Hide ghost if its tier is unselected
-          const ghost = L.circleMarker([hs.lat, hs.lon], {
-            radius: 3,
-            color: '#334155',
-            weight: 1,
-            fillColor: '#475569',
-            fillOpacity: 0.25
-          }).addTo(map);
-          mapMarkers.push(ghost);
-        });
+      // Ghost rendering removed to fully filter map view
 
       // Render active zones on top
       [...activeZones].sort((a, b) => a.filteredPCU - b.filteredPCU).forEach(hs => {
@@ -1299,7 +1290,7 @@
 
     // ── RADAR LOGIC ────────────────────────────────────────────────────────────
     function updateRadar() {
-      if (!HOTSPOTS.length) return;
+      if (!ACTIVE_HOTSPOTS.length) return;
 
       const bounds = map.getBounds();
       const center = map.getCenter();
@@ -1308,7 +1299,7 @@
       const quads = { NW: 0, NE: 0, SW: 0, SE: 0 };
       let highestRisk = { val: 0, dir: '', resources: 'Standard patrol', eps: 0 };
 
-      HOTSPOTS.forEach(hs => {
+      ACTIVE_HOTSPOTS.forEach(hs => {
         if (bounds.contains([hs.lat, hs.lon])) {
           inView++;
           let latDir = hs.lat > center.lat ? 'N' : 'S';
@@ -1370,7 +1361,7 @@
     // ── RESOURCE OPTIMIZER (OPERATIONS RESEARCH) ───────────────────────────────
 
     function runOptimizer() {
-      if (!HOTSPOTS.length) return;
+      if (!ACTIVE_HOTSPOTS.length) return;
 
       // Clear previous
       optLayers.forEach(l => map.removeLayer(l));
@@ -1383,7 +1374,7 @@
       const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
 
       // Greedy Knapsack: Sort by EPS (totalPCS) descending
-      let available = [...HOTSPOTS].sort((a, b) => (b.totalPCS || 0) - (a.totalPCS || 0));
+      let available = [...ACTIVE_HOTSPOTS].sort((a, b) => (b.totalPCS || 0) - (a.totalPCS || 0));
       let deployments = [];
 
       // 1. Assign Tow Trucks (prioritize "Parking" violations)
@@ -1462,9 +1453,9 @@
       }
     }
     function generateExecutiveIntelligence() {
-      if (!HOTSPOTS.length) return;
+      if (!ACTIVE_HOTSPOTS.length) return;
 
-      const sortedByCount = [...HOTSPOTS].sort((a, b) => b.count - a.count);
+      const sortedByCount = [...ACTIVE_HOTSPOTS].sort((a, b) => b.count - a.count);
       const totalViolations = sortedByCount.reduce((sum, h) => sum + h.count, 0);
 
       // Metric 1: Top 10 Reduction
