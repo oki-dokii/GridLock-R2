@@ -544,6 +544,11 @@
       id="sim-content">
       <i class="fa-solid fa-bolt"></i> Deploy Units
     </button>
+    <button onclick="clearOptimizer()"
+      class="bg-slate-600 hover:bg-slate-500 text-white text-[10px] font-bold px-3 py-1.5 rounded shadow transition-colors flex items-center gap-1.5 hidden"
+      id="btn-clear-opt">
+      <i class="fa-solid fa-circle-stop"></i> Stop
+    </button>
 
     <!-- We still need a place to put opt-results. We can absolute position it below the bar -->
     <div id="opt-results-container" class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-80 z-50">
@@ -1395,6 +1400,12 @@
       resultsDiv.innerHTML = '';
       resultsDiv.classList.remove('hidden');
 
+      // Show Stop button
+      const stopBtn = document.getElementById('btn-clear-opt');
+      if (stopBtn) {
+        stopBtn.classList.remove('hidden');
+      }
+
       const numPatrols = parseInt(document.getElementById('opt-patrols').value) || 0;
       const numTows = parseInt(document.getElementById('opt-tows').value) || 0;
 
@@ -1477,6 +1488,32 @@
         map.fitBounds(group.getBounds().pad(0.1));
       }
     }
+
+    function clearOptimizer() {
+      // Clear lines and pulses from map
+      optLayers.forEach(l => map.removeLayer(l));
+      optLayers = [];
+
+      // Hide results panel
+      const resultsDiv = document.getElementById('opt-results');
+      resultsDiv.innerHTML = '';
+      resultsDiv.classList.add('hidden');
+
+      // Hide Stop button
+      const stopBtn = document.getElementById('btn-clear-opt');
+      if (stopBtn) {
+        stopBtn.classList.add('hidden');
+      }
+
+      // Re-render markers to restore regular map view
+      renderMarkers();
+      
+      // Re-zoom map to fit markers
+      if (HOTSPOTS.length > 0) {
+        map.fitBounds(new L.featureGroup(mapMarkers).getBounds().pad(0.1));
+      }
+    }
+
     function generateExecutiveIntelligence() {
       if (!ACTIVE_HOTSPOTS.length) return;
 
