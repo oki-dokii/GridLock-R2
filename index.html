@@ -997,31 +997,56 @@
         let filteredCount = 0;
         let filteredPCU = 0;
 
-        const vp = hs.vehicleProfile || {};
-
+        // 1. Compute Time/Day Ratio
+        let timeRatio = 0;
         if (weekendOnly) {
-          const dp = hs.dowProfile || [];
-          const weekendRatio = hs.count > 0 ? ((dp[5] || 0) + (dp[6] || 0)) / hs.count : 0;
-
-          for (const b of VEHICLE_BUCKETS) {
-            if (VEHICLE_FILTER[b] && vp[b]) {
-              filteredCount += vp[b].count * weekendRatio;
-              filteredPCU += vp[b].pcu_score * weekendRatio;
-            }
+          if (hs.dowProfile && hs.dowProfile.length) {
+            const dp = hs.dowProfile;
+            timeRatio = hs.count > 0 ? ((dp[5] || 0) + (dp[6] || 0)) / hs.count : 0;
+          } else {
+            timeRatio = 2 / 7; // uniform fallback for weekend
           }
         } else {
-          const hp = hs.hourProfile || [];
-          let timeSum = 0;
-          for (let h = fromHour; h <= toHour; h++) {
-            timeSum += hp[h] || 0;
+          if (hs.hourProfile && hs.hourProfile.length) {
+            const hp = hs.hourProfile;
+            let timeSum = 0;
+            for (let h = fromHour; h <= toHour; h++) {
+              timeSum += hp[h] || 0;
+            }
+            timeRatio = hs.count > 0 ? timeSum / hs.count : 0;
+          } else {
+            timeRatio = (toHour - fromHour + 1) / 24; // uniform fallback for hours
           }
-          const timeRatio = hs.count > 0 ? timeSum / hs.count : 0;
+        }
 
+        // 2. Compute Vehicle Filter and Apply Time Ratio
+        const vp = hs.vehicleProfile || {};
+        const hasVehicleProfile = Object.keys(vp).length > 0;
+
+        if (hasVehicleProfile) {
           for (const b of VEHICLE_BUCKETS) {
             if (VEHICLE_FILTER[b] && vp[b]) {
               filteredCount += vp[b].count * timeRatio;
               filteredPCU += vp[b].pcu_score * timeRatio;
             }
+          }
+        } else {
+          // Fallback to flat vehicle field
+          let mappedBucket = 'Car / Jeep';
+          const veh = (hs.vehicle || '').toLowerCase();
+          if (veh.includes('scooter') || veh.includes('two wheeler') || veh.includes('two-wheeler') || veh.includes('motorcycle') || veh.includes('bike')) {
+            mappedBucket = 'Two-Wheeler';
+          } else if (veh.includes('auto')) {
+            mappedBucket = 'Auto';
+          } else if (veh.includes('bus')) {
+            mappedBucket = 'Bus';
+          } else if (veh.includes('htv') || veh.includes('truck') || veh.includes('heavy')) {
+            mappedBucket = 'Heavy Vehicle';
+          }
+
+          if (VEHICLE_FILTER[mappedBucket]) {
+            filteredCount = hs.count * timeRatio;
+            filteredPCU = (hs.totalPCS || hs.count) * timeRatio;
           }
         }
 
