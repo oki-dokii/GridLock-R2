@@ -26,19 +26,14 @@ def main():
     treatment_grids = set(historical_volume.sort_values(ascending=False).head(k_targets).index)
 
     # 2. Compute 8-Day Matched Window Shares
-    # To keep it completely apples-to-apples across all months including April, we filter to day <= 8
     df_8day = df[df['day'] <= 8].copy()
     
-    # Total Network Violations per month (8-day window)
     network_totals = df_8day.groupby('year_month').size()
-    
-    # Treatment Violations per month (8-day window)
     df_treat = df_8day[df_8day['grid_id'].isin(treatment_grids)]
     treatment_totals = df_treat.groupby('year_month').size()
     
     shares = {}
-    print("\n=== PLACEBO / SANITY CHECK: MONTHLY SHARE (8-Day Windows) ===")
-    print("Is the Top-50 share stable despite the massive fluctuation in raw counts?")
+    print("\n=== RAW MONTHLY SHARE (8-Day Windows) ===")
     print("-" * 65)
     print(f"{'Month':<10} | {'Network Total':<15} | {'Top-50 Total':<15} | {'Top-50 Share'}")
     print("-" * 65)
@@ -46,41 +41,46 @@ def main():
     for m in months:
         nt = network_totals.get(m, 0)
         tt = treatment_totals.get(m, 0)
-        if nt > 0:
-            share = (tt / nt) * 100
-        else:
-            share = 0.0
+        share = (tt / nt) * 100 if nt > 0 else 0.0
         shares[m] = share
         print(f"{str(m):<10} | {nt:<15} | {tt:<15} | {share:.2f}%")
         
     print("-" * 65)
     
-    # Check stability (Nov - Mar)
-    pre_shares = [shares[m] for m in months[:-1] if m in shares and network_totals.get(m, 0) > 0]
-    mean_share = np.mean(pre_shares)
-    std_share = np.std(pre_shares)
+    # 3. PLACEBO TESTS (Month-to-Month Swings)
+    print("\n=== PLACEBO TESTS (Noise Floor Check) ===")
     
-    print(f"\nMean Share (Nov-Mar): {mean_share:.2f}% (Std Dev: ±{std_share:.2f}%)")
+    # Dec -> Jan Placebo
+    dec_share = shares[pd.Period('2023-12', 'M')]
+    jan_share = shares[pd.Period('2024-01', 'M')]
+    dec_jan_shift = jan_share - dec_share
+    print(f"Placebo 1 (Dec->Jan): {dec_share:.2f}% -> {jan_share:.2f}% ({dec_jan_shift:+.2f} pp)")
     
-    if std_share > 5.0:
-        print("\nWARNING: Share is highly volatile. This approach may not be reliable.")
+    # Jan -> Feb Placebo
+    feb_share = shares[pd.Period('2024-02', 'M')]
+    jan_feb_shift = feb_share - jan_share
+    print(f"Placebo 2 (Jan->Feb): {jan_share:.2f}% -> {feb_share:.2f}% ({jan_feb_shift:+.2f} pp)")
+
+    # Feb -> Mar Placebo
+    mar_share = shares[pd.Period('2024-03', 'M')]
+    feb_mar_shift = mar_share - feb_share
+    print(f"Placebo 3 (Feb->Mar): {feb_share:.2f}% -> {mar_share:.2f}% ({feb_mar_shift:+.2f} pp)")
+
+    # 4. ACTUAL EVALUATION
+    apr_share = shares[pd.Period('2024-04', 'M')]
+    mar_apr_shift = apr_share - mar_share
+    
+    print("\n=== ACTUAL EVALUATION (March vs April) ===")
+    print(f"Intervention (Mar->Apr): {mar_share:.2f}% -> {apr_share:.2f}% ({mar_apr_shift:+.2f} pp)")
+    
+    print("\n=== CONCLUSION ===")
+    max_placebo = max(abs(dec_jan_shift), abs(jan_feb_shift), abs(feb_mar_shift))
+    
+    if abs(mar_apr_shift) > max_placebo:
+        print(f"SUCCESS: The intervention shift ({abs(mar_apr_shift):.2f} pp) exceeds the maximum placebo noise floor ({max_placebo:.2f} pp).")
     else:
-        print("\nSUCCESS: Share is remarkably stable! The instrument volatility cancels out.")
-        
-        # Compute the real comparison
-        march_share = shares[pd.Period('2024-03', 'M')]
-        april_share = shares[pd.Period('2024-04', 'M')]
-        
-        pp_change = april_share - march_share
-        pct_change = (april_share - march_share) / march_share * 100
-        
-        print("\n=== CLOSING IMPACT METRIC (March vs April) ===")
-        print(f"Pre-Intervention (March 1-8): Top-50 generated {march_share:.2f}% of citywide violations")
-        print(f"Post-Intervention (April 1-8): Top-50 generated {april_share:.2f}% of citywide violations")
-        print("-" * 65)
-        print(f"Percentage Point Shift: {pp_change:+.2f} pp")
-        print(f"Relative Shift in Share: {pct_change:+.1f}%")
-        print("\n(This is the 'share of citywide violations attributable to targeted zones', effectively isolating the spatial impact of GridLock from the global fluctuation of the enforcement scale.)")
+        print(f"FAILURE: The intervention shift ({abs(mar_apr_shift):.2f} pp) is smaller than historical placebo swings (up to {max_placebo:.2f} pp).")
+        print("The observed 'impact' is statistically indistinguishable from background noise.")
 
 if __name__ == '__main__':
     main()

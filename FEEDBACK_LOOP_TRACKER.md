@@ -70,22 +70,25 @@ This confirms that the only mathematically valid way to evaluate GridLock in dep
 
 ---
 
-### Phase 5: Salvaging an Observational Metric (Share-Based Impact)
-While raw violation counts are hopelessly entangled with operational scaling, the *spatial distribution* of those violations is remarkably stable. If the police force scales up by 10%, they tend to write 10% more tickets everywhere, meaning a specific zone's *share* of citywide violations remains constant.
+### Phase 5: The Final Placebo Check (Share-Based Impact)
+Since raw violation counts are hopelessly entangled with operational scaling, we tested isolating the *spatial distribution* of violations. If the police force scales up by 10%, they theoretically write 10% more tickets everywhere, meaning a specific zone's *share* of citywide violations should remain constant.
 
-We validated this hypothesis by checking the Top-50 hotspots' share of network-wide violations across 8-day matched windows:
+We calculated the Top-50 hotspots' share of network-wide violations across 8-day matched windows:
 *   **December:** 20.27%
 *   **January:** 25.31%
 *   **February:** 23.09%
 *   **March (Pre-Intervention):** 25.68%
+*   **April (Post-Intervention):** 23.66%
 
-*(Mean Historical Share: 23.59% ± 2.16% — This passes the stability sanity check).*
+The apparent "impact" from March to April is a **-2.02 pp** shift (25.68% → 23.66%).
 
-By shifting our metric from "absolute reduction" to "share of citywide violations," the instrument volatility mathematically cancels out, allowing us to isolate the spatial impact of GridLock:
+However, running our standard placebo check on the month-to-month swings in the baseline period reveals the final flaw:
+*   **Placebo 1 (Dec → Jan):** +5.04 pp shift
+*   **Placebo 2 (Jan → Feb):** -2.21 pp shift
+*   **Placebo 3 (Feb → Mar):** +2.59 pp shift
 
-**Closing Impact Metric (March vs April 8-Day Windows)**
-*   **Pre-Intervention (March):** Targeted zones generated **25.68%** of citywide violations.
-*   **Post-Intervention (April):** Targeted zones generated **23.66%** of citywide violations.
-*   **Impact:** A **-2.02 pp** shift, representing a **7.9% relative reduction** in the share of citywide violations attributable to targeted zones.
+**Conclusion:** The observed intervention shift of **-2.02 pp** is entirely within the historical noise floor of the metric (which swings by up to 5 pp month-to-month). 
 
-Even when factoring out the massive instability of the measurement instrument, GridLock successfully cooled the network's most critical hotspots relative to the background citywide baseline.
+Every single observational metric—Naive Before/After, Global DiD, PSM Matched Control, Trend Extrapolation, and Share-Based Distribution—has failed a basic placebo stress-test. This exhaustively proves that the underlying dataset is fundamentally incompatible with pre/post observational causal inference.
+
+The only mathematically valid way to evaluate the GridLock platform in deployment is a **strict A/B Test with Randomized Holdouts** (e.g., enforcing a hotspot on Monday, but holding it back as a control on Tuesday) to bypass temporal and spatial instability entirely.
